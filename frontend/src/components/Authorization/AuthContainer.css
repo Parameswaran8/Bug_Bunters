@@ -1,35 +1,27 @@
-/* ...existing code... */
-
-.form-transition {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* New styles to make sliding smooth and prevent overlap */
+/* Smooth professional transitions */
 .panel-left,
 .panel-right {
-  transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.45s;
   will-change: transform, opacity;
   backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
-/* Ensure the parent hides overflow so panels slide in/out without showing both at once */
-.w-full.max-w-5xl, /* existing wrapper */ 
-/* fallback selector for the inner fixed height wrapper */
-.relative.w-full.h-96 {
-  overflow: hidden;
+/* Enhanced easing for professional feel */
+.transition-all {
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Improve stacking so the active panel sits above when necessary */
-.panel-left {
-  z-index: 10;
-}
-.panel-right {
-  z-index: 20;
-}
-
-/* Disable pointer events when a panel is fully off-screen to avoid accidental clicks */
-.panel-left.-translate-x-full,
-.panel-right.translate-x-full {
+/* Fade in/out combined with slide for depth */
+.panel-right.-translate-x-full {
   pointer-events: none;
-  opacity: 0.98; /* slight fade to improve perceived smoothness */
+}
+
+.panel-left.translate-x-full {
+  pointer-events: none;
+}
+
+/* Prevent content shift during transition */
+.grid {
+  contain: layout;
 }

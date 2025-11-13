@@ -11,7 +11,7 @@ function AuthContainer() {
   const [authMode, setAuthMode] = useState("login"); // 'login', 'register', 'reset'
 
   return (
-    <div className="relative w-full h-screen bg-gradient-to-br from-cyan-500 to-blue-50 overflow-hidden">
+    <div className="relative w-full h-screen bg-gradient-to-br from-cyan-50 to-blue-50 overflow-hidden">
       {/* Decorative shapes */}
       <div className="absolute -top-20 -left-20 w-40 h-40 bg-white rounded-full opacity-10"></div>
       <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-white rounded-full opacity-10"></div>
@@ -68,8 +68,10 @@ function AuthContainer() {
 
             {/* Right side - Form content */}
             <div
-              className={`flex flex-col justify-center items-center p-8 lg:p-12 ${
-                authMode === "register" ? "-translate-x-full" : "translate-x-0"
+              className={`flex flex-col justify-center items-center p-8 lg:p-12  ${
+                authMode === "register"
+                  ? "lg:-translate-x-full -translate-x-0"
+                  : "translate-x-0"
               }`}
             >
               <div className="w-full max-w-md form-transition">
