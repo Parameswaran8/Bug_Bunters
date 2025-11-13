@@ -1,0 +1,1242 @@
+2025-06-27T09:41:20.388Z [error]: Invalid namespace specified: bugs/task.users - MongoServerError: Invalid namespace specified: bugs/task.users
+    at Connection.sendCommand (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:559:17)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Connection.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:633:22)
+    at async Server.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/sdam/server.ts:342:21)
+    at async FindOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/find.ts:130:12)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+2025-06-27T09:41:20.393Z [error]: Invalid namespace specified: bugs/task.users - MongoServerError: Invalid namespace specified: bugs/task.users
+    at Connection.sendCommand (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:559:17)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Connection.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:633:22)
+    at async Server.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/sdam/server.ts:342:21)
+    at async FindOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/find.ts:130:12)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+2025-06-27T09:45:13.873Z [error]: Invalid namespace specified: bugs/task.users - MongoServerError: Invalid namespace specified: bugs/task.users
+    at Connection.sendCommand (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:559:17)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Connection.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:633:22)
+    at async Server.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/sdam/server.ts:342:21)
+    at async FindOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/find.ts:130:12)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+2025-06-27T09:45:13.876Z [error]: Invalid namespace specified: bugs/task.users - MongoServerError: Invalid namespace specified: bugs/task.users
+    at Connection.sendCommand (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:559:17)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Connection.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:633:22)
+    at async Server.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/sdam/server.ts:342:21)
+    at async FindOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/find.ts:130:12)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+2025-06-27T09:46:30.897Z [error]: Invalid namespace specified: bugs/task.users - MongoServerError: Invalid namespace specified: bugs/task.users
+    at Connection.sendCommand (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:559:17)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Connection.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:633:22)
+    at async Server.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/sdam/server.ts:342:21)
+    at async FindOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/find.ts:130:12)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+2025-06-27T09:46:30.900Z [error]: Invalid namespace specified: bugs/task.users - MongoServerError: Invalid namespace specified: bugs/task.users
+    at Connection.sendCommand (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:559:17)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Connection.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:633:22)
+    at async Server.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/sdam/server.ts:342:21)
+    at async FindOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/find.ts:130:12)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+2025-06-27T09:49:58.316Z [error]: Invalid namespace specified: bugs/task.bugs_task_users - MongoServerError: Invalid namespace specified: bugs/task.bugs_task_users
+    at Connection.sendCommand (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:559:17)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Connection.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:633:22)
+    at async Server.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/sdam/server.ts:342:21)
+    at async FindOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/find.ts:130:12)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+2025-06-27T09:49:58.318Z [error]: Invalid namespace specified: bugs/task.bugs_task_users - MongoServerError: Invalid namespace specified: bugs/task.bugs_task_users
+    at Connection.sendCommand (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:559:17)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Connection.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection.ts:633:22)
+    at async Server.command (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/sdam/server.ts:342:21)
+    at async FindOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/find.ts:130:12)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+2025-06-27T16:32:56.493Z [error]: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null } - MongoServerError: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-06-27T16:32:56.495Z [error]: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null } - MongoServerError: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-06-27T16:33:43.239Z [error]: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null } - MongoServerError: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-06-27T16:33:43.240Z [error]: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null } - MongoServerError: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-06-27T17:31:06.265Z [error]: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null } - MongoServerError: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-06-27T17:31:06.274Z [error]: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null } - MongoServerError: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-06-27T17:31:23.821Z [error]: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null } - MongoServerError: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-06-27T17:31:23.822Z [error]: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null } - MongoServerError: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-06-28T14:42:29.759Z [error]: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null } - MongoServerError: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-06-28T14:42:29.761Z [error]: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null } - MongoServerError: E11000 duplicate key error collection: bugs.users index: userName_1 dup key: { userName: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-06-29T06:37:22.934Z [error]: getaddrinfo ENOTFOUND cluster0-shard-00-01.as4he.mongodb.net - MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-01.as4he.mongodb.net
+    at Topology.selectServer (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:634:30)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:201:16)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+    at async FindCursor.next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+    at async Collection.findOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:526:17)
+    at async model.Query._findOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2687:15)
+    at async model.Query.exec (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:4604:63)
+2025-06-29T06:37:22.938Z [error]: getaddrinfo ENOTFOUND cluster0-shard-00-01.as4he.mongodb.net - MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-01.as4he.mongodb.net
+    at Topology.selectServer (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:634:30)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:201:16)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+    at async FindCursor.next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+    at async Collection.findOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:526:17)
+    at async model.Query._findOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2687:15)
+    at async model.Query.exec (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:4604:63)
+2025-07-01T05:18:30.026Z [error]: user.save is not a function - TypeError: user.save is not a function
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:110:16
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:38:58)
+2025-07-01T05:18:30.069Z [error]: user.save is not a function - TypeError: user.save is not a function
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:110:16
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:38:58)
+2025-07-08T12:07:57.482Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-08T12:07:57.491Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-08T12:12:27.205Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-08T12:12:27.227Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-08T12:17:23.260Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-08T12:17:23.261Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-15T11:34:35.121Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-15T11:34:35.136Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-15T11:36:36.863Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-15T11:36:36.870Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-21T06:08:40.618Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:53:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:08:40.624Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:53:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:09:46.806Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:53:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:09:46.811Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:53:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:10:20.923Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:53:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:10:20.927Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:53:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:11:45.354Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:53:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:11:45.357Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:53:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:11:47.677Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:53:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:11:47.677Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:53:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:12:03.159Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:53:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:12:03.159Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:53:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:12:45.141Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:53:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:12:45.152Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:53:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:13:22.404Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:54:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:13:22.413Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:54:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:15:52.077Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:54:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T06:15:52.078Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:54:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T08:50:15.131Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:13:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:12:72
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T08:50:15.135Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:13:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/auth.controller.ts:12:72
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T09:24:56.066Z [error]: Cannot destructure property 'toolName' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'toolName' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/user.controller.ts:47:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/user.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/user.controller.ts:4:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/user.controller.ts:46:67
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T09:24:56.068Z [error]: Cannot destructure property 'toolName' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'toolName' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/user.controller.ts:47:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/user.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/user.controller.ts:4:12)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/controllers/user.controller.ts:46:67
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-07-21T09:25:08.077Z [error]: Expected double-quoted property name in JSON at position 65 (line 4 column 1) - SyntaxError: Expected double-quoted property name in JSON at position 65 (line 4 column 1)
+    at JSON.parse (<anonymous>)
+    at parse (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/body-parser/lib/types/json.js:77:19)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/body-parser/lib/read.js:123:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+    at invokeCallback (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/raw-body/index.js:238:16)
+    at done (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/raw-body/index.js:227:7)
+    at IncomingMessage.onEnd (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/raw-body/index.js:287:7)
+    at IncomingMessage.emit (node:events:507:28)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+2025-07-21T09:25:22.344Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-21T09:25:22.345Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-21T09:26:08.984Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-21T09:26:08.984Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-21T09:28:19.061Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-21T09:28:19.061Z [error]: user validation failed: password: Path `password` is required., email: Path `email` is required. - ValidationError: user validation failed: password: Path `password` is required., email: Path `email` is required.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-07-21T09:32:22.140Z [error]: E11000 duplicate key error collection: bugs.tools index: name_1 dup key: { name: null } - MongoServerError: E11000 duplicate key error collection: bugs.tools index: name_1 dup key: { name: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-07-21T09:32:22.142Z [error]: E11000 duplicate key error collection: bugs.tools index: name_1 dup key: { name: null } - MongoServerError: E11000 duplicate key error collection: bugs.tools index: name_1 dup key: { name: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/React_Native/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T14:36:59.467Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:54:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-08-29T14:36:59.471Z [error]: Cannot destructure property 'email' of 'req.body' as it is undefined. - TypeError: Cannot destructure property 'email' of 'req.body' as it is undefined.
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:54:13
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:37:12)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:52:69
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/utils/asyncHandler.ts:11:5
+    at Layer.handleRequest (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/router/lib/route.js:117:3)
+2025-08-29T16:42:49.994Z [error]: user validation failed: email: Path `email` is required., role: `superadmin` is not a valid enum value for path `role`. - ValidationError: user validation failed: email: Path `email` is required., role: `superadmin` is not a valid enum value for path `role`.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-08-29T16:42:49.995Z [error]: user validation failed: email: Path `email` is required., role: `superadmin` is not a valid enum value for path `role`. - ValidationError: user validation failed: email: Path `email` is required., role: `superadmin` is not a valid enum value for path `role`.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-08-29T16:50:16.290Z [error]: user validation failed: email: Path `email` is required., role: `superadmin` is not a valid enum value for path `role`. - ValidationError: user validation failed: email: Path `email` is required., role: `superadmin` is not a valid enum value for path `role`.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-08-29T16:50:16.296Z [error]: user validation failed: email: Path `email` is required., role: `superadmin` is not a valid enum value for path `role`. - ValidationError: user validation failed: email: Path `email` is required., role: `superadmin` is not a valid enum value for path `role`.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-08-29T16:50:37.614Z [error]: user validation failed: role: `superadmin` is not a valid enum value for path `role`. - ValidationError: user validation failed: role: `superadmin` is not a valid enum value for path `role`.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-08-29T16:50:37.616Z [error]: user validation failed: role: `superadmin` is not a valid enum value for path `role`. - ValidationError: user validation failed: role: `superadmin` is not a valid enum value for path `role`.
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3113:17
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-08-29T16:51:03.441Z [error]: Cannot set headers after they are sent to the client - Error: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:684:10)
+    at ServerResponse.send (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:161:12)
+    at ServerResponse.json (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:250:15)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:117:8
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:38:58)
+2025-08-29T16:51:03.442Z [error]: Cannot set headers after they are sent to the client - Error: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:684:10)
+    at ServerResponse.send (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:161:12)
+    at ServerResponse.json (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:250:15)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:117:8
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:38:58)
+2025-08-29T16:51:48.030Z [error]: Cannot set headers after they are sent to the client - Error: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:684:10)
+    at ServerResponse.send (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:161:12)
+    at ServerResponse.json (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:250:15)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:117:8
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:38:58)
+2025-08-29T16:51:48.031Z [error]: Cannot set headers after they are sent to the client - Error: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:684:10)
+    at ServerResponse.send (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:161:12)
+    at ServerResponse.json (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:250:15)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:117:8
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:38:58)
+2025-08-29T16:52:30.910Z [error]: Cannot set headers after they are sent to the client - Error: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:684:10)
+    at ServerResponse.send (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:161:12)
+    at ServerResponse.json (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:250:15)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:95:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:38:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-29T16:52:30.911Z [error]: Cannot set headers after they are sent to the client - Error: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:684:10)
+    at ServerResponse.send (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:161:12)
+    at ServerResponse.json (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:250:15)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:95:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:38:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-29T16:53:29.132Z [error]: Cannot set headers after they are sent to the client - Error: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:684:10)
+    at ServerResponse.send (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:161:12)
+    at ServerResponse.json (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:250:15)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:95:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:38:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-29T16:53:29.134Z [error]: Cannot set headers after they are sent to the client - Error: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:684:10)
+    at ServerResponse.send (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:161:12)
+    at ServerResponse.json (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/express/lib/response.js:250:15)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:95:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/auth.controller.ts:38:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-29T17:37:07.328Z [error]: Either username or email is required - Error: Either username or email is required
+    at model.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/models/user.model.ts:46:17)
+    at callMiddlewareFunction (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:628:27)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:93:7)
+    at Kareem.execPre (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:122:8)
+    at Kareem.wrap (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:368:8)
+    at model.$__validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:502:11)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2646:10
+    at new Promise (<anonymous>)
+    at model.validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2645:10)
+    at model.validateBeforeSave (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/plugins/validateBeforeSave.js:35:12)
+2025-08-29T17:37:07.329Z [error]: Either username or email is required - Error: Either username or email is required
+    at model.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/models/user.model.ts:46:17)
+    at callMiddlewareFunction (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:628:27)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:93:7)
+    at Kareem.execPre (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:122:8)
+    at Kareem.wrap (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:368:8)
+    at model.$__validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:502:11)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2646:10
+    at new Promise (<anonymous>)
+    at model.validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2645:10)
+    at model.validateBeforeSave (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/plugins/validateBeforeSave.js:35:12)
+2025-08-29T17:40:07.855Z [error]: Either username or email is required - Error: Either username or email is required
+    at model.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/models/user.model.ts:46:17)
+    at callMiddlewareFunction (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:628:27)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:93:7)
+    at Kareem.execPre (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:122:8)
+    at Kareem.wrap (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:368:8)
+    at model.$__validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:502:11)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2646:10
+    at new Promise (<anonymous>)
+    at model.validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2645:10)
+    at model.validateBeforeSave (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/plugins/validateBeforeSave.js:35:12)
+2025-08-29T17:40:07.857Z [error]: Either username or email is required - Error: Either username or email is required
+    at model.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/models/user.model.ts:46:17)
+    at callMiddlewareFunction (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:628:27)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:93:7)
+    at Kareem.execPre (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:122:8)
+    at Kareem.wrap (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:368:8)
+    at model.$__validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:502:11)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2646:10
+    at new Promise (<anonymous>)
+    at model.validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2645:10)
+    at model.validateBeforeSave (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/plugins/validateBeforeSave.js:35:12)
+2025-08-29T17:50:10.845Z [error]: Either username or email is required - Error: Either username or email is required
+    at model.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/models/user.model.ts:46:17)
+    at callMiddlewareFunction (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:628:27)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:93:7)
+    at Kareem.execPre (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:122:8)
+    at Kareem.wrap (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:368:8)
+    at model.$__validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:502:11)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2646:10
+    at new Promise (<anonymous>)
+    at model.validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2645:10)
+    at model.validateBeforeSave (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/plugins/validateBeforeSave.js:35:12)
+2025-08-29T17:50:10.851Z [error]: Either username or email is required - Error: Either username or email is required
+    at model.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/models/user.model.ts:46:17)
+    at callMiddlewareFunction (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:628:27)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:93:7)
+    at Kareem.execPre (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:122:8)
+    at Kareem.wrap (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:368:8)
+    at model.$__validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:502:11)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2646:10
+    at new Promise (<anonymous>)
+    at model.validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2645:10)
+    at model.validateBeforeSave (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/plugins/validateBeforeSave.js:35:12)
+2025-08-29T17:54:39.074Z [error]: Either username or email is required - Error: Either username or email is required
+    at model.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/models/user.model.ts:46:17)
+    at callMiddlewareFunction (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:628:27)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:93:7)
+    at Kareem.execPre (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:122:8)
+    at Kareem.wrap (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:368:8)
+    at model.$__validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:502:11)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2646:10
+    at new Promise (<anonymous>)
+    at model.validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2645:10)
+    at model.validateBeforeSave (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/plugins/validateBeforeSave.js:35:12)
+2025-08-29T17:54:39.077Z [error]: Either username or email is required - Error: Either username or email is required
+    at model.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/models/user.model.ts:46:17)
+    at callMiddlewareFunction (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:628:27)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:93:7)
+    at Kareem.execPre (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:122:8)
+    at Kareem.wrap (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:368:8)
+    at model.$__validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:502:11)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2646:10
+    at new Promise (<anonymous>)
+    at model.validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2645:10)
+    at model.validateBeforeSave (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/plugins/validateBeforeSave.js:35:12)
+2025-08-29T18:17:45.990Z [error]: Validation failed: username: Either username or email is required - ValidationError: Validation failed: username: Either username or email is required
+    at model.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/models/user.model.ts:47:29)
+    at callMiddlewareFunction (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:628:27)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:93:7)
+    at Kareem.execPre (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:122:8)
+    at Kareem.wrap (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:368:8)
+    at model.$__validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:502:11)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2646:10
+    at new Promise (<anonymous>)
+    at model.validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2645:10)
+    at model.validateBeforeSave (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/plugins/validateBeforeSave.js:35:12)
+2025-08-29T18:17:45.996Z [error]: Validation failed: username: Either username or email is required - ValidationError: Validation failed: username: Either username or email is required
+    at model.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/models/user.model.ts:47:29)
+    at callMiddlewareFunction (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:628:27)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:93:7)
+    at Kareem.execPre (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:122:8)
+    at Kareem.wrap (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:368:8)
+    at model.$__validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:502:11)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2646:10
+    at new Promise (<anonymous>)
+    at model.validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2645:10)
+    at model.validateBeforeSave (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/plugins/validateBeforeSave.js:35:12)
+2025-08-29T18:26:27.975Z [error]: Either username or email is required - Error: Either username or email is required
+    at model.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/models/user.model.ts:46:17)
+    at callMiddlewareFunction (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:628:27)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:93:7)
+    at Kareem.execPre (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:122:8)
+    at Kareem.wrap (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:368:8)
+    at model.$__validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:502:11)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2646:10
+    at new Promise (<anonymous>)
+    at model.validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2645:10)
+    at model.validateBeforeSave (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/plugins/validateBeforeSave.js:35:12)
+2025-08-29T18:26:27.980Z [error]: Either username or email is required - Error: Either username or email is required
+    at model.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/models/user.model.ts:46:17)
+    at callMiddlewareFunction (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:628:27)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:93:7)
+    at Kareem.execPre (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:122:8)
+    at Kareem.wrap (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:368:8)
+    at model.$__validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:502:11)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2646:10
+    at new Promise (<anonymous>)
+    at model.validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2645:10)
+    at model.validateBeforeSave (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/plugins/validateBeforeSave.js:35:12)
+2025-08-29T18:38:54.750Z [error]: Either username or email is required - Error: Either username or email is required
+    at model.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/models/user.model.ts:46:17)
+    at callMiddlewareFunction (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:628:27)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:93:7)
+    at Kareem.execPre (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:122:8)
+    at Kareem.wrap (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:368:8)
+    at model.$__validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:502:11)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2646:10
+    at new Promise (<anonymous>)
+    at model.validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2645:10)
+    at model.validateBeforeSave (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/plugins/validateBeforeSave.js:35:12)
+2025-08-29T18:38:54.751Z [error]: Either username or email is required - Error: Either username or email is required
+    at model.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/models/user.model.ts:46:17)
+    at callMiddlewareFunction (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:628:27)
+    at next (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:93:7)
+    at Kareem.execPre (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:122:8)
+    at Kareem.wrap (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:368:8)
+    at model.$__validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/kareem/index.js:502:11)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2646:10
+    at new Promise (<anonymous>)
+    at model.validate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:2645:10)
+    at model.validateBeforeSave (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/plugins/validateBeforeSave.js:35:12)
+2025-08-29T20:43:07.231Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:43:07.233Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:44:50.813Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:44:50.814Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:45:49.460Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:45:49.461Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:47:08.484Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:47:08.485Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:50:09.227Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:50:09.227Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:54:29.346Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:54:29.347Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:55:03.939Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:55:03.940Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:55:34.299Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:55:34.300Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:56:23.088Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:56:23.089Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:57:08.282Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:57:08.283Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:57:50.901Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:57:50.902Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:58:21.319Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:58:21.320Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:58:40.074Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-29T20:58:40.075Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: "" }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-30T05:14:21.992Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-30T05:14:21.994Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-30T05:14:55.088Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-30T05:14:55.089Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-30T05:20:29.120Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-08-30T05:20:29.121Z [error]: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null } - MongoServerError: E11000 duplicate key error collection: bug_bunters.users index: username_1 dup key: { username: null }
+    at InsertOneOperation.execute (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/insert.ts:88:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+    at async executeOperation (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async Collection.insertOne (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongodb/src/collection.ts:286:12)
+2025-10-16T10:52:03.882Z [error]: Expected property name or '}' in JSON at position 6 - SyntaxError: Expected property name or '}' in JSON at position 6
+    at JSON.parse (<anonymous>)
+    at parse (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/body-parser/lib/types/json.js:77:19)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/body-parser/lib/read.js:123:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:206:9)
+    at invokeCallback (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/raw-body/index.js:238:16)
+    at done (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/raw-body/index.js:227:7)
+    at IncomingMessage.onEnd (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/raw-body/index.js:287:7)
+    at IncomingMessage.emit (node:events:524:28)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+2025-10-27T09:49:48.600Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:917:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:203:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T09:49:48.603Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:917:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:203:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T09:50:39.311Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:917:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:203:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T09:50:39.312Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:917:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:203:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T09:55:15.280Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:917:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:203:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T09:55:15.281Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:917:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:203:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T09:55:36.168Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:917:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:203:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T09:55:36.169Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:917:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:203:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T09:57:13.969Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:918:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:203:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T09:57:13.970Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:918:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:203:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T09:59:42.453Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:919:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:204:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T09:59:42.454Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:919:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:204:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T10:00:03.901Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:919:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:204:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T10:00:03.903Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:919:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:204:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T10:22:18.423Z [error]: Bug validation failed: phaseIII_BugAnalysis.analyzedBy.userId: Cast to ObjectId failed for value "U102" (type string) at path "userId" because of "BSONError" - ValidationError: Bug validation failed: phaseIII_BugAnalysis.analyzedBy.userId: Cast to ObjectId failed for value "U102" (type string) at path "userId" because of "BSONError"
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at SingleNested.Subdocument.invalidate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/types/subdocument.js:229:12)
+    at SingleNested.$set (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:1480:12)
+    at SingleNested.$set (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:1132:16)
+    at SingleNested.Document (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:178:12)
+    at SingleNested.Subdocument (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/types/subdocument.js:34:12)
+    at new SingleNested (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schema/subdocument.js:79:21)
+    at SchemaSubdocument.cast (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schema/subdocument.js:195:12)
+    at SchemaSubdocument.SchemaType.applySetters (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1255:12)
+    at model.$set (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:1438:22)
+2025-10-27T10:22:18.427Z [error]: Bug validation failed: phaseIII_BugAnalysis.analyzedBy.userId: Cast to ObjectId failed for value "U102" (type string) at path "userId" because of "BSONError" - ValidationError: Bug validation failed: phaseIII_BugAnalysis.analyzedBy.userId: Cast to ObjectId failed for value "U102" (type string) at path "userId" because of "BSONError"
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at SingleNested.Subdocument.invalidate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/types/subdocument.js:229:12)
+    at SingleNested.$set (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:1480:12)
+    at SingleNested.$set (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:1132:16)
+    at SingleNested.Document (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:178:12)
+    at SingleNested.Subdocument (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/types/subdocument.js:34:12)
+    at new SingleNested (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schema/subdocument.js:79:21)
+    at SchemaSubdocument.cast (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schema/subdocument.js:195:12)
+    at SchemaSubdocument.SchemaType.applySetters (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1255:12)
+    at model.$set (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:1438:22)
+2025-10-27T10:31:26.557Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:919:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:388:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T10:31:26.558Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:919:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:388:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T10:31:50.344Z [error]: Bug validation failed: phaseIV_Maintenance.fixedBy.userId: Cast to ObjectId failed for value "DEV203" (type string) at path "userId" because of "BSONError" - ValidationError: Bug validation failed: phaseIV_Maintenance.fixedBy.userId: Cast to ObjectId failed for value "DEV203" (type string) at path "userId" because of "BSONError"
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at SingleNested.Subdocument.invalidate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/types/subdocument.js:229:12)
+    at SingleNested.$set (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:1480:12)
+    at SingleNested.$set (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:1132:16)
+    at SingleNested.Document (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:178:12)
+    at SingleNested.Subdocument (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/types/subdocument.js:34:12)
+    at new SingleNested (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schema/subdocument.js:79:21)
+    at SchemaSubdocument.cast (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schema/subdocument.js:195:12)
+    at SchemaSubdocument.SchemaType.applySetters (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1255:12)
+    at model.$set (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:1438:22)
+2025-10-27T10:31:50.345Z [error]: Bug validation failed: phaseIV_Maintenance.fixedBy.userId: Cast to ObjectId failed for value "DEV203" (type string) at path "userId" because of "BSONError" - ValidationError: Bug validation failed: phaseIV_Maintenance.fixedBy.userId: Cast to ObjectId failed for value "DEV203" (type string) at path "userId" because of "BSONError"
+    at model.Document.invalidate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:3352:32)
+    at SingleNested.Subdocument.invalidate (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/types/subdocument.js:229:12)
+    at SingleNested.$set (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:1480:12)
+    at SingleNested.$set (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:1132:16)
+    at SingleNested.Document (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:178:12)
+    at SingleNested.Subdocument (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/types/subdocument.js:34:12)
+    at new SingleNested (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schema/subdocument.js:79:21)
+    at SchemaSubdocument.cast (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schema/subdocument.js:195:12)
+    at SchemaSubdocument.SchemaType.applySetters (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1255:12)
+    at model.$set (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:1438:22)
+2025-10-27T10:54:05.545Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:919:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:469:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+2025-10-27T10:54:05.547Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:919:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:37:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:58:16)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:469:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:41:71
+    at new Promise (<anonymous>)
