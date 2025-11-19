@@ -22,21 +22,24 @@ function AuthContainer() {
           <div className="grid grid-cols-1 lg:grid-cols-2 min-h-96">
             {/* Left side - Travel image and info */}
             <div
-              className={`hidden lg:flex flex-col justify-between p-12 bg-gradient-to-br from-blue-600 to-blue-800 text-white relative overflow-hidden form-transition ${
-                authMode === "register" ? "translate-x-full" : "translate-x-0"
+              className={`hidden lg:flex flex-col justify-between p-12 bg-gradient-to-br from-blue-600 to-blue-800 text-white relative overflow-hidden form-transition fade-in ${
+                authMode === "register" ? "translate-x-full " : "translate-x-0"
               }`}
             >
               <div>
                 <div className="mb-4 flex items-center gap-2">
                   <h2 className="text-4xl font-script font-bold">CEOITBOX</h2>
-                  <h4>(Bug Bunter)</h4>
+                  <h4>(Bug Bunters)</h4>
                 </div>
                 <p className="text-sm leading-relaxed opacity-90">
                   Are you facing any issue in any tool provided by CEOITBOX?
+                  <br></br>
                   Don't worry! Our Bug Bunter tool is here to help you report
                   and track bugs efficiently. Join our community of users
-                  dedicated to improving the quality of our tools. Together, we
-                  can make CEOITBOX better for everyone!
+                  dedicated to improving the quality of our tools.
+                  <br></br>
+                  <br></br>
+                  Together, we can make CEOITBOX better for everyone!
                 </p>
               </div>
 

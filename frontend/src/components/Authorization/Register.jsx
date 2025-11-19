@@ -45,7 +45,7 @@ function Register({ onSwitchToLogin }) {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full fade-in">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-primary mb-2">Create Account</h1>
         <p className="text-gray-600">Join us today</p>

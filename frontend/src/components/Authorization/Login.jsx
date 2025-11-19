@@ -1,12 +1,16 @@
-"use client";
-
 /* Added proper default export */
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 import { MdEmail, MdLock, MdVisibility, MdVisibilityOff } from "react-icons/md";
 import toast from "react-hot-toast";
 import SocialButtons from "./SocialButtons";
 
 function Login({ onSwitchToRegister, onSwitchToReset }) {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
   const [mode, setMode] = useState("password"); // 'password' or 'otp'
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,18 +59,19 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
       return;
     }
     setLoading(true);
+
     // Simulate API call
     setTimeout(() => {
+      const userData = { email, name: email.split("@")[0] };
+      login(userData); // Save user to context
       toast.success("Logged in successfully");
       setLoading(false);
-      // Reset form
-      setEmail("");
-      setPassword("");
+      navigate("/"); // Redirect to dashboard
     }, 1000);
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full fade-in">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-primary mb-2">Welcome</h1>
         <p className="text-gray-600">Login with Email</p>
@@ -85,7 +90,7 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
                 <MdEmail className="text-primary text-xl mr-3" />
                 <input
                   type="email"
-                  placeholder="thisuser@mail.com"
+                  placeholder="yourmail@mail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full outline-none text-gray-700 bg-transparent"
