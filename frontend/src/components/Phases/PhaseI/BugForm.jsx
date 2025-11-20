@@ -1,25 +1,14 @@
+// BugForm.jsx
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Bug, Upload, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectSeparator,
-} from "@/components/ui/select";
+import { Upload, X } from "lucide-react";
+import SearchableToolDropdown from "@/components/SearchableAndLazyDropdown/SearchableSelect";
 
 function BugForm() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
-
   const [selectedTool, setSelectedTool] = useState("");
 
   const handleImageUpload = (e) => {
@@ -56,72 +45,11 @@ function BugForm() {
           <span className="block text-gray-500 text-xs">(Category)</span>
         </Label>
 
-        <Select value={selectedTool} onValueChange={setSelectedTool}>
-          <SelectTrigger className="w-full border-2 rounded-lg focus:border-primary">
-            <div className="flex flex-col text-left">
-              <SelectValue placeholder="Select Tool Name" />
-            </div>
-          </SelectTrigger>
-
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>CBXMEET</SelectLabel>
-
-              <SelectItem value="cbx_ios">
-                <div className="flex flex-col">
-                  <span className="text-sm font-medium">CBXMEET</span>
-                  <span className="text-xs text-muted-foreground">(iOS)</span>
-                </div>
-              </SelectItem>
-
-              <SelectItem value="cbx_android">
-                <div className="flex flex-col">
-                  <span className="text-sm font-medium">CBXMEET</span>
-                  <span className="text-xs text-muted-foreground">
-                    (Android)
-                  </span>
-                </div>
-              </SelectItem>
-
-              <SelectItem value="cbx_web">
-                <div className="flex flex-col">
-                  <span className="text-sm font-medium">CBXMEET</span>
-                  <span className="text-xs text-muted-foreground">
-                    (Website)
-                  </span>
-                </div>
-              </SelectItem>
-
-              <SelectSeparator />
-
-              <SelectLabel>DatawebFrom</SelectLabel>
-
-              <SelectItem value="dataweb_web">
-                <div className="flex flex-col">
-                  <span className="text-sm font-medium">DatawebFrom</span>
-                  <span className="text-xs text-muted-foreground">
-                    (Website)
-                  </span>
-                </div>
-              </SelectItem>
-
-              <SelectItem value="dataweb_appscript">
-                <div className="flex flex-col">
-                  <span className="text-sm font-medium">DatawebFrom</span>
-                  <span className="text-xs text-muted-foreground">
-                    (App Script)
-                  </span>
-                </div>
-              </SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-
-        {/* <Input
-          id="title"
-          placeholder="Feedback Form Submission Fails (Chrome Desktop)"
-          className="border-2 focus:border-primary rounded-lg"
-        /> */}
+        <SearchableToolDropdown
+          value={selectedTool}
+          onChange={setSelectedTool}
+          placeholder="Select Tool Name"
+        />
       </div>
 
       {/* Bug Description */}
