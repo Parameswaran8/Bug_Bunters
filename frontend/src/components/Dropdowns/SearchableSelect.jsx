@@ -7,7 +7,6 @@ import {
   CommandEmpty,
   CommandInput,
   CommandItem,
-  CommandList,
 } from "@/components/ui/command";
 import {
   Popover,
@@ -16,67 +15,43 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 
-// Mock API
-const fetchTools = async (page = 1, limit = 50) => {
-  await new Promise((resolve) => setTimeout(resolve, 250));
-
-  const items = [];
-  for (let i = 1; i <= 200; i++) {
-    items.push({
-      value: `tool_${i}`,
-      label: `Tool ${i}`,
-      sublabel: `Category ${(i % 5) + 1}`,
-    });
-  }
-
-  return { data: items, hasMore: false };
-};
-
 function SearchableToolDropdown({
   value,
   onChange,
   placeholder = "Select Tool",
+  items = [], // Accept items as prop
+  isLoading = false, // Accept loading state as prop
 }) {
   const [open, setOpen] = useState(false);
-  const [tools, setTools] = useState([]);
   const [filteredTools, setFilteredTools] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Update filtered tools when items change
   useEffect(() => {
-    if (open && tools.length === 0) loadTools();
-  }, [open]);
-
-  const loadTools = async () => {
-    setIsLoading(true);
-    try {
-      const res = await fetchTools();
-      setTools(res.data);
-      setFilteredTools(res.data);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    setFilteredTools(items);
+  }, [items]);
 
   const handleSearch = (search) => {
     setSearchQuery(search);
     if (!search) {
-      setFilteredTools(tools);
+      setFilteredTools(items);
     } else {
       const lower = search.toLowerCase();
       setFilteredTools(
-        tools.filter(
+        items.filter(
           (t) =>
             t.label.toLowerCase().includes(lower) ||
-            t.sublabel.toLowerCase().includes(lower)
+            (t.sublabel && t.sublabel.toLowerCase().includes(lower))
         )
       );
     }
   };
 
   const selectedLabel = () => {
-    const found = tools.find((i) => i.value === value);
-    return found ? `${found.label} (${found.sublabel})` : placeholder;
+    const found = items.find((i) => i.value === value);
+    return found
+      ? `${found.label}${found.sublabel ? ` (${found.sublabel})` : ""}`
+      : placeholder;
   };
 
   return (
@@ -100,18 +75,18 @@ function SearchableToolDropdown({
       >
         <Command>
           <CommandInput
-            placeholder="Search tools..."
+            placeholder="Search..."
             className="h-9"
             onValueChange={handleSearch}
           />
 
           <div
-            className="max-h-[300px] overflow-x-auto"
+            className="max-h-[300px] overflow-y-auto"
             onWheel={(e) => {
               e.currentTarget.scrollTop += e.deltaY;
             }}
           >
-            <CommandEmpty>No tool found.</CommandEmpty>
+            <CommandEmpty>No item found.</CommandEmpty>
 
             {filteredTools.map((item) => (
               <CommandItem
@@ -131,9 +106,11 @@ function SearchableToolDropdown({
 
                 <div className="flex flex-col">
                   <span className="text-sm font-medium">{item.label}</span>
-                  <span className="text-xs text-muted-foreground">
-                    {item.sublabel}
-                  </span>
+                  {item.sublabel && (
+                    <span className="text-xs text-muted-foreground">
+                      {item.sublabel}
+                    </span>
+                  )}
                 </div>
               </CommandItem>
             ))}
