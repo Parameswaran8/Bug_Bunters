@@ -48,6 +48,7 @@ export default class AuthController {
   static loginUser = asyncHandler(async (req, res): Promise<void> => {
     console.log("Login request body:", req.body);
     const { username_email, password } = req.body || {};
+    console.log("Username/Email:", username_email, "password:", password);
 
     if (!username_email || !password) {
       res
@@ -76,9 +77,16 @@ export default class AuthController {
         const userObj = savedUser.toObject();
         const { password: _, ...userWithoutPassword } = userObj;
 
+        res.cookie("bb_token", token, {
+          httpOnly: true,
+          secure: true, // true if https
+          sameSite: "none",
+          maxAge: 48 * 60 * 60 * 1000,
+          path: "/",
+        });
+
         res.status(HttpStatusCodes.CREATED).json({
           message: "Superadmin created and logged in successfully",
-          token,
           user: userWithoutPassword,
         });
         return;
@@ -107,9 +115,34 @@ export default class AuthController {
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
       expiresIn: "48h",
     });
+
+    res.cookie("bb_token", token, {
+      httpOnly: true,
+      secure: true, // set true for https
+      sameSite: "none", // adjust if same domain: use "lax"
+      maxAge: 48 * 60 * 60 * 1000, // 48 hours
+      path: "/",
+    });
+
     const { password: _, ...userWithoutPassword } = user;
-    res
-      .status(HttpStatusCodes.OK)
-      .json({ message: "Login successful", token, user: userWithoutPassword });
+
+    res.status(HttpStatusCodes.OK).json({
+      message: "Login successful",
+      user: userWithoutPassword,
+    });
+  });
+
+  // Method to register a new user with only email....
+  static logout = asyncHandler(async (req, res): Promise<void> => {
+    res.clearCookie("bb_token", {
+      path: "/",
+      sameSite: "none",
+      secure: true,
+    });
+
+    res.status(HttpStatusCodes.OK).json({
+      message: "Logged out",
+    });
+    return;
   });
 }

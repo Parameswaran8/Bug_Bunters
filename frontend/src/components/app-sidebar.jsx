@@ -204,7 +204,8 @@ export function AppSidebar({ ...props }) {
         <NavProjects projects={data.bugPhase} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
+        {/* user={data.user} */}
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

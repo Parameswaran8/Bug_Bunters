@@ -1,27 +1,40 @@
 /* Added proper default export */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 import { MdEmail, MdLock, MdVisibility, MdVisibilityOff } from "react-icons/md";
 import toast from "react-hot-toast";
 import SocialButtons from "./SocialButtons";
+import { login } from "@/API_Call/Auth";
 
 function Login({ onSwitchToRegister, onSwitchToReset }) {
-  const { login } = useAuth();
   const navigate = useNavigate();
 
   const [mode, setMode] = useState("password"); // 'password' or 'otp'
-  const [email, setEmail] = useState("");
+  const [username_email, setUsername_email] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { user, setUser, loading, setLoading } = useAuth();
+
+  const checkAlreadyLogin = async () => {
+    setLoading(true);
+    toast.success("Already Logged In");
+    setLoading(false);
+    navigate("/");
+  };
+
+  useEffect(() => {
+    if (user && !username_email) {
+      checkAlreadyLogin();
+    }
+  }, [user, username_email]);
 
   const handleSendOtp = async (e) => {
     e.preventDefault();
-    if (!email) {
+    if (!username_email) {
       toast.error("Please enter your email");
       return;
     }
@@ -46,7 +59,7 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
       toast.success("OTP verified successfully");
       setLoading(false);
       // Reset form
-      setEmail("");
+      setUsername_email("");
       setOtp("");
       setOtpSent(false);
     }, 1000);
@@ -54,20 +67,31 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
 
   const handlePasswordLogin = async (e) => {
     e.preventDefault();
-    if (!email || !password) {
+    if (!username_email || !password) {
       toast.error("Please fill in all fields");
       return;
     }
     setLoading(true);
 
     // Simulate API call
-    setTimeout(() => {
-      const userData = { email, name: email.split("@")[0] };
-      login(userData); // Save user to context
-      toast.success("Logged in successfully");
+    // setTimeout(() => {
+    const userData = { username_email, password };
+    console.log("Logging in user:", userData);
+    const login_check = await login(userData); // Save user to context
+    console.log("Login response:", login_check);
+
+    if (login_check.success) {
+      setUser(login_check.user);
+    } else {
+      toast.error(login_check.message);
       setLoading(false);
-      navigate("/"); // Redirect to dashboard
-    }, 1000);
+      return;
+    }
+
+    toast.success("Logged in successfully");
+    setLoading(false);
+    navigate("/"); // Redirect to dashboard
+    // }, 1000);
   };
 
   return (
@@ -84,15 +108,15 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
             {/* Email Field */}
             <div className="relative">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Email Id
+                Username or Email
               </label>
               <div className="flex items-center border-2 border-primary rounded-lg px-4 py-3">
                 <MdEmail className="text-primary text-xl mr-3" />
                 <input
-                  type="email"
+                  type="user_email"
                   placeholder="yourmail@mail.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={username_email}
+                  onChange={(e) => setUsername_email(e.target.value)}
                   className="w-full outline-none text-gray-700 bg-transparent"
                 />
               </div>
@@ -179,8 +203,8 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
                   <input
                     type="email"
                     placeholder="thisuser@mail.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={username_email}
+                    onChange={(e) => setUsername_email(e.target.value)}
                     className="w-full outline-none text-gray-700 bg-transparent"
                   />
                 </div>

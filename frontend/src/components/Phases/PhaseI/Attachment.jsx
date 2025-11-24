@@ -40,7 +40,7 @@ function Attachment({
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1">
         <AccordionTrigger>Attachments/Url ?</AccordionTrigger>
-        <AccordionContent>
+        <AccordionContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             {/* Upload Image */}
             <div className="space-y-2">

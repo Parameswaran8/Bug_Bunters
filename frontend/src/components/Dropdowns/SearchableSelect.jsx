@@ -21,6 +21,7 @@ function SearchableToolDropdown({
   placeholder = "Select Tool",
   items = [], // Accept items as prop
   isLoading = false, // Accept loading state as prop
+  classAdd,
 }) {
   const [open, setOpen] = useState(false);
   const [filteredTools, setFilteredTools] = useState([]);
@@ -56,7 +57,7 @@ function SearchableToolDropdown({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild className={classAdd}>
         <Button
           variant="outline"
           role="combobox"

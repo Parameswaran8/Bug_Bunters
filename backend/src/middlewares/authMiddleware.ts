@@ -14,14 +14,14 @@ export const authenticateToken = async (
   next: NextFunction
 ): Promise<void> => {
   console.log("16", req.headers);
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
+  // const authHeader = req.headers["authorization"];
+  // const token = authHeader && authHeader.split(" ")[1];
+  const token = req.cookies?.bb_token;
+  console.log("Token from cookie:", token); // Debugging line to check the token from cookies
   if (!token) {
     res.status(401).json({ message: "Access token is missing or invalid" });
     return; // Ensure no further code execution
   }
-
-  console.log("Token:", token); // Debugging line to check the token
 
   try {
     const decoded = jwt.verify(token, SECRET_KEY) as { userId: string };

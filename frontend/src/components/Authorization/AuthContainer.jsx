@@ -1,7 +1,7 @@
 "use client";
 
 /* Added proper default export */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
 import PasswordReset from "./PasswordReset";

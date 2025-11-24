@@ -1,15 +1,19 @@
 "use client";
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ButtonGroup } from "@/components/ui/button-group";
 
+import * as React from "react";
 import {
-  BadgePlus,
-  MoreHorizontalIcon,
-  MailCheckIcon,
   ArchiveIcon,
+  CalendarPlusIcon,
+  ClockIcon,
+  ListFilterPlusIcon,
+  MailCheckIcon,
+  MoreHorizontalIcon,
+  TagIcon,
+  Trash2Icon,
 } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,64 +28,73 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-function MenuOption() {
-  const [label, setLabel] = useState("personal");
+export default function ButtonGroupDemo({ onClick, title, icon }) {
+  const [label, setLabel] = React.useState("personal");
 
   return (
     <ButtonGroup>
-      {/* ONLY the dropdown remains */}
       <ButtonGroup>
+        <Button variant="outline" onClick={onClick}>
+          {icon}
+          {title}
+        </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon" aria-label="More Options">
               <MoreHorizontalIcon />
             </Button>
           </DropdownMenuTrigger>
-
           <DropdownMenuContent align="end" className="w-52">
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <MailCheckIcon />
                 Option 1
               </DropdownMenuItem>
-
               <DropdownMenuItem>
                 <ArchiveIcon />
                 Option 2
               </DropdownMenuItem>
             </DropdownMenuGroup>
-
             <DropdownMenuSeparator />
-
-            {/* Label Group */}
             <DropdownMenuGroup>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger>Sub Option</DropdownMenuSubTrigger>
+              <DropdownMenuItem>
+                <ClockIcon />
+                Option 3
+              </DropdownMenuItem>
 
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>
+                  <TagIcon />
+                  Parent Option...
+                </DropdownMenuSubTrigger>
                 <DropdownMenuSubContent>
                   <DropdownMenuRadioGroup
                     value={label}
                     onValueChange={setLabel}
                   >
                     <DropdownMenuRadioItem value="personal">
-                      Option 1
+                      Child 1
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="work">
-                      Option 2
+                      Child 2
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="other">
-                      Option 3
+                      Child 3
                     </DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
             </DropdownMenuGroup>
-
             <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem variant="destructive">
+                <Trash2Icon />
+                Trash
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
       </ButtonGroup>
     </ButtonGroup>
   );
 }
-export default MenuOption;

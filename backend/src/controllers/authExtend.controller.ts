@@ -1,14 +1,37 @@
 import User from "../models/user.model";
 import { asyncHandler } from "../utils/asyncHandler";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
 import { HttpStatusCodes } from "../utils/errorCodes";
 dotenv.config();
-const JWT_SECRET = process.env.JWT_SECRET || "secret";
 
 export default class AuthExtendController {
   // Method to register a new user []
+  static Me = asyncHandler(async (req: any, res): Promise<void> => {
+    console.log("Param handle", req.user);
+
+    if (!req.user?._id) {
+      res.status(HttpStatusCodes.UNAUTHORIZED).json({
+        message: "Unauthorized",
+      });
+      return;
+    }
+
+    const user = await User.findById(req.user._id).lean();
+
+    if (!user) {
+      res.status(HttpStatusCodes.NOT_FOUND).json({
+        message: "User not found",
+      });
+      return;
+    }
+
+    const { password, ...safeUser } = user;
+
+    res.status(HttpStatusCodes.OK).json({
+      user: safeUser,
+    });
+  });
 
   static registerUserWithToken = asyncHandler(
     async (req, res): Promise<void> => {
