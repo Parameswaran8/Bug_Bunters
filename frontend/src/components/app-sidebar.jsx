@@ -14,6 +14,7 @@ import {
   Microscope,
   PieChart,
   Rocket,
+  Settings,
   Settings2,
   Star,
 } from "lucide-react";
@@ -190,6 +191,15 @@ const data = {
       icon: CircleCheckBig,
     },
   ],
+
+  adminSetting: [
+    {
+      name: "Settings",
+      url: "/settings",
+      icon: Settings,
+      isActive: true,
+    },
+  ],
 };
 
 export function AppSidebar({ ...props }) {
@@ -202,6 +212,7 @@ export function AppSidebar({ ...props }) {
         <NavMain items={data.navMain} />
         <NavProjects projects={data.systemMenu} />
         <NavProjects projects={data.bugPhase} />
+        <NavProjects projects={data.adminSetting} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser />

@@ -1,14 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { EllipsisVertical, Menu, Users, X } from "lucide-react";
+import { EllipsisVertical, Menu, X } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import SettingMenu from "@/components/Settings/SettingMenu";
-import UserManagment from "@/components/Settings/UserManagment";
-import ToolManagment from "@/components/Settings/Tools";
-import ReportControl from "@/components/Settings/Report";
+import General from "@/components/My_Account/General";
+import MenuContent from "@/components/My_Account/MenuContent";
+import AdminControl from "@/components/My_Account/Admin_Control";
+import PasswordControl from "@/components/My_Account/Password";
+import NotificationControl from "@/components/My_Account/Notification";
 
-function Settings() {
-  const [activeTab, setActiveTab] = useState("users");
+function Account() {
+  const [activeTab, setActiveTab] = useState("general");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -42,10 +43,10 @@ function Settings() {
     <div className="w-full h-[98%] bg-white relative  lg:border lg:!border-['#f3f3f3] rounded-xl">
       <div className="h-full mx-auto p-0 sm:p-1 lg:p-4">
         {/* Main Layout */}
-        <div className="flex flex-col lg:flex-row gap-6 h-full">
+        <div className="h-full flex flex-col lg:flex-row gap-6">
           {/* Left Sidebar Navigation - Hidden on mobile */}
-          <aside className="hidden lg:block w-40 xl:w-55 flex-shrink-0">
-            <SettingMenu
+          <aside className="hidden lg:block w-56 xl:w-64 flex-shrink-0">
+            <MenuContent
               activeTab={activeTab}
               setActiveTab={setActiveTab}
               setMobileMenuOpen={setMobileMenuOpen}
@@ -63,7 +64,7 @@ function Settings() {
             <div className="mb-4 px-3 lg:px-3">
               <div className="flex items-center justify-between  mb-0 lg:mb-2">
                 <h4 className="text-lg lg:text-xl font-semibold text-gray-900">
-                  Settings
+                  My Account
                 </h4>
 
                 {/* Mobile Menu Button */}
@@ -89,23 +90,27 @@ function Settings() {
                 <span className="font-medium">My Account</span>
                 <span className="text-gray-400">›</span>
                 <span className="text-gray-600">
-                  {activeTab === "users"
-                    ? "Users"
-                    : activeTab == "tools"
-                    ? "Tools"
-                    : activeTab === "report"
-                    ? "Report"
+                  {activeTab === "general"
+                    ? "General"
+                    : activeTab == "admin"
+                    ? "Admin"
+                    : activeTab === "password"
+                    ? "Password"
+                    : activeTab === "notification"
+                    ? "Notification"
                     : null}
                 </span>
               </div>
             </div>
 
-            {activeTab === "users" ? (
-              <UserManagment />
-            ) : activeTab == "tools" ? (
-              <ToolManagment />
-            ) : activeTab === "report" ? (
-              <ReportControl />
+            {activeTab === "general" ? (
+              <General />
+            ) : activeTab == "admin" ? (
+              <AdminControl />
+            ) : activeTab === "password" ? (
+              <PasswordControl />
+            ) : activeTab === "notification" ? (
+              <NotificationControl />
             ) : null}
           </main>
         </div>
@@ -122,7 +127,7 @@ function Settings() {
           {/* Menu dropdown */}
           <div className="absolute right-0 mt-2 w-72 z-40 shadow-lg top-1">
             <nav className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-              <SettingMenu
+              <MenuContent
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
                 setMobileMenuOpen={setMobileMenuOpen}
@@ -135,4 +140,4 @@ function Settings() {
   );
 }
 
-export default Settings;
+export default Account;

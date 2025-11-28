@@ -15,6 +15,7 @@ import ReadyToTesting from "./components/Phases/PhaseIV/ReadyToTesting";
 import ReadyToDeploy from "./components/Phases/PhaseV/ReadyToDeploy";
 import Deployed from "./components/Phases/PhaseVI/Deployed";
 import Stared from "./pages/Stared";
+import Account from "./pages/Account";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="ready-to-testing" element={<ReadyToTesting />} />
             <Route path="ready-to-deploy" element={<ReadyToDeploy />} />
             <Route path="deployed" element={<Deployed />} />
+            <Route path="account" element={<Account />} />
 
             {/* <Route path="assign-bug" element={<AssignBug />} /> */}
             {/* <Route path="testing" element={<TestTube />} /> */}

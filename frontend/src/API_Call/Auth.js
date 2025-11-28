@@ -14,7 +14,7 @@
 //   }
 // }
 
-import api from "./index";
+import api from "./API";
 
 // --------------------------
 // CHECK IF USER LOGGED IN

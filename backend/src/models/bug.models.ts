@@ -168,8 +168,14 @@ const bugSchema = new Schema<IBug>(
         toolInfo: {
           toolId: { type: Schema.Types.ObjectId, ref: "Tool", required: true },
           toolName: { type: String, required: true },
-          toolDescription: { type: String, required: true },
           platform: String,
+          toolDescription: { type: String, required: true },
+          descriptionType: {
+            type: String,
+            enum: ["simple", "detailed"],
+            default: "simple",
+          },
+
           priority: { type: String, required: true },
           libraryName: String,
           bugDescription: { type: String, required: true },
