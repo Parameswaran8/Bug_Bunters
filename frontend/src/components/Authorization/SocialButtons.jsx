@@ -1,40 +1,54 @@
 "use client";
 
-/* Added proper default export */
-import { FaGoogle, FaFacebook, FaApple } from "react-icons/fa";
+import { FaGoogle, FaGithub, FaMicrosoft } from "react-icons/fa";
 import toast from "react-hot-toast";
+
+const PROVIDERS = [
+  {
+    id: "Google",
+    icon: FaGoogle,
+    label: "Google",
+    color: "hover:bg-red-50 hover:border-red-300",
+    iconColor: "text-red-500",
+  },
+  {
+    id: "GitHub",
+    icon: FaGithub,
+    label: "GitHub",
+    color: "hover:bg-gray-50 hover:border-gray-400",
+    iconColor: "text-gray-800",
+  },
+  {
+    id: "Microsoft",
+    icon: FaMicrosoft,
+    label: "Microsoft",
+    color: "hover:bg-blue-50 hover:border-blue-400",
+    iconColor: "text-blue-600",
+  },
+];
 
 function SocialButtons() {
   const handleSocialLogin = (provider) => {
-    toast.loading(`Redirecting to ${provider}...`);
+    const id = toast.loading(`Redirecting to ${provider}…`);
     setTimeout(() => {
-      toast.success(`${provider} login flow would be triggered here`);
-    }, 500);
+      toast.dismiss(id);
+      toast(`${provider} SSO would be triggered here`, { icon: "🔗" });
+    }, 800);
   };
 
   return (
-    <div className="flex gap-4 justify-center">
-      <button
-        onClick={() => handleSocialLogin("Google")}
-        className="w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition"
-        title="Google"
-      >
-        <FaGoogle className="text-gray-700 text-lg" />
-      </button>
-      <button
-        onClick={() => handleSocialLogin("Facebook")}
-        className="w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition"
-        title="Facebook"
-      >
-        <FaFacebook className="text-gray-700 text-lg" />
-      </button>
-      <button
-        onClick={() => handleSocialLogin("Apple")}
-        className="w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition"
-        title="Apple"
-      >
-        <FaApple className="text-gray-700 text-lg" />
-      </button>
+    <div className="flex gap-3">
+      {PROVIDERS.map(({ id, icon: Icon, label, color, iconColor }) => (
+        <button
+          key={id}
+          onClick={() => handleSocialLogin(id)}
+          title={`Sign in with ${label}`}
+          className={`social-btn flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl border-2 border-gray-200 bg-white text-sm font-semibold text-gray-700 ${color} transition-all duration-200`}
+        >
+          <Icon className={`text-lg ${iconColor}`} />
+          <span className="hidden sm:inline">{label}</span>
+        </button>
+      ))}
     </div>
   );
 }

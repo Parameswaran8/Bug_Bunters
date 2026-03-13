@@ -8,7 +8,6 @@ import * as dotenv from "dotenv";
 
 import { HttpStatusCodes } from "../utils/errorCodes";
 dotenv.config();
-const JWT_SECRET = process.env.JWT_SECRET || "secret";
 
 export default class ResetPasswordController {
   static RequestReset = asyncHandler(async (req: any, res) => {

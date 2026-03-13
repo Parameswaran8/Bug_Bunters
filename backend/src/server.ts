@@ -6,7 +6,7 @@ dotenv.config();
 const PORT = parseInt(process.env.PORT || "5500", 10); // Ensure PORT is a number
 const MONGO_URI = `${process.env.MONGO_URI}` || "";
 
-app.get('/test', (req, res) => {
+app.get('/test', (_req, res) => {
     console.log('Test endpoint hit!');
     res.json({ message: 'Server is working!' });
 });

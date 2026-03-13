@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-
-import { Calendar } from "lucide-react";
 import TableCreation from "./TableCreation";
 
+import { Sheet } from "@/components/ui/sheet";
+import AddUser from "./AddUser/Adduser";
+
 function UserManagment() {
+  const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "Emir",
     lastName: "Abiyyu",
@@ -28,8 +26,12 @@ function UserManagment() {
   return (
     // <div className="bg-white rounded-xl border border-gray-200">
     // <div className="p-6 sm:p-8">
-    <TableCreation />
-    // </div>
+    <div>
+      <TableCreation isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <AddUser setIsOpen={setIsOpen} />
+      </Sheet>
+    </div>
     // </div>
   );
 }

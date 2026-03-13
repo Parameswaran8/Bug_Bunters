@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { Request, Response } from "express";
+import { AuthenticatedRequest } from "../middlewares/authMiddleware";
 import { asyncHandler } from "../utils/asyncHandler";
 import { HttpStatusCodes } from "../utils/errorCodes";
 import BugModel from "../models/bug.models";
@@ -9,98 +10,97 @@ export default class BugController {
   // ✅ PHASE I: CREATE / RAISE BUG(S)
   // =========================================
   static BugRaise = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
+    async (req: AuthenticatedRequest, res: Response): Promise<void> => {
       const payload = Array.isArray(req.body) ? req.body : [req.body];
       const results: any[] = [];
+      const user = req.user; // Retrieved from Auth Middleware
 
-      console.log("payload", payload);
+      if (!user) {
+        res.status(HttpStatusCodes.UNAUTHORIZED).json({ message: "Authentication required" });
+        return;
+      }
+
+      console.log("BugRaise payload", payload);
+
+      // Pre-fetch all potentially matching bugs to prevent N+1 Queries
+      const toolIdsAndDescriptions = payload
+        .filter(
+          (b) =>
+            b.toolInfo?.toolId &&
+            b.toolInfo?.bugDescription &&
+            b.toolInfo?.toolName &&
+            b.toolInfo?.toolDescription &&
+            b.toolInfo?.priority &&
+            b.toolInfo?.expectedResult &&
+            b.toolInfo?.actualResult
+        )
+        .map((b) => ({
+          "phaseI_BugReport.toolInfo.toolId": b.toolInfo.toolId,
+          "phaseI_BugReport.toolInfo.bugDescription": b.toolInfo.bugDescription,
+          isActive: true,
+        }));
+
+      let existingBugs: any[] = [];
+
+      if (toolIdsAndDescriptions.length > 0) {
+        // Find existing matches to prevent duplicates
+        existingBugs = await BugModel.find({ $or: toolIdsAndDescriptions }).lean();
+      }
+
+      // Check existence based on cached results (memory filtering vs repetitive DB trips)
+      const isDuplicate = (toolId: string, bugDesc: string) => {
+        return existingBugs.find(
+          (eb) =>
+            eb.phaseI_BugReport.toolInfo.toolId.toString() === toolId &&
+            eb.phaseI_BugReport.toolInfo.bugDescription === bugDesc
+        );
+      };
 
       for (const bugData of payload) {
         try {
-          const { toolInfo, reportedBy, assignedTester } = bugData;
+          const { toolInfo, assignedTester } = bugData;
 
-          // Validate required fields
-          if (!toolInfo?.toolId) {
+          // 1. Validate required fields structurally
+          const requiredInfo = [
+            "toolId",
+            "toolName",
+            "toolDescription",
+            "priority",
+            "bugDescription",
+            "expectedResult",
+            "actualResult",
+          ];
+
+          const missingFields = requiredInfo.filter(
+            (field) => !toolInfo || !toolInfo[field]
+          );
+
+          if (missingFields.length > 0) {
             results.push({
               status: "error",
-              message: "toolId is required in toolInfo",
+              message: `Missing required toolInfo fields: ${missingFields.join(", ")}`,
               data: bugData,
             });
             continue;
           }
 
-          if (!toolInfo?.toolName) {
-            results.push({
-              status: "error",
-              message: "toolName is required in toolInfo",
-              data: bugData,
-            });
-            continue;
-          }
+          // 2. Check for Duplicates (from memory check, saving network round trips!)
+          const existingMatch = isDuplicate(
+            toolInfo.toolId,
+            toolInfo.bugDescription
+          );
 
-          if (!toolInfo?.toolDescription) {
-            results.push({
-              status: "error",
-              message: "toolDescription is required in toolInfo",
-              data: bugData,
-            });
-            continue;
-          }
-
-          if (!toolInfo?.priority) {
-            results.push({
-              status: "error",
-              message: "priority is required",
-              data: bugData,
-            });
-            continue;
-          }
-
-          if (!toolInfo?.bugDescription) {
-            results.push({
-              status: "error",
-              message: "bugDescription is required in toolInfo",
-              data: bugData,
-            });
-            continue;
-          }
-
-          if (!toolInfo?.expectedResult) {
-            results.push({
-              status: "error",
-              message: "expectedResult is required in toolInfo",
-              data: bugData,
-            });
-            continue;
-          }
-
-          if (!toolInfo?.actualResult) {
-            results.push({
-              status: "error",
-              message: "actualResult is required in toolInfo",
-              data: bugData,
-            });
-            continue;
-          }
-
-          // Check if bug with same tool and description already exists
-          const existingBug = await BugModel.findOne({
-            "phaseI_BugReport.toolInfo.toolId": toolInfo.toolId,
-            "phaseI_BugReport.toolInfo.bugDescription": toolInfo.bugDescription,
-            isActive: true,
-          });
-
-          if (existingBug) {
+          if (existingMatch) {
             results.push({
               status: "skipped",
               message: `Similar bug for '${toolInfo.toolName}' already exists`,
-              bugId: existingBug.bugId,
-              mongoId: existingBug._id,
+              bugId: existingMatch.bugId,
+              mongoId: existingMatch._id,
             });
             continue;
           }
 
-          // Create new bug
+          // 3. Save Bug with secure assigned reporter (User token auto-assign)
           const newBug = new BugModel({
             phaseI_BugReport: {
               toolInfo: {
@@ -121,16 +121,17 @@ export default class BugController {
                     uploadedAt: att.uploadedAt || new Date(),
                   })) || [],
               },
-              reportedBy: reportedBy.userId,
+              reportedBy: user._id, // Assign to the logged-in user automatically
               assignedTester: assignedTester?.userId || undefined,
               reportedAt: new Date(),
             },
             bugPhaseNo: bugData.bugPhaseNo || 1,
-            currentPhase: bugData.currentPhase,
+            currentPhase: bugData.currentPhase || "Bug Reported",
             isActive: true,
             tags: bugData.tags || [],
           });
 
+          // Await save sequentially to guarantee sequential custom ID creation (BUG-YYYY-XXXX hook)
           const savedBug = await newBug.save();
 
           results.push({
@@ -164,8 +165,10 @@ export default class BugController {
           ? HttpStatusCodes.BAD_REQUEST
           : HttpStatusCodes.OK;
 
+      // Adjust to what Axios expects to map directly
       res.status(statusCode).json({
-        message: "Batch bug raise operation completed",
+        success: statusCode === HttpStatusCodes.OK,
+        message: "Bug operation completed",
         summary,
         results,
       });
@@ -566,7 +569,7 @@ export default class BugController {
   // ✅ GET BUG LIST (ALL OR FILTERED)
   // =========================================
   static GetBugs = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
+    async (_req: Request, res: Response): Promise<void> => {
       const {
         currentPhase,
         toolId,
@@ -577,7 +580,7 @@ export default class BugController {
         reportedBy,
         bugId,
         tags,
-      } = req.query;
+      } = _req.query as any;
 
       const filter: any = {};
 
@@ -671,7 +674,7 @@ export default class BugController {
   // ✅ GET BUG STATISTICS
   // =========================================
   static GetBugStatistics = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
+    async (_req: Request, res: Response): Promise<void> => {
       const totalBugs = await BugModel.countDocuments();
       const activeBugs = await BugModel.countDocuments({ isActive: true });
       const closedBugs = await BugModel.countDocuments({ isActive: false });

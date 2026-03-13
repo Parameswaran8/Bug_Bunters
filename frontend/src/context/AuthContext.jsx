@@ -1,6 +1,11 @@
 import { checkAuth } from "@/API_Call/Auth";
+import { systemConfig } from "@/API_Call/Config";
+import { getTools } from "@/API_Call/Tool";
+import { getAllUsers } from "@/API_Call/User";
 import { createContext, useContext, useState, useEffect } from "react";
 const AuthContext = createContext();
+
+console.log("AuthContext MODULE EVALUATED. Context instance:", AuthContext);
 
 export function AuthProvider({ children }) {
   let apiLink = "http://localhost:8000/api";
@@ -11,7 +16,6 @@ export function AuthProvider({ children }) {
   } else {
     apiLink = "https://bug.ceoitbox.com/api";
   }
-
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -20,20 +24,49 @@ export function AuthProvider({ children }) {
   });
 
   useEffect(() => {
-    const fetchAuth = async () => {
+    const fetchGlobalData = async () => {
       try {
-        const userData = await checkAuth();
+        const [userData, configData, toolsData, usersData] = await Promise.all([
+          checkAuth(),
+          systemConfig(),
+          getTools(),
+          getAllUsers()
+        ]);
+        
         setUser(userData);
-        console.log("Auth check response 27:", userData);
+        if (configData.success && configData.data) {
+          setStackList(configData.data.stackList || []);
+        }
+
+        if (toolsData.success && toolsData.data) {
+          const mappedTools = toolsData.data.map(t => ({ ...t, id: t._id }));
+          setToolList(mappedTools);
+        }
+
+        if (usersData.success && usersData.data) {
+          const mappedUsers = usersData.data.map(u => ({ ...u, id: u._id }));
+          setAllUsers(mappedUsers);
+        }
+        
       } catch (err) {
-        console.log("Auth check failed:", err);
+        console.log("Global data load failed:", err);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchAuth();
+    fetchGlobalData();
   }, []);
+
+
+  const [stackList, setStackList] = useState([]);
+  const [allStages, setAllStages] = useState([]);
+  const [allStatus, setAllStatus] = useState([]);
+  const [priority,setPriority] = useState([]);
+
+  const [toolList, setToolList] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
+
 
   const value = {
     apiLink,
@@ -43,6 +76,16 @@ export function AuthProvider({ children }) {
     setUser,
     loading,
     setLoading,
+    
+    stackList,
+    allStages,
+    allStatus,
+    priority,
+    toolList,
+    setToolList,
+    allUsers,
+    setAllUsers
+
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

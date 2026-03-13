@@ -1,27 +1,246 @@
-/* Smooth professional transitions */
-.panel-left,
-.panel-right {
+/* ============================================
+   Auth Container - Professional UI Styles
+   ============================================ */
+
+/* Floating animated background blobs */
+@keyframes blob-float {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(20px, -20px) scale(1.05);
+  }
+
+  66% {
+    transform: translate(-15px, 15px) scale(0.97);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-left-in {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer-move {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgba(6, 182, 212, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fade-in animation for form content */
+.fade-in {
+  animation: fade-in-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.slide-left-in {
+  animation: slide-left-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Background blob decorators */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: blob-float 8s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 350px;
+  height: 350px;
+  background: rgba(6, 182, 212, 0.25);
+  top: -80px;
+  left: -80px;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  width: 280px;
+  height: 280px;
+  background: rgba(99, 102, 241, 0.2);
+  bottom: -60px;
+  right: -60px;
+  animation-delay: -3s;
+}
+
+.blob-3 {
+  width: 200px;
+  height: 200px;
+  background: rgba(6, 182, 212, 0.15);
+  bottom: 100px;
+  left: 60px;
+  animation-delay: -5s;
+}
+
+/* Form field focus glow */
+.input-group:focus-within {
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+  border-color: #06b6d4 !important;
+}
+
+/* Smooth panel transitions */
+.form-panel {
   will-change: transform, opacity;
   backface-visibility: hidden;
   transform: translateZ(0);
-  -webkit-transform: translateZ(0);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Enhanced easing for professional feel */
-.transition-all {
-  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+/* Primary action button */
+.btn-primary-shine {
+  background: linear-gradient(135deg, #164e63 0%, #0891b2 50%, #06b6d4 100%);
+  background-size: 200% 200%;
+  background-position: left center;
+  letter-spacing: 0.02em;
+  transition: background-position 0.5s ease, transform 0.15s ease, box-shadow 0.25s ease;
 }
 
-/* Fade in/out combined with slide for depth */
-.panel-right.-translate-x-full {
-  pointer-events: none;
+.btn-primary-shine:hover:not(:disabled) {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(8, 145, 178, 0.4), 0 2px 8px rgba(8, 145, 178, 0.2);
 }
 
-.panel-left.translate-x-full {
-  pointer-events: none;
+.btn-primary-shine:active:not(:disabled) {
+  transform: translateY(0px);
+  box-shadow: 0 4px 12px rgba(8, 145, 178, 0.3);
 }
 
-/* Prevent content shift during transition */
-.grid {
-  contain: layout;
+
+/* OTP digit boxes */
+.otp-box {
+  width: 48px;
+  height: 56px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  background: #f9fafb;
+  color: #111827;
+}
+
+.otp-box:focus {
+  border-color: #06b6d4;
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+  background: #fff;
+}
+
+.otp-box.filled {
+  border-color: #06b6d4;
+  background: #ecfeff;
+}
+
+/* Social button hover lift */
+.social-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.social-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Mode toggle tabs */
+.mode-tab {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.mode-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #06b6d4;
+  border-radius: 2px;
+  animation: fade-in-up 0.2s ease both;
+}
+
+/* Left panel decorative grid */
+.auth-grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Feature badges on left panel */
+.feature-badge {
+  animation: fade-in-up 0.5s ease both;
+}
+
+.feature-badge:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.feature-badge:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.feature-badge:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+/* Spinning decorative ring */
+.spin-ring {
+  animation: spin-slow 12s linear infinite;
+}
+
+/* Pulse for security indicator */
+.pulse-security {
+  animation: pulse-ring 2s ease-in-out infinite;
 }

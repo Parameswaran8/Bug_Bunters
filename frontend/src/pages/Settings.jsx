@@ -4,7 +4,7 @@ import { EllipsisVertical, Menu, Users, X } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import SettingMenu from "@/components/Settings/SettingMenu";
 import UserManagment from "@/components/Settings/UserManagment";
-import ToolManagment from "@/components/Settings/Tools";
+import ToolManagment from "@/components/Settings/Tools/Tools";
 import ReportControl from "@/components/Settings/Report";
 
 function Settings() {
@@ -39,8 +39,8 @@ function Settings() {
   }, []);
 
   return (
-    <div className="w-full h-[98%] bg-white relative  lg:border lg:!border-['#f3f3f3] rounded-xl">
-      <div className="h-full mx-auto p-0 sm:p-1 lg:p-4">
+    <div className="w-full h-[98%] bg-[#fdfdfd] relative rounded-2xl shadow-sm border border-gray-200/60 overflow-hidden">
+      <div className="h-full mx-auto p-3 sm:p-4 lg:p-6 bg-white/50">
         {/* Main Layout */}
         <div className="flex flex-col lg:flex-row gap-6 h-full">
           {/* Left Sidebar Navigation - Hidden on mobile */}

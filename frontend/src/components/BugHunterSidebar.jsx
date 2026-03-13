@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Home, Bug, TestTube, Settings, ChevronRight } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "@/context/AuthContext";
 import {
   Sidebar,
   SidebarContent,

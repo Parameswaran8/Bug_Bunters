@@ -19,8 +19,11 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
+import { createBug } from "@/API_Call/Bug";
+import { useAuth } from "@/context/AuthContext";
 
 function BugForm({ setIsOpen }) {
+  const { toolList } = useAuth();
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -76,49 +79,24 @@ function BugForm({ setIsOpen }) {
     }
   }, [sopChecks]);
 
-  // Fetch tools and testers on mount
+  // Fetch testers on mount
   useEffect(() => {
-    loadTools();
     loadTesters();
   }, []);
 
-  const loadTools = async () => {
-    setIsLoadingTools(true);
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      const mockTools = [
-        { id: "1", name: "CEOITBOX CRM", category: "Sales & Marketing" },
-        {
-          id: "2",
-          name: "CEOITBOX Project Manager",
-          category: "Project Management",
-        },
-        { id: "3", name: "CEOITBOX Analytics", category: "Analytics" },
-        { id: "4", name: "CEOITBOX Chat", category: "Communication" },
-        { id: "5", name: "CEOITBOX HR", category: "Human Resources" },
-        { id: "6", name: "CEOITBOX Finance", category: "Finance" },
-        {
-          id: "7",
-          name: "CEOITBOX Inventory",
-          category: "Inventory Management",
-        },
-        { id: "8", name: "CEOITBOX Support", category: "Customer Support" },
-      ];
-
-      const formattedTools = mockTools.map((tool) => ({
-        value: tool.id,
-        label: tool.name,
-        sublabel: tool.category,
+  // Sync Context tools to Dropdown format implicitly whenever context updates
+  useEffect(() => {
+    if (toolList && toolList.length > 0) {
+      const formattedTools = toolList.map((tool) => ({
+        value: tool.id || tool._id,
+        label: tool.toolName,
+        sublabel: tool.toolDescription || "No category",
       }));
-
       setTools(formattedTools);
-    } catch (error) {
-      console.error("Error loading tools:", error);
+    } else {
       setTools([]);
-    } finally {
-      setIsLoadingTools(false);
     }
-  };
+  }, [toolList]);
 
   const loadTesters = async () => {
     setIsLoadingTesters(true);
@@ -246,50 +224,33 @@ function BugForm({ setIsOpen }) {
       return acc;
     }, {});
 
-    // Prepare complete data object for API
+    // Prepare complete data object for API formatted to match backend expectations
     const bugReportData = {
-      tool: {
-        id: selectedTool,
-        name: tools.find((t) => t.value === selectedTool)?.label || "",
-        category: tools.find((t) => t.value === selectedTool)?.sublabel || "",
+      toolInfo: {
+        toolId: selectedTool,
+        toolName: tools.find((t) => t.value === selectedTool)?.label || "Unknown Tool",
+        toolDescription: tools.find((t) => t.value === selectedTool)?.sublabel || "Unknown Category",
+        priority: selectedPriority,
+        
+        // Map Description vs Expected/Actual cleanly for the backend
+        bugDescription: descriptionType ? description : "Detailed Bug Report",
+        expectedResult: descriptionType ? "Not Applicable (Simple Description)" : expectedResult,
+        actualResult: descriptionType ? "Not Applicable (Simple Description)" : actualResult,
+        
+        attachments: [], // In the future, this will map to actual uploaded URLs
       },
-      tester: {
-        id: selectedTester,
-        name: testers.find((t) => t.value === selectedTester)?.label || "",
-        role: testers.find((t) => t.value === selectedTester)?.sublabel || "",
+      assignedTester: {
+        userId: selectedTester
       },
-      priority: selectedPriority,
-      descriptionType: descriptionType ? "simple" : "detailed",
-      ...(descriptionType ? { description } : { expectedResult, actualResult }),
-
-      facedBy: {
-        me: facedByMe,
-        client: facedByClient,
-      },
-      ...(facedByClient && {
-        clientDetails: {
-          clientName,
-          companyName,
-        },
-      }),
-      attachments: {
-        image: selectedImage
-          ? {
-              name: selectedImage.name,
-              size: selectedImage.size,
-              type: selectedImage.type,
-            }
-          : null,
-        video: selectedVideo
-          ? {
-              name: selectedVideo.name,
-              size: selectedVideo.size,
-              type: selectedVideo.type,
-            }
-          : null,
-      },
-      sopChecklist: sopData,
-      submittedAt: new Date().toISOString(),
+      tags: [],
+      // Extra frontend context, ignored by the current backend schema but safe to pass
+      clientContext: {
+        facedByMe,
+        facedByClient,
+        clientName,
+        companyName,
+        sopChecklist: sopData,
+      }
     };
 
     // Log to console
@@ -298,7 +259,7 @@ function BugForm({ setIsOpen }) {
 
     try {
       // Simulating API
-      await sendBugReport(bugReportData);
+      await createBug(bugReportData);
       await new Promise((r) => setTimeout(r, 1500));
 
       // setIsOpen(false); // close sheet

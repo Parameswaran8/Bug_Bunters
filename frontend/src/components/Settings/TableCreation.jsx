@@ -67,72 +67,12 @@ const tableDetails = [
   },
 ];
 
-// Example data
-const initialItems = [
-  {
-    id: "1",
-    fullname: "Rohit Singh",
-    employId: "#1234",
-    src: "https://cdn.shadcnstudio.com/ss-assets/products/product-1.png",
-    fallback: "WGC",
-    roles: ["Admin"],
-    username: "parameswaran9",
-    email: "paramsir8@gmail.com",
-    adminRight: ["Create", "Edit", "Delete"],
-    adminOption: ["share", "generate_report", "insight_view"],
-  },
-  {
-    id: "2",
-    fullname: "Aman Sharma",
-    employId: "#5678",
-    src: "https://cdn.shadcnstudio.com/ss-assets/products/product-2.png",
-    fallback: "J1R",
-    roles: ["Tester"],
-    username: "aman09",
-    email: "aman@gmal.com",
-    adminRight: ["Create"],
-    adminOption: ["share", "generate_report", "insight_view"],
-  },
-  {
-    id: "3",
-    fullname: "Ravi Kumar",
-    employId: "#9101",
-    src: "https://cdn.shadcnstudio.com/ss-assets/products/product-3.png",
-    fallback: "O7P",
-    roles: ["Developer"],
-    username: "ravi88",
-    email: "ravi@gmail.com",
-    adminRight: ["Edit", "Delete"],
-    adminOption: ["share", "insight_view"],
-  },
-  {
-    id: "4",
-    fullname: "Yogesh Sharma",
-    employId: "#1121",
-    src: "https://cdn.shadcnstudio.com/ss-assets/products/product-4.png",
-    fallback: "NS",
-    roles: ["Developer", "Tester"],
-    username: "yogesh24",
-    email: "yogesh@company.com",
-    adminRight: ["Create", "Edit", "Delete"],
-    adminOption: ["generate_report", "insight_view"],
-  },
-  {
-    id: "5",
-    fullname: "Saurav",
-    employId: "#3141",
-    src: "https://cdn.shadcnstudio.com/ss-assets/products/product-5.png",
-    fallback: "AMM",
-    roles: ["Admin", "Developer"],
-    username: "saurav01",
-    email: "saurav@gmai.com",
-    adminRight: ["Delete", "View"],
-    adminOption: ["generate_report", "insight_view"],
-  },
-];
+import { useAuth } from "@/context/AuthContext";
+import { updateUser, deleteUser } from "@/API_Call/User";
+import toast from "react-hot-toast";
 
-const roleOptions = ["Admin", "Developer", "Tester", "Manager", "Viewer"];
-const adminControlOptions = ["Create", "Edit", "Delete", "View"];
+const roleOptions = ["admin", "dev", "tester", "bugreporter"];
+const adminControlOptions = ["create", "edit", "delete", "view"];
 const adminOptionsList = ["share", "generate_report", "insight_view", "export"];
 
 // Resizable header component
@@ -234,8 +174,8 @@ const ColumnHeader = ({ children, onPin, isPinned, columnKey }) => {
   );
 };
 
-const TableCreation = () => {
-  const [items, setItems] = useState(initialItems);
+const TableCreation = ({ isOpen, setIsOpen }) => {
+  const { allUsers, setAllUsers } = useAuth();
   const [editingIds, setEditingIds] = useState([]); // Array of editing row ids
   const [editData, setEditData] = useState({}); // { [id]: rowData }
 
@@ -254,14 +194,17 @@ const TableCreation = () => {
   };
 
   const getPinnedStyle = (columnKey) => {
+    // Checkbox column is always sticky at left: 0
     if (!pinnedColumns.includes(columnKey)) return {};
-    let left = 0;
+    let left = colWidths.checkbox || 48; // Start after checkbox column
     for (const col of tableDetails) {
       if (col.key === columnKey) break;
       if (pinnedColumns.includes(col.key)) {
         left += colWidths[col.key] || 160;
       }
     }
+    // If this is the checkbox column, left should be 0
+    if (columnKey === "checkbox") left = 0;
     return {
       position: "sticky",
       left: `${left}px`,
@@ -272,14 +215,38 @@ const TableCreation = () => {
   };
 
   const handleEdit = (item) => {
-    setEditingId(item.id);
-    setEditData({ ...item });
+    setEditingIds([item.id]);
+    setEditData({ [item.id]: { ...item } });
   };
 
-  const handleSave = (id) => {
-    setItems((prev) =>
-      prev.map((it) => (it.id === id ? { ...editData[id] } : it))
-    );
+  const handleSave = async (id) => {
+    // Sync backend...
+    const dataToSave = editData[id];
+    const updatePayload = {
+      name: dataToSave.name,
+      email: dataToSave.email,
+      username: dataToSave.username,
+      // Map frontend 'roles' array over correctly to single string
+      roletype: (dataToSave.roles && dataToSave.roles.length > 0) ? dataToSave.roles[0] : "bugreporter",
+      adminControl: dataToSave.adminRight || [],
+      adminOption: dataToSave.adminOption || []
+    };
+    
+    try {
+      const res = await updateUser(id, updatePayload);
+      if (res.success) {
+        // Sync frontend context array 
+        setAllUsers((prev) =>
+          prev.map((it) => (it.id === id ? { ...it, ...updatePayload } : it))
+        );
+        toast.success("User updated!");
+      } else {
+        toast.error(res.message);
+      }
+    } catch(err) {
+      toast.error("Failed to update user.");
+    }
+
     setEditingIds((prev) => prev.filter((eid) => eid !== id));
     setEditData((prev) => {
       const newData = { ...prev };
@@ -297,9 +264,28 @@ const TableCreation = () => {
     });
   };
 
-  const handleDeleteSelected = () => {
-    setItems((prev) => prev.filter((it) => !selectedRows.includes(it.id)));
+  const handleDeleteSelected = async () => {
+    // Ideally map deletes over Promise.all
+    for(const id of selectedRows) {
+        await deleteUser(id);
+    }
+    setAllUsers((prev) => prev.filter((it) => !selectedRows.includes(it.id)));
     setSelectedRows([]);
+    toast.success("Users deleted!");
+  };
+
+  const handleDeleteSingle = async (id) => {
+     try {
+       const res = await deleteUser(id);
+       if (res.success) {
+          setAllUsers(prev => prev.filter(it => it.id !== id));
+          toast.success("User deleted!");
+       } else {
+          toast.error(res.message);
+       }
+     } catch(err) {
+       toast.error("Delete failed!");
+     }
   };
 
   const handleEditSelected = () => {
@@ -308,21 +294,17 @@ const TableCreation = () => {
       // Prepare editData for all selected
       const newEditData = {};
       selectedRows.forEach((id) => {
-        const item = items.find((i) => i.id === id);
+        const item = allUsers.find((i) => i.id === id);
         if (item) newEditData[id] = { ...item };
       });
       setEditData(newEditData);
     }
   };
 
-  const handleSaveAll = () => {
-    setItems((prev) =>
-      prev.map((it) =>
-        editingIds.includes(it.id) && editData[it.id]
-          ? { ...editData[it.id] }
-          : it
-      )
-    );
+  const handleSaveAll = async () => {
+    for (const id of editingIds) {
+      if (editData[id]) await handleSave(id);
+    }
     setEditingIds([]);
     setEditData({});
     setSelectedRows([]); // Unselect all checkboxes
@@ -346,10 +328,9 @@ const TableCreation = () => {
       return (
         <div className="flex items-center gap-3">
           {col.fields.photo && (
-            <Avatar className="rounded-full w-12 h-12">
-              <AvatarImage src={displayData.src} alt={item.employId} />
-              <AvatarFallback className="text-xs">
-                {item.fallback}
+            <Avatar className="rounded-full w-12 h-12 border bg-gray-50 flex justify-center items-center">
+              <AvatarFallback className="text-xs bg-transparent">
+                {item.name ? item.name.substring(0,2).toUpperCase() : "U"}
               </AvatarFallback>
             </Avatar>
           )}
@@ -358,20 +339,20 @@ const TableCreation = () => {
               <div className="font-medium">
                 {isEditing ? (
                   <Input
-                    value={displayData.fullname ?? ""}
+                    value={displayData.name ?? ""}
                     onChange={(e) =>
-                      setRowEditData({ fullname: e.target.value })
+                      setRowEditData({ name: e.target.value })
                     }
                     className="h-8 mb-1"
                   />
                 ) : (
-                  item.fullname
+                  item.name || item.username
                 )}
               </div>
             )}
             {col.fields.subheader && !isEditing && (
               <span className="text-muted-foreground mt-0.5 text-[11px]">
-                {item.employId}
+                {item.role || "user"}
               </span>
             )}
           </div>
@@ -408,6 +389,17 @@ const TableCreation = () => {
           : col.key === "adminRight"
           ? adminControlOptions
           : adminOptionsList;
+
+      // Extract raw arrays representing options based off new Mongo structure dynamically
+      let currentValRaw = [];
+      if (col.key === "roles") {
+        currentValRaw = displayData.roletype ? [displayData.roletype] : [];
+      } else if (col.key === "adminRight") {
+        currentValRaw = displayData.adminControl || [];
+      } else if (col.key === "adminOption") {
+        currentValRaw = displayData.adminOption || [];
+      }
+
       return isEditing ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -416,8 +408,8 @@ const TableCreation = () => {
               className="h-8 w-full justify-start text-left"
             >
               <span className="truncate">
-                {(displayData[col.key] ?? []).length > 0
-                  ? displayData[col.key].join(", ")
+                {currentValRaw.length > 0
+                  ? currentValRaw.join(", ")
                   : "Select"}
               </span>
             </Button>
@@ -426,14 +418,20 @@ const TableCreation = () => {
             {options.map((option) => (
               <DropdownMenuCheckboxItem
                 key={option}
-                checked={(displayData[col.key] ?? []).includes(option)}
+                checked={currentValRaw.includes(option)}
                 onClick={(event) => {
                   event.preventDefault();
-                  const currentArray = displayData[col.key] ?? [];
-                  const newArray = currentArray.includes(option)
-                    ? currentArray.filter((item) => item !== option)
-                    : [...currentArray, option];
-                  setRowEditData({ [col.key]: newArray });
+                  let newArray = currentValRaw.includes(option)
+                    ? currentValRaw.filter((item) => item !== option)
+                    : [...currentValRaw, option];
+                  
+                  if (col.key === "roles") {
+                     setRowEditData({ roles: newArray });
+                  } else if (col.key === "adminRight") {
+                     setRowEditData({ adminRight: newArray });
+                  } else {
+                     setRowEditData({ adminOption: newArray });
+                  }
                 }}
               >
                 {option}
@@ -445,9 +443,9 @@ const TableCreation = () => {
         <div className="max-w-[180px]">
           <span
             className="text-sm truncate block"
-            title={(item[col.key] ?? []).join(", ")}
+            title={currentValRaw.join(", ")}
           >
-            {(item[col.key] ?? []).join(", ")}
+            {currentValRaw.join(", ")}
           </span>
         </div>
       );
@@ -457,6 +455,10 @@ const TableCreation = () => {
 
   return (
     <div className="w-full">
+      <div className="mb-3 justify-end flex absolute right-14 top-2 lg:!right-7 lg:!top-7">
+        <Button onClick={() => setIsOpen(true)}>Add User</Button>
+      </div>
+
       <div className="[&>div]:rounded-sm [&>div]:border overflow-x-auto">
         <Table className="min-w-full">
           <TableHeader>
@@ -467,6 +469,9 @@ const TableCreation = () => {
                   width: colWidths.checkbox,
                   minWidth: 48,
                   maxWidth: 120,
+                  left: 0,
+                  zIndex: 30,
+                  background: "white",
                 }}
               >
                 {/* No resize for checkbox column */}
@@ -506,7 +511,7 @@ const TableCreation = () => {
           </TableHeader>
 
           <TableBody>
-            {items.map((item) => {
+            {allUsers.map((item) => {
               const isEditing = editingIds.includes(item.id);
               const displayData =
                 isEditing && editData[item.id] ? editData[item.id] : item;
@@ -515,9 +520,7 @@ const TableCreation = () => {
                   key={item.id}
                   item={item}
                   onEdit={() => setEditingIds([item.id])}
-                  onDelete={() =>
-                    setItems((prev) => prev.filter((it) => it.id !== item.id))
-                  }
+                  onDelete={() => handleDeleteSingle(item.id)}
                   onSaveAll={handleSaveAll}
                   onEditSelected={handleEditSelected}
                   onDeleteSelected={handleDeleteSelected}
@@ -531,6 +534,9 @@ const TableCreation = () => {
                         width: colWidths.checkbox,
                         minWidth: 48,
                         maxWidth: 120,
+                        left: 0,
+                        zIndex: 20,
+                        background: "white",
                       }}
                     >
                       <Checkbox
@@ -584,12 +590,8 @@ const TableCreation = () => {
                       ) : (
                         <TableRowMenu
                           item={item}
-                          onEdit={() => setEditingIds([item.id])}
-                          onDelete={() =>
-                            setItems((prev) =>
-                              prev.filter((it) => it.id !== item.id)
-                            )
-                          }
+                          onEdit={() => handleEdit(item)}
+                          onDelete={() => handleDeleteSingle(item.id)}
                           onArchive={() => alert("Archive " + item.id)}
                         />
                       )}

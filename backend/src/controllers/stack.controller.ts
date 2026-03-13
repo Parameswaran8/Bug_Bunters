@@ -39,4 +39,23 @@ export default class StackController {
       }
     }
   );
+
+  // Get Global System Configuration (Stack List)
+  static GetSystemConfig = asyncHandler(
+    async (_req: Request, res: Response): Promise<void> => {
+      try {
+        const config = await StackModal.findOne();
+        if (!config) {
+          res.status(HttpStatusCodes.OK).json({ stackList: [] });
+          return;
+        }
+
+        res.status(HttpStatusCodes.OK).json(config);
+      } catch (error) {
+        res
+          .status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+          .json({ message: "Failed to fetch system config", error });
+      }
+    }
+  );
 }

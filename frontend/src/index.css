@@ -30,14 +30,21 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* ── Sidebar: dark teal/navy theme ── */
+    --sidebar-background: 200 60% 10%;
+    /* deep navy-teal  #0a2233 */
+    --sidebar-foreground: 195 30% 90%;
+    /* soft white-teal         */
+    --sidebar-primary: 187 80% 50%;
+    /* bright cyan             */
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 195 40% 18%;
+    /* hover / active item     */
+    --sidebar-accent-foreground: 187 80% 70%;
+    /* cyan text on hover       */
+    --sidebar-border: 200 30% 18%;
+    /* subtle border           */
+    --sidebar-ring: 187 80% 50%;
   }
 
   .dark {
@@ -104,8 +111,21 @@ body {
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
@@ -115,9 +135,9 @@ body {
 
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
-    height: 99%;
-    margin: 8px;
-    border-radius: 22px;
+  height: 99%;
+  margin: 8px;
+  border-radius: 22px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -127,4 +147,69 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #0e7490;
+}
+
+/* ══════════════════════════════════════════
+   Sidebar dark teal override
+   ══════════════════════════════════════════ */
+
+/* Main sidebar panel */
+[data-sidebar="sidebar"] {
+  background: linear-gradient(180deg, #0a2233 0%, #0c2d42 60%, #0a2233 100%) !important;
+  border-right: 1px solid rgba(6, 182, 212, 0.12) !important;
+}
+
+/* Sidebar header (TeamSwitcher area) */
+[data-sidebar="sidebar"] [data-sidebar="header"] {
+  border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+/* Sidebar footer (NavUser area) */
+[data-sidebar="sidebar"] [data-sidebar="footer"] {
+  border-top: 1px solid rgba(6, 182, 212, 0.1);
+}
+
+/* All sidebar text */
+[data-sidebar="sidebar"],
+[data-sidebar="sidebar"] span,
+[data-sidebar="sidebar"] a {
+  color: rgba(200, 235, 245, 0.85);
+}
+
+/* Hover state on menu buttons */
+[data-sidebar="sidebar"] [data-sidebar="menu-button"]:hover {
+  background: rgba(6, 182, 212, 0.1) !important;
+  color: #67e8f9 !important;
+}
+
+/* Active / selected state */
+[data-sidebar="sidebar"] [data-sidebar="menu-button"][data-active="true"] {
+  background: rgba(6, 182, 212, 0.18) !important;
+  color: #67e8f9 !important;
+}
+
+/* Section group labels */
+[data-sidebar="sidebar"] [data-sidebar="group-label"] {
+  color: rgba(103, 232, 249, 0.45) !important;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+
+/* Subtle separators */
+[data-sidebar="sidebar"] [data-sidebar="separator"] {
+  background: rgba(6, 182, 212, 0.12) !important;
+}
+
+/* TeamSwitcher button */
+[data-sidebar="sidebar"] [data-sidebar="menu-button"][size="lg"] {
+  background: rgba(6, 182, 212, 0.08) !important;
+  border-radius: 12px;
+}
+
+/* User footer button */
+[data-sidebar="sidebar"] [data-sidebar="footer"] [data-sidebar="menu-button"] {
+  background: rgba(6, 182, 212, 0.06) !important;
+  border-radius: 10px;
 }

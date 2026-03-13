@@ -4,6 +4,21 @@ import { Schema, Document, model } from "mongoose";
 // INTERFACE
 // ==============================
 interface BugInterface extends Document {
+  toolName: string;
+  toolDescription?: string;
+  testerId?: string;
+  devId?: string;
+  stack?: string[];
+  libraryName?: string;
+  htmlVersion?: string;
+  lastLibraryUpdate?: Date;
+  lastHtmlUpdate?: Date;
+  lastResolvedDev?: Date;
+  lastResolvedTester?: Date;
+  lastBugReport?: Date;
+  SOP?: string;
+  ReleaseNotes?: string;
+
   phaseI_BugReport?: {
     toolInfo: {
       name?: string;
@@ -228,14 +243,14 @@ const bugSchema = new Schema<BugInterface>(
     phaseStatus: {
       type: String,
       enum: [
-        "UnderDevelopment",
-        "InitialTesting",
-        "VerifiedTesting",
-        "Deployed",
+        "New Bug",
+        "Initial Testing",
+        "Bug Analysis",
+        "Under Maintenance",
+        "Final Testing",
         "Closed",
-        "Reopened",
       ],
-      default: "UnderDevelopment",
+      default: "New Bug",
     },
   },
   { timestamps: true }

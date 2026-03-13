@@ -17,6 +17,28 @@
 import api from "./API";
 
 // --------------------------
+// REGISTER — user creation
+// --------------------------
+
+export const register = async (userData) => {
+  try {
+    const res = await api.post("/authextend/register", userData);
+    console.log(26, res)
+    return {
+      success: true,
+      message: res.data.message,
+      user: res.data.user,
+    };
+  } catch (error) {
+    console.log(32, error)
+    return {
+      success: false,
+      message: error.response?.data?.message || "Something went wrong during registration",
+    };
+  }
+};
+
+// --------------------------
 // CHECK IF USER LOGGED IN
 // --------------------------
 export const checkAuth = async () => {

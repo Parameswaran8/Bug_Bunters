@@ -133,7 +133,7 @@ export default class AuthController {
   });
 
   // Method to register a new user with only email....
-  static logout = asyncHandler(async (req, res): Promise<void> => {
+  static logout = asyncHandler(async (_req, res): Promise<void> => {
     res.clearCookie("bb_token", {
       path: "/",
       sameSite: "none",

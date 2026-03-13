@@ -8,7 +8,7 @@ dotenv.config();
 export default class AuthExtendController {
   // Method to register a new user []
   static Me = asyncHandler(async (req: any, res): Promise<void> => {
-    console.log("Param handle", req.user);
+    // console.log("Param handle", req.user);
 
     if (!req.user?._id) {
       res.status(HttpStatusCodes.UNAUTHORIZED).json({
@@ -65,6 +65,7 @@ export default class AuthExtendController {
       const existingUsernames = new Set(existingUsers.map((u) => u.username));
 
       for (const userData of users) {
+        console.log(68, userData)
         const {
           username = "",
           email = "",
@@ -78,6 +79,8 @@ export default class AuthExtendController {
           adminControl,
           adminOption,
         } = userData;
+
+        console.log('82 ', name , '82 pass ', password)
 
         // Validate required fields
         if ((!email?.trim() && !username?.trim()) || !password?.trim()) {
@@ -164,6 +167,6 @@ export default class AuthExtendController {
   );
 
   static UpdateUserWithToken = asyncHandler(
-    async (req, res): Promise<void> => {}
+    async (_req, _res): Promise<void> => {}
   );
 }

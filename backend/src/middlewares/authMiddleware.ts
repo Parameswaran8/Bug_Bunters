@@ -13,7 +13,7 @@ export const authenticateToken = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  console.log("16", req.headers);
+  // console.log("16", req.headers);
   // const authHeader = req.headers["authorization"];
   // const token = authHeader && authHeader.split(" ")[1];
   const token = req.cookies?.bb_token;
