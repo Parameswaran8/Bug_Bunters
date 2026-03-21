@@ -1,36 +1,40 @@
-// components/TableRowMenu.jsx
+import { Copy, Edit2, Archive, Trash2, MoreHorizontal } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-import { MoreHorizontal, Pencil, Trash2, Archive } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const TableRowMenu = ({ item, onEdit, onDelete, onArchive }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="p-2 rounded-full hover:bg-accent">
-          <MoreHorizontal className="h-5 w-5" />
-        </button>
+        <Button variant="ghost" size="icon" className="h-8 w-8">
+          <MoreHorizontal className="h-4 w-4" />
+        </Button>
       </DropdownMenuTrigger>
-
       <DropdownMenuContent align="end" className="w-40">
+        <DropdownMenuItem onClick={() => navigator.clipboard.writeText(item.id || item._id)}>
+          <Copy className="h-4 w-4 mr-2" />
+          Copy ID
+        </DropdownMenuItem>
         <DropdownMenuItem onClick={() => onEdit(item)}>
-          <Pencil className="mr-2 h-4 w-4" />
+          <Edit2 className="h-4 w-4 mr-2" />
           Edit
         </DropdownMenuItem>
-
-        <DropdownMenuItem onClick={() => onDelete(item)}>
-          <Trash2 className="mr-2 h-4 w-4" />
+        <DropdownMenuSeparator />
+        {onArchive && (
+          <DropdownMenuItem onClick={() => onArchive(item)}>
+            <Archive className="h-4 w-4 mr-2" />
+            Archive
+          </DropdownMenuItem>
+        )}
+        <DropdownMenuItem onClick={() => onDelete(item)} className="text-red-500 hover:text-red-600 focus:text-red-600 focus:bg-red-50">
+          <Trash2 className="h-4 w-4 mr-2" />
           Delete
-        </DropdownMenuItem>
-
-        <DropdownMenuItem onClick={() => onArchive(item)}>
-          <Archive className="mr-2 h-4 w-4" />
-          Archive
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -26,14 +26,14 @@ import TableRowMenu from "./TableMenu";
 const tableDetails = [
   {
     key: "personDetails",
-    label: "Personal Details",
+    label: "Person Details",
     type: "multipleInfo",
     fields: {
       photo: true,
       title: true,
       subheader: true,
     },
-    width: 150,
+    width: 180,
   },
   {
     key: "email",
@@ -71,9 +71,19 @@ import { useAuth } from "@/context/AuthContext";
 import { updateUser, deleteUser } from "@/API_Call/User";
 import toast from "react-hot-toast";
 
-const roleOptions = ["admin", "dev", "tester", "bugreporter"];
-const adminControlOptions = ["create", "edit", "delete", "view"];
-const adminOptionsList = ["share", "generate_report", "insight_view", "export"];
+const roleOptions = ["Admin", "Developer", "Tester", "Bug Reporter"];
+const adminControlOptions = ["Create", "Edit", "Delete", "View"];
+const adminOptionsList = ["Share", "Generate Report", "Insight View", "Export"];
+
+const toProperCase = (str) => {
+  if (!str) return "";
+  const s = str.toLowerCase();
+  if (s === "generate_report" || s === "generate report") return "Generate Report";
+  if (s === "insight_view" || s === "insight view") return "Insight View";
+  if (s === "bugreporter") return "Bug Reporter";
+  if (s === "dev") return "Developer";
+  return s.charAt(0).toUpperCase() + s.slice(1);
+};
 
 // Resizable header component
 const ResizableHeader = ({
@@ -228,14 +238,18 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
   const handleSave = async (id) => {
     // Sync backend...
     const dataToSave = editData[id];
+    let finalRole = dataToSave.roles !== undefined ? (dataToSave.roles[0] || "bugreporter") : (dataToSave.roletype || "bugreporter");
+    finalRole = finalRole.toLowerCase();
+    if (finalRole === "developer") finalRole = "dev";
+    if (finalRole === "bug reporter" || finalRole === "bugreporter") finalRole = "bugreporter";
+
     const updatePayload = {
       name: dataToSave.name,
       email: dataToSave.email,
       username: dataToSave.username,
-      // Map frontend 'roles' array over correctly to single string
-      roletype: (dataToSave.roles && dataToSave.roles.length > 0) ? dataToSave.roles[0] : "bugreporter",
-      adminControl: dataToSave.adminRight || [],
-      adminOption: dataToSave.adminOption || []
+      roletype: finalRole,
+      adminControl: (dataToSave.adminRight !== undefined ? dataToSave.adminRight : (dataToSave.adminControl || [])).map(v => v.toLowerCase()),
+      adminOption: (dataToSave.adminOption || []).map(v => v.toLowerCase().replace(" ", "_"))
     };
     
     try {
@@ -391,7 +405,7 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
     if (col.type === "multiselect") {
       const options =
         col.key === "roles"
-          ? roleOptions
+          ? ["Admin", "Developer", "Tester", "Bug Reporter"]
           : col.key === "adminRight"
           ? adminControlOptions
           : adminOptionsList;
@@ -399,37 +413,51 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
       // Extract raw arrays representing options based off new Mongo structure dynamically
       let currentValRaw = [];
       if (col.key === "roles") {
-        currentValRaw = displayData.roletype ? [displayData.roletype] : [];
+        currentValRaw = displayData.roles !== undefined ? displayData.roles : (displayData.roletype ? [displayData.roletype] : []);
       } else if (col.key === "adminRight") {
-        currentValRaw = displayData.adminControl || [];
+        currentValRaw = displayData.adminRight !== undefined ? displayData.adminRight : (displayData.adminControl || []);
       } else if (col.key === "adminOption") {
         currentValRaw = displayData.adminOption || [];
       }
+      
+      currentValRaw = currentValRaw.map(v => toProperCase(v));
+
+      const currentRolesRaw = displayData.roles !== undefined ? displayData.roles : (displayData.roletype ? [displayData.roletype] : []);
+      const isAdmin = currentRolesRaw.some(r => r.toLowerCase() === "admin");
+      const isDisabled = !isAdmin && (col.key === "adminRight" || col.key === "adminOption");
 
       return isEditing ? (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="outline"
-              className="h-8 w-full justify-start text-left"
-            >
-              <span className="truncate">
-                {currentValRaw.length > 0
-                  ? currentValRaw.join(", ")
-                  : "Select"}
-              </span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
+        <div className="w-full" title={isDisabled ? "This is admin rights" : ""}>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                className="h-8 w-full justify-start text-left"
+                disabled={isDisabled}
+              >
+                <span className="truncate">
+                  {currentValRaw.length > 0
+                    ? currentValRaw.join(", ")
+                    : "Select"}
+                </span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
             {options.map((option) => (
               <DropdownMenuCheckboxItem
                 key={option}
                 checked={currentValRaw.includes(option)}
                 onClick={(event) => {
                   event.preventDefault();
-                  let newArray = currentValRaw.includes(option)
-                    ? currentValRaw.filter((item) => item !== option)
-                    : [...currentValRaw, option];
+                  // For roles, enforce single selection by replacing array
+                  let newArray = [];
+                  if (col.key === "roles") {
+                    newArray = [option];
+                  } else {
+                    newArray = currentValRaw.includes(option)
+                      ? currentValRaw.filter((item) => item !== option)
+                      : [...currentValRaw, option];
+                  }
                   
                   if (col.key === "roles") {
                      setRowEditData({ roles: newArray });
@@ -445,6 +473,7 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
+        </div>
       ) : (
         <div className="max-w-[180px]">
           <span
@@ -481,7 +510,16 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
                   background: "white",
                 }}
               >
-                {/* No resize for checkbox column */}
+                <Checkbox 
+                  checked={paginatedData?.length > 0 && selectedRows.length === paginatedData.length}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setSelectedRows(paginatedData.map(item => item.id || item._id));
+                    } else {
+                      setSelectedRows([]);
+                    }
+                  }}
+                />
               </TableHead>
               {tableDetails.map((col) => {
                 const isPinned = pinnedColumns.includes(col.key);

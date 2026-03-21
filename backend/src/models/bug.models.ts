@@ -48,6 +48,7 @@ interface IPhaseIII_BugAnalysis {
     status: string;
     rootCause?: string;
     estimatedEffort?: string;
+    delayedReason?: string;
     affectedModules?: string[];
     remarks?: string;
     attachments?: IAttachment[];
@@ -217,6 +218,7 @@ const bugSchema = new Schema<IBug>(
         status: String,
         rootCause: String,
         estimatedEffort: String,
+        delayedReason: String,
         affectedModules: [String],
         remarks: String,
         attachments: [attachmentSchema],

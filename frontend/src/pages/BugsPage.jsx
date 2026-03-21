@@ -9,10 +9,10 @@ import Deployed      from "../components/Phases/PhaseVI/Deployed";
 
 const PHASES = [
   { id: "create",   label: "New Bug",        shortLabel: "New",      icon: "🐛", color: "#06b6d4", component: CreateBug, phaseStr: "Bug Reported" },
-  { id: "testing",  label: "Bug Testing",    shortLabel: "Testing",  icon: "🧪", color: "#6366f1", component: BugTesting, phaseStr: "Bug Confirmation" },
+  { id: "testing",  label: "Bug Testing",    shortLabel: "Testing",  icon: "🧪", color: "#6366f1", component: BugTesting, phaseStr: "Bug Testing" },
   { id: "analyze",  label: "Analyze Bug",    shortLabel: "Analyze",  icon: "🔬", color: "#8b5cf6", component: AnalyzeBug, phaseStr: "Bug Analysis" },
-  { id: "rtt",      label: "Ready to Test",  shortLabel: "Rdy Test", icon: "☁️", color: "#f59e0b", component: ReadyToTest, phaseStr: "Maintenance" },
-  { id: "rtd",      label: "Ready to Deploy",shortLabel: "Rdy Deploy",icon: "🚀", color: "#f97316", component: ReadyToDeploy, phaseStr: "Final Testing" },
+  { id: "rtt",      label: "Ready to Test",  shortLabel: "Rdy Test", icon: "☁️", color: "#f59e0b", component: ReadyToTest, phaseStr: "Ready to Test" },
+  { id: "rtd",      label: "Ready to Deploy",shortLabel: "Rdy Deploy",icon: "🚀", color: "#f97316", component: ReadyToDeploy, phaseStr: "Ready to Deploy" },
   { id: "deployed", label: "Deployed",       shortLabel: "Live",     icon: "✅", color: "#10b981", component: Deployed, phaseStr: "Closure" },
 ];
 
@@ -25,6 +25,18 @@ export default function BugsPage() {
   
   const getPhaseCount = (phaseStr) => {
     if (!bugsList) return 0;
+    
+    // Support legacy phase strings alongside new ones
+    if (phaseStr === "Ready to Test") {
+        return bugsList.filter(bug => bug.currentPhase === "Ready to Test" || bug.currentPhase === "Maintenance").length;
+    }
+    if (phaseStr === "Ready to Deploy") {
+        return bugsList.filter(bug => bug.currentPhase === "Ready to Deploy" || bug.currentPhase === "Final Testing").length;
+    }
+    if (phaseStr === "Bug Testing") {
+        return bugsList.filter(bug => bug.currentPhase === "Bug Testing" || bug.currentPhase === "Bug Confirmation").length;
+    }
+    
     return bugsList.filter(bug => bug.currentPhase === phaseStr).length;
   };
 

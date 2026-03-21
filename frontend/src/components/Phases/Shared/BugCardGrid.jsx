@@ -22,9 +22,9 @@ export default function BugCardGrid({ phaseBugs, onClickCardToModal, phaseId }) 
         const raiser = bug.phaseI_BugReport?.reportedBy?.name || "Unknown";
         const raiserEmail = bug.phaseI_BugReport?.reportedBy?.email || "No email provided";
         const testerObj = bug.phaseI_BugReport?.assignedTester || bug.phaseII_BugConfirmation?.testedBy;
-        const tester = testerObj?.name || "Unassigned";
+        const tester = testerObj?.name || "";
         const testerEmail = testerObj?.email || "No email provided";
-        const developer = bug.phaseII_BugConfirmation?.assignedDeveloper?.name || "Unassigned";
+        const developer = bug.phaseII_BugConfirmation?.assignedDeveloper?.name || "";
         const developerEmail = bug.phaseII_BugConfirmation?.assignedDeveloper?.email || "No email provided";
         
         return (

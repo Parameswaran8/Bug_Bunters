@@ -38,13 +38,13 @@ function AddUser({ setIsOpen }) {
   const [user_name, setUser_name] = useState("");
 
   // User role and admin option lists
-  const roleOptions_ = ["Admin", "Developer", "Tester", "Viewer"]; //"Manager"
+  const roleOptions_ = ["Admin", "Developer", "Tester", "Bug Reporter"]; //"Manager"
   const adminControlOptions = ["Create", "Edit", "Delete", "View"];
   const adminOptionsList = [
-    "share",
-    "generate_report",
-    "insight_view",
-    "export",
+    "Share",
+    "Generate Report",
+    "Insight View",
+    "Export",
   ];
 
   // Selected multi-select state
@@ -94,7 +94,7 @@ function AddUser({ setIsOpen }) {
       role: roles.includes("Admin") ? "admin" : "user",
       roletype: roles.includes("Developer") ? "dev" : roles.includes("Tester") ? "tester" : "bugreporter",
       adminControl: Array.isArray(adminRights) ? adminRights.map(v => v.toLowerCase()) : [],
-      adminOption: Array.isArray(adminOptions)  ? adminOptions.map(v => v.toLowerCase()) : [],
+      adminOption: Array.isArray(adminOptions)  ? adminOptions.map(v => v.toLowerCase().replace(" ", "_")) : [],
     };
 
     try {
@@ -322,14 +322,15 @@ function AddUser({ setIsOpen }) {
               )}
             </div>
 
-            {roles.includes("Admin") && (
-              <div>
-                <Label className="text-sm font-medium">Admin Right</Label>
+            <div>
+              <Label className="text-sm font-medium">Admin Right</Label>
+              <div className="w-full" title={!roles.includes("Admin") ? "This is admin rights" : ""}>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
                       variant="outline"
                       className="h-10 w-full mt-2 text-left flex items-center justify-between"
+                      disabled={!roles.includes("Admin")}
                     >
                       <span className="truncate">
                         {adminRights.length > 0
@@ -363,18 +364,19 @@ function AddUser({ setIsOpen }) {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
-            )}
+            </div>
           </div>
 
-          {roles.includes("Admin") && (
-            <div className="grid grid-cols-1 gap-4">
-              <div>
-                <Label className="text-sm font-medium">Admin Option</Label>
+          <div className="grid grid-cols-1 gap-4">
+            <div>
+              <Label className="text-sm font-medium">Admin Option</Label>
+              <div className="w-full" title={!roles.includes("Admin") ? "This is admin rights" : ""}>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
                       variant="outline"
                       className="h-10 w-full mt-2 text-left flex items-center justify-between"
+                      disabled={!roles.includes("Admin")}
                     >
                       <span className="truncate">
                         {adminOptions.length > 0
@@ -409,7 +411,7 @@ function AddUser({ setIsOpen }) {
                 </DropdownMenu>
               </div>
             </div>
-          )}
+          </div>
         </div>
         {/* Add User end here */}
         <SheetFooter className="gap-3 py-2">

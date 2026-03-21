@@ -3,7 +3,7 @@ import BugViewToggle from "../Shared/BugViewToggle";
 import { useAuth } from "@/context/AuthContext";
 function ReadyToDeploy() {
   const { bugsList } = useAuth();
-  const phaseBugs = bugsList ? bugsList.filter(bug => bug.currentPhase === "Final Testing") : [];
+  const phaseBugs = bugsList ? bugsList.filter(bug => bug.currentPhase === "Ready to Deploy" || bug.currentPhase === "Final Testing") : [];
 
   return (
     <div>

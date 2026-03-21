@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Upload, ArrowUp, ArrowDown, Pin, ChevronLeft, ChevronRight } from "lucide-react";
+import { Upload, ArrowUp, ArrowDown, Pin, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import toast from "react-hot-toast";
 import { updateTool } from "@/API_Call/Tool";
 import { useAuth } from "@/context/AuthContext";
@@ -28,8 +29,10 @@ const tableDetails = [
   { key: "toolName", label: "Tool Name", type: "text", width: 180 },
   { key: "toolDescription", label: "Description", type: "text", width: 220 },
   { key: "platform", label: "Platform", type: "text", width: 200 },
-  { key: "SOP", label: "SOP Document", type: "text", width: 180 },
-  { key: "ReleaseNotes", label: "Release Notes", type: "text", width: 200 },
+  { key: "testerId", label: "Responsible Tester", type: "userSelect", width: 180 },
+  { key: "devId", label: "Responsible Dev", type: "userSelect", width: 180 },
+  { key: "SOP", label: "SOP Document", type: "textarea", width: 220 },
+  { key: "ReleaseNotes", label: "Release Notes", type: "textarea", width: 220 },
   { key: "libraryName", label: "Library Version", type: "text", width: 120 },
   { key: "htmlVersion", label: "HTML Version", type: "text", width: 120 },
 ];
@@ -92,7 +95,7 @@ const ColumnHeader = ({ children, onPin, isPinned, columnKey }) => {
 };
 
 const TableTool = ({ isOpen, setIsOpen }) => {
-  const { toolList, setToolList } = useAuth();
+  const { toolList, setToolList, allUsers } = useAuth();
   const [editingIds, setEditingIds] = useState([]);
   const [editData, setEditData] = useState({});
   const [pinnedColumns, setPinnedColumns] = useState([]);
@@ -166,6 +169,42 @@ const TableTool = ({ isOpen, setIsOpen }) => {
     });
   };
 
+  const handleEditSelected = () => {
+    if (selectedRows.length > 0) {
+      setEditingIds(selectedRows);
+      const newEditData = {};
+      selectedRows.forEach((id) => {
+        const item = toolList.find((i) => i.id === id || i._id === id);
+        if (item) newEditData[id] = { ...item };
+      });
+      setEditData(newEditData);
+    }
+  };
+
+  const handleDeleteSelected = async () => {
+    setToolList(prev => prev.filter(it => !selectedRows.includes(it.id) && !selectedRows.includes(it._id)));
+    setSelectedRows([]);
+    toast.success("Selected tools deleted!");
+  };
+
+  const handleDeleteSingle = async (id) => {
+    setToolList(prev => prev.filter(it => it.id !== id && it._id !== id));
+    toast.success("Tool deleted!");
+  };
+
+  const handleSaveAll = async () => {
+    for (const id of editingIds) {
+      if (editData[id]) await handleSave(id);
+    }
+    setSelectedRows([]);
+  };
+
+  const handleCancelAll = () => {
+    setEditingIds([]);
+    setEditData({});
+    setSelectedRows([]);
+  };
+
   const handleRowSelect = (id) => {
     setSelectedRows((prev) =>
       prev.includes(id) ? prev.filter((r) => r !== id) : [...prev, id]
@@ -173,6 +212,84 @@ const TableTool = ({ isOpen, setIsOpen }) => {
   };
 
   const renderCell = (col, item, isEditing, displayData) => {
+    if (col.type === "userSelect") {
+      const currentUserId = displayData[col.key] || "";
+      const currentObj = typeof currentUserId === "object" ? currentUserId : allUsers?.find(u => u.id === currentUserId || u._id === currentUserId);
+      const displayVal = currentObj?.name || "Unassigned";
+
+      if (isEditing) {
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="h-8 w-full justify-between text-left shrink-0 text-xs px-2" onClick={(e) => e.stopPropagation()}>
+                 <span className="truncate">{displayVal}</span>
+                 <ChevronDown className="ml-1 h-3 w-3 opacity-50 flex-shrink-0" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-48 z-50 max-h-60 overflow-y-auto">
+              <DropdownMenuItem
+                 className="text-xs py-1.5 cursor-pointer"
+                 onClick={(e) => {
+                   e.stopPropagation();
+                   setEditData((prev) => ({ 
+                     ...prev, 
+                     [item.id]: { ...prev[item.id], [col.key]: null } 
+                   }));
+                 }}
+              >
+                Unassigned
+              </DropdownMenuItem>
+              {allUsers?.filter(u => {
+                const role = u.roletype?.toLowerCase() || "";
+                if (col.key === "testerId") return role === "tester";
+                if (col.key === "devId") return role === "developer" || role === "dev";
+                return true;
+              }).map((u) => (
+                 <DropdownMenuItem
+                   key={u.id || u._id}
+                   className="text-xs py-1.5 cursor-pointer"
+                   onClick={(e) => {
+                     e.stopPropagation();
+                     setEditData((prev) => ({ 
+                       ...prev, 
+                       [item.id]: { ...prev[item.id], [col.key]: u._id || u.id } 
+                     }));
+                   }}
+                 >
+                   {u.name}
+                 </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      } else {
+        const val = item[col.key];
+        const disp = val?.name || (typeof val === "object" ? val?.name : (allUsers?.find(u => u.id === val || u._id === val)?.name)) || "Unassigned";
+        return <span className="text-sm truncate block text-gray-700" title={val?.email || ""}>{disp}</span>;
+      }
+    }
+
+    if (col.type === "textarea") {
+      const val = displayData[col.key] || "";
+      if (isEditing) {
+        return (
+          <Textarea
+            value={val}
+            onChange={(e) =>
+              setEditData((prev) => ({
+                ...prev,
+                [item.id]: { ...prev[item.id], [col.key]: e.target.value },
+              }))
+            }
+            className="w-full min-h-[60px] text-xs resize-y"
+          />
+        );
+      } else {
+        const displayVal = item[col.key] || "";
+        return <div className="text-sm max-h-[80px] overflow-y-auto whitespace-pre-wrap text-gray-700">{displayVal || "-"}</div>;
+      }
+    }
+
     if (isEditing) {
       const val = displayData[col.key] || "";
       const displayVal = Array.isArray(val) ? val.join(", ") : val;
@@ -209,6 +326,16 @@ const TableTool = ({ isOpen, setIsOpen }) => {
                 className="p-0 flex items-center justify-center h-12 sticky left-0 z-30 border-r border-gray-200"
                 style={{ width: 48, minWidth: 48, background: "#f8fafc", top: 0 }}
               >
+                <Checkbox 
+                  checked={paginatedData?.length > 0 && selectedRows.length === paginatedData.length}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setSelectedRows(paginatedData.map(item => item.id || item._id));
+                    } else {
+                      setSelectedRows([]);
+                    }
+                  }}
+                />
               </TableHead>
               {tableDetails.map((col) => {
                 const isPinned = pinnedColumns.includes(col.key);
@@ -253,17 +380,17 @@ const TableTool = ({ isOpen, setIsOpen }) => {
                 
                 return (
                   <TableContextMenu
-                    key={item.id}
+                    key={item.id || item._id}
                     item={item}
                     onEdit={() => {
                       setEditingIds([item.id]);
                       setEditData(prev => ({ ...prev, [item.id]: { ...item } }));
                     }}
-                    onDelete={() => {}} // Disabled locally, should trigger API DELETE
-                    onSaveAll={() => {}}
-                    onEditSelected={() => {}}
-                    onDeleteSelected={() => {}}
-                    onCancelAll={() => {}}
+                    onDelete={() => handleDeleteSingle(item.id || item._id)}
+                    onSaveAll={handleSaveAll}
+                    onEditSelected={handleEditSelected}
+                    onDeleteSelected={handleDeleteSelected}
+                    onCancelAll={handleCancelAll}
                   >
                     <TableRow className="cursor-pointer hover:bg-slate-50/80 transition-colors border-b">
                       <TableCell
@@ -292,8 +419,8 @@ const TableTool = ({ isOpen, setIsOpen }) => {
                               setEditingIds([item.id]);
                               setEditData(prev => ({ ...prev, [item.id]: { ...item } }));
                             }}
-                            onDelete={() => {}}
-                            onArchive={() => {}}
+                            onDelete={() => handleDeleteSingle(item.id || item._id)}
+                            onArchive={() => toast.success("Archive tool")}
                           />
                         )}
                       </TableCell>

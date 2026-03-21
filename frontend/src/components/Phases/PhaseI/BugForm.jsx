@@ -382,7 +382,10 @@ function BugForm({ setIsOpen }) {
                 // Auto-assign tester if configured on the tool
                 const matchedTool = toolList?.find(t => (t.id || t._id) === val);
                 if (matchedTool && matchedTool.testerId) {
-                  setSelectedTester(matchedTool.testerId);
+                  const tId = typeof matchedTool.testerId === "object" 
+                     ? (matchedTool.testerId._id || matchedTool.testerId.id) 
+                     : matchedTool.testerId;
+                  setSelectedTester(tId);
                   if (errors.tester) setErrors((prev) => ({ ...prev, tester: "" }));
                 }
               }}

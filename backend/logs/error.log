@@ -1434,3 +1434,39 @@ Use mongoose.model(name, schema)
     at cast (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/cast.js:367:39)
     at model.Query.Query.cast (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:5055:12)
     at model.Query.Query._castConditions (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2351:10)
+2026-03-21T07:09:45.442Z [error]: Validation failed: roletype: `Tester` is not a valid enum value for path `roletype`. - ValidationError: Validation failed: roletype: `Tester` is not a valid enum value for path `roletype`.
+    at _done (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:231:19)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:207:11
+    at schemaPath.doValidate.updateValidator (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:165:13)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-21T07:09:45.451Z [error]: Validation failed: roletype: `Tester` is not a valid enum value for path `roletype`. - ValidationError: Validation failed: roletype: `Tester` is not a valid enum value for path `roletype`.
+    at _done (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:231:19)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:207:11
+    at schemaPath.doValidate.updateValidator (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:165:13)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-21T07:09:59.658Z [error]: Validation failed: roletype: `Tester` is not a valid enum value for path `roletype`. - ValidationError: Validation failed: roletype: `Tester` is not a valid enum value for path `roletype`.
+    at _done (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:231:19)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:207:11
+    at schemaPath.doValidate.updateValidator (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:165:13)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-21T07:09:59.658Z [error]: Validation failed: roletype: `Tester` is not a valid enum value for path `roletype`. - ValidationError: Validation failed: roletype: `Tester` is not a valid enum value for path `roletype`.
+    at _done (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:231:19)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:207:11
+    at schemaPath.doValidate.updateValidator (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:165:13)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-21T07:11:22.221Z [error]: Validation failed: roletype: `Tester` is not a valid enum value for path `roletype`. - ValidationError: Validation failed: roletype: `Tester` is not a valid enum value for path `roletype`.
+    at _done (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:231:19)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:207:11
+    at schemaPath.doValidate.updateValidator (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:165:13)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-21T07:11:22.222Z [error]: Validation failed: roletype: `Tester` is not a valid enum value for path `roletype`. - ValidationError: Validation failed: roletype: `Tester` is not a valid enum value for path `roletype`.
+    at _done (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:231:19)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:207:11
+    at schemaPath.doValidate.updateValidator (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:165:13)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:77:11)

@@ -56,9 +56,15 @@ export default class ToolController {
         String(req.query.mergePlatforms ?? "true") !== "false";
 
       // helper to sanitize ObjectId fields
-      const safeObjectId = (id: any): string | undefined => {
-        if (id === undefined || id === null || id === "") return undefined;
+      const safeObjectId = (id: any): string | null | undefined => {
+        if (id === null || id === "") return null;
+        if (id === undefined) return undefined;
         if (typeof id === "string" && mongoose.isValidObjectId(id)) return id;
+        if (
+          id &&
+          typeof id === "object" &&
+          (id as any)._id
+        ) return (id as any)._id.toString();
         if (
           id &&
           typeof id === "object" &&
@@ -107,10 +113,10 @@ export default class ToolController {
 
           // sanitize testerId and devId
           const tester = safeObjectId(item.testerId);
-          if (tester) setOps.testerId = tester;
+          if (tester !== undefined) setOps.testerId = tester;
 
           const dev = safeObjectId(item.devId);
-          if (dev) setOps.devId = dev;
+          if (dev !== undefined) setOps.devId = dev;
 
           if (typeof item.libraryName !== "undefined")
             setOps.libraryName = item.libraryName;
@@ -277,7 +283,9 @@ export default class ToolController {
   static GetTools = asyncHandler(
     async (_: Request, res: Response): Promise<void> => {
       try {
-        const tools = await Tool.find();
+        const tools = await Tool.find()
+          .populate("testerId", "name email")
+          .populate("devId", "name email");
         res.status(HttpStatusCodes.OK).json(tools);
       } catch (error) {
         res
