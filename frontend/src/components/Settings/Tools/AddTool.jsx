@@ -16,7 +16,7 @@ import { updateTool } from "@/API_Call/Tool";
 import { useAuth } from "@/context/AuthContext";
 
 function AddTool({ setIsOpen, onToolAdded }) {
-  const { stackList, setToolList, allUsers } = useAuth();
+  const { platformList, setToolList, allUsers } = useAuth();
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -25,7 +25,7 @@ function AddTool({ setIsOpen, onToolAdded }) {
   const [toolDescription, setToolDescription] = useState("");
   const [libraryName, setLibraryName] = useState("");
   const [htmlVersion, setHtmlVersion] = useState("");
-  const [selectedStacks, setSelectedStacks] = useState([]);
+  const [selectedPlatform, setSelectedPlatform] = useState("");
   const [testerId, setTesterId] = useState("");
   const [devId, setDevId] = useState("");
   const [SOP, setSOP] = useState("");
@@ -56,7 +56,7 @@ function AddTool({ setIsOpen, onToolAdded }) {
       toolDescription,
       libraryName,
       htmlVersion,
-      stack: selectedStacks,
+      platform: selectedPlatform ? [selectedPlatform] : [],
       testerId,
       devId,
       SOP,
@@ -71,10 +71,12 @@ function AddTool({ setIsOpen, onToolAdded }) {
         if (onToolAdded) onToolAdded();
         
         // Push globally so table immediately updates without reloading DB
-        if (response.data?.tools?.length > 0) {
-           const newToolBackend = response.data.tools[0];
-           const mappedTool = { ...newToolBackend, id: newToolBackend._id };
-           setToolList(prev => [mappedTool, ...prev]);
+        if (response.data && response.data.results && response.data.results.length > 0) {
+           const newToolBackend = response.data.results[0].tool;
+           if (newToolBackend) {
+             const mappedTool = { ...newToolBackend, id: newToolBackend._id };
+             setToolList(prev => [...prev, mappedTool]);
+           }
         }
 
         resetForm();
@@ -96,7 +98,7 @@ function AddTool({ setIsOpen, onToolAdded }) {
     setToolDescription("");
     setLibraryName("");
     setHtmlVersion("");
-    setSelectedStacks([]);
+    setSelectedPlatform("");
     setTesterId("");
     setDevId("");
     setSOP("");
@@ -138,7 +140,7 @@ function AddTool({ setIsOpen, onToolAdded }) {
             <Input
               id="toolName"
               type="text"
-              placeholder="e.g. Sales CRM"
+              placeholder=""
               value={toolName}
               onChange={(e) => {
                 setToolName(e.target.value);
@@ -174,73 +176,55 @@ function AddTool({ setIsOpen, onToolAdded }) {
             />
           </div>
 
-          {/* Library & HTML Details */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="libraryName" className="text-sm font-medium">
-                Library Version
-              </Label>
-              <Input
-                id="libraryName"
-                placeholder="e.g. React 18.2"
-                value={libraryName}
-                onChange={(e) => setLibraryName(e.target.value)}
-                className="border-2 rounded-lg h-10 px-3 border-gray-200"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="htmlVersion" className="text-sm font-medium">
-                HTML Version
-              </Label>
-              <Input
-                id="htmlVersion"
-                placeholder="e.g. HTML5"
-                value={htmlVersion}
-                onChange={(e) => setHtmlVersion(e.target.value)}
-                className="border-2 rounded-lg h-10 px-3 border-gray-200"
-              />
-            </div>
-          </div>
 
-          {/* Stack */}
+          {/* Platform */}
           <div className="space-y-2">
-            <Label htmlFor="stack" className="text-sm font-medium">
-              Tech Stack
+            <Label htmlFor="platform" className="text-sm font-medium">
+              Platform
             </Label>
             
-            <div className="flex flex-wrap gap-2 mb-2">
-              {selectedStacks.map((stackName) => (
-                <div key={stackName} className="flex items-center gap-1 bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-md border border-blue-200">
-                  <span>{stackName}</span>
-                  <button 
-                    onClick={() => setSelectedStacks(prev => prev.filter(s => s !== stackName))}
-                    className="text-blue-500 hover:text-blue-800 ml-1 rounded-full p-0.5 focus:outline-none"
-                    type="button"
-                  >
-                    ×
-                  </button>
-                </div>
-              ))}
-            </div>
-
             <select
-              id="stack"
+              id="platform"
               className="w-full border-2 rounded-lg h-10 px-3 border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-              onChange={(e) => {
-                const val = e.target.value;
-                if (val && !selectedStacks.includes(val)) {
-                   setSelectedStacks([...selectedStacks, val]);
-                }
-                e.target.value = ""; // reset after pick
-              }}
-              defaultValue=""
+              value={selectedPlatform}
+              onChange={(e) => setSelectedPlatform(e.target.value)}
             >
-              <option value="" disabled>Select a tech stack to add...</option>
-              {stackList && stackList.map(stackOpt => (
-                 <option key={stackOpt} value={stackOpt}>{stackOpt}</option>
+              <option value="" disabled>Select a platform to add...</option>
+              {platformList && platformList.map(platformOpt => (
+                 <option key={platformOpt} value={platformOpt}>{platformOpt}</option>
               ))}
             </select>
           </div>
+
+                    {/* Library & HTML Details */}
+          {selectedPlatform === "Script" && (
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="libraryName" className="text-sm font-medium">
+                  Library Version
+                </Label>
+                <Input
+                  id="libraryName"
+                  placeholder=""
+                  value={libraryName}
+                  onChange={(e) => setLibraryName(e.target.value)}
+                  className="border-2 rounded-lg h-10 px-3 border-gray-200"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="htmlVersion" className="text-sm font-medium">
+                  HTML Version
+                </Label>
+                <Input
+                  id="htmlVersion"
+                  placeholder=""
+                  value={htmlVersion}
+                  onChange={(e) => setHtmlVersion(e.target.value)}
+                  className="border-2 rounded-lg h-10 px-3 border-gray-200"
+                />
+              </div>
+            </div>
+          )}
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
@@ -254,7 +238,7 @@ function AddTool({ setIsOpen, onToolAdded }) {
                 className="w-full border-2 rounded-lg h-10 px-3 border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
               >
                 <option value="">None Assigned</option>
-                {allUsers && allUsers.map(u => (
+                {allUsers && allUsers.filter(u => u.roletype === "tester").map(u => (
                   <option key={u.id} value={u.id}>{u.name || u.username || u.email}</option>
                 ))}
               </select>
@@ -270,7 +254,7 @@ function AddTool({ setIsOpen, onToolAdded }) {
                 className="w-full border-2 rounded-lg h-10 px-3 border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
               >
                 <option value="">None Assigned</option>
-                {allUsers && allUsers.map(u => (
+                {allUsers && allUsers.filter(u => u.roletype === "dev").map(u => (
                   <option key={u.id} value={u.id}>{u.name || u.username || u.email}</option>
                 ))}
               </select>

@@ -1,10 +1,13 @@
+import React from "react";
+import BugViewToggle from "../Shared/BugViewToggle";
+import { useAuth } from "@/context/AuthContext";
 function AnalyzeBug() {
+  const { bugsList } = useAuth();
+  const phaseBugs = bugsList ? bugsList.filter(bug => bug.currentPhase === "Bug Analysis") : [];
+
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">Analyze Bug</h1>
-      <div className="bg-white p-6 rounded-lg shadow border">
-        <p className="text-gray-600">Bug analysis tools will go here...</p>
-      </div>
+      <BugViewToggle title="Analyze Bug" phaseBugs={phaseBugs} phaseId="analyze" />
     </div>
   );
 }

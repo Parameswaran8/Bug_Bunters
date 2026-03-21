@@ -4,6 +4,7 @@ import { AuthenticatedRequest } from "../middlewares/authMiddleware";
 import { asyncHandler } from "../utils/asyncHandler";
 import { HttpStatusCodes } from "../utils/errorCodes";
 import BugModel from "../models/bug.models";
+import User from "../models/user.model";
 
 export default class BugController {
   // =========================================
@@ -131,7 +132,7 @@ export default class BugController {
             tags: bugData.tags || [],
           });
 
-          // Await save sequentially to guarantee sequential custom ID creation (BUG-YYYY-XXXX hook)
+          // Await save sequentially to guarantee sequential custom ID creation (BUG-XXXX hook)
           const savedBug = await newBug.save();
 
           results.push({
@@ -142,6 +143,7 @@ export default class BugController {
             toolName: toolInfo.toolName,
             platform: toolInfo.platform || "Not Specified",
             priority: toolInfo.priority,
+            bug: savedBug,
           });
         } catch (error: any) {
           console.log("Error raising bug:", error);
@@ -635,7 +637,12 @@ export default class BugController {
         filter.tags = { $in: Array.isArray(tags) ? tags : [tags] };
       }
 
-      const bugs = await BugModel.find(filter).sort({ createdAt: -1 }).lean();
+      const bugs = await BugModel.find(filter)
+        .populate("phaseI_BugReport.reportedBy", "name email")
+        .populate("phaseI_BugReport.assignedTester", "name email")
+        .populate("phaseII_BugConfirmation.assignedDeveloper", "name email")
+        .sort({ createdAt: -1 })
+        .lean();
 
       res.status(HttpStatusCodes.OK).json({
         message: "Bug list fetched successfully",
@@ -728,7 +735,7 @@ export default class BugController {
   // =========================================
   static UpdateBug = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
-      const { id } = req.params;
+      const id = req.body.id || req.body._id;
       const updateData = req.body;
 
       const bug = await BugController.findBugById(id);
@@ -757,7 +764,7 @@ export default class BugController {
   // =========================================
   static DeleteBug = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
-      const { id } = req.params;
+      const id = req.body.id || req.body._id;
 
       const bug = await BugController.findBugById(id);
 

@@ -43,12 +43,19 @@ export default class UserController {
   static deleteUser = asyncHandler(
     async (req, res): Promise<void> => {
       const { id } = req.params;
-      const deletedUser = await User.findByIdAndDelete(id);
-
-      if (!deletedUser) {
+      
+      const userToDrop = await User.findById(id);
+      if (!userToDrop) {
         res.status(HttpStatusCodes.NOT_FOUND).json({ success: false, message: "User not found" });
         return;
       }
+
+      if (userToDrop.role === "superadmin") {
+        res.status(HttpStatusCodes.BAD_REQUEST).json({ success: false, message: "Superadmin cannot be deleted" });
+        return;
+      }
+
+      await User.findByIdAndDelete(id);
 
       res.status(HttpStatusCodes.OK).json({ success: true, message: "User deleted successfully" });
     }

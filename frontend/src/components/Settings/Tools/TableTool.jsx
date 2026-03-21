@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Upload, ArrowUp, ArrowDown, Pin } from "lucide-react";
+import { Upload, ArrowUp, ArrowDown, Pin, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -27,11 +27,11 @@ import TableRowMenu from "../TableMenu";
 const tableDetails = [
   { key: "toolName", label: "Tool Name", type: "text", width: 180 },
   { key: "toolDescription", label: "Description", type: "text", width: 220 },
-  { key: "libraryName", label: "Library Version", type: "text", width: 160 },
-  { key: "htmlVersion", label: "HTML Version", type: "text", width: 160 },
-  { key: "stack", label: "Stack", type: "text", width: 200 },
+  { key: "platform", label: "Platform", type: "text", width: 200 },
   { key: "SOP", label: "SOP Document", type: "text", width: 180 },
   { key: "ReleaseNotes", label: "Release Notes", type: "text", width: 200 },
+  { key: "libraryName", label: "Library Version", type: "text", width: 120 },
+  { key: "htmlVersion", label: "HTML Version", type: "text", width: 120 },
 ];
 
 const ResizableHeader = ({ children, columnKey, colWidths, setColWidths }) => {
@@ -101,6 +101,12 @@ const TableTool = ({ isOpen, setIsOpen }) => {
   );
   const [selectedRows, setSelectedRows] = useState([]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  
+  const totalPages = Math.max(1, Math.ceil((toolList?.length || 0) / rowsPerPage));
+  const paginatedData = toolList ? toolList.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage) : [];
+
   const handlePinColumn = (columnKey) => {
     setPinnedColumns((prev) =>
       prev.includes(columnKey) ? prev.filter((col) => col !== columnKey) : [...prev, columnKey]
@@ -130,9 +136,9 @@ const TableTool = ({ isOpen, setIsOpen }) => {
     const updatingData = editData[id];
     if (!updatingData) return;
 
-    // Convert stack back to array if modified as string
-    if (typeof updatingData.stack === "string") {
-      updatingData.stack = updatingData.stack.split(",").map(i => i.trim()).filter(Boolean);
+    // Convert platform back to array if modified as string
+    if (typeof updatingData.platform === "string") {
+      updatingData.platform = updatingData.platform.split(",").map(i => i.trim()).filter(Boolean);
     }
     
     // update to API
@@ -191,51 +197,57 @@ const TableTool = ({ isOpen, setIsOpen }) => {
 
   return (
     <div className="w-full">
-      <div className="mb-4 justify-end flex">
+      <div className="mb-3 justify-end flex absolute right-14 top-2 lg:!right-7 lg:!top-7">
         <Button onClick={() => setIsOpen(true)}>Add Tool</Button>
       </div>
 
-      <div className="rounded-xl border border-gray-200 overflow-x-auto bg-white shadow-sm">
+      <div className="[&>div]:rounded-sm [&>div]:border rounded-xl border border-gray-200 overflow-x-auto overflow-y-auto h-[calc(100vh-280px)] bg-white shadow-sm">
         <Table className="min-w-full">
           <TableHeader>
             <TableRow className="hover:bg-transparent bg-slate-50">
               <TableHead
-                className="p-0 flex items-center justify-center h-12 sticky left-0 z-20 border-r border-gray-200"
-                style={{ width: 48, minWidth: 48, background: "#f8fafc" }}
+                className="p-0 flex items-center justify-center h-12 sticky left-0 z-30 border-r border-gray-200"
+                style={{ width: 48, minWidth: 48, background: "#f8fafc", top: 0 }}
               >
               </TableHead>
-              {tableDetails.map((col) => (
+              {tableDetails.map((col) => {
+                const isPinned = pinnedColumns.includes(col.key);
+                const pinStyle = getPinnedStyle(col.key);
+                return (
                 <TableHead
                   key={col.key}
                   style={{
-                    ...getPinnedStyle(col.key),
+                    ...pinStyle,
                     width: colWidths[col.key],
-                    backgroundColor: "#f8fafc"
+                    backgroundColor: "#f8fafc",
+                    top: 0,
+                    zIndex: isPinned ? 30 : 20
                   }}
-                  className="h-12 border-gray-200 font-semibold text-gray-700"
+                  className="h-12 border-gray-200 font-semibold text-gray-700 sticky"
                 >
                   <ResizableHeader columnKey={col.key} colWidths={colWidths} setColWidths={setColWidths}>
-                    <ColumnHeader columnKey={col.key} onPin={handlePinColumn} isPinned={pinnedColumns.includes(col.key)}>
+                    <ColumnHeader columnKey={col.key} onPin={handlePinColumn} isPinned={isPinned}>
                       {col.label}
                     </ColumnHeader>
                   </ResizableHeader>
                 </TableHead>
-              ))}
-              <TableHead className="sticky right-0 bg-slate-50 z-10 w-24 text-center">
+                );
+              })}
+              <TableHead className="sticky right-0 bg-slate-50 text-center" style={{ width: 96, top: 0, zIndex: 30 }}>
                 Actions
               </TableHead>
             </TableRow>
           </TableHeader>
 
           <TableBody>
-            {!toolList || toolList.length === 0 ? (
+            {!paginatedData || paginatedData.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={tableDetails.length + 2} className="h-32 text-center text-gray-400">
                   No tools found. Add a tool to get started.
                 </TableCell>
               </TableRow>
             ) : (
-              toolList.map((item) => {
+              paginatedData.map((item) => {
                 const isEditing = editingIds.includes(item.id);
                 const displayData = isEditing && editData[item.id] ? editData[item.id] : item;
                 
@@ -262,7 +274,7 @@ const TableTool = ({ isOpen, setIsOpen }) => {
                       </TableCell>
 
                       {tableDetails.map((col) => (
-                        <TableCell key={col.key} style={{ ...getPinnedStyle(col.key), width: colWidths[col.key] }}>
+                        <TableCell key={col.key} style={{ ...getPinnedStyle(col.key), width: colWidths[col.key], maxWidth: colWidths[col.key] }}>
                           {renderCell(col, item, isEditing, displayData)}
                         </TableCell>
                       ))}
@@ -292,6 +304,54 @@ const TableTool = ({ isOpen, setIsOpen }) => {
             )}
           </TableBody>
         </Table>
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="flex flex-col sm:flex-row items-center justify-between mt-4 px-2 gap-4">
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <span>Rows per page:</span>
+            <select
+              className="border border-gray-200 rounded px-1 py-0.5 bg-white text-gray-700 outline-none"
+              value={rowsPerPage}
+              onChange={(e) => {
+                setRowsPerPage(Number(e.target.value));
+                setCurrentPage(1);
+              }}
+            >
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+            </select>
+          </div>
+          <div className="text-sm text-gray-500">
+            Showing {toolList?.length > 0 ? (currentPage - 1) * rowsPerPage + 1 : 0} to {Math.min(currentPage * rowsPerPage, toolList?.length || 0)} of {toolList?.length || 0} tools
+          </div>
+        </div>
+        <div className="flex items-center space-x-2 gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+          >
+            <ChevronLeft className="w-4 h-4 mr-1" />
+            Previous
+          </Button>
+          <div className="text-sm font-medium px-2">
+            Page {currentPage} of {totalPages}
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage >= totalPages}
+          >
+            Next
+            <ChevronRight className="w-4 h-4 ml-1" />
+          </Button>
+        </div>
       </div>
     </div>
   );

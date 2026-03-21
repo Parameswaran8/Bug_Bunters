@@ -38,7 +38,7 @@ function AddUser({ setIsOpen }) {
   const [user_name, setUser_name] = useState("");
 
   // User role and admin option lists
-  const roleOptions_ = ["Admin", "Developer", "Tester", "Manager", "Viewer"];
+  const roleOptions_ = ["Admin", "Developer", "Tester", "Viewer"]; //"Manager"
   const adminControlOptions = ["Create", "Edit", "Delete", "View"];
   const adminOptionsList = [
     "share",
@@ -93,8 +93,8 @@ function AddUser({ setIsOpen }) {
       password: "password123", // Default password for new users
       role: roles.includes("Admin") ? "admin" : "user",
       roletype: roles.includes("Developer") ? "dev" : roles.includes("Tester") ? "tester" : "bugreporter",
-      adminControl: adminRights,
-      adminOption: adminOptions,
+      adminControl: Array.isArray(adminRights) ? adminRights.map(v => v.toLowerCase()) : [],
+      adminOption: Array.isArray(adminOptions)  ? adminOptions.map(v => v.toLowerCase()) : [],
     };
 
     try {
@@ -105,7 +105,7 @@ function AddUser({ setIsOpen }) {
         const mappedUser = { ...res.user, id: res.user._id };
         
         // Push globally so table immediately updates without reloading DB
-        setAllUsers(prev => [mappedUser, ...prev]);
+        setAllUsers(prev => [...prev, mappedUser]);
 
         toast.success("User created successfully", { position: "top-center" });
         resetForm();
@@ -119,6 +119,7 @@ function AddUser({ setIsOpen }) {
       toast.error(err.message || "Create user failed", {
         position: "top-center",
       });
+    } finally {
       // STOP LOADING
       setIsSubmitting(false);
     }
@@ -321,90 +322,94 @@ function AddUser({ setIsOpen }) {
               )}
             </div>
 
-            <div>
-              <Label className="text-sm font-medium">Admin Right</Label>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="h-10 w-full mt-2 text-left flex items-center justify-between"
-                  >
-                    <span className="truncate">
-                      {adminRights.length > 0
-                        ? adminRights.join(", ")
-                        : "Select Rights"}
-                    </span>
-                    {adminRights.length > 0 && (
-                      <span className="ml-3 bg-blue-50 text-blue-700 rounded-full px-2 py-0.5 text-xs">
-                        {adminRights.length}
-                      </span>
-                    )}
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
-                  {adminControlOptions.map((option) => (
-                    <DropdownMenuCheckboxItem
-                      key={option}
-                      checked={adminRights.includes(option)}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setAdminRights((prev) =>
-                          prev.includes(option)
-                            ? prev.filter((r) => r !== option)
-                            : [...prev, option]
-                        );
-                      }}
+            {roles.includes("Admin") && (
+              <div>
+                <Label className="text-sm font-medium">Admin Right</Label>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="h-10 w-full mt-2 text-left flex items-center justify-between"
                     >
-                      {option}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
+                      <span className="truncate">
+                        {adminRights.length > 0
+                          ? adminRights.join(", ")
+                          : "Select Rights"}
+                      </span>
+                      {adminRights.length > 0 && (
+                        <span className="ml-3 bg-blue-50 text-blue-700 rounded-full px-2 py-0.5 text-xs">
+                          {adminRights.length}
+                        </span>
+                      )}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56">
+                    {adminControlOptions.map((option) => (
+                      <DropdownMenuCheckboxItem
+                        key={option}
+                        checked={adminRights.includes(option)}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setAdminRights((prev) =>
+                            prev.includes(option)
+                              ? prev.filter((r) => r !== option)
+                              : [...prev, option]
+                          );
+                        }}
+                      >
+                        {option}
+                      </DropdownMenuCheckboxItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            )}
           </div>
 
-          <div className="grid grid-cols-1 gap-4">
-            <div>
-              <Label className="text-sm font-medium">Admin Option</Label>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="h-10 w-full mt-2 text-left flex items-center justify-between"
-                  >
-                    <span className="truncate">
-                      {adminOptions.length > 0
-                        ? adminOptions.join(", ")
-                        : "Select Options"}
-                    </span>
-                    {adminOptions.length > 0 && (
-                      <span className="ml-3 bg-blue-50 text-blue-700 rounded-full px-2 py-0.5 text-xs">
-                        {adminOptions.length}
-                      </span>
-                    )}
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
-                  {adminOptionsList.map((option) => (
-                    <DropdownMenuCheckboxItem
-                      key={option}
-                      checked={adminOptions.includes(option)}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setAdminOptions((prev) =>
-                          prev.includes(option)
-                            ? prev.filter((r) => r !== option)
-                            : [...prev, option]
-                        );
-                      }}
+          {roles.includes("Admin") && (
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <Label className="text-sm font-medium">Admin Option</Label>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="h-10 w-full mt-2 text-left flex items-center justify-between"
                     >
-                      {option}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+                      <span className="truncate">
+                        {adminOptions.length > 0
+                          ? adminOptions.join(", ")
+                          : "Select Options"}
+                      </span>
+                      {adminOptions.length > 0 && (
+                        <span className="ml-3 bg-blue-50 text-blue-700 rounded-full px-2 py-0.5 text-xs">
+                          {adminOptions.length}
+                        </span>
+                      )}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56">
+                    {adminOptionsList.map((option) => (
+                      <DropdownMenuCheckboxItem
+                        key={option}
+                        checked={adminOptions.includes(option)}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setAdminOptions((prev) =>
+                            prev.includes(option)
+                              ? prev.filter((r) => r !== option)
+                              : [...prev, option]
+                          );
+                        }}
+                      >
+                        {option}
+                      </DropdownMenuCheckboxItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </div>
-          </div>
+          )}
         </div>
         {/* Add User end here */}
         <SheetFooter className="gap-3 py-2">

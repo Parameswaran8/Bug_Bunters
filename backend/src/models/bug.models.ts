@@ -186,10 +186,10 @@ const bugSchema = new Schema<IBug>(
         },
         reportedBy: {
           type: Schema.Types.ObjectId,
-          ref: "User",
+          ref: "user",
           required: true,
         },
-        assignedTester: { type: Schema.Types.ObjectId, ref: "User" },
+        assignedTester: { type: Schema.Types.ObjectId, ref: "user" },
         reportedAt: { type: Date, default: Date.now, required: true },
       },
       required: true,
@@ -206,8 +206,8 @@ const bugSchema = new Schema<IBug>(
         attachments: [attachmentSchema],
         sopFollowed: [String],
       },
-      testedBy: { type: Schema.Types.ObjectId, ref: "User" },
-      assignedDeveloper: { type: Schema.Types.ObjectId, ref: "User" },
+      testedBy: { type: Schema.Types.ObjectId, ref: "user" },
+      assignedDeveloper: { type: Schema.Types.ObjectId, ref: "user" },
       testedAt: Date,
     },
 
@@ -222,7 +222,7 @@ const bugSchema = new Schema<IBug>(
         attachments: [attachmentSchema],
         sopProvided: [String],
       },
-      analyzedBy: { type: Schema.Types.ObjectId, ref: "User" },
+      analyzedBy: { type: Schema.Types.ObjectId, ref: "user" },
       analyzedAt: Date,
     },
 
@@ -236,7 +236,7 @@ const bugSchema = new Schema<IBug>(
         attachments: [attachmentSchema],
         sopProvided: [String],
       },
-      fixedBy: { type: Schema.Types.ObjectId, ref: "User" },
+      fixedBy: { type: Schema.Types.ObjectId, ref: "user" },
       fixedAt: Date,
     },
 
@@ -249,8 +249,8 @@ const bugSchema = new Schema<IBug>(
         remarks: String,
         attachments: [attachmentSchema],
       },
-      testedBy: { type: Schema.Types.ObjectId, ref: "User" },
-      approvedBy: { type: Schema.Types.ObjectId, ref: "User" },
+      testedBy: { type: Schema.Types.ObjectId, ref: "user" },
+      approvedBy: { type: Schema.Types.ObjectId, ref: "user" },
       testedAt: Date,
       approvedAt: Date,
     },
@@ -263,7 +263,7 @@ const bugSchema = new Schema<IBug>(
         remarks: String,
         sopFollowed: [String],
       },
-      deployedBy: { type: Schema.Types.ObjectId, ref: "User" },
+      deployedBy: { type: Schema.Types.ObjectId, ref: "user" },
       deployedAt: Date,
     },
 
@@ -274,7 +274,7 @@ const bugSchema = new Schema<IBug>(
         lessonsLearned: String,
         remarks: String,
       },
-      closedBy: { type: Schema.Types.ObjectId, ref: "User" },
+      closedBy: { type: Schema.Types.ObjectId, ref: "user" },
       closedAt: Date,
     },
 
@@ -316,11 +316,10 @@ bugSchema.methods.moveToPhase = function (phase: string, phaseNo?: number) {
 // STATIC METHODS
 // ==============================
 bugSchema.statics.generateBugId = async function (): Promise<string> {
-  const year = new Date().getFullYear();
   const count = await this.countDocuments({
-    bugId: new RegExp(`^BUG-${year}-`),
+    bugId: new RegExp(`^BUG-`),
   });
-  return `BUG-${year}-${String(count + 1).padStart(4, "0")}`;
+  return `BUG-${String(count + 1).padStart(4, "0")}`;
 };
 
 // ==============================

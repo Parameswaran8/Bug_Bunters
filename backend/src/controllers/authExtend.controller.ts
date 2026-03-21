@@ -35,134 +35,89 @@ export default class AuthExtendController {
 
   static registerUserWithToken = asyncHandler(
     async (req, res): Promise<void> => {
-      const users = req.body; // Expecting an array of user objects
+      const userData = req.body; 
       console.log("req.body", req.body);
 
-      if (!Array.isArray(users) || users.length === 0) {
+      const {
+        username = "",
+        email = "",
+        password,
+        role = "",
+        name,
+        department,
+        designation,
+        profile,
+        roletype,
+        adminControl,
+        adminOption,
+      } = userData;
+
+      if ((!email?.trim() && !username?.trim()) || !password?.trim()) {
         res.status(HttpStatusCodes.BAD_REQUEST).json({
-          message: "Request body must be an array of user objects",
+          message: "Username/email and password are required",
         });
         return;
       }
 
-      const results: any[] = [];
-      const usersToInsert: any[] = [];
+      // Check for existing email/username
+      const orConditions: any[] = [];
+      if (email?.trim()) {
+        orConditions.push({ email: email.trim() });
+      }
+      if (username?.trim()) {
+        orConditions.push({ username: username.trim() });
+      }
 
-      // Collect all provided emails and usernames
-      const emails = users
-        .map((u) => u.email?.trim())
-        .filter((e) => e && e.length > 0);
-      const usernames = users
-        .map((u) => u.username?.trim())
-        .filter((u) => u && u.length > 0);
-
-      // Fetch existing users
-      const existingUsers = await User.find({
-        $or: [{ email: { $in: emails } }, { username: { $in: usernames } }],
+      const existingUser = await User.findOne({
+        $or: orConditions,
       }).lean();
 
-      const existingEmails = new Set(existingUsers.map((u) => u.email));
-      const existingUsernames = new Set(existingUsers.map((u) => u.username));
-
-      for (const userData of users) {
-        console.log(68, userData)
-        const {
-          username = "",
-          email = "",
-          password,
-          role = "",
-          name,
-          department,
-          designation,
-          profile,
-          roletype,
-          adminControl,
-          adminOption,
-        } = userData;
-
-        console.log('82 ', name , '82 pass ', password)
-
-        // Validate required fields
-        if ((!email?.trim() && !username?.trim()) || !password?.trim()) {
-          results.push({
-            email: email || null,
-            username: username || null,
-            status: "failed",
-            message: "Username/email and password are required",
-          });
-          continue;
+      if (existingUser) {
+        let message = "User already exists";
+        if (email && existingUser.email === email.trim() && username && existingUser.username === username.trim()) {
+          message = "Email and username already exist";
+        } else if (email && existingUser.email === email.trim()) {
+          message = "Email already exists";
+        } else if (username && existingUser.username === username.trim()) {
+          message = "Username already exists";
         }
-
-        // Check for existing email/username
-        if (
-          (email && existingEmails.has(email)) ||
-          (username && existingUsernames.has(username))
-        ) {
-          let message = "User already exists";
-          if (
-            email &&
-            existingEmails.has(email) &&
-            username &&
-            existingUsernames.has(username)
-          ) {
-            message = "Email and username already exist";
-          } else if (email && existingEmails.has(email)) {
-            message = "Email already exists";
-          } else if (username && existingUsernames.has(username)) {
-            message = "Username already exists";
-          }
-
-          results.push({
-            email: email || null,
-            username: username || null,
-            status: "failed",
-            message,
-          });
-          continue;
-        }
-
-        // Prepare user object for insertion
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUserObj: any = {
-          password: hashedPassword,
-          defaultPassword: password,
-          role,
-          resetPass: true,
-        };
-
-        // Assign optional fields only if provided
-        if (username?.trim()) newUserObj.username = username.trim();
-        if (email?.trim()) newUserObj.email = email.trim();
-        if (roletype) newUserObj.roletype = roletype;
-        if (name) newUserObj.name = name;
-        if (department) newUserObj.department = department;
-        if (designation) newUserObj.designation = designation;
-        if (profile) newUserObj.profile = profile;
-
-        // ✅ Handle adminControl and adminOption only if provided and non-empty
-        if (Array.isArray(adminControl) && adminControl.length > 0) {
-          newUserObj.adminControl = adminControl;
-        }
-        if (Array.isArray(adminOption) && adminOption.length > 0) {
-          newUserObj.adminOption = adminOption;
-        }
-
-        usersToInsert.push(newUserObj);
-
-        results.push({
-          email: email || null,
-          username: username || null,
-          status: "success",
-          message: "User registered successfully",
-        });
+        res.status(HttpStatusCodes.BAD_REQUEST).json({ message });
+        return;
       }
 
-      // Insert all valid users at once
-      if (usersToInsert.length > 0) {
-        await User.insertMany(usersToInsert);
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const newUserObj: any = {
+        password: hashedPassword,
+        defaultPassword: password,
+        role,
+        resetPass: true,
+      };
+
+      if (username?.trim()) newUserObj.username = username.trim();
+      if (email?.trim()) newUserObj.email = email.trim();
+      if (roletype) newUserObj.roletype = roletype;
+      if (name) newUserObj.name = name;
+      if (department) newUserObj.department = department;
+      if (designation) newUserObj.designation = designation;
+      if (profile) newUserObj.profile = profile;
+
+      if (Array.isArray(adminControl) && adminControl.length > 0) {
+        newUserObj.adminControl = adminControl;
+      }
+      if (Array.isArray(adminOption) && adminOption.length > 0) {
+        newUserObj.adminOption = adminOption;
       }
 
-      res.status(HttpStatusCodes.CREATED).json({ results });
+      const newUser = new User(newUserObj);
+      const savedUser = await newUser.save();
+
+      const userObj = savedUser.toObject();
+      const { password: _, ...userWithoutPassword } = userObj;
+
+      res.status(HttpStatusCodes.CREATED).json({ 
+        message: "User registered successfully", 
+        user: userWithoutPassword 
+      });
     }
   );
 

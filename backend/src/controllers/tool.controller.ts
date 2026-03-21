@@ -5,11 +5,13 @@ import { HttpStatusCodes } from "../utils/errorCodes";
 import Tool from "../models/tool.models";
 
 interface ToolPayload {
+  id?: string;
+  _id?: string;
   toolName?: string;
   toolDescription?: string;
   testerId?: string;
   devId?: string;
-  stack?: string[] | string;
+  platform?: string[] | string;
   libraryName?: string;
   htmlVersion?: string;
   lastLibraryUpdate?: Date | string | null;
@@ -49,9 +51,9 @@ export default class ToolController {
         return;
       }
 
-      // mergeStacks flag default true; set mergeStacks=false to replace stack arrays
-      const mergeStacksFlag =
-        String(req.query.mergeStacks ?? "true") !== "false";
+      // mergePlatforms flag default true; set mergePlatforms=false to replace platform arrays
+      const mergePlatformsFlag =
+        String(req.query.mergePlatforms ?? "true") !== "false";
 
       // helper to sanitize ObjectId fields
       const safeObjectId = (id: any): string | undefined => {
@@ -68,18 +70,16 @@ export default class ToolController {
 
       const results: BatchResult[] = [];
 
-      // Pre-fetch existing tools (by names present) to minimize DB roundtrips
-      const namesToFetch = toolItems
-        .map((t) =>
-          t && typeof t.toolName === "string" ? t.toolName : undefined
-        )
+      // Pre-fetch existing tools (by IDs present) to minimize DB roundtrips
+      const idsToFetch = toolItems
+        .map((t) => safeObjectId(t.id || t._id))
         .filter(Boolean) as string[];
 
-      const existingTools = namesToFetch.length
-        ? await Tool.find({ toolName: { $in: namesToFetch } }).lean()
+      const existingTools = idsToFetch.length
+        ? await Tool.find({ _id: { $in: idsToFetch } }).lean()
         : [];
       const existingMap = new Map<string, any>();
-      existingTools.forEach((t) => existingMap.set(t.toolName, t));
+      existingTools.forEach((t) => existingMap.set(t._id.toString(), t));
 
       // Process sequentially for deterministic merging
       for (const item of toolItems) {
@@ -93,11 +93,14 @@ export default class ToolController {
           continue;
         }
 
-        try {
-          const existing =
-            existingMap.get(toolName) ?? (await Tool.findOne({ toolName }));
+        const itemId = safeObjectId(item.id || item._id);
 
-          // Build setOps for non-stack fields
+        try {
+          const existing = itemId
+            ? existingMap.get(itemId) ?? (await Tool.findById(itemId))
+            : null;
+
+          // Build setOps for non-platform fields
           const setOps: Record<string, any> = {};
           if (typeof item.toolDescription !== "undefined")
             setOps.toolDescription = item.toolDescription;
@@ -127,41 +130,41 @@ export default class ToolController {
           if (typeof item.ReleaseNotes !== "undefined")
             setOps.ReleaseNotes = item.ReleaseNotes;
 
-          // Normalize incoming stack to an array of trimmed strings if provided
-          let incomingStack: string[] | undefined;
-          if (typeof item.stack !== "undefined") {
-            incomingStack = Array.isArray(item.stack)
-              ? item.stack.slice()
-              : [item.stack];
-            incomingStack = incomingStack
+          // Normalize incoming platform to an array of trimmed strings if provided
+          let incomingPlatform: string[] | undefined;
+          if (typeof item.platform !== "undefined") {
+            incomingPlatform = Array.isArray(item.platform)
+              ? item.platform.slice()
+              : [item.platform];
+            incomingPlatform = incomingPlatform
               .map((s) => (typeof s === "string" ? s.trim() : s))
               .filter(Boolean) as string[];
-            incomingStack = Array.from(new Set(incomingStack)); // dedupe
+            incomingPlatform = Array.from(new Set(incomingPlatform)); // dedupe
           }
 
           if (existing) {
-            // Build updateOps combining $set for non-stack fields and either $addToSet or $set for stack
-            const existingStackRaw = Array.isArray(existing.stack)
-              ? existing.stack
+            // Build updateOps combining $set for non-platform fields and either $addToSet or $set for platform
+            const existingPlatformRaw = Array.isArray(existing.platform)
+              ? existing.platform
               : [];
-            const existingStackNormalized = existingStackRaw
+            const existingPlatformNormalized = existingPlatformRaw
               .map((s: any) => (typeof s === "string" ? s.trim() : s))
               .filter(Boolean) as string[];
 
             // create a case-insensitive set for quick checking (lowercased)
             const existingSetLower = new Set(
-              existingStackNormalized.map((s) => s.toLowerCase())
+              existingPlatformNormalized.map((s) => s.toLowerCase())
             );
 
-            // Normalize incomingStack already computed earlier as `incomingStack`
-            const incomingStackNormalized = Array.isArray(incomingStack)
-              ? incomingStack
+            // Normalize incomingPlatform already computed earlier as `incomingPlatform`
+            const incomingPlatformNormalized = Array.isArray(incomingPlatform)
+              ? incomingPlatform
               : [];
 
             // For merge mode: only add items that are not already present (case-insensitive)
             let itemsToAdd: string[] = [];
-            if (mergeStacksFlag && incomingStackNormalized.length) {
-              itemsToAdd = incomingStackNormalized.filter(
+            if (mergePlatformsFlag && incomingPlatformNormalized.length) {
+              itemsToAdd = incomingPlatformNormalized.filter(
                 (s) => !existingSetLower.has(s.toLowerCase())
               );
             }
@@ -170,15 +173,15 @@ export default class ToolController {
             const updateOps: Record<string, any> = {};
             if (Object.keys(setOps).length) updateOps.$set = setOps;
 
-            if (mergeStacksFlag) {
+            if (mergePlatformsFlag) {
               if (itemsToAdd.length) {
-                updateOps.$addToSet = { stack: { $each: itemsToAdd } };
+                updateOps.$addToSet = { platform: { $each: itemsToAdd } };
               }
             } else {
-              // replace mode: always set the stack to the incoming normalized array
+              // replace mode: always set the platform to the incoming normalized array
               updateOps.$set = {
                 ...(updateOps.$set || {}),
-                stack: incomingStackNormalized,
+                platform: incomingPlatformNormalized,
               };
             }
 
@@ -188,8 +191,8 @@ export default class ToolController {
               continue;
             }
 
-            const updatedDoc = await Tool.findOneAndUpdate(
-              { toolName },
+            const updatedDoc = await Tool.findByIdAndUpdate(
+              itemId,
               updateOps,
               {
                 new: true,
@@ -197,7 +200,7 @@ export default class ToolController {
               }
             ).lean();
 
-            if (updatedDoc) existingMap.set(toolName, updatedDoc);
+            if (updatedDoc) existingMap.set(itemId as string, updatedDoc);
             results.push({ toolName, status: "updated", tool: updatedDoc });
           } else {
             // Create new tool payload (schema defaults will fill missing fields)
@@ -223,12 +226,12 @@ export default class ToolController {
             if (typeof item.SOP !== "undefined") createPayload.SOP = item.SOP;
             if (typeof item.ReleaseNotes !== "undefined")
               createPayload.ReleaseNotes = item.ReleaseNotes;
-            if (incomingStack) createPayload.stack = incomingStack;
+            if (incomingPlatform) createPayload.platform = incomingPlatform;
 
             const newDoc = new Tool(createPayload);
             const saved = await newDoc.save();
 
-            existingMap.set(toolName, saved);
+            existingMap.set((saved as any)._id.toString(), saved);
             results.push({ toolName, status: "created", tool: saved });
           }
         } catch (err: any) {

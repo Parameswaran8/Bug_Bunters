@@ -27,10 +27,15 @@ function SearchableToolDropdown({
   const [filteredTools, setFilteredTools] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Update filtered tools when items change
+  // Update filtered tools when items change or popover opens
   useEffect(() => {
-    setFilteredTools(items);
-  }, [items]);
+    if (open) {
+      setSearchQuery("");
+      setFilteredTools(items);
+    } else if (!searchQuery) {
+      setFilteredTools(items);
+    }
+  }, [items, open]);
 
   const handleSearch = (search) => {
     setSearchQuery(search);
@@ -74,7 +79,7 @@ function SearchableToolDropdown({
         sideOffset={5}
         className="p-0 w-[var(--radix-popover-trigger-width)]"
       >
-        <Command>
+        <Command shouldFilter={false}>
           <CommandInput
             placeholder="Search..."
             className="h-9"

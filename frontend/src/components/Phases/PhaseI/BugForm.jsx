@@ -6,7 +6,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Asterisk, Upload, Bug, Menu, Loader2 } from "lucide-react";
 import SearchableToolDropdown from "@/components/Dropdowns/SearchableSelect";
 import DynamicSelect from "@/components/Dropdowns/Dropdown";
-import Attachment from "./Attachment";
 import AnimatedCheckbox from "./Checkbox";
 import SOPChecklist from "./SopChecks";
 
@@ -23,11 +22,9 @@ import { createBug } from "@/API_Call/Bug";
 import { useAuth } from "@/context/AuthContext";
 
 function BugForm({ setIsOpen }) {
-  const { toolList } = useAuth();
+  const { toolList, allUsers, bugsList, setBugsList } = useAuth();
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedVideo, setSelectedVideo] = useState(null);
   const [selectedTool, setSelectedTool] = useState("");
   const [selectedTester, setSelectedTester] = useState("");
   const [selectedPriority, setSelectedPriority] = useState("");
@@ -79,10 +76,9 @@ function BugForm({ setIsOpen }) {
     }
   }, [sopChecks]);
 
-  // Fetch testers on mount
   useEffect(() => {
     loadTesters();
-  }, []);
+  }, [allUsers]);
 
   // Sync Context tools to Dropdown format implicitly whenever context updates
   useEffect(() => {
@@ -90,7 +86,7 @@ function BugForm({ setIsOpen }) {
       const formattedTools = toolList.map((tool) => ({
         value: tool.id || tool._id,
         label: tool.toolName,
-        sublabel: tool.toolDescription || "No category",
+        sublabel: tool.platform[0] || "No category",
       }));
       setTools(formattedTools);
     } else {
@@ -101,23 +97,18 @@ function BugForm({ setIsOpen }) {
   const loadTesters = async () => {
     setIsLoadingTesters(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      const mockTesters = [
-        { id: "t1", name: "John Doe", role: "Senior QA" },
-        { id: "t2", name: "Jane Smith", role: "QA Engineer" },
-        { id: "t3", name: "Mike Johnson", role: "Test Lead" },
-        { id: "t4", name: "Sarah Williams", role: "QA Analyst" },
-        { id: "t5", name: "David Brown", role: "Automation Tester" },
-      ];
-
-      const formattedTesters = mockTesters.map((tester) => ({
-        value: tester.id,
-        label: tester.name,
-        sublabel: tester.role,
-      }));
-
-      setTesters(formattedTesters);
+      if (allUsers && allUsers.length > 0) {
+        const actualTesters = allUsers
+          .filter((u) => u.roletype === "tester")
+          .map((tester) => ({
+            value: tester.id,
+            label: tester.name || tester.username || tester.email,
+            sublabel: tester.role || "Tester",
+          }));
+        setTesters(actualTesters);
+      } else {
+        setTesters([]);
+      }
     } catch (error) {
       console.error("Error loading testers:", error);
       setTesters([]);
@@ -258,8 +249,17 @@ function BugForm({ setIsOpen }) {
     console.log(bugReportData);
 
     try {
-      // Simulating API
-      await createBug(bugReportData);
+      // API call execution
+      const apiResponse = await createBug(bugReportData);
+      
+      // Real-time synchronization without refetch
+      if (apiResponse.success && apiResponse.data && apiResponse.data.results) {
+         const newBugs = apiResponse.data.results.filter(r => r.bug).map(r => r.bug);
+         if (newBugs.length > 0) {
+            setBugsList((prev) => [...prev, ...newBugs]);
+         }
+      }
+      
       await new Promise((r) => setTimeout(r, 1500));
 
       // setIsOpen(false); // close sheet
@@ -306,8 +306,6 @@ function BugForm({ setIsOpen }) {
     setSelectedTool("");
     setSelectedTester("");
     setSelectedPriority("");
-    setSelectedImage(null);
-    setSelectedVideo(null);
     // setDescriptionType(true);
     setFacedByMe(false);
     setFacedByClient(false);
@@ -380,6 +378,13 @@ function BugForm({ setIsOpen }) {
               onChange={(val) => {
                 setSelectedTool(val);
                 if (errors.tool) setErrors((prev) => ({ ...prev, tool: "" }));
+                
+                // Auto-assign tester if configured on the tool
+                const matchedTool = toolList?.find(t => (t.id || t._id) === val);
+                if (matchedTool && matchedTool.testerId) {
+                  setSelectedTester(matchedTool.testerId);
+                  if (errors.tester) setErrors((prev) => ({ ...prev, tester: "" }));
+                }
               }}
               placeholder="Select a tool"
               items={tools}
@@ -517,14 +522,6 @@ function BugForm({ setIsOpen }) {
               </div>
             )}
           </div>
-
-          {/* Upload Image and Video */}
-          <Attachment
-            selectedImage={selectedImage}
-            setSelectedImage={setSelectedImage}
-            selectedVideo={selectedVideo}
-            setSelectedVideo={setSelectedVideo}
-          />
 
           {/* Faced By Section */}
           <div className="space-y-2">

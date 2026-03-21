@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Upload, ArrowUp, ArrowDown, Pin } from "lucide-react";
+import { Upload, ArrowUp, ArrowDown, Pin, ChevronLeft, ChevronRight } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -184,6 +184,12 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
     Object.fromEntries(tableDetails.map((col) => [col.key, col.width || 160]))
   );
   const [selectedRows, setSelectedRows] = useState([]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  
+  const totalPages = Math.max(1, Math.ceil((allUsers?.length || 0) / rowsPerPage));
+  const paginatedData = allUsers ? allUsers.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage) : [];
 
   const handlePinColumn = (columnKey) => {
     setPinnedColumns((prev) =>
@@ -459,31 +465,39 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
         <Button onClick={() => setIsOpen(true)}>Add User</Button>
       </div>
 
-      <div className="[&>div]:rounded-sm [&>div]:border overflow-x-auto">
+      <div className="[&>div]:rounded-sm [&>div]:border overflow-x-auto overflow-y-auto h-[calc(100vh-280px)]">
         <Table className="min-w-full">
           <TableHeader>
             <TableRow className="hover:bg-transparent">
               <TableHead
-                className="p-0 flex items-center justify-center h-16 sticky left-0 z-20 bg-white"
+                className="p-0 flex items-center justify-center h-16 sticky left-0 z-30 bg-white"
                 style={{
                   width: colWidths.checkbox,
                   minWidth: 48,
                   maxWidth: 120,
                   left: 0,
+                  top: 0,
                   zIndex: 30,
                   background: "white",
                 }}
               >
                 {/* No resize for checkbox column */}
               </TableHead>
-              {tableDetails.map((col) => (
+              {tableDetails.map((col) => {
+                const isPinned = pinnedColumns.includes(col.key);
+                const pinStyle = getPinnedStyle(col.key);
+                return (
                 <TableHead
                   key={col.key}
+                  className="sticky"
                   style={{
-                    ...getPinnedStyle(col.key),
+                    ...pinStyle,
                     width: colWidths[col.key],
                     minWidth: 60,
                     maxWidth: 600,
+                    top: 0,
+                    zIndex: isPinned ? 30 : 20,
+                    backgroundColor: 'white'
                   }}
                 >
                   <ResizableHeader
@@ -494,16 +508,17 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
                     <ColumnHeader
                       columnKey={col.key}
                       onPin={handlePinColumn}
-                      isPinned={pinnedColumns.includes(col.key)}
+                      isPinned={isPinned}
                     >
                       {col.label}
                     </ColumnHeader>
                   </ResizableHeader>
                 </TableHead>
-              ))}
+                );
+              })}
               <TableHead
-                className="sticky right-0 bg-white z-10"
-                style={{ width: 120, minWidth: 60, maxWidth: 600 }}
+                className="sticky right-0 top-0 bg-white"
+                style={{ width: 120, minWidth: 60, maxWidth: 600, zIndex: 30 }}
               >
                 Actions
               </TableHead>
@@ -511,7 +526,14 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
           </TableHeader>
 
           <TableBody>
-            {allUsers.map((item) => {
+            {(!paginatedData || paginatedData.length === 0) ? (
+              <TableRow>
+                 <TableCell colSpan={tableDetails.length + 2} className="text-center py-10 text-gray-500">
+                    No users found.
+                 </TableCell>
+              </TableRow>
+            ) : (
+              paginatedData.map((item) => {
               const isEditing = editingIds.includes(item.id);
               const displayData =
                 isEditing && editData[item.id] ? editData[item.id] : item;
@@ -599,9 +621,57 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
                   </TableRow>
                 </TableContextMenu>
               );
-            })}
+            }))}
           </TableBody>
         </Table>
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="flex flex-col sm:flex-row items-center justify-between mt-4 px-2 gap-4">
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <span>Rows per page:</span>
+            <select
+              className="border border-gray-200 rounded px-1 py-0.5 bg-white text-gray-700 outline-none"
+              value={rowsPerPage}
+              onChange={(e) => {
+                setRowsPerPage(Number(e.target.value));
+                setCurrentPage(1);
+              }}
+            >
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+            </select>
+          </div>
+          <div className="text-sm text-gray-500">
+            Showing {allUsers?.length > 0 ? (currentPage - 1) * rowsPerPage + 1 : 0} to {Math.min(currentPage * rowsPerPage, allUsers?.length || 0)} of {allUsers?.length || 0} users
+          </div>
+        </div>
+        <div className="flex items-center space-x-2 gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+          >
+            <ChevronLeft className="w-4 h-4 mr-1" />
+            Previous
+          </Button>
+          <div className="text-sm font-medium px-2">
+            Page {currentPage} of {totalPages}
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage >= totalPages}
+          >
+            Next
+            <ChevronRight className="w-4 h-4 ml-1" />
+          </Button>
+        </div>
       </div>
     </div>
   );

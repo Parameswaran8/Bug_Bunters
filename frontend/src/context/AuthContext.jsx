@@ -2,6 +2,7 @@ import { checkAuth } from "@/API_Call/Auth";
 import { systemConfig } from "@/API_Call/Config";
 import { getTools } from "@/API_Call/Tool";
 import { getAllUsers } from "@/API_Call/User";
+import { getBugs } from "@/API_Call/Bug";
 import { createContext, useContext, useState, useEffect } from "react";
 const AuthContext = createContext();
 
@@ -26,16 +27,17 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const fetchGlobalData = async () => {
       try {
-        const [userData, configData, toolsData, usersData] = await Promise.all([
+        const [userData, configData, toolsData, usersData, bugsData] = await Promise.all([
           checkAuth(),
           systemConfig(),
           getTools(),
-          getAllUsers()
+          getAllUsers(),
+          getBugs()
         ]);
         
         setUser(userData);
         if (configData.success && configData.data) {
-          setStackList(configData.data.stackList || []);
+          setPlatformList(configData.data.platformList || []);
         }
 
         if (toolsData.success && toolsData.data) {
@@ -47,7 +49,12 @@ export function AuthProvider({ children }) {
           const mappedUsers = usersData.data.map(u => ({ ...u, id: u._id }));
           setAllUsers(mappedUsers);
         }
-        
+
+        if (bugsData.success && bugsData.data) {
+          // Adjust based on the actual API wrapper if necessary.
+          // The Bug.js API layer directly maps the response properly for us here.
+          setBugsList(bugsData.data.results || bugsData.data || []);
+        }
       } catch (err) {
         console.log("Global data load failed:", err);
       } finally {
@@ -59,14 +66,14 @@ export function AuthProvider({ children }) {
   }, []);
 
 
-  const [stackList, setStackList] = useState([]);
+  const [platformList, setPlatformList] = useState([]);
   const [allStages, setAllStages] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
   const [priority,setPriority] = useState([]);
 
   const [toolList, setToolList] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
-
+  const [bugsList, setBugsList] = useState([]);
 
   const value = {
     apiLink,
@@ -77,15 +84,16 @@ export function AuthProvider({ children }) {
     loading,
     setLoading,
     
-    stackList,
+    platformList,
     allStages,
     allStatus,
     priority,
     toolList,
     setToolList,
     allUsers,
-    setAllUsers
-
+    setAllUsers,
+    bugsList,
+    setBugsList
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
