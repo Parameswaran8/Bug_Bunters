@@ -78,6 +78,9 @@ interface IPhaseV_FinalTesting {
     isFixed: boolean;
     regressionTested: boolean;
     remarks?: string;
+    deploymentStatus?: string;
+    deployRemark?: string;
+    finalSop?: string;
     attachments?: IAttachment[];
   };
   testedBy?: Types.ObjectId;
@@ -251,6 +254,9 @@ const bugSchema = new Schema<IBug>(
         isFixed: Boolean,
         regressionTested: Boolean,
         remarks: String,
+        deploymentStatus: String,
+        deployRemark: String,
+        finalSop: String,
         attachments: [attachmentSchema],
       },
       testedBy: { type: Schema.Types.ObjectId, ref: "user" },

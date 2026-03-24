@@ -8,7 +8,7 @@ function AnalyzeBug() {
   const reanalysisBugs = phaseBugs.filter(bug => bug.phaseIV_Maintenance?.maintenanceInfo?.testingFlag === "Red flag" || bug.phaseIV_Maintenance?.maintenanceInfo?.testingFlag === "Go back to dev");
 
   return (
-    <div className="flex flex-col gap-8 pb-10">
+    <div className="flex flex-col gap-16 pb-10">
       <div>
         <BugViewToggle title="Analyze Bug" phaseBugs={standardBugs} phaseId="analyze" />
       </div>
