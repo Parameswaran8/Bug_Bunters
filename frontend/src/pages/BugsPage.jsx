@@ -53,7 +53,7 @@ export default function BugsPage() {
         </div>
 
         {/* Phase progress pills */}
-        <div className="flex items-center gap-1.5">
+        {/* <div className="flex items-center gap-1.5">
           {PHASES.map((p, i) => (
             <button
               key={p.id}
@@ -67,7 +67,7 @@ export default function BugsPage() {
               }}
             />
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* ═══ Horizontal scrollable phase tab bar ═══ */}

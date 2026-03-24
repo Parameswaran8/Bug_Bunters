@@ -76,7 +76,7 @@ export default function BugCardGrid({ phaseBugs, onClickCardToModal, phaseId }) 
                 {/* Raiser */}
                 <div className="flex items-center gap-2" title={raiserEmail}>
                   <div className="w-6 h-6 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-700 text-[10px] font-bold shrink-0">
-                     {raiser[0].toUpperCase()}
+                     {raiser ? raiser[0].toUpperCase() : "?"}
                   </div>
                   <div className="flex flex-col">
                     <span className="text-[10px] text-gray-400 font-semibold uppercase leading-none">Reported By</span>
@@ -88,7 +88,7 @@ export default function BugCardGrid({ phaseBugs, onClickCardToModal, phaseId }) 
                 {(phaseId === "create" || phaseId === "analyze") && (
                   <div className="flex items-center gap-2" title={testerEmail}>
                     <div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 text-[10px] font-bold shrink-0">
-                       {tester[0].toUpperCase()}
+                       {tester ? tester[0].toUpperCase() : "?"}
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[10px] text-gray-400 font-semibold uppercase leading-none">Tester</span>
@@ -100,7 +100,7 @@ export default function BugCardGrid({ phaseBugs, onClickCardToModal, phaseId }) 
                 {(phaseId === "testing" || phaseId === "rtt" || phaseId === "rtd") && (
                   <div className="flex items-center gap-2" title={developerEmail}>
                     <div className="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-purple-700 text-[10px] font-bold shrink-0">
-                       {developer[0].toUpperCase()}
+                       {developer ? developer[0].toUpperCase() : "?"}
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[10px] text-gray-400 font-semibold uppercase leading-none">Developer</span>

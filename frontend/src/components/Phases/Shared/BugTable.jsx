@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { ArrowUp, ArrowDown, Pin, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
+import { ArrowUp, ArrowDown, Pin, ChevronLeft, ChevronRight, ChevronDown, Flag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -80,6 +80,58 @@ const getTableColumns = (phaseId) => {
       { key: "sopForSolution", label: "SOP for Solution", type: "sopSolutionText", width: 200 },
       { key: "delayedReason", label: "Delayed Reason", type: "delayedReasonText", width: 200 },
       { key: "analyzeAttachment", label: "Analyse Attachment", type: "analyzeAttachment", width: 140 },
+      { key: "reportedDate", label: "Reported", type: "date", width: 180 },
+      { key: "bugTestedDate", label: "Bug Tested", type: "date", width: 180 },
+      { key: "currentPhase", label: "Change Phase", type: "phaseSelect", width: 150 }
+    ];
+  }
+
+  if (phaseId === "reanalyze") {
+    return [
+      { key: "bugId", label: "Bug ID", type: "text", width: 140 },
+      { key: "toolName", label: "Tool Name", type: "text", width: 180 },
+      { key: "priority", label: "Priority", type: "prioritySelect", width: 120 },
+      { key: "bugRaiser", label: "Bug Raiser", type: "text", width: 150 },
+      { key: "assignedTester", label: "Bug Tester", type: "text", width: 150 },
+      { key: "description", label: "Bug Description", type: "description", width: 250 },
+      { key: "attachments", label: "Attachment", type: "attachment", width: 100 },
+      { key: "sopFollowed", label: "SOP Followed", type: "sopText", width: 160 },
+      { key: "remarks", label: "Testing Remark", type: "remarksText", width: 200 },
+      { key: "testingAttachment", label: "Testing Attachment", type: "testingAttachment", width: 140 },
+      { key: "assignedDev", label: "Forward to Developer", type: "devSelect", width: 180 },
+      { key: "bugStatus", label: "Bug Status", type: "statusSelect", width: 150 },
+      { key: "analyzeRemark", label: "Analyse Remark", type: "analyzeRemarkText", width: 200 },
+      { key: "sopForSolution", label: "SOP for Solution", type: "sopSolutionText", width: 200 },
+      { key: "delayedReason", label: "Delayed Reason", type: "delayedReasonText", width: 200 },
+      { key: "analyzeAttachment", label: "Analyse Attachment", type: "analyzeAttachment", width: 140 },
+      { key: "finalTestingRemark", label: "Final Testing Remark", type: "finalTestingRemarkText", width: 200 },
+      { key: "testingFlag", label: "Testing Flag", type: "testingFlagSelect", width: 160 },
+      { key: "reportedDate", label: "Reported", type: "date", width: 180 },
+      { key: "bugTestedDate", label: "Bug Tested", type: "date", width: 180 },
+      { key: "currentPhase", label: "Change Phase", type: "phaseSelect", width: 150 }
+    ];
+  }
+
+  if (phaseId === "rtt") {
+    return [
+      { key: "bugId", label: "Bug ID", type: "text", width: 140 },
+      { key: "toolName", label: "Tool Name", type: "text", width: 180 },
+      { key: "priority", label: "Priority", type: "prioritySelect", width: 120 },
+      { key: "bugRaiser", label: "Bug Raiser", type: "text", width: 150 },
+      { key: "assignedTester", label: "Bug Tester", type: "text", width: 150 },
+      { key: "description", label: "Bug Description", type: "description", width: 250 },
+      { key: "attachments", label: "Attachment", type: "attachment", width: 100 },
+      { key: "sopFollowed", label: "SOP Followed", type: "sopText", width: 160 },
+      { key: "remarks", label: "Testing Remark", type: "remarksText", width: 200 },
+      { key: "testingAttachment", label: "Testing Attachment", type: "testingAttachment", width: 140 },
+      { key: "assignedDev", label: "Forward to Developer", type: "devSelect", width: 180 },
+      { key: "bugStatus", label: "Bug Status", type: "statusSelect", width: 150 },
+      { key: "analyzeRemark", label: "Analyse Remark", type: "analyzeRemarkText", width: 200 },
+      { key: "sopForSolution", label: "SOP for Solution", type: "sopSolutionText", width: 200 },
+      { key: "delayedReason", label: "Delayed Reason", type: "delayedReasonText", width: 200 },
+      { key: "analyzeAttachment", label: "Analyse Attachment", type: "analyzeAttachment", width: 140 },
+      { key: "finalTestingRemark", label: "Final Testing Remark", type: "finalTestingRemarkText", width: 200 },
+      { key: "testingFlag", label: "Testing Flag", type: "testingFlagSelect", width: 160 },
       { key: "reportedDate", label: "Reported", type: "date", width: 180 },
       { key: "bugTestedDate", label: "Bug Tested", type: "date", width: 180 },
       { key: "currentPhase", label: "Change Phase", type: "phaseSelect", width: 150 }
@@ -246,6 +298,8 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
       "phaseIII_BugAnalysis.analysisInfo.remarks": dataToSave.analyzeRemarkExtracted !== undefined ? dataToSave.analyzeRemarkExtracted : dataToSave.phaseIII_BugAnalysis?.analysisInfo?.remarks,
       "phaseIII_BugAnalysis.analysisInfo.sopProvided": dataToSave.sopSolutionExtracted !== undefined ? dataToSave.sopSolutionExtracted : dataToSave.phaseIII_BugAnalysis?.analysisInfo?.sopProvided,
       "phaseIII_BugAnalysis.analysisInfo.delayedReason": dataToSave.delayedReasonExtracted !== undefined ? dataToSave.delayedReasonExtracted : dataToSave.phaseIII_BugAnalysis?.analysisInfo?.delayedReason,
+      "phaseIV_Maintenance.maintenanceInfo.testingFlag": dataToSave.testingFlagExtracted !== undefined ? dataToSave.testingFlagExtracted : dataToSave.phaseIV_Maintenance?.maintenanceInfo?.testingFlag,
+      "phaseIV_Maintenance.maintenanceInfo.remarks": dataToSave.finalTestingRemarkExtracted !== undefined ? dataToSave.finalTestingRemarkExtracted : dataToSave.phaseIV_Maintenance?.maintenanceInfo?.remarks,
     };
 
     if (dataToSave.currentPhaseExtracted) {
@@ -253,6 +307,8 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
       updatePayload.bugPhaseNo = dataToSave.bugPhaseNoExtracted;
     }
 
+    const finalTestingFlag = updatePayload["phaseIV_Maintenance.maintenanceInfo.testingFlag"] !== undefined ? updatePayload["phaseIV_Maintenance.maintenanceInfo.testingFlag"] : dataToSave.phaseIV_Maintenance?.maintenanceInfo?.testingFlag;
+    
     try {
       const res = await updateBug({ id, ...updatePayload });
       // Force instant frontend sync
@@ -300,6 +356,16 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
              }
              if (updatePayload["phaseIII_BugAnalysis.analysisInfo.delayedReason"] !== undefined) {
                  newBug.phaseIII_BugAnalysis.analysisInfo.delayedReason = updatePayload["phaseIII_BugAnalysis.analysisInfo.delayedReason"];
+             }
+             
+             if (!newBug.phaseIV_Maintenance) newBug.phaseIV_Maintenance = { maintenanceInfo: {} };
+             if (!newBug.phaseIV_Maintenance.maintenanceInfo) newBug.phaseIV_Maintenance.maintenanceInfo = {};
+             
+             if (updatePayload["phaseIV_Maintenance.maintenanceInfo.testingFlag"] !== undefined) {
+                 newBug.phaseIV_Maintenance.maintenanceInfo.testingFlag = updatePayload["phaseIV_Maintenance.maintenanceInfo.testingFlag"];
+             }
+             if (updatePayload["phaseIV_Maintenance.maintenanceInfo.remarks"] !== undefined) {
+                 newBug.phaseIV_Maintenance.maintenanceInfo.remarks = updatePayload["phaseIV_Maintenance.maintenanceInfo.remarks"];
              }
              
              if (dataToSave.currentPhaseExtracted) {
@@ -605,6 +671,17 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
        return <span className="text-gray-600 truncate block w-full" title={remarks !== "-" ? remarks : ""}>{remarks || "-"}</span>;
     }
 
+    const finalTestingRemark = displayData.finalTestingRemarkExtracted !== undefined ? displayData.finalTestingRemarkExtracted : rawItem.phaseIV_Maintenance?.maintenanceInfo?.remarks || "";
+
+    if (col.type === "finalTestingRemarkText") {
+       if (isEditing) {
+          return (
+            <textarea className="w-full text-xs border rounded p-1 resize-y" rows={2} placeholder="Add Final Testing Remarks..." value={finalTestingRemark} onChange={(e) => setRowEditData({ finalTestingRemarkExtracted: e.target.value })} />
+          );
+       }
+       return <span className="text-gray-600 truncate block w-full" title={finalTestingRemark !== "-" ? finalTestingRemark : ""}>{finalTestingRemark || "-"}</span>;
+    }
+
     if (col.type === "statusSelect") {
       if (isEditing) {
         return (
@@ -813,12 +890,72 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
       );
     }
 
+    if (col.type === "testingFlagSelect") {
+      const tsFlagOptions = ["Go back to dev", "Test by bug raiser", "Ready for rollout", "-"];
+      const flagVal = displayData.testingFlagExtracted ?? rawItem.phaseIV_Maintenance?.maintenanceInfo?.testingFlag ?? "-";
+      
+      const getFlagColor = (val) => {
+         if (val === 'Go back to dev' || val === 'Red flag') return 'text-red-500';
+         if (val === 'Test by bug raiser' || val === 'Blue Flag') return 'text-blue-500';
+         if (val === 'Ready for rollout' || val === 'Green Flag') return 'text-green-500';
+         return 'text-gray-300';
+      };
+
+      if (isEditing) {
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="w-full justify-between h-8 px-2 text-xs">
+                 {flagVal !== "-" ? (
+                   <div className="flex items-center gap-1.5 truncate">
+                      <Flag className={`w-3.5 h-3.5 shrink-0 ${getFlagColor(flagVal)}`} fill="currentColor" />
+                      <span className="truncate text-[11px]">{flagVal}</span>
+                   </div>
+                 ) : (
+                   <span className="text-gray-400">Select Flag...</span>
+                 )}
+                 <ChevronDown className="ml-1 w-3 shrink-0" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="z-50 min-w-44">
+               {tsFlagOptions.map(opt => (
+                  <DropdownMenuItem key={opt} onClick={() => setRowEditData({ testingFlagExtracted: opt })} className="cursor-pointer">
+                     {opt !== "-" ? (
+                        <div className="flex items-center text-xs">
+                           <Flag className={`w-3.5 h-3.5 mr-2 ${getFlagColor(opt)}`} fill="currentColor" />
+                           {opt}
+                        </div>
+                     ) : (
+                        <span className="text-xs text-gray-400 pl-6">Clear Flag</span>
+                     )}
+                  </DropdownMenuItem>
+               ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      }
+      
+      if (flagVal === "-") return <span className="text-gray-400 w-full px-2 block">-</span>;
+
+      let flagBgClasses = 'bg-gray-50 border-gray-100 text-gray-700';
+      if (flagVal === 'Go back to dev' || flagVal === 'Red flag') flagBgClasses = 'bg-red-50 border-red-200 text-red-700';
+      else if (flagVal === 'Test by bug raiser' || flagVal === 'Blue Flag') flagBgClasses = 'bg-blue-50 border-blue-200 text-blue-700';
+      else if (flagVal === 'Ready for rollout' || flagVal === 'Green Flag') flagBgClasses = 'bg-green-50 border-green-200 text-green-700';
+
+      return (
+        <span className={`text-[11px] px-2.5 py-1 font-medium rounded-full border inline-flex items-center gap-1.5 whitespace-nowrap ${flagBgClasses}`}>
+           <Flag className={`w-3 h-3 ${getFlagColor(flagVal)}`} fill="currentColor" />
+           {flagVal}
+        </span>
+      );
+    }
+
     return null;
   };
 
   return (
     <div className="w-full">
-      <div className="[&>div]:rounded-sm [&>div]:border overflow-x-auto overflow-y-auto h-[calc(100vh-360px)] mt-4 shadow-sm bg-white relative">
+      <div className="[&>div]:rounded-sm [&>div]:border overflow-x-auto overflow-y-auto max-h-[calc(100vh-320px)] min-h-[160px] mt-4 shadow-sm bg-white relative">
         <Table className="min-w-full">
           <TableHeader>
             <TableRow className="hover:bg-transparent">
@@ -837,13 +974,17 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
               {tableDetails.map((col) => {
                 const isPinned = pinnedColumns.includes(col.key);
                 const pinStyle = getPinnedStyle(col.key);
-                const isPhase2Target = ['testing', 'analyze'].includes(phaseId) && ['bugStatus', 'sopFollowed', 'remarks', 'testingAttachment', 'assignedDev'].includes(col.key);
-                const isPhase3Target = phaseId === 'analyze' && ['analyzeRemark', 'sopForSolution', 'delayedReason', 'analyzeAttachment'].includes(col.key);
+                const isPhase2Target = ['testing', 'analyze', 'rtt', 'reanalyze'].includes(phaseId) && ['bugStatus', 'sopFollowed', 'remarks', 'testingAttachment', 'assignedDev'].includes(col.key);
+                const isPhase3Target = ['analyze', 'rtt', 'reanalyze'].includes(phaseId) && ['analyzeRemark', 'sopForSolution', 'delayedReason', 'analyzeAttachment'].includes(col.key);
+                const isPhase4Target = ['analyze', 'rtt', 'reanalyze'].includes(phaseId) && ['testingFlag', 'finalTestingRemark'].includes(col.key);
                 
                 let textColor = "";
                 let bgActiveColor = "white";
                 
-                if (isPhase3Target) {
+                if (isPhase4Target) {
+                    textColor = "text-[#ea580c]"; // amber-600
+                    bgActiveColor = "#fffbeb";    // amber-50
+                } else if (isPhase3Target) {
                     textColor = "text-[#7c3aed]";
                     bgActiveColor = "#f5f3ff";
                 } else if (isPhase2Target) {
@@ -896,11 +1037,14 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
                       </TableCell>
                       
                       {tableDetails.map((col) => {
-                        const isPhase2Target = ['testing', 'analyze'].includes(phaseId) && ['bugStatus', 'sopFollowed', 'remarks', 'testingAttachment', 'assignedDev'].includes(col.key);
-                        const isPhase3Target = phaseId === 'analyze' && ['analyzeRemark', 'sopForSolution', 'delayedReason', 'analyzeAttachment'].includes(col.key);
+                        const isPhase2Target = ['testing', 'analyze', 'rtt', 'reanalyze'].includes(phaseId) && ['bugStatus', 'sopFollowed', 'remarks', 'testingAttachment', 'assignedDev'].includes(col.key);
+                        const isPhase3Target = ['analyze', 'rtt', 'reanalyze'].includes(phaseId) && ['analyzeRemark', 'sopForSolution', 'delayedReason', 'analyzeAttachment'].includes(col.key);
+                        const isPhase4Target = ['analyze', 'rtt', 'reanalyze'].includes(phaseId) && ['testingFlag', 'finalTestingRemark'].includes(col.key);
 
                         let cellBg = undefined;
-                        if (isPhase3Target) {
+                        if (isPhase4Target) {
+                            cellBg = "#fffbeb";
+                        } else if (isPhase3Target) {
                             cellBg = "#f5f3ff";
                         } else if (isPhase2Target) {
                             cellBg = "#eef2ff";

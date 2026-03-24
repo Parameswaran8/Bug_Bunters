@@ -64,6 +64,7 @@ interface IPhaseIV_Maintenance {
     fixDescription?: string;
     codeChanges?: string;
     remarks?: string;
+    testingFlag?: string;
     attachments?: IAttachment[];
     sopProvided?: string[];
   };
@@ -235,6 +236,7 @@ const bugSchema = new Schema<IBug>(
         fixDescription: String,
         codeChanges: String,
         remarks: String,
+        testingFlag: String,
         attachments: [attachmentSchema],
         sopProvided: [String],
       },

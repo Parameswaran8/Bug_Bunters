@@ -749,7 +749,7 @@ export default class BugController {
       }
 
       // Update bug with new data
-      Object.assign(bug, updateData);
+      bug.set(updateData);
       const updatedBug = await bug.save();
 
       res.status(HttpStatusCodes.OK).json({
