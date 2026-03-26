@@ -66,6 +66,9 @@ export default class AuthController {
           username: username_email,
           password: hashedPassword,
           role: "superadmin",
+          roletype: ["admin", "dev", "tester", "bugreporter"],
+          adminControl: ["create", "edit", "view", "delete"],
+          adminOption: ["share", "generate_report", "insight_view", "export"],
           resetPass: false,
         });
         const savedUser = await newUser.save();

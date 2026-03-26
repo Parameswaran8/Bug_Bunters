@@ -8,10 +8,10 @@ export interface UserInterface {
   defaultPassword: string;
   photo: string;
   role: "user" | "admin" | "superadmin";
-  department: string;
+
   phone: string;
   resetPass: boolean;
-  roletype: string;
+  roletype: string | string[];
   resetOtp?: string;
   resetOtpExpires?: Date;
   adminControl?: ("create" | "edit" | "view" | "delete")[];
@@ -40,10 +40,10 @@ const userSchema: Schema = new Schema(
       enum: ["user", "admin", "superadmin"],
       default: "user",
     },
-    department: { type: String, required: false, default: "" },
+
     phone: { type: String, default: "" },
     resetPass: { type: Boolean, default: false },
-    roletype: { type: String, enum: ["bugreporter", "tester", "dev"] },
+    roletype: { type: [String], enum: ["bugreporter", "tester", "dev", "admin"], required: false },
     resetOtp: { type: String, required: false },
     resetOtpExpires: { type: Date, required: false },
 
@@ -55,7 +55,7 @@ const userSchema: Schema = new Schema(
     },
     adminOption: {
       type: [String],
-      enum: ["share", "generate_report", "insight_view"],
+      enum: ["share", "generate_report", "insight_view","export"],
       required: false,
     },
   },

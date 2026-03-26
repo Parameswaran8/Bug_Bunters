@@ -1470,3 +1470,27 @@ Use mongoose.model(name, schema)
     at schemaPath.doValidate.updateValidator (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:165:13)
     at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
     at processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-24T11:17:59.720Z [error]: Validation failed: adminOption.3: `export` is not a valid enum value for path `adminOption`., roletype: `admin` is not a valid enum value for path `roletype`. - ValidationError: Validation failed: adminOption.3: `export` is not a valid enum value for path `adminOption`., roletype: `admin` is not a valid enum value for path `roletype`.
+    at _done (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:231:19)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:207:11
+    at schemaPath.doValidate.updateValidator (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:165:13)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-24T11:17:59.727Z [error]: Validation failed: adminOption.3: `export` is not a valid enum value for path `adminOption`., roletype: `admin` is not a valid enum value for path `roletype`. - ValidationError: Validation failed: adminOption.3: `export` is not a valid enum value for path `adminOption`., roletype: `admin` is not a valid enum value for path `roletype`.
+    at _done (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:231:19)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:207:11
+    at schemaPath.doValidate.updateValidator (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:165:13)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-24T11:21:12.896Z [error]: Validation failed: roletype: `admin` is not a valid enum value for path `roletype`. - ValidationError: Validation failed: roletype: `admin` is not a valid enum value for path `roletype`.
+    at _done (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:231:19)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:207:11
+    at schemaPath.doValidate.updateValidator (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:165:13)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-24T11:21:12.898Z [error]: Validation failed: roletype: `admin` is not a valid enum value for path `roletype`. - ValidationError: Validation failed: roletype: `admin` is not a valid enum value for path `roletype`.
+    at _done (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:231:19)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:207:11
+    at schemaPath.doValidate.updateValidator (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:165:13)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:77:11)

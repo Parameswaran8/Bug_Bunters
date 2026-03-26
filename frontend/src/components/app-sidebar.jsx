@@ -12,6 +12,7 @@ import {
   GalleryVerticalEnd,
 } from "lucide-react";
 
+import { useAuth } from "@/context/AuthContext";
 import { NavProjects } from "@/components/nav-projects";
 import { NavUser } from "@/components/nav-user";
 import { TeamSwitcher } from "@/components/team-switcher";
@@ -53,6 +54,9 @@ const data = {
 };
 
 export function AppSidebar({ ...props }) {
+  const { user } = useAuth();
+  const hasSettingsAccess = user?.role === "superadmin" || (Array.isArray(user?.adminControl) && user.adminControl.some(r => ["create", "edit", "view", "delete"].includes(r?.toLowerCase())));
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -63,8 +67,13 @@ export function AppSidebar({ ...props }) {
         <NavProjects projects={data.systemMenu} label="Overview" />
         <SidebarSeparator className="opacity-20" />
         <NavProjects projects={data.bugPhase}   label="Bug Phases" />
-        <SidebarSeparator className="opacity-20" />
-        <NavProjects projects={data.adminSetting} label="Admin" />
+        
+        {hasSettingsAccess && (
+          <>
+            <SidebarSeparator className="opacity-20" />
+            <NavProjects projects={data.adminSetting} label="Admin" />
+          </>
+        )}
       </SidebarContent>
 
       <SidebarFooter>

@@ -28,7 +28,7 @@ import TableRowMenu from "../TableMenu";
 const tableDetails = [
   { key: "toolName", label: "Tool Name", type: "text", width: 180 },
   { key: "toolDescription", label: "Description", type: "text", width: 220 },
-  { key: "platform", label: "Platform", type: "text", width: 200 },
+  { key: "stack", label: "Stack", type: "text", width: 200 },
   { key: "testerId", label: "Responsible Tester", type: "userSelect", width: 180 },
   { key: "devId", label: "Responsible Dev", type: "userSelect", width: 180 },
   { key: "SOP", label: "SOP Document", type: "textarea", width: 220 },
@@ -95,7 +95,12 @@ const ColumnHeader = ({ children, onPin, isPinned, columnKey }) => {
 };
 
 const TableTool = ({ isOpen, setIsOpen }) => {
-  const { toolList, setToolList, allUsers } = useAuth();
+  const { toolList, setToolList, allUsers, user: authUser } = useAuth();
+  const currentUser = allUsers?.find(u => u._id === authUser?.id || u.id === authUser?.id) || authUser;
+  const canCreate = currentUser?.role === "superadmin" || currentUser?.adminControl?.includes("create");
+  const canEdit = currentUser?.role === "superadmin" || currentUser?.adminControl?.includes("edit");
+  const canDelete = currentUser?.role === "superadmin" || currentUser?.adminControl?.includes("delete");
+
   const [editingIds, setEditingIds] = useState([]);
   const [editData, setEditData] = useState({});
   const [pinnedColumns, setPinnedColumns] = useState([]);
@@ -139,9 +144,9 @@ const TableTool = ({ isOpen, setIsOpen }) => {
     const updatingData = editData[id];
     if (!updatingData) return;
 
-    // Convert platform back to array if modified as string
-    if (typeof updatingData.platform === "string") {
-      updatingData.platform = updatingData.platform.split(",").map(i => i.trim()).filter(Boolean);
+    // Convert stack back to array if modified as string
+    if (typeof updatingData.stack === "string") {
+      updatingData.stack = updatingData.stack.split(",").map(i => i.trim()).filter(Boolean);
     }
     
     // update to API
@@ -240,7 +245,7 @@ const TableTool = ({ isOpen, setIsOpen }) => {
                 Unassigned
               </DropdownMenuItem>
               {allUsers?.filter(u => {
-                const role = u.roletype?.toLowerCase() || "";
+                const role = Array.isArray(u.roletype) ? u.roletype.join(", ").toLowerCase() : (u.roletype?.toLowerCase() || "");
                 if (col.key === "testerId") return role === "tester";
                 if (col.key === "devId") return role === "developer" || role === "dev";
                 return true;
@@ -315,7 +320,9 @@ const TableTool = ({ isOpen, setIsOpen }) => {
   return (
     <div className="w-full">
       <div className="mb-3 justify-end flex absolute right-14 top-2 lg:!right-7 lg:!top-7">
-        <Button onClick={() => setIsOpen(true)}>Add Tool</Button>
+        {canCreate && (
+           <Button onClick={() => setIsOpen(true)}>Add Tool</Button>
+        )}
       </div>
 
       <div className="[&>div]:rounded-sm [&>div]:border rounded-xl border border-gray-200 overflow-x-auto overflow-y-auto h-[calc(100vh-280px)] bg-white shadow-sm">
@@ -412,17 +419,21 @@ const TableTool = ({ isOpen, setIsOpen }) => {
                             <Button size="sm" onClick={() => handleSave(item.id)} className="h-7 px-2 text-xs">Save</Button>
                             <Button size="sm" variant="outline" onClick={() => handleCancel(item.id)} className="h-7 px-2 text-xs">Cancel</Button>
                           </div>
-                        ) : (
-                          <TableRowMenu
-                            item={item}
-                            onEdit={() => {
-                              setEditingIds([item.id]);
-                              setEditData(prev => ({ ...prev, [item.id]: { ...item } }));
-                            }}
-                            onDelete={() => handleDeleteSingle(item.id || item._id)}
-                            onArchive={() => toast.success("Archive tool")}
-                          />
-                        )}
+                        ) : (() => {
+                          if (!canEdit && !canDelete) return <span className="text-gray-400 text-xs">-</span>;
+
+                          return (
+                            <TableRowMenu
+                              item={item}
+                              onEdit={canEdit ? () => {
+                                setEditingIds([item.id]);
+                                setEditData(prev => ({ ...prev, [item.id]: { ...item } }));
+                              } : undefined}
+                              onDelete={canDelete ? () => handleDeleteSingle(item.id || item._id) : undefined}
+                              onArchive={() => toast.success("Archive tool")}
+                            />
+                          );
+                        })()}
                       </TableCell>
                     </TableRow>
                   </TableContextMenu>

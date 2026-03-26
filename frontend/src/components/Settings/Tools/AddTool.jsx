@@ -16,7 +16,7 @@ import { updateTool } from "@/API_Call/Tool";
 import { useAuth } from "@/context/AuthContext";
 
 function AddTool({ setIsOpen, onToolAdded }) {
-  const { platformList, setToolList, allUsers } = useAuth();
+  const { stacksList, setToolList, allUsers } = useAuth();
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -25,7 +25,7 @@ function AddTool({ setIsOpen, onToolAdded }) {
   const [toolDescription, setToolDescription] = useState("");
   const [libraryName, setLibraryName] = useState("");
   const [htmlVersion, setHtmlVersion] = useState("");
-  const [selectedPlatform, setSelectedPlatform] = useState("");
+  const [selectedStack, setSelectedStack] = useState("");
   const [testerId, setTesterId] = useState("");
   const [devId, setDevId] = useState("");
   const [SOP, setSOP] = useState("");
@@ -56,7 +56,7 @@ function AddTool({ setIsOpen, onToolAdded }) {
       toolDescription,
       libraryName,
       htmlVersion,
-      platform: selectedPlatform ? [selectedPlatform] : [],
+      stack: selectedStack ? [selectedStack] : [],
       testerId,
       devId,
       SOP,
@@ -98,7 +98,7 @@ function AddTool({ setIsOpen, onToolAdded }) {
     setToolDescription("");
     setLibraryName("");
     setHtmlVersion("");
-    setSelectedPlatform("");
+    setSelectedStack("");
     setTesterId("");
     setDevId("");
     setSOP("");
@@ -177,27 +177,27 @@ function AddTool({ setIsOpen, onToolAdded }) {
           </div>
 
 
-          {/* Platform */}
+          {/* Stack */}
           <div className="space-y-2">
-            <Label htmlFor="platform" className="text-sm font-medium">
-              Platform
+            <Label htmlFor="stack" className="text-sm font-medium">
+              Stack
             </Label>
             
             <select
-              id="platform"
+              id="stack"
               className="w-full border-2 rounded-lg h-10 px-3 border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-              value={selectedPlatform}
-              onChange={(e) => setSelectedPlatform(e.target.value)}
+              value={selectedStack}
+              onChange={(e) => setSelectedStack(e.target.value)}
             >
-              <option value="" disabled>Select a platform to add...</option>
-              {platformList && platformList.map(platformOpt => (
-                 <option key={platformOpt} value={platformOpt}>{platformOpt}</option>
+              <option value="" disabled>Select a stack to add...</option>
+              {stacksList && stacksList.map(stackOpt => (
+                 <option key={stackOpt} value={stackOpt}>{stackOpt}</option>
               ))}
             </select>
           </div>
 
                     {/* Library & HTML Details */}
-          {selectedPlatform === "Script" && (
+          {selectedStack === "Script" && (
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="libraryName" className="text-sm font-medium">
@@ -238,7 +238,7 @@ function AddTool({ setIsOpen, onToolAdded }) {
                 className="w-full border-2 rounded-lg h-10 px-3 border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
               >
                 <option value="">None Assigned</option>
-                {allUsers && allUsers.filter(u => u.roletype === "tester").map(u => (
+                {allUsers && allUsers.filter(u => Array.isArray(u.roletype) ? u.roletype.includes("tester") : u.roletype === "tester").map(u => (
                   <option key={u.id} value={u.id}>{u.name || u.username || u.email}</option>
                 ))}
               </select>
@@ -254,7 +254,7 @@ function AddTool({ setIsOpen, onToolAdded }) {
                 className="w-full border-2 rounded-lg h-10 px-3 border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
               >
                 <option value="">None Assigned</option>
-                {allUsers && allUsers.filter(u => u.roletype === "dev").map(u => (
+                {allUsers && allUsers.filter(u => Array.isArray(u.roletype) ? u.roletype.includes("dev") : u.roletype === "dev").map(u => (
                   <option key={u.id} value={u.id}>{u.name || u.username || u.email}</option>
                 ))}
               </select>

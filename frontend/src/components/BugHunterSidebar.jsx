@@ -41,6 +41,7 @@ export function BugHunterSidebar({ ...props }) {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuth();
+  const hasSettingsAccess = user?.role === "superadmin" || (Array.isArray(user?.adminControl) && user.adminControl.some(r => ["create", "edit", "view", "delete"].includes(r?.toLowerCase())));
 
   const userData = {
     name: user?.name || "User",
@@ -59,7 +60,9 @@ export function BugHunterSidebar({ ...props }) {
 
       <SidebarContent>
         <SidebarMenu>
-          {navItems.map((item) => (
+          {navItems.map((item) => {
+            if (item.title === "Settings" && !hasSettingsAccess) return null;
+            return (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
                 onClick={() => navigate(item.url)}
@@ -70,7 +73,8 @@ export function BugHunterSidebar({ ...props }) {
                 <span>{item.title}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
-          ))}
+            );
+          })}
         </SidebarMenu>
       </SidebarContent>
 

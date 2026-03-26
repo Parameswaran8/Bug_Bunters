@@ -17,7 +17,7 @@ interface BugInterface extends Document {
     toolInfo: {
       name?: string;
       toolDescription: string;
-      platform?: string;
+      stack?: string;
       priority?: string;
       libraryName?: string;
       description?: string;
@@ -130,7 +130,7 @@ const bugSchema = new Schema<BugInterface>(
       toolInfo: {
         name: String,
         toolDescription: { type: String, required: true },
-        platform: String,
+        stack: String,
         priority: String,
         libraryName: String,
         description: String,

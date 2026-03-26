@@ -37,7 +37,7 @@ export function AuthProvider({ children }) {
         
         setUser(userData);
         if (configData.success && configData.data) {
-          setPlatformList(configData.data.platformList || []);
+          setStacksList(configData.data.stacksList || []);
         }
 
         if (toolsData.success && toolsData.data) {
@@ -66,7 +66,7 @@ export function AuthProvider({ children }) {
   }, []);
 
 
-  const [platformList, setPlatformList] = useState([]);
+  const [stacksList, setStacksList] = useState([]);
   const [allStages, setAllStages] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
   const [priority,setPriority] = useState([]);
@@ -84,7 +84,7 @@ export function AuthProvider({ children }) {
     loading,
     setLoading,
     
-    platformList,
+    stacksList,
     allStages,
     allStatus,
     priority,

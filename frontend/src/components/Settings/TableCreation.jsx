@@ -65,6 +65,12 @@ const tableDetails = [
     type: "multiselect",
     width: 200,
   },
+  {
+    key: "createdAt",
+    label: "Created Date",
+    type: "date",
+    width: 140,
+  }
 ];
 
 import { useAuth } from "@/context/AuthContext";
@@ -80,9 +86,13 @@ const toProperCase = (str) => {
   const s = str.toLowerCase();
   if (s === "generate_report" || s === "generate report") return "Generate Report";
   if (s === "insight_view" || s === "insight view") return "Insight View";
-  if (s === "bugreporter") return "Bug Reporter";
-  if (s === "dev") return "Developer";
-  return s.charAt(0).toUpperCase() + s.slice(1);
+  if (s === "bugreporter" || s === "bug reporter") return "Bug Reporter";
+  if (s === "dev" || s === "developer") return "Developer";
+  if (s === "tester") return "Tester";
+  if (s === "admin") return "Admin";
+  
+  // Format words automatically
+  return s.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 };
 
 // Resizable header component
@@ -185,7 +195,7 @@ const ColumnHeader = ({ children, onPin, isPinned, columnKey }) => {
 };
 
 const TableCreation = ({ isOpen, setIsOpen }) => {
-  const { allUsers, setAllUsers } = useAuth();
+  const { allUsers, setAllUsers, user: currentUser } = useAuth();
   const [editingIds, setEditingIds] = useState([]); // Array of editing row ids
   const [editData, setEditData] = useState({}); // { [id]: rowData }
 
@@ -238,18 +248,34 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
   const handleSave = async (id) => {
     // Sync backend...
     const dataToSave = editData[id];
-    let finalRole = dataToSave.roles !== undefined ? (dataToSave.roles[0] || "bugreporter") : (dataToSave.roletype || "bugreporter");
-    finalRole = finalRole.toLowerCase();
-    if (finalRole === "developer") finalRole = "dev";
-    if (finalRole === "bug reporter" || finalRole === "bugreporter") finalRole = "bugreporter";
+    let finalRole = dataToSave.roles !== undefined ? dataToSave.roles.map(r => {
+        const rc = r.toLowerCase();
+        if (rc === "developer") return "dev";
+        if (rc === "bug reporter" || rc === "bugreporter") return "bugreporter";
+        if (rc === "admin") return "admin";
+        return rc;
+    }) : (Array.isArray(dataToSave.roletype) ? dataToSave.roletype : [dataToSave.roletype || "bugreporter"]);
+
+    const isAdminFinal = finalRole.includes("admin") || finalRole.includes("superadmin");
+
+    let finalAdminControl = [];
+    let finalAdminOption = [];
+
+    if (isAdminFinal) {
+        finalAdminControl = (dataToSave.adminRight !== undefined ? dataToSave.adminRight : (dataToSave.adminControl || [])).map(v => v.toLowerCase());
+        if (finalAdminControl.some(r => ["create", "edit", "delete"].includes(r)) && !finalAdminControl.includes("view")) {
+            finalAdminControl.push("view");
+        }
+        finalAdminOption = (dataToSave.adminOption || []).map(v => v.toLowerCase().replace(" ", "_"));
+    }
 
     const updatePayload = {
       name: dataToSave.name,
       email: dataToSave.email,
       username: dataToSave.username,
       roletype: finalRole,
-      adminControl: (dataToSave.adminRight !== undefined ? dataToSave.adminRight : (dataToSave.adminControl || [])).map(v => v.toLowerCase()),
-      adminOption: (dataToSave.adminOption || []).map(v => v.toLowerCase().replace(" ", "_"))
+      adminControl: finalAdminControl,
+      adminOption: finalAdminOption
     };
     
     try {
@@ -371,7 +397,7 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
               </div>
             )}
             {col.fields.subheader && !isEditing && (
-              <span className="text-muted-foreground mt-0.5 text-[11px]">
+              <span className="text-muted-foreground mt-0.5 text-[14px]">
                 {item.role || "user"}
               </span>
             )}
@@ -379,6 +405,12 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
         </div>
       );
     }
+    
+    if (col.type === "date") {
+       const dateVal = item.createdAt ? new Date(item.createdAt).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : "-";
+       return <span className="text-gray-500 whitespace-nowrap text-sm">{dateVal}</span>;
+    }
+
     if (col.type === "email") {
       return isEditing ? (
         <Input
@@ -413,7 +445,7 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
       // Extract raw arrays representing options based off new Mongo structure dynamically
       let currentValRaw = [];
       if (col.key === "roles") {
-        currentValRaw = displayData.roles !== undefined ? displayData.roles : (displayData.roletype ? [displayData.roletype] : []);
+        currentValRaw = displayData.roles !== undefined ? displayData.roles : (Array.isArray(displayData.roletype) ? displayData.roletype : (displayData.roletype ? [displayData.roletype] : []));
       } else if (col.key === "adminRight") {
         currentValRaw = displayData.adminRight !== undefined ? displayData.adminRight : (displayData.adminControl || []);
       } else if (col.key === "adminOption") {
@@ -422,7 +454,7 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
       
       currentValRaw = currentValRaw.map(v => toProperCase(v));
 
-      const currentRolesRaw = displayData.roles !== undefined ? displayData.roles : (displayData.roletype ? [displayData.roletype] : []);
+      const currentRolesRaw = displayData.roles !== undefined ? displayData.roles : (Array.isArray(displayData.roletype) ? displayData.roletype : (displayData.roletype ? [displayData.roletype] : []));
       const isAdmin = currentRolesRaw.some(r => r.toLowerCase() === "admin");
       const isDisabled = !isAdmin && (col.key === "adminRight" || col.key === "adminOption");
 
@@ -449,15 +481,10 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
                 checked={currentValRaw.includes(option)}
                 onClick={(event) => {
                   event.preventDefault();
-                  // For roles, enforce single selection by replacing array
-                  let newArray = [];
-                  if (col.key === "roles") {
-                    newArray = [option];
-                  } else {
-                    newArray = currentValRaw.includes(option)
+                  // Standard multi-select toggle for all options
+                  const newArray = currentValRaw.includes(option)
                       ? currentValRaw.filter((item) => item !== option)
                       : [...currentValRaw, option];
-                  }
                   
                   if (col.key === "roles") {
                      setRowEditData({ roles: newArray });
@@ -488,10 +515,14 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
     return null;
   };
 
+  const canCreate = allUsers && (useAuth().user?.role === "superadmin" || useAuth().user?.adminControl?.includes("create"));
+
   return (
     <div className="w-full">
       <div className="mb-3 justify-end flex absolute right-14 top-2 lg:!right-7 lg:!top-7">
-        <Button onClick={() => setIsOpen(true)}>Add User</Button>
+        {canCreate && (
+           <Button onClick={() => setIsOpen(true)}>Add User</Button>
+        )}
       </div>
 
       <div className="[&>div]:rounded-sm [&>div]:border overflow-x-auto overflow-y-auto h-[calc(100vh-280px)]">
@@ -647,14 +678,23 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
                             Cancel
                           </Button>
                         </div>
-                      ) : (
-                        <TableRowMenu
-                          item={item}
-                          onEdit={() => handleEdit(item)}
-                          onDelete={() => handleDeleteSingle(item.id)}
-                          onArchive={() => alert("Archive " + item.id)}
-                        />
-                      )}
+                      ) : (() => {
+                         const isSuperAdminEditBlocked = item.role === "superadmin" && currentUser?.role !== "superadmin";
+                         const canEdit = currentUser?.role === "superadmin" || currentUser?.adminControl?.includes("edit");
+                         const canDelete = currentUser?.role === "superadmin" || currentUser?.adminControl?.includes("delete");
+
+                         if (isSuperAdminEditBlocked) return <span className="text-gray-400 text-xs italic">Protected</span>;
+                         if (!canEdit && !canDelete) return null;
+
+                         return (
+                            <TableRowMenu
+                              item={item}
+                              onEdit={canEdit ? () => handleEdit(item) : undefined}
+                              onDelete={canDelete ? () => handleDeleteSingle(item.id) : undefined}
+                              onArchive={() => alert("Archive " + item.id)}
+                            />
+                         );
+                      })()}
                     </TableCell>
                   </TableRow>
                 </TableContextMenu>

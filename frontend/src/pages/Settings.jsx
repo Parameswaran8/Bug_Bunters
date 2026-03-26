@@ -6,8 +6,10 @@ import SettingMenu from "@/components/Settings/SettingMenu";
 import UserManagment from "@/components/Settings/UserManagment";
 import ToolManagment from "@/components/Settings/Tools/Tools";
 import ReportControl from "@/components/Settings/Report";
+import { useAuth } from "@/context/AuthContext";
 
 function Settings() {
+  const { user } = useAuth();
   const [activeTab, setActiveTab] = useState("users");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const menuRef = useRef(null);
@@ -37,6 +39,19 @@ function Settings() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const hasSettingsAccess = user?.role === "superadmin" || (Array.isArray(user?.adminControl) && user.adminControl.some(r => ["create", "edit", "view", "delete"].includes(r?.toLowerCase())));
+
+  if (!hasSettingsAccess) {
+    return (
+      <div className="w-full h-[98%] bg-[#fdfdfd] relative rounded-2xl shadow-sm border border-gray-200/60 overflow-hidden flex items-center justify-center">
+        <div className="text-center p-10">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-2">Access Denied</h2>
+          <p className="text-gray-500">You have no access to view the content.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-[98%] bg-[#fdfdfd] relative rounded-2xl shadow-sm border border-gray-200/60 overflow-hidden">
@@ -82,7 +97,18 @@ function Settings() {
                     )}
                   </Button>
 
-                  {/* Dropdown Menu */}
+                  {/* Dropdown Menu directly inside menuRef so clicks aren't registered as outside */}
+                  {mobileMenuOpen && (
+                    <div className="absolute right-0 mt-2 w-72 z-40 shadow-lg top-full">
+                      <nav className="bg-white rounded-xl border border-gray-200 overflow-hidden p-1">
+                        <SettingMenu
+                          activeTab={activeTab}
+                          setActiveTab={setActiveTab}
+                          setMobileMenuOpen={setMobileMenuOpen}
+                        />
+                      </nav>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flex items-center gap-2 text-xs lg:text-sm text-gray-500">
@@ -110,27 +136,6 @@ function Settings() {
           </main>
         </div>
       </div>
-
-      {mobileMenuOpen && (
-        <>
-          {/* Backdrop overlay */}
-          <div
-            className="fixed inset-0 bg-black/20 z-30"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-
-          {/* Menu dropdown */}
-          <div className="absolute right-0 mt-2 w-72 z-40 shadow-lg top-1">
-            <nav className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-              <SettingMenu
-                activeTab={activeTab}
-                setActiveTab={setActiveTab}
-                setMobileMenuOpen={setMobileMenuOpen}
-              />
-            </nav>
-          </div>
-        </>
-      )}
     </div>
   );
 }

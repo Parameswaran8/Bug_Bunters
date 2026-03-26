@@ -108,7 +108,7 @@ export default class BugController {
                 toolId: toolInfo.toolId,
                 toolName: toolInfo.toolName,
                 toolDescription: toolInfo.toolDescription,
-                platform: toolInfo.platform || "",
+                stack: toolInfo.stack || "",
                 priority: toolInfo.priority,
                 libraryName: toolInfo.libraryName || "",
                 bugDescription: toolInfo.bugDescription,
@@ -124,6 +124,7 @@ export default class BugController {
               },
               reportedBy: user._id, // Assign to the logged-in user automatically
               assignedTester: assignedTester?.userId || undefined,
+              clientContext: bugData.clientContext || {},
               reportedAt: new Date(),
             },
             bugPhaseNo: bugData.bugPhaseNo || 1,
@@ -141,7 +142,7 @@ export default class BugController {
             bugId: savedBug.bugId,
             mongoId: savedBug._id,
             toolName: toolInfo.toolName,
-            platform: toolInfo.platform || "Not Specified",
+            stack: toolInfo.stack || "Not Specified",
             priority: toolInfo.priority,
             bug: savedBug,
           });
@@ -576,7 +577,7 @@ export default class BugController {
         currentPhase,
         toolId,
         toolName,
-        platform,
+        stack,
         priority,
         isActive,
         reportedBy,
@@ -604,9 +605,9 @@ export default class BugController {
         };
       }
 
-      // Filter by platform
-      if (platform) {
-        filter["phaseI_BugReport.toolInfo.platform"] = platform;
+      // Filter by stack
+      if (stack) {
+        filter["phaseI_BugReport.toolInfo.stack"] = stack;
       }
 
       // Filter by priority
@@ -706,11 +707,11 @@ export default class BugController {
         },
       ]);
 
-      // Count by platform
-      const platformDistribution = await BugModel.aggregate([
+      // Count by stack
+      const stackDistribution = await BugModel.aggregate([
         {
           $group: {
-            _id: "$phaseI_BugReport.toolInfo.platform",
+            _id: "$phaseI_BugReport.toolInfo.stack",
             count: { $sum: 1 },
           },
         },
@@ -724,7 +725,7 @@ export default class BugController {
           closed: closedBugs,
           byPhase: phaseDistribution,
           byPriority: priorityDistribution,
-          byPlatform: platformDistribution,
+          byStack: stackDistribution,
         },
       });
     }

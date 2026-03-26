@@ -86,15 +86,28 @@ function AddUser({ setIsOpen }) {
     // START LOADING
     setIsSubmitting(true);
 
+    const isAdminCheck = roles.includes("Admin");
+
+    let finalAdminRights = [];
+    let finalAdminOptions = [];
+
+    if (isAdminCheck) {
+      finalAdminRights = Array.isArray(adminRights) ? adminRights.map(v => v.toLowerCase()) : [];
+      if (finalAdminRights.some(r => ["create", "edit", "delete"].includes(r)) && !finalAdminRights.includes("view")) {
+        finalAdminRights.push("view");
+      }
+      finalAdminOptions = Array.isArray(adminOptions) ? adminOptions.map(v => v.toLowerCase().replace(" ", "_")) : [];
+    }
+
     const userData = {
       name: full_name,
       email: email_name,
       username: user_name,
       password: "password123", // Default password for new users
       role: roles.includes("Admin") ? "admin" : "user",
-      roletype: roles.includes("Developer") ? "dev" : roles.includes("Tester") ? "tester" : "bugreporter",
-      adminControl: Array.isArray(adminRights) ? adminRights.map(v => v.toLowerCase()) : [],
-      adminOption: Array.isArray(adminOptions)  ? adminOptions.map(v => v.toLowerCase().replace(" ", "_")) : [],
+      roletype: roles.map(r => r === "Developer" ? "dev" : (r === "Tester" ? "tester" : "bugreporter")),
+      adminControl: finalAdminRights,
+      adminOption: finalAdminOptions,
     };
 
     try {

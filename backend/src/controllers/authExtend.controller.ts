@@ -44,7 +44,7 @@ export default class AuthExtendController {
         password,
         role = "",
         name,
-        department,
+
         designation,
         profile,
         roletype,
@@ -97,7 +97,7 @@ export default class AuthExtendController {
       if (email?.trim()) newUserObj.email = email.trim();
       if (roletype) newUserObj.roletype = roletype;
       if (name) newUserObj.name = name;
-      if (department) newUserObj.department = department;
+
       if (designation) newUserObj.designation = designation;
       if (profile) newUserObj.profile = profile;
 

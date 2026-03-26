@@ -47,12 +47,13 @@ function BugForm({ setIsOpen }) {
     { value: "critical", label: "Critical" },
   ];
 
-  const sopList = [
-    "Error is coming in multiple clients and is not client specific?",
-    "I have updated to latest Script Version & still the error is coming?",
-    "I have checked for multiple Triggers\\License issues?",
-    "I have checked for any changes in Sheet made by client?",
-  ];
+  const selectedToolData = tools.find(t => t.value === selectedTool);
+  const sopList = selectedToolData?.sop ? selectedToolData.sop.split('\n').filter(s => s.trim() !== '') : [];
+
+  useEffect(() => {
+    setSopChecks(new Array(sopList.length || 0).fill(false));
+    setParentChecked(false);
+  }, [selectedTool, tools]);
 
   // Clear facedBy error when either checkbox is checked
   useEffect(() => {
@@ -78,7 +79,7 @@ function BugForm({ setIsOpen }) {
 
   useEffect(() => {
     loadTesters();
-  }, [allUsers]);
+  }, [allUsers, selectedTool, toolList]);
 
   // Sync Context tools to Dropdown format implicitly whenever context updates
   useEffect(() => {
@@ -86,7 +87,8 @@ function BugForm({ setIsOpen }) {
       const formattedTools = toolList.map((tool) => ({
         value: tool.id || tool._id,
         label: tool.toolName,
-        sublabel: tool.platform[0] || "No category",
+        sublabel: tool.stack[0] || "No category",
+        sop: tool.SOP || ""
       }));
       setTools(formattedTools);
     } else {
@@ -94,18 +96,28 @@ function BugForm({ setIsOpen }) {
     }
   }, [toolList]);
 
-  const loadTesters = async () => {
+    const loadTesters = async () => {
     setIsLoadingTesters(true);
     try {
       if (allUsers && allUsers.length > 0) {
+        let defaultTesterId = null;
+        if (selectedTool && toolList) {
+          const matchedTool = toolList.find(t => (t.id || t._id) === selectedTool);
+          if (matchedTool && matchedTool.testerId) {
+             defaultTesterId = typeof matchedTool.testerId === "object" ? (matchedTool.testerId._id || matchedTool.testerId.id) : matchedTool.testerId;
+          }
+        }
+
         const actualTesters = allUsers
-          .filter((u) => u.roletype === "tester")
+          .filter((u) => Array.isArray(u.roletype) ? u.roletype.includes("tester") : u.roletype === "tester")
           .map((tester) => ({
             value: tester.id,
-            label: tester.name || tester.username || tester.email,
-            sublabel: tester.role || "Tester",
+            label: tester.id === defaultTesterId ? `${tester.name || tester.username || tester.email} (default)` : (tester.name || tester.username || tester.email),
           }));
-        setTesters(actualTesters);
+          
+        setTesters([
+          ...actualTesters
+        ]);
       } else {
         setTesters([]);
       }
@@ -176,7 +188,7 @@ function BugForm({ setIsOpen }) {
     }
 
     // SOP Check validation
-    if (!sopChecks.some(Boolean)) {
+    if (sopList.length > 0 && !sopChecks.some(Boolean)) {
       newErrors.sop = "SOP checklist items must be checked.";
     }
 
@@ -215,12 +227,15 @@ function BugForm({ setIsOpen }) {
       return acc;
     }, {});
 
+    const selectedItem = tools.find((t) => t.value === selectedTool);
+
     // Prepare complete data object for API formatted to match backend expectations
     const bugReportData = {
       toolInfo: {
         toolId: selectedTool,
-        toolName: tools.find((t) => t.value === selectedTool)?.label || "Unknown Tool",
-        toolDescription: tools.find((t) => t.value === selectedTool)?.sublabel || "Unknown Category",
+        toolName: selectedItem?.label || "Unknown Tool",
+        toolDescription: selectedItem?.sublabel || "Unknown Category",
+        stack: selectedItem?.sublabel || "Unknown",
         priority: selectedPriority,
         
         // Map Description vs Expected/Actual cleanly for the backend
@@ -229,9 +244,6 @@ function BugForm({ setIsOpen }) {
         actualResult: descriptionType ? "Not Applicable (Simple Description)" : actualResult,
         
         attachments: [], // In the future, this will map to actual uploaded URLs
-      },
-      assignedTester: {
-        userId: selectedTester
       },
       tags: [],
       // Extra frontend context, ignored by the current backend schema but safe to pass
@@ -243,6 +255,10 @@ function BugForm({ setIsOpen }) {
         sopChecklist: sopData,
       }
     };
+
+    if (selectedTester && selectedTester !== "none") {
+      bugReportData.assignedTester = { userId: selectedTester };
+    }
 
     // Log to console
     console.log("✅ Bug Report Data Ready for API:");
@@ -310,7 +326,7 @@ function BugForm({ setIsOpen }) {
     setFacedByMe(false);
     setFacedByClient(false);
     setParentChecked(false);
-    setSopChecks([false, false, false, false]);
+    setSopChecks(new Array(sopList.length || 0).fill(false));
 
     // also clear input boxes manually
     const simpleDesc = document.getElementById("description");
@@ -386,6 +402,9 @@ function BugForm({ setIsOpen }) {
                      ? (matchedTool.testerId._id || matchedTool.testerId.id) 
                      : matchedTool.testerId;
                   setSelectedTester(tId);
+                  if (errors.tester) setErrors((prev) => ({ ...prev, tester: "" }));
+                } else {
+                  setSelectedTester("none");
                   if (errors.tester) setErrors((prev) => ({ ...prev, tester: "" }));
                 }
               }}

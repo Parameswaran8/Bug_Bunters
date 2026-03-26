@@ -129,7 +129,7 @@ function General() {
               htmlFor="email"
               className="text-xs text-gray-500 uppercase font-medium"
             >
-              Role
+              Email Address
             </Label>
             <Input
               id="email"
@@ -148,7 +148,7 @@ function General() {
               htmlFor="phone"
               className="text-xs text-gray-500 uppercase font-medium"
             >
-              Department
+              Phone Number
             </Label>
             <Input
               id="phone"
@@ -166,7 +166,7 @@ function General() {
               htmlFor="group"
               className="text-xs text-gray-500 uppercase font-medium"
             >
-              Phone no.
+              Lead Group
             </Label>
             <Select
               value={formData.group}

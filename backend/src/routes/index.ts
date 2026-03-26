@@ -2,7 +2,7 @@ import { Router } from "express";
 import userRoutes from "./user.routes";
 import toolRoutes from "./tool.routes";
 import bugRoutes from "./bug.routes";
-import platformRoutes from "./platform.routes";
+import stackRoutes from "./stack.routes";
 import authRoutes from "./auth.routes";
 import authExtend from "./authExtend.routes";
 import credential from "./credential.routes";
@@ -21,7 +21,7 @@ router.use("/credential", credential); // Register and reset password with token
 
 // Routes that require authentication
 router.use("/user", userRoutes);
-router.use("/platform", platformRoutes); // Platform routes
+router.use("/stack", stackRoutes); // Stack routes
 router.use("/tools", toolRoutes); // Tool routes
 router.use("/bug", bugRoutes); // Tool routes
 

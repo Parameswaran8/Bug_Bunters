@@ -37,6 +37,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { user, setUser, setLoading } = useAuth();
+  const hasSettingsAccess = user?.role === "superadmin" || (Array.isArray(user?.adminControl) && user.adminControl.some(r => ["create", "edit", "view", "delete"].includes(r?.toLowerCase())));
 
   const handleLogout = async () => {
     setLoading(true);
@@ -97,7 +98,9 @@ export default function Sidebar({ collapsed, setCollapsed }) {
 
       {/* ── Nav ── */}
       <nav className="flex-1 overflow-y-auto overflow-x-hidden py-3 px-2" style={{ scrollbarWidth: "none" }}>
-        {NAV.map((group) => (
+        {NAV.map((group) => {
+          if (group.label === "Admin" && !hasSettingsAccess) return null;
+          return (
           <div key={group.label} className="mb-1">
             {/* Section label — only when expanded */}
             {!collapsed && (
@@ -161,7 +164,8 @@ export default function Sidebar({ collapsed, setCollapsed }) {
               );
             })}
           </div>
-        ))}
+          );
+        })}
       </nav>
 
       {/* Divider */}

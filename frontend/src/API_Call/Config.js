@@ -5,12 +5,12 @@ import api from "./API";
 // --------------------------
 
 /**
- * Fetch the global system configuration, primarily containing the platform lists.
+ * Fetch the global system configuration, primarily containing the stack lists.
  * @returns {Promise<{success: boolean, data: any} | {success: boolean, message: string}>}
  */
 export const systemConfig = async () => {
   try {
-    const res = await api.get("/platform/system_config");
+    const res = await api.get("/stack/system_config");
     return {
       success: true,
       data: res.data,

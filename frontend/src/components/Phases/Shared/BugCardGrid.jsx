@@ -119,7 +119,7 @@ export default function BugCardGrid({ phaseBugs, onClickCardToModal, phaseId }) 
               </div>
               <div className="flex items-center text-xs font-medium text-gray-500 gap-1.5">
                 <MapPin className="w-3.5 h-3.5" />
-                {bug.phaseI_BugReport?.toolInfo?.platform || "-"}
+                {bug.phaseI_BugReport?.toolInfo?.stack || "-"}
               </div>
             </div>
           </div>

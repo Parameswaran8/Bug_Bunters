@@ -14,7 +14,7 @@ interface IPhaseI_BugReport {
     toolId: Types.ObjectId;
     toolName: string;
     toolDescription: string;
-    platform?: string;
+    stack?: string;
     priority: string;
     libraryName?: string;
     bugDescription: string;
@@ -22,6 +22,13 @@ interface IPhaseI_BugReport {
     expectedResult: string;
     actualResult: string;
     attachments?: IAttachment[];
+  };
+  clientContext?: {
+    facedByMe: boolean;
+    facedByClient: boolean;
+    clientName?: string;
+    companyName?: string;
+    sopChecklist?: Record<string, boolean>;
   };
   reportedBy: Types.ObjectId;
   assignedTester?: Types.ObjectId;
@@ -173,7 +180,7 @@ const bugSchema = new Schema<IBug>(
         toolInfo: {
           toolId: { type: Schema.Types.ObjectId, ref: "Tool", required: true },
           toolName: { type: String, required: true },
-          platform: String,
+          stack: String,
           toolDescription: { type: String, required: true },
           descriptionType: {
             type: String,
@@ -188,6 +195,13 @@ const bugSchema = new Schema<IBug>(
           expectedResult: { type: String, required: true },
           actualResult: { type: String, required: true },
           attachments: [attachmentSchema],
+        },
+        clientContext: {
+          facedByMe: { type: Boolean, default: false },
+          facedByClient: { type: Boolean, default: false },
+          clientName: { type: String, default: "" },
+          companyName: { type: String, default: "" },
+          sopChecklist: { type: Schema.Types.Mixed, default: {} },
         },
         reportedBy: {
           type: Schema.Types.ObjectId,

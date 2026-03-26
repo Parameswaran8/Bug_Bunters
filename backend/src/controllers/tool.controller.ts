@@ -11,7 +11,7 @@ interface ToolPayload {
   toolDescription?: string;
   testerId?: string;
   devId?: string;
-  platform?: string[] | string;
+  stack?: string[] | string;
   libraryName?: string;
   htmlVersion?: string;
   lastLibraryUpdate?: Date | string | null;
@@ -51,9 +51,9 @@ export default class ToolController {
         return;
       }
 
-      // mergePlatforms flag default true; set mergePlatforms=false to replace platform arrays
-      const mergePlatformsFlag =
-        String(req.query.mergePlatforms ?? "true") !== "false";
+      // mergeStacks flag default true; set mergeStacks=false to replace stack arrays
+      const mergeStacksFlag =
+        String(req.query.mergeStacks ?? "true") !== "false";
 
       // helper to sanitize ObjectId fields
       const safeObjectId = (id: any): string | null | undefined => {
@@ -106,7 +106,7 @@ export default class ToolController {
             ? existingMap.get(itemId) ?? (await Tool.findById(itemId))
             : null;
 
-          // Build setOps for non-platform fields
+          // Build setOps for non-stack fields
           const setOps: Record<string, any> = {};
           if (typeof item.toolDescription !== "undefined")
             setOps.toolDescription = item.toolDescription;
@@ -136,41 +136,41 @@ export default class ToolController {
           if (typeof item.ReleaseNotes !== "undefined")
             setOps.ReleaseNotes = item.ReleaseNotes;
 
-          // Normalize incoming platform to an array of trimmed strings if provided
-          let incomingPlatform: string[] | undefined;
-          if (typeof item.platform !== "undefined") {
-            incomingPlatform = Array.isArray(item.platform)
-              ? item.platform.slice()
-              : [item.platform];
-            incomingPlatform = incomingPlatform
+          // Normalize incoming stack to an array of trimmed strings if provided
+          let incomingStack: string[] | undefined;
+          if (typeof item.stack !== "undefined") {
+            incomingStack = Array.isArray(item.stack)
+              ? item.stack.slice()
+              : [item.stack];
+            incomingStack = incomingStack
               .map((s) => (typeof s === "string" ? s.trim() : s))
               .filter(Boolean) as string[];
-            incomingPlatform = Array.from(new Set(incomingPlatform)); // dedupe
+            incomingStack = Array.from(new Set(incomingStack)); // dedupe
           }
 
           if (existing) {
-            // Build updateOps combining $set for non-platform fields and either $addToSet or $set for platform
-            const existingPlatformRaw = Array.isArray(existing.platform)
-              ? existing.platform
+            // Build updateOps combining $set for non-stack fields and either $addToSet or $set for stack
+            const existingStackRaw = Array.isArray(existing.stack)
+              ? existing.stack
               : [];
-            const existingPlatformNormalized = existingPlatformRaw
+            const existingStackNormalized = existingStackRaw
               .map((s: any) => (typeof s === "string" ? s.trim() : s))
               .filter(Boolean) as string[];
 
             // create a case-insensitive set for quick checking (lowercased)
             const existingSetLower = new Set(
-              existingPlatformNormalized.map((s) => s.toLowerCase())
+              existingStackNormalized.map((s) => s.toLowerCase())
             );
 
-            // Normalize incomingPlatform already computed earlier as `incomingPlatform`
-            const incomingPlatformNormalized = Array.isArray(incomingPlatform)
-              ? incomingPlatform
+            // Normalize incomingStack already computed earlier as `incomingStack`
+            const incomingStackNormalized = Array.isArray(incomingStack)
+              ? incomingStack
               : [];
 
             // For merge mode: only add items that are not already present (case-insensitive)
             let itemsToAdd: string[] = [];
-            if (mergePlatformsFlag && incomingPlatformNormalized.length) {
-              itemsToAdd = incomingPlatformNormalized.filter(
+            if (mergeStacksFlag && incomingStackNormalized.length) {
+              itemsToAdd = incomingStackNormalized.filter(
                 (s) => !existingSetLower.has(s.toLowerCase())
               );
             }
@@ -179,15 +179,15 @@ export default class ToolController {
             const updateOps: Record<string, any> = {};
             if (Object.keys(setOps).length) updateOps.$set = setOps;
 
-            if (mergePlatformsFlag) {
+            if (mergeStacksFlag) {
               if (itemsToAdd.length) {
-                updateOps.$addToSet = { platform: { $each: itemsToAdd } };
+                updateOps.$addToSet = { stack: { $each: itemsToAdd } };
               }
             } else {
-              // replace mode: always set the platform to the incoming normalized array
+              // replace mode: always set the stack to the incoming normalized array
               updateOps.$set = {
                 ...(updateOps.$set || {}),
-                platform: incomingPlatformNormalized,
+                stack: incomingStackNormalized,
               };
             }
 
@@ -232,7 +232,7 @@ export default class ToolController {
             if (typeof item.SOP !== "undefined") createPayload.SOP = item.SOP;
             if (typeof item.ReleaseNotes !== "undefined")
               createPayload.ReleaseNotes = item.ReleaseNotes;
-            if (incomingPlatform) createPayload.platform = incomingPlatform;
+            if (incomingStack) createPayload.stack = incomingStack;
 
             const newDoc = new Tool(createPayload);
             const saved = await newDoc.save();

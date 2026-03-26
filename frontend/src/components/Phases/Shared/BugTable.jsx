@@ -36,10 +36,12 @@ const getTableColumns = (phaseId) => {
       { key: "bugId", label: "Bug ID", type: "text", width: 140 },
       { key: "toolName", label: "Tool Name", type: "text", width: 180 },
       { key: "priority", label: "Priority", type: "prioritySelect", width: 120 },
-      { key: "platform", label: "Platform", type: "platformSelect", width: 120 },
+      { key: "stack", label: "Stack", type: "stackSelect", width: 120 },
       { key: "bugRaiser", label: "Bug Raiser", type: "text", width: 150 },
+      { key: "issueFacedBy", label: "Issue Faced By", type: "facedByCard", width: 160 },
       { key: "assignedTester", label: "Assigned Tester", type: "text", width: 150 },
       { key: "description", label: "Bug Description", type: "description", width: 250 },
+      { key: "sopFollowedRaiser", label: "SOP Followed by Raiser", type: "sopFollowedRaiserCard", width: 220 },
       ...commonEnd
     ];
   }
@@ -50,7 +52,9 @@ const getTableColumns = (phaseId) => {
       { key: "toolName", label: "Tool Name", type: "text", width: 180 },
       { key: "priority", label: "Priority", type: "prioritySelect", width: 120 },
       { key: "bugRaiser", label: "Bug Raiser", type: "text", width: 150 },
+      { key: "issueFacedBy", label: "Issue Faced By", type: "facedByCard", width: 160 },
       { key: "description", label: "Bug Description", type: "description", width: 250 },
+      { key: "sopFollowedRaiser", label: "SOP Followed by Raiser", type: "sopFollowedRaiserCard", width: 220 },
       { key: "attachments", label: "Attachment", type: "attachment", width: 100 },
       { key: "bugStatus", label: "Bug Status", type: "statusSelect", width: 150 },
       { key: "sopFollowed", label: "SOP Followed", type: "sopText", width: 160 },
@@ -68,8 +72,10 @@ const getTableColumns = (phaseId) => {
       { key: "toolName", label: "Tool Name", type: "text", width: 180 },
       { key: "priority", label: "Priority", type: "prioritySelect", width: 120 },
       { key: "bugRaiser", label: "Bug Raiser", type: "text", width: 150 },
+      { key: "issueFacedBy", label: "Issue Faced By", type: "facedByCard", width: 160 },
       { key: "assignedTester", label: "Bug Tester", type: "text", width: 150 },
       { key: "description", label: "Bug Description", type: "description", width: 250 },
+      { key: "sopFollowedRaiser", label: "SOP Followed by Raiser", type: "sopFollowedRaiserCard", width: 220 },
       { key: "attachments", label: "Attachment", type: "attachment", width: 100 },
       { key: "sopFollowed", label: "SOP Followed", type: "sopText", width: 160 },
       { key: "remarks", label: "Testing Remark", type: "remarksText", width: 200 },
@@ -92,8 +98,10 @@ const getTableColumns = (phaseId) => {
       { key: "toolName", label: "Tool Name", type: "text", width: 180 },
       { key: "priority", label: "Priority", type: "prioritySelect", width: 120 },
       { key: "bugRaiser", label: "Bug Raiser", type: "text", width: 150 },
+      { key: "issueFacedBy", label: "Issue Faced By", type: "facedByCard", width: 160 },
       { key: "assignedTester", label: "Bug Tester", type: "text", width: 150 },
       { key: "description", label: "Bug Description", type: "description", width: 250 },
+      { key: "sopFollowedRaiser", label: "SOP Followed by Raiser", type: "sopFollowedRaiserCard", width: 220 },
       { key: "attachments", label: "Attachment", type: "attachment", width: 100 },
       { key: "sopFollowed", label: "SOP Followed", type: "sopText", width: 160 },
       { key: "remarks", label: "Testing Remark", type: "remarksText", width: 200 },
@@ -118,8 +126,10 @@ const getTableColumns = (phaseId) => {
       { key: "toolName", label: "Tool Name", type: "text", width: 180 },
       { key: "priority", label: "Priority", type: "prioritySelect", width: 120 },
       { key: "bugRaiser", label: "Bug Raiser", type: "text", width: 150 },
+      { key: "issueFacedBy", label: "Issue Faced By", type: "facedByCard", width: 160 },
       { key: "assignedTester", label: "Bug Tester", type: "text", width: 150 },
       { key: "description", label: "Bug Description", type: "description", width: 250 },
+      { key: "sopFollowedRaiser", label: "SOP Followed by Raiser", type: "sopFollowedRaiserCard", width: 220 },
       { key: "attachments", label: "Attachment", type: "attachment", width: 100 },
       { key: "sopFollowed", label: "SOP Followed", type: "sopText", width: 160 },
       { key: "remarks", label: "Testing Remark", type: "remarksText", width: 200 },
@@ -146,7 +156,7 @@ const getTableColumns = (phaseId) => {
     { key: "bugId", label: "Bug ID", type: "text", width: 140 },
     { key: "toolName", label: "Tool Name", type: "text", width: 180 },
     { key: "priority", label: "Priority", type: "prioritySelect", width: 120 },
-    { key: "platform", label: "Platform", type: "platformSelect", width: 120 },
+    { key: "stack", label: "Stack", type: "stackSelect", width: 120 },
     { key: "bugRaiser", label: "Bug Raiser", type: "text", width: 150 },
     { key: "assignedTester", label: "Assigned Tester", type: "text", width: 150 },
     { key: "assignedDev", label: "Assigned Dev", type: "text", width: 150 },
@@ -156,7 +166,7 @@ const getTableColumns = (phaseId) => {
 };
 
 const priorityOptions = ["critical", "high", "medium", "low"];
-const platformOptions = ["Web", "App", "Any"];
+const stackOptions = ["Web", "App", "Any"];
 
 const ResizableHeader = ({ children, columnKey, colWidths, setColWidths }) => {
   const startX = useRef(0);
@@ -278,7 +288,7 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
     const dataToSave = editData[id];
     
     // We update the deeply nested values dynamically if they changed
-    // In our backend schema for Priority/Platform, they live in phaseI_BugReport.toolInfo
+    // In our backend schema for Priority/Stack, they live in phaseI_BugReport.toolInfo
     let fallbackDevId = dataToSave.phaseII_BugConfirmation?.assignedDeveloper?._id || dataToSave.phaseII_BugConfirmation?.assignedDeveloper?.id;
     if (!fallbackDevId && toolList && dataToSave.phaseI_BugReport?.toolInfo?.toolId) {
         const mappedTool = toolList.find(t => (t.id || t._id) === dataToSave.phaseI_BugReport.toolInfo.toolId);
@@ -290,7 +300,7 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
     const updatePayload = {
       "phaseI_BugReport.toolInfo.toolName": dataToSave.toolNameExtracted || dataToSave.phaseI_BugReport?.toolInfo?.toolName,
       "phaseI_BugReport.toolInfo.priority": dataToSave.priorityExtracted || dataToSave.phaseI_BugReport?.toolInfo?.priority,
-      "phaseI_BugReport.toolInfo.platform": dataToSave.platformExtracted || dataToSave.phaseI_BugReport?.toolInfo?.platform,
+      "phaseI_BugReport.toolInfo.stack": dataToSave.stackExtracted || dataToSave.phaseI_BugReport?.toolInfo?.stack,
       "phaseI_BugReport.toolInfo.bugDescription": dataToSave.bugDescriptionExtracted !== undefined ? dataToSave.bugDescriptionExtracted : dataToSave.phaseI_BugReport?.toolInfo?.bugDescription,
       "phaseI_BugReport.toolInfo.expectedResult": dataToSave.expectedResultExtracted !== undefined ? dataToSave.expectedResultExtracted : dataToSave.phaseI_BugReport?.toolInfo?.expectedResult,
       "phaseI_BugReport.toolInfo.actualResult": dataToSave.actualResultExtracted !== undefined ? dataToSave.actualResultExtracted : dataToSave.phaseI_BugReport?.toolInfo?.actualResult,
@@ -312,7 +322,8 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
       updatePayload.currentPhase = dataToSave.currentPhaseExtracted;
       updatePayload.bugPhaseNo = dataToSave.bugPhaseNoExtracted;
       
-      if (rawItem.currentPhase === "Bug Testing" && dataToSave.currentPhaseExtracted === "Bug Analysis") {
+      const bugToUpdate = phaseBugs.find(b => (b.id || b._id) === id);
+      if (bugToUpdate?.currentPhase === "Bug Testing" && dataToSave.currentPhaseExtracted === "Bug Analysis") {
          updatePayload["phaseII_BugConfirmation.testedAt"] = new Date().toISOString();
       }
     }
@@ -328,7 +339,7 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
              const newBug = {...bug};
              newBug.phaseI_BugReport.toolInfo.toolName = updatePayload["phaseI_BugReport.toolInfo.toolName"];
              newBug.phaseI_BugReport.toolInfo.priority = updatePayload["phaseI_BugReport.toolInfo.priority"];
-             newBug.phaseI_BugReport.toolInfo.platform = updatePayload["phaseI_BugReport.toolInfo.platform"];
+             newBug.phaseI_BugReport.toolInfo.stack = updatePayload["phaseI_BugReport.toolInfo.stack"];
              newBug.phaseI_BugReport.toolInfo.bugDescription = updatePayload["phaseI_BugReport.toolInfo.bugDescription"];
              newBug.phaseI_BugReport.toolInfo.expectedResult = updatePayload["phaseI_BugReport.toolInfo.expectedResult"];
              newBug.phaseI_BugReport.toolInfo.actualResult = updatePayload["phaseI_BugReport.toolInfo.actualResult"];
@@ -476,7 +487,16 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
     // Because data is nested deeply, we extract them virtually for editing
     const toolName = displayData.toolNameExtracted || rawItem.phaseI_BugReport?.toolInfo?.toolName || "-";
     const priority = displayData.priorityExtracted || rawItem.phaseI_BugReport?.toolInfo?.priority || "low";
-    const platform = displayData.platformExtracted || rawItem.phaseI_BugReport?.toolInfo?.platform || "-";
+    
+    let stack = displayData.stackExtracted || rawItem.phaseI_BugReport?.toolInfo?.stack;
+    if (!stack || stack === "-" || stack === "") {
+        const foundTool = toolList?.find(t => (t.id || t._id) === rawItem.phaseI_BugReport?.toolInfo?.toolId);
+        if (foundTool && Array.isArray(foundTool.stack) && foundTool.stack.length > 0) {
+            stack = foundTool.stack[0];
+        } else {
+            stack = "-";
+        }
+    }
     
     // Description extractions
     const bugDesc = displayData.bugDescriptionExtracted !== undefined 
@@ -494,11 +514,22 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
     const isExpectedMode = expRes && expRes !== "Not Applicable (Simple Description)";
     
     // User mappings - Add email handling
-    const raiser = rawItem.phaseI_BugReport?.reportedBy?.name || "Unknown";
-    const raiserEmail = rawItem.phaseI_BugReport?.reportedBy?.email || "No email provided";
+    let raiserObj = rawItem.phaseI_BugReport?.reportedBy;
+    if (raiserObj && (typeof raiserObj !== "object" || !raiserObj.name)) {
+        const idToCheck = typeof raiserObj === "object" ? (raiserObj._id || raiserObj.id) : raiserObj;
+        const found = allUsers?.find(u => (u.id || u._id) === idToCheck);
+        if (found) raiserObj = found;
+    }
+    const raiser = raiserObj?.name || "Unknown";
+    const raiserEmail = raiserObj?.email || "No email provided";
     
     // Bug Tester uses assignedTester in Phase I, or testedBy in Phase II, default to assignedTester
-    const testerObj = rawItem.phaseI_BugReport?.assignedTester || rawItem.phaseII_BugConfirmation?.testedBy;
+    let testerObj = rawItem.phaseI_BugReport?.assignedTester || rawItem.phaseII_BugConfirmation?.testedBy;
+    if (testerObj && (typeof testerObj !== "object" || !testerObj.name)) {
+        const idToCheck = typeof testerObj === "object" ? (testerObj._id || testerObj.id) : testerObj;
+        const found = allUsers?.find(u => (u.id || u._id) === idToCheck);
+        if (found) testerObj = found;
+    }
     const tester = testerObj?.name || "";
     const testerEmail = testerObj?.email || "No email provided";
     
@@ -559,13 +590,51 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
       return <span className="text-gray-600 truncate block w-full" title={raiserEmail}>{raiser}</span>;
     }
 
+    if (col.type === "facedByCard") {
+      const clientCtx = rawItem.phaseI_BugReport?.clientContext;
+      if (!clientCtx) return <span className="text-gray-400">-</span>;
+
+      if (clientCtx.facedByMe) {
+        return <span className="text-gray-700 font-medium">Me</span>;
+      } else if (clientCtx.facedByClient) {
+        return (
+          <div className="flex flex-col text-xs text-gray-700 truncate min-w-[120px]">
+            <span className="font-semibold truncate">{clientCtx.clientName || "Unknown Client"}</span>
+            <span className="text-gray-500 truncate">{clientCtx.companyName || "Unknown Company"}</span>
+          </div>
+        );
+      }
+      return <span className="text-gray-400">-</span>;
+    }
+
+    if (col.type === "sopFollowedRaiserCard") {
+      const sopChecklist = rawItem.phaseI_BugReport?.clientContext?.sopChecklist;
+      if (!sopChecklist || Object.keys(sopChecklist).length === 0) {
+        return <span className="text-gray-400 px-2 block w-full">-</span>;
+      }
+      
+      const followedItems = Object.entries(sopChecklist)
+        .filter(([_, isChecked]) => isChecked)
+        .map(([text, _]) => text);
+        
+      if (followedItems.length === 0) return <span className="text-gray-400 px-2 block w-full">None</span>;
+      
+      return (
+        <ul className="list-disc pl-5 text-xs text-gray-700 m-0 max-h-20 overflow-y-auto block w-full pr-1" title={followedItems.join('\n')}>
+          {followedItems.map((item, idx) => (
+             <li key={idx} className="truncate" title={item}>{item}</li>
+          ))}
+        </ul>
+      );
+    }
+
     if (col.key === "assignedTester") {
       return <span className="text-gray-600 truncate block w-full" title={testerEmail}>{tester}</span>;
     }
 
     if (col.type === "devSelect" && col.key === "assignedDev") {
       if (isEditing) {
-        const devs = allUsers?.filter(u => u.roletype === "dev" || (u.roles && u.roles.includes("Developer"))) || [];
+        const devs = allUsers?.filter(u => (Array.isArray(u.roletype) ? u.roletype.includes("dev") : u.roletype === "dev") || (u.roles && u.roles.includes("Developer"))) || [];
         
         let selectedDevId = displayData.devExtracted ?? developerObj?._id ?? developerObj?.id;
         
@@ -870,20 +939,20 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
       );
     }
 
-    if (col.type === "platformSelect") {
+    if (col.type === "stackSelect") {
       return isEditing ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="h-8 w-full justify-start text-left">
-               {platform}
+               {stack}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-32">
-            {platformOptions.map((opt) => (
+            {stackOptions.map((opt) => (
                <DropdownMenuCheckboxItem
                  key={opt}
-                 checked={platform === opt}
-                 onClick={() => setRowEditData({ platformExtracted: opt })}
+                 checked={stack === opt}
+                 onClick={() => setRowEditData({ stackExtracted: opt })}
                >
                  {opt}
                </DropdownMenuCheckboxItem>
@@ -891,7 +960,7 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <span className="text-gray-600">{platform}</span>
+        <span className="text-gray-600">{stack}</span>
       );
     }
 

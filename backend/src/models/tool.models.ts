@@ -6,7 +6,7 @@ interface ToolInterface extends Document {
   toolDescription: string;
   testerId?: string;
   devId?: string;
-  platform: string[];
+  stack: string[];
   libraryName: string;
   htmlVersion: string;
   lastLibraryUpdate?: Date;
@@ -16,7 +16,7 @@ interface ToolInterface extends Document {
   lastBugReport?: Date;
   SOP: string;
   ReleaseNotes: string;
-  defaultPlatform: string;
+  defaultStack: string;
 }
 
 // Define the schema
@@ -36,7 +36,7 @@ const toolSchema: Schema<ToolInterface> = new Schema(
       required: false,
       default: null,
     },
-    platform: { type: [String], required: false, default: [] },
+    stack: { type: [String], required: false, default: [] },
     libraryName: { type: String, required: false, default: "" },
     htmlVersion: { type: String, required: false, default: "" },
     lastLibraryUpdate: { type: Date, required: false, default: null },
@@ -46,7 +46,7 @@ const toolSchema: Schema<ToolInterface> = new Schema(
     lastBugReport: { type: Date, required: false, default: null },
     SOP: { type: String, required: false, default: "" },
     ReleaseNotes: { type: String, required: false, default: "" },
-    defaultPlatform: { type: String, required: false, default: "" },
+    defaultStack: { type: String, required: false, default: "" },
   },
   { timestamps: true }
 );
