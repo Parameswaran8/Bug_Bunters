@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 
+import { NotificationPopover } from "./NotificationPopover";
+
 function DashboardLayout() {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -43,10 +45,7 @@ function DashboardLayout() {
 
           {/* Right: bell + avatar */}
           <div className="flex items-center gap-2">
-            <button className="relative w-8 h-8 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors">
-              <Bell size={15} className="text-gray-500" />
-              <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-cyan-500 rounded-full border border-white" />
-            </button>
+            <NotificationPopover />
             <button
               onClick={() => navigate("/account")}
               className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold transition-transform hover:scale-105"

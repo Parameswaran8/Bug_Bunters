@@ -1,34 +1,45 @@
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { logout } from "@/API_Call/Auth";
 import toast from "react-hot-toast";
 import {
   LayoutDashboard,
-  Star,
   Bug,
   Settings,
   LogOut,
   BugIcon,
+  ChevronDown,
+  ChevronRight,
+  Users,
+  Wrench,
+  FileBarChart,
 } from "lucide-react";
 
 const NAV = [
   {
     label: "Overview",
     items: [
-      { name: "Dashboard", href: "/",     icon: LayoutDashboard },
-      { name: "Starred",   href: "/star", icon: Star },
+      { name: "Dashboard", href: "/", icon: LayoutDashboard },
     ],
   },
   {
     label: "Work",
-    items: [
-      { name: "Bugs", href: "/bugs", icon: Bug },
-    ],
+    items: [{ name: "Bugs", href: "/bugs", icon: Bug }],
   },
   {
     label: "Admin",
     items: [
-      { name: "Settings", href: "/settings", icon: Settings },
+      {
+        name: "Settings",
+        href: "/settings",
+        icon: Settings,
+        subItems: [
+          { name: "Users", href: "/settings/users", icon: Users },
+          { name: "Tools", href: "/settings/tools", icon: Wrench },
+          { name: "Reports", href: "/settings/reports", icon: FileBarChart },
+        ],
+      },
     ],
   },
 ];
@@ -37,6 +48,12 @@ export default function Sidebar({ collapsed, setCollapsed }) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { user, setUser, setLoading } = useAuth();
+  const [expanded, setExpanded] = useState({ Settings: true });
+  
+  const toggleExpand = (name) => {
+    setExpanded(prev => ({ ...prev, [name]: !prev[name] }));
+  };
+
   const hasSettingsAccess = user?.role === "superadmin" || (Array.isArray(user?.adminControl) && user.adminControl.some(r => ["create", "edit", "view", "delete"].includes(r?.toLowerCase())));
 
   const handleLogout = async () => {
@@ -58,6 +75,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
     "U";
 
   const isActive = (href) => {
+    if (href === "/settings") return pathname.startsWith("/settings");
     if (href === "/bugs") return pathname.startsWith("/bugs");
     return pathname === href;
   };
@@ -113,54 +131,82 @@ export default function Sidebar({ collapsed, setCollapsed }) {
 
             {group.items.map((item) => {
               const active = isActive(item.href);
+              const isExpanded = expanded[item.name];
+              const hasSubItems = item.subItems && item.subItems.length > 0;
+
               return (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  title={collapsed ? item.name : undefined}
-                  className="group relative flex items-center rounded-xl mb-0.5 transition-all duration-200 overflow-hidden"
-                  style={{
-                    justifyContent: collapsed ? "center" : "flex-start",
-                    gap: collapsed ? 0 : "0.75rem",
-                    padding: collapsed ? "0.625rem" : "0.625rem 0.75rem",
-                    ...(active ? {
-                      background: "linear-gradient(135deg, rgba(6,182,212,0.2) 0%, rgba(6,182,212,0.08) 100%)",
-                      borderLeft: collapsed ? "none" : "3px solid #22d3ee",
-                      borderRadius: collapsed ? "12px" : undefined,
-                      boxShadow: collapsed ? "0 0 0 1.5px rgba(34,211,238,0.5)" : "none",
-                    } : {
-                      borderLeft: collapsed ? "none" : "3px solid transparent",
-                    }),
-                  }}
-                  onMouseEnter={e => { if (!active) e.currentTarget.style.background = "rgba(6,182,212,0.07)"; }}
-                  onMouseLeave={e => { if (!active) e.currentTarget.style.background = active ? "linear-gradient(135deg, rgba(6,182,212,0.2) 0%, rgba(6,182,212,0.08) 100%)" : "transparent"; }}
-                >
-                  {/* Glow on active */}
-                  {active && (
-                    <div className="absolute inset-0 pointer-events-none"
-                      style={{ background: "radial-gradient(ellipse at left center, rgba(6,182,212,0.15) 0%, transparent 60%)" }} />
-                  )}
+                <div key={item.name}>
+                  <div
+                    onClick={hasSubItems ? () => toggleExpand(item.name) : () => navigate(item.href)}
+                    className="group relative flex items-center rounded-xl mb-0.5 transition-all duration-200 overflow-hidden cursor-pointer"
+                    style={{
+                      justifyContent: collapsed ? "center" : "flex-start",
+                      gap: collapsed ? 0 : "0.75rem",
+                      padding: collapsed ? "0.625rem" : "0.625rem 0.75rem",
+                      ...(active && !hasSubItems ? {
+                        background: "linear-gradient(135deg, rgba(6,182,212,0.2) 0%, rgba(6,182,212,0.08) 100%)",
+                        borderLeft: collapsed ? "none" : "3px solid #22d3ee",
+                        borderRadius: collapsed ? "12px" : undefined,
+                        boxShadow: collapsed ? "0 0 0 1.5px rgba(34,211,238,0.5)" : "none",
+                      } : {
+                        borderLeft: collapsed ? "none" : "3px solid transparent",
+                      }),
+                    }}
+                  >
+                    {active && !hasSubItems && (
+                      <div className="absolute inset-0 pointer-events-none"
+                        style={{ background: "radial-gradient(ellipse at left center, rgba(6,182,212,0.15) 0%, transparent 60%)" }} />
+                    )}
 
-                  <item.icon
-                    size={18}
-                    className="flex-shrink-0 relative z-10 transition-colors duration-200"
-                    style={{ color: active ? "#22d3ee" : "rgba(186,230,253,0.55)" }}
-                  />
+                    <item.icon
+                      size={18}
+                      className="flex-shrink-0 relative z-10 transition-colors duration-200"
+                      style={{ color: active ? "#22d3ee" : "rgba(186,230,253,0.55)" }}
+                    />
 
-                  {/* Label — only expanded */}
-                  {!collapsed && (
-                    <span className="text-sm font-medium truncate relative z-10"
-                      style={{ color: active ? "#e0f2fe" : "rgba(186,230,253,0.7)" }}>
-                      {item.name}
-                    </span>
-                  )}
+                    {!collapsed && (
+                      <span className="text-sm font-medium truncate relative z-10"
+                        style={{ color: active ? "#e0f2fe" : "rgba(186,230,253,0.7)" }}>
+                        {item.name}
+                      </span>
+                    )}
 
-                  {/* Active dot — only expanded */}
-                  {active && !collapsed && (
-                    <span className="ml-auto w-1.5 h-1.5 rounded-full flex-shrink-0 relative z-10"
-                      style={{ background: "#22d3ee", boxShadow: "0 0 6px #22d3ee" }} />
+                    {hasSubItems && !collapsed && (
+                      <span className="ml-auto relative z-10">
+                        {isExpanded ? <ChevronDown size={14} className="text-cyan-400/50" /> : <ChevronRight size={14} className="text-cyan-400/50" />}
+                      </span>
+                    )}
+
+                    {active && !hasSubItems && !collapsed && (
+                      <span className="ml-auto w-1.5 h-1.5 rounded-full flex-shrink-0 relative z-10"
+                        style={{ background: "#22d3ee", boxShadow: "0 0 6px #22d3ee" }} />
+                    )}
+                  </div>
+
+                  {/* Sub items */}
+                  {hasSubItems && isExpanded && !collapsed && (
+                    <div className="ml-4 pl-4 border-l border-cyan-900/50 space-y-0.5 mt-1 mb-2">
+                      {item.subItems.map((sub) => {
+                        const subActive = pathname === sub.href;
+                        return (
+                          <a
+                            key={sub.name}
+                            href={sub.href}
+                            className="flex items-center gap-2.5 px-3 py-2 rounded-lg transition-all duration-200"
+                            style={{
+                              background: subActive ? "rgba(6,182,212,0.1)" : "transparent",
+                            }}
+                          >
+                            <sub.icon size={14} style={{ color: subActive ? "#22d3ee" : "rgba(186,230,253,0.4)" }} />
+                            <span className="text-xs font-medium" style={{ color: subActive ? "#e0f2fe" : "rgba(186,230,253,0.6)" }}>
+                              {sub.name}
+                            </span>
+                          </a>
+                        );
+                      })}
+                    </div>
                   )}
-                </a>
+                </div>
               );
             })}
           </div>

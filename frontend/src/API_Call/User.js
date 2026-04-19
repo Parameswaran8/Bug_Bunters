@@ -40,3 +40,16 @@ export const deleteUser = async (id) => {
     };
   }
 };
+
+export const changePassword = async (id, { oldPassword, newPassword }) => {
+  try {
+    const res = await api.post(`/user/change_password/${id}`, { oldPassword, newPassword });
+    return { success: true, message: res.data.message };
+  } catch (error) {
+    console.error("Error changing password:", error);
+    return {
+      success: false,
+      message: error.response?.data?.message || "Failed to change password",
+    };
+  }
+};

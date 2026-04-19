@@ -5,6 +5,10 @@ import { asyncHandler } from "../utils/asyncHandler";
 import { HttpStatusCodes } from "../utils/errorCodes";
 import BugModel from "../models/bug.models";
 import User from "../models/user.model";
+import { createNotification } from "../utils/notification";
+import { uploadOnCloudinary } from "../utils/cloudinary";
+import LogModel from "../models/logs.models";
+import { logBugActivity, captureBugChanges } from "../utils/bugActivity";
 
 export default class BugController {
   // =========================================
@@ -136,6 +140,38 @@ export default class BugController {
           // Await save sequentially to guarantee sequential custom ID creation (BUG-XXXX hook)
           const savedBug = await newBug.save();
 
+          // Trigger notification for assigned tester
+          if (assignedTester?.userId) {
+            await createNotification({
+              recipient: assignedTester.userId,
+              sender: user._id as string,
+              type: "assignment",
+              title: "New Bug Assigned",
+              message: `You have been assigned as a tester for bug: ${savedBug.bugId}`,
+              link: `/bugs/${savedBug._id}`,
+            });
+          }
+
+          // Log Bug Creation
+          await logBugActivity(
+            savedBug._id,
+            user._id,
+            "Bug Created",
+            JSON.stringify({
+              toolName: toolInfo.toolName,
+              bugId: savedBug.bugId,
+              stack: toolInfo.stack || "Not Specified",
+              priority: toolInfo.priority,
+              bugDescription: toolInfo.bugDescription,
+              expectedResult: toolInfo.expectedResult,
+              actualResult: toolInfo.actualResult,
+              assignedTester: assignedTester?.name || "None",
+              currentPhase: savedBug.currentPhase,
+              reportedBy: user.name || user.email
+            }),
+            "creation"
+          );
+
           results.push({
             status: "created",
             message: "Bug raised successfully",
@@ -247,7 +283,31 @@ export default class BugController {
         bug.currentPhase = currentPhase;
       }
 
+      const oldBug = bug.toObject();
       const updatedBug = await bug.save();
+
+      // Log activity
+      const changes = captureBugChanges(oldBug, updatedBug.toObject());
+      if (changes.length > 0) {
+        await logBugActivity(
+          updatedBug._id,
+          (req as any).user?._id,
+          "Bug Confirmation Updated",
+          JSON.stringify(changes)
+        );
+      }
+
+      // Trigger notification for assigned developer
+      if (assignedDeveloper?.userId) {
+        await createNotification({
+          recipient: assignedDeveloper.userId,
+          sender: (req as any).user?._id as string,
+          type: "assignment",
+          title: "Bug Assigned for Development",
+          message: `You have been assigned as a developer for bug: ${updatedBug.bugId}`,
+          link: `/bugs/${updatedBug._id}`,
+        });
+      }
 
       res.status(HttpStatusCodes.OK).json({
         message: "Bug confirmation completed",
@@ -310,7 +370,19 @@ export default class BugController {
         bug.currentPhase = currentPhase;
       }
 
+      const oldBug = bug.toObject();
       const updatedBug = await bug.save();
+
+      // Log activity
+      const changes = captureBugChanges(oldBug, updatedBug.toObject());
+      if (changes.length > 0) {
+        await logBugActivity(
+          updatedBug._id,
+          (req as any).user?._id,
+          "Bug Analysis Updated",
+          JSON.stringify(changes)
+        );
+      }
 
       res.status(HttpStatusCodes.OK).json({
         message: "Bug analysis completed",
@@ -372,7 +444,19 @@ export default class BugController {
         bug.currentPhase = currentPhase;
       }
 
+      const oldBug = bug.toObject();
       const updatedBug = await bug.save();
+
+      // Log activity
+      const changes = captureBugChanges(oldBug, updatedBug.toObject());
+      if (changes.length > 0) {
+        await logBugActivity(
+          updatedBug._id,
+          (req as any).user?._id,
+          "Bug Maintenance Updated",
+          JSON.stringify(changes)
+        );
+      }
 
       res.status(HttpStatusCodes.OK).json({
         message: "Bug fix completed",
@@ -448,7 +532,19 @@ export default class BugController {
         bug.currentPhase = currentPhase;
       }
 
+      const oldBug = bug.toObject();
       const updatedBug = await bug.save();
+
+      // Log activity
+      const changes = captureBugChanges(oldBug, updatedBug.toObject());
+      if (changes.length > 0) {
+        await logBugActivity(
+          updatedBug._id,
+          (req as any).user?._id,
+          "Final Testing Updated",
+          JSON.stringify(changes)
+        );
+      }
 
       res.status(HttpStatusCodes.OK).json({
         message: "Final testing completed",
@@ -510,7 +606,19 @@ export default class BugController {
         bug.currentPhase = currentPhase;
       }
 
+      const oldBug = bug.toObject();
       const updatedBug = await bug.save();
+
+      // Log activity
+      const changes = captureBugChanges(oldBug, updatedBug.toObject());
+      if (changes.length > 0) {
+        await logBugActivity(
+          updatedBug._id,
+          (req as any).user?._id,
+          "Bug Deployed",
+          JSON.stringify(changes)
+        );
+      }
 
       res.status(HttpStatusCodes.OK).json({
         message: "Bug fix deployed successfully",
@@ -557,7 +665,19 @@ export default class BugController {
 
       bug.isActive = false;
 
+      const oldBug = bug.toObject();
       const updatedBug = await bug.save();
+
+      // Log activity
+      const changes = captureBugChanges(oldBug, updatedBug.toObject());
+      if (changes.length > 0) {
+        await logBugActivity(
+          updatedBug._id,
+          (req as any).user?._id,
+          "Bug Closed",
+          JSON.stringify(changes)
+        );
+      }
 
       res.status(HttpStatusCodes.OK).json({
         message: "Bug closed successfully",
@@ -659,7 +779,7 @@ export default class BugController {
   // =========================================
   static GetBugById = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
-      const { id } = req.params;
+      const id = req.params.id || req.body.id || req.body._id;
 
       const bug = await BugController.findBugById(id);
 
@@ -674,6 +794,55 @@ export default class BugController {
       res.status(HttpStatusCodes.OK).json({
         message: "Bug fetched successfully",
         result: bug,
+      });
+    }
+  );
+
+  // =========================================
+  // ✅ GET BUG ACTIVITY LOGS
+  // =========================================
+  static GetBugLogs = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { id } = req.body;
+      console.log("Fetching logs for ID:", id);
+      let mongoId: any = null;
+
+      if (mongoose.Types.ObjectId.isValid(id)) {
+        mongoId = new mongoose.Types.ObjectId(id);
+      } else {
+        const bug = await BugModel.findOne({ bugId: id.toUpperCase() });
+        if (bug) {
+          mongoId = bug._id;
+        }
+      }
+
+      if (!mongoId) {
+        console.log("No valid bug found for ID:", id);
+        res.status(HttpStatusCodes.OK).json({
+          success: true,
+          message: "No bug found for identifier",
+          results: [],
+        });
+        return;
+      }
+
+      console.log("Searching LogModel with bugId:", mongoId);
+      const logs = await LogModel.find({ 
+        $or: [
+          { bugId: mongoId },
+          { bugId: mongoId.toString() }
+        ]
+      })
+        .populate("performedBy", "name email")
+        .sort({ timestamp: -1 })
+        .lean();
+
+      console.log(`Found ${logs.length} logs for bug ${mongoId}`);
+
+      res.status(HttpStatusCodes.OK).json({
+        success: true,
+        message: "Bug logs fetched successfully",
+        results: logs,
       });
     }
   );
@@ -735,9 +904,10 @@ export default class BugController {
   // ✅ UPDATE BUG DETAILS (Generic Update)
   // =========================================
   static UpdateBug = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
+    async (req: AuthenticatedRequest, res: Response): Promise<void> => {
       const id = req.body.id || req.body._id;
       const updateData = req.body;
+      const user = req.user;
 
       const bug = await BugController.findBugById(id);
 
@@ -749,9 +919,139 @@ export default class BugController {
         return;
       }
 
+      // Track old assignments and phase to detect changes
+      const oldPhase = bug.currentPhase;
+      const oldTesterId = bug.phaseI_BugReport?.assignedTester?.toString();
+      const oldDevId = bug.phaseII_BugConfirmation?.assignedDeveloper?.toString();
+
+      console.log("UpdateBug tracking old:", { oldPhase, oldTesterId, oldDevId });
+
       // Update bug with new data
+      const oldBug = bug.toObject();
       bug.set(updateData);
       const updatedBug = await bug.save();
+
+      // Log activity
+      const changes = captureBugChanges(oldBug, updatedBug.toObject());
+      if (changes.length > 0) {
+        await logBugActivity(
+          updatedBug._id,
+          user?._id,
+          "Bug Updated",
+          JSON.stringify(changes)
+        );
+      }
+
+      // Trigger notifications if assignments or phases changed
+      const newPhase = updatedBug.currentPhase;
+      const newTesterId = updatedBug.phaseI_BugReport?.assignedTester?.toString();
+      const newDevId = updatedBug.phaseII_BugConfirmation?.assignedDeveloper?.toString();
+      const raiserId = updatedBug.phaseI_BugReport?.bugRaiser?.id;
+
+      console.log("UpdateBug tracking new:", { newPhase, newTesterId, newDevId });
+
+      const senderId = user?._id as string;
+
+      // 1. Assignment Notifications (If IDs changed but phase might not have)
+      if (newTesterId && newTesterId !== oldTesterId) {
+        await createNotification({
+          recipient: newTesterId,
+          sender: senderId,
+          type: "assignment",
+          title: "Bug Assigned to You",
+          message: `You have been assigned as a tester for bug ${updatedBug.bugId}`,
+          link: `/bugs/${updatedBug._id}`,
+        });
+      }
+
+      if (newDevId && newDevId !== oldDevId) {
+        await createNotification({
+          recipient: newDevId,
+          sender: senderId,
+          type: "assignment",
+          title: "Development Assignment",
+          message: `You have been assigned to analyze bug ${updatedBug.bugId}`,
+          link: `/bugs/${updatedBug._id}`,
+        });
+      }
+
+      // 2. Phase Transition Notifications
+      if (newPhase !== oldPhase) {
+        // Bug Reported -> Bug Testing
+        if (oldPhase === "Bug Reported" && newPhase === "Bug Testing" && newTesterId) {
+          await createNotification({
+            recipient: newTesterId,
+            sender: senderId,
+            type: "status_change",
+            title: "New Testing Task",
+            message: `Bug ${updatedBug.bugId} moved to Testing phase. Please verify.`,
+            link: `/bugs/${updatedBug._id}`,
+          });
+        }
+
+        // Bug Testing -> Bug Analysis
+        if (oldPhase === "Bug Testing" && newPhase === "Bug Analysis" && newDevId) {
+          await createNotification({
+            recipient: newDevId,
+            sender: senderId,
+            type: "status_change",
+            title: "Bug for Analysis",
+            message: `Bug ${updatedBug.bugId} confirmed and moved to Analysis phase.`,
+            link: `/bugs/${updatedBug._id}`,
+          });
+        }
+
+        // Bug Analysis -> Ready to Test
+        if (oldPhase === "Bug Analysis" && newPhase === "Ready to Test" && newTesterId) {
+          await createNotification({
+            recipient: newTesterId,
+            sender: senderId,
+            type: "status_change",
+            title: "Ready for Testing",
+            message: `Fix for bug ${updatedBug.bugId} is ready to be tested.`,
+            link: `/bugs/${updatedBug._id}`,
+          });
+        }
+
+        // Ready to Test -> Bug Analysis (Re-opened/Failed)
+        if (oldPhase === "Ready to Test" && newPhase === "Bug Analysis" && newDevId) {
+          await createNotification({
+            recipient: newDevId,
+            sender: senderId,
+            type: "status_change",
+            title: "Bug Re-Analysis",
+            message: `Testing failed for bug ${updatedBug.bugId}. Please re-analyze.`,
+            link: `/bugs/${updatedBug._id}`,
+          });
+        }
+
+        // Ready to Test -> Ready to Deploy
+        if (oldPhase === "Ready to Test" && newPhase === "Ready to Deploy" && newDevId) {
+          await createNotification({
+            recipient: newDevId,
+            sender: senderId,
+            type: "status_change",
+            title: "Ready for Deployment",
+            message: `Bug ${updatedBug.bugId} passed testing and is ready for deploy.`,
+            link: `/bugs/${updatedBug._id}`,
+          });
+        }
+
+        // Ready to Deploy -> Closure
+        if (oldPhase === "Ready to Deploy" && newPhase === "Closure") {
+          const notifyList = [raiserId, newTesterId, newDevId].filter(Boolean);
+          for (const recipientId of notifyList) {
+            await createNotification({
+              recipient: recipientId as string,
+              sender: senderId,
+              type: "status_change",
+              title: "Bug Resolved",
+              message: `Bug ${updatedBug.bugId} has been successfully deployed and closed.`,
+              link: `/bugs/${updatedBug._id}`,
+            });
+          }
+        }
+      }
 
       res.status(HttpStatusCodes.OK).json({
         message: "Bug updated successfully",
@@ -788,13 +1088,63 @@ export default class BugController {
   );
 
   // =========================================
+  // 📁 FILE UPLOAD (CLOUDINARY)
+  // =========================================
+  static UploadFiles = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const files = req.files as Express.Multer.File[];
+      
+      if (!files || files.length === 0) {
+        res.status(HttpStatusCodes.BAD_REQUEST).json({
+          message: "No files provided",
+        });
+        return;
+      }
+
+      const uploadResults = [];
+      
+      for (const file of files) {
+        const result = await uploadOnCloudinary(file.path);
+        if (result) {
+          uploadResults.push({
+            url: result.secure_url,
+            fileName: file.originalname,
+            publicId: result.public_id,
+            size: file.size,
+            uploadedAt: new Date(),
+          });
+        }
+      }
+
+      if (uploadResults.length === 0) {
+        res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({
+          message: "Failed to upload files to Cloudinary",
+        });
+        return;
+      }
+
+      res.status(HttpStatusCodes.OK).json({
+        message: "Files uploaded successfully",
+        results: uploadResults,
+      });
+    }
+  );
+
+  // =========================================
   // 🔧 HELPER: FIND BUG BY ID OR BUGID
   // =========================================
   private static async findBugById(id: string) {
-    if (mongoose.Types.ObjectId.isValid(id)) {
-      return await BugModel.findById(id);
-    } else {
-      return await BugModel.findOne({ bugId: id.toUpperCase() });
-    }
+    const query = mongoose.Types.ObjectId.isValid(id)
+      ? BugModel.findById(id)
+      : BugModel.findOne({ bugId: id.toUpperCase() });
+
+    return await query
+      .populate("phaseI_BugReport.reportedBy", "name email")
+      .populate("phaseI_BugReport.assignedTester", "name email")
+      .populate("phaseII_BugConfirmation.assignedDeveloper", "name email")
+      .populate("phaseIII_BugAnalysis.analyzedBy", "name email")
+      .populate("phaseIV_Maintenance.fixedBy", "name email")
+      .populate("phaseV_FinalTesting.testedBy", "name email")
+      .populate("phaseV_FinalTesting.approvedBy", "name email");
   }
 }

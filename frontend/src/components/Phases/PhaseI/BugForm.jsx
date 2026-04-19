@@ -8,6 +8,7 @@ import SearchableToolDropdown from "@/components/Dropdowns/SearchableSelect";
 import DynamicSelect from "@/components/Dropdowns/Dropdown";
 import AnimatedCheckbox from "./Checkbox";
 import SOPChecklist from "./SopChecks";
+import FileUploader from "../../Shared/FileUploader";
 
 import {
   SheetContent,
@@ -39,6 +40,7 @@ function BugForm({ setIsOpen }) {
   const [parentChecked, setParentChecked] = useState(false);
 
   const [sopChecks, setSopChecks] = useState([false, false, false, false]);
+  const [attachments, setAttachments] = useState([]);
 
   const priorityOptions = [
     { value: "low", label: "Low" },
@@ -243,7 +245,12 @@ function BugForm({ setIsOpen }) {
         expectedResult: descriptionType ? "Not Applicable (Simple Description)" : expectedResult,
         actualResult: descriptionType ? "Not Applicable (Simple Description)" : actualResult,
         
-        attachments: [], // In the future, this will map to actual uploaded URLs
+        attachments: attachments.map(f => ({
+          url: f.url,
+          fileName: f.name,
+          size: f.size,
+          uploadedAt: new Date()
+        })),
       },
       tags: [],
       // Extra frontend context, ignored by the current backend schema but safe to pass
@@ -327,6 +334,7 @@ function BugForm({ setIsOpen }) {
     setFacedByClient(false);
     setParentChecked(false);
     setSopChecks(new Array(sopList.length || 0).fill(false));
+    setAttachments([]);
 
     // also clear input boxes manually
     const simpleDesc = document.getElementById("description");
@@ -543,6 +551,15 @@ function BugForm({ setIsOpen }) {
                 )}
               </div>
             )}
+          </div>
+
+          {/* Attachments Section */}
+          <div className="pt-2 pb-4 border-t border-gray-50 mt-4">
+            <FileUploader 
+              files={attachments} 
+              onChange={setAttachments} 
+              label="Bug Attachments" 
+            />
           </div>
 
           {/* Faced By Section */}

@@ -1,141 +1,76 @@
-import { useState, useRef, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { EllipsisVertical, Menu, X } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import { useState } from "react";
 import General from "@/components/My_Account/General";
-import MenuContent from "@/components/My_Account/MenuContent";
 import AdminControl from "@/components/My_Account/Admin_Control";
 import PasswordControl from "@/components/My_Account/Password";
 import NotificationControl from "@/components/My_Account/Notification";
+import { Bolt, User, Lock, Bell } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 function Account() {
   const [activeTab, setActiveTab] = useState("general");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const menuRef = useRef(null);
 
-  // Close menu when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setMobileMenuOpen(false);
-      }
-    }
-
-    if (mobileMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      return () =>
-        document.removeEventListener("mousedown", handleClickOutside);
-    }
-  }, [mobileMenuOpen]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setMobileMenuOpen(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const menuItems = [
+    { id: "general", label: "General", icon: Bolt },
+    { id: "admin", label: "Admin", icon: User },
+    { id: "password", label: "Password", icon: Lock },
+    { id: "notification", label: "Notification", icon: Bell },
+  ];
 
   return (
-    <div className="w-full h-[98%] bg-white relative  lg:border lg:!border-['#f3f3f3] rounded-xl">
-      <div className="h-full mx-auto p-0 sm:p-1 lg:p-4">
-        {/* Main Layout */}
-        <div className="h-full flex flex-col lg:flex-row gap-6">
-          {/* Left Sidebar Navigation - Hidden on mobile */}
-          <aside className="hidden lg:block w-56 xl:w-64 flex-shrink-0">
-            <MenuContent
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-              setMobileMenuOpen={setMobileMenuOpen}
-            />
-          </aside>
-
-          <Separator
-            orientation="vertical"
-            className="hidden lg:block h-auto self-stretch bg-gray-200 w-px"
-          />
-
-          {/* Right Content Area */}
-          <main className="flex-1 min-w-0">
-            {/* Header */}
-            <div className="mb-4 px-3 lg:px-3">
-              <div className="flex items-center justify-between  mb-0 lg:mb-2">
-                <h4 className="text-lg lg:text-xl font-semibold text-gray-900">
-                  My Account
-                </h4>
-
-                {/* Mobile Menu Button */}
-                <div className="lg:hidden relative" ref={menuRef}>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    className="relative z-30 border-none shadow-none bg-none"
-                  >
-                    {mobileMenuOpen ? (
-                      <X className="h-5 w-5" />
-                    ) : (
-                      <EllipsisVertical />
-                      // <Menu className="h-5 w-5" />
-                    )}
-                  </Button>
-
-                  {/* Dropdown Menu */}
-                </div>
-              </div>
-              <div className="flex items-center gap-2 text-xs lg:text-sm text-gray-500">
-                <span className="font-medium">My Account</span>
-                <span className="text-gray-400">›</span>
-                <span className="text-gray-600">
-                  {activeTab === "general"
-                    ? "General"
-                    : activeTab == "admin"
-                    ? "Admin"
-                    : activeTab === "password"
-                    ? "Password"
-                    : activeTab === "notification"
-                    ? "Notification"
-                    : null}
-                </span>
-              </div>
-            </div>
-
-            {activeTab === "general" ? (
-              <General />
-            ) : activeTab == "admin" ? (
-              <AdminControl />
-            ) : activeTab === "password" ? (
-              <PasswordControl />
-            ) : activeTab === "notification" ? (
-              <NotificationControl />
-            ) : null}
-          </main>
+    <div className="w-full h-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col">
+      {/* ── Header with Icon Tabs ── */}
+      <header className="px-6 py-4 border-b border-gray-100 bg-gray-50/30 flex items-center justify-between gap-4">
+        <div>
+          <h4 className="text-xl font-bold text-gray-900">My Account</h4>
+          <p className="text-xs text-gray-500 mt-0.5 capitalize">
+            {activeTab} Settings
+          </p>
         </div>
-      </div>
 
-      {mobileMenuOpen && (
-        <>
-          {/* Backdrop overlay */}
-          <div
-            className="fixed inset-0 bg-black/20 z-30"
-            onClick={() => setMobileMenuOpen(false)}
-          />
+        {/* Icon Navigation */}
+        <TooltipProvider>
+          <nav className="flex items-center bg-gray-100/50 p-1 rounded-xl">
+            {menuItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeTab === item.id;
+              return (
+                <Tooltip key={item.id} delayDuration={0}>
+                  <TooltipTrigger asChild>
+                    <button
+                      onClick={() => setActiveTab(item.id)}
+                      className={`flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-200 ${
+                        isActive
+                          ? "bg-white text-cyan-600 shadow-sm"
+                          : "text-gray-500 hover:text-gray-700 hover:bg-gray-200/50"
+                      }`}
+                    >
+                      <Icon size={20} className={isActive ? "text-cyan-600" : "text-gray-400"} />
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom">
+                    <p>{item.label}</p>
+                  </TooltipContent>
+                </Tooltip>
+              );
+            })}
+          </nav>
+        </TooltipProvider>
+      </header>
 
-          {/* Menu dropdown */}
-          <div className="absolute right-0 mt-2 w-72 z-40 shadow-lg top-1">
-            <nav className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-              <MenuContent
-                activeTab={activeTab}
-                setActiveTab={setActiveTab}
-                setMobileMenuOpen={setMobileMenuOpen}
-              />
-            </nav>
-          </div>
-        </>
-      )}
+      {/* ── Content Area ── */}
+      <main className="flex-1 overflow-auto p-6 bg-white">
+        <div className="max-w-4xl">
+          {activeTab === "general" && <General />}
+          {activeTab === "admin" && <AdminControl />}
+          {activeTab === "password" && <PasswordControl />}
+          {activeTab === "notification" && <NotificationControl />}
+        </div>
+      </main>
     </div>
   );
 }

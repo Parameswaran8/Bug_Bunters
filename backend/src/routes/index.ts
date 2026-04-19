@@ -7,6 +7,7 @@ import authRoutes from "./auth.routes";
 import authExtend from "./authExtend.routes";
 import credential from "./credential.routes";
 import resetPassRoutes from "./resetpass.routes";
+import notificationRoutes from "./notification.routes";
 import { authenticateToken } from "../middlewares/authMiddleware";
 
 const router = Router();
@@ -18,6 +19,7 @@ router.use("/reset", resetPassRoutes); // Register and reset password with token
 router.use(authenticateToken);
 router.use("/authextend", authExtend); // Register new user/amdin with token...
 router.use("/credential", credential); // Register and reset password with token...
+router.use("/notifications", notificationRoutes);
 
 // Routes that require authentication
 router.use("/user", userRoutes);

@@ -1,26 +1,26 @@
 "use client";
 
-import { FaGoogle, FaGithub, FaMicrosoft } from "react-icons/fa";
+import { Github, Chrome, Grid2x2 } from "lucide-react";
 import toast from "react-hot-toast";
 
 const PROVIDERS = [
   {
     id: "Google",
-    icon: FaGoogle,
+    icon: Chrome,
     label: "Google",
     color: "hover:bg-red-50 hover:border-red-300",
     iconColor: "text-red-500",
   },
   {
     id: "GitHub",
-    icon: FaGithub,
+    icon: Github,
     label: "GitHub",
     color: "hover:bg-gray-50 hover:border-gray-400",
     iconColor: "text-gray-800",
   },
   {
     id: "Microsoft",
-    icon: FaMicrosoft,
+    icon: Grid2x2,
     label: "Microsoft",
     color: "hover:bg-blue-50 hover:border-blue-400",
     iconColor: "text-blue-600",

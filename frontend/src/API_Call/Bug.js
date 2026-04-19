@@ -60,6 +60,15 @@ export const getBugStatistics = async (reqData = {}) => {
   }
 };
 
+export const getBugLogs = async (bugData) => {
+  try {
+    const res = await api.post("/bug/get_BugLogs", bugData);
+    return { success: true, data: res.data };
+  } catch (error) {
+    return { success: false, message: error.response?.data?.message || "Failed to get activity logs" };
+  }
+};
+
 // --------------------------
 // BUG LIFECYCLE OPERATIONS
 // --------------------------
@@ -115,5 +124,23 @@ export const closeBug = async (bugData) => {
     return { success: true, data: res.data };
   } catch (error) {
     return { success: false, message: error.response?.data?.message || "Failed to close bug" };
+  }
+};
+
+export const uploadFiles = async (files) => {
+  try {
+    const formData = new FormData();
+    files.forEach((file) => {
+      formData.append("files", file);
+    });
+
+    const res = await api.post("/bug/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return { success: true, data: res.data };
+  } catch (error) {
+    return { success: false, message: error.response?.data?.message || "Upload failed" };
   }
 };

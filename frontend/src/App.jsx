@@ -7,13 +7,16 @@ import Dashboard from "./pages/Dashboard";
 import BugsPage from "./pages/BugsPage";
 import Settings from "./pages/Settings";
 import "./App.css";
-import Stared from "./pages/Stared";
 import Account from "./pages/Account";
+import BugActivityLog from "./pages/BugActivityLog";
+
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <TooltipProvider>
+        <BrowserRouter>
         <Routes>
           <Route path="/login" element={<AuthContainer />} />
 
@@ -26,15 +29,16 @@ function App() {
             }
           >
             <Route index element={<Dashboard />} />
-            <Route path="star" element={<Stared />} />
             <Route path="bugs" element={<BugsPage />} />
+            <Route path="bugs/:id/activity" element={<BugActivityLog />} />
             <Route path="account" element={<Account />} />
-            <Route path="settings" element={<Settings />} />
+            <Route path="settings/:tab?" element={<Settings />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </BrowserRouter>
+      </TooltipProvider>
     </AuthProvider>
   );
 }

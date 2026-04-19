@@ -1,9 +1,21 @@
 import React from "react";
 import BugViewToggle from "../Shared/BugViewToggle";
 import { useAuth } from "@/context/AuthContext";
+import { filterBugsForTester } from "@/utils/bugRoleFilter";
+
 function ReadyToTesting() {
-  const { bugsList } = useAuth();
-  const phaseBugs = bugsList ? bugsList.filter(bug => bug.currentPhase === "Ready to Test" || bug.currentPhase === "Maintenance") : [];
+  const { bugsList, user } = useAuth();
+
+  const rawPhaseBugs = bugsList
+    ? bugsList.filter(
+        (bug) =>
+          bug.currentPhase === "Ready to Test" ||
+          bug.currentPhase === "Maintenance"
+      )
+    : [];
+
+  // Show only bugs assigned to this tester (admins see all)
+  const phaseBugs = filterBugsForTester(rawPhaseBugs, user);
 
   return (
     <div>

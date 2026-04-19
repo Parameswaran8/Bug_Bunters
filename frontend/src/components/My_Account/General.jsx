@@ -1,262 +1,136 @@
-import React, { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
+import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/context/AuthContext";
+import { updateUser } from "@/API_Call/User";
+import toast from "react-hot-toast";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  User,
+  Mail,
+  Phone,
+  Shield,
+  Briefcase,
+  Pencil,
+  X,
+  Check,
+  Loader2,
+} from "lucide-react";
 
-import { Calendar } from "lucide-react";
-import { Button } from "../ui/button";
+function getRoleLabel(user) {
+  if (!user) return "—";
+  const roleArr = Array.isArray(user.roletype) ? user.roletype : [user.roletype || "bugreporter"];
+  const labelMap = {
+    bugreporter: "Bug Reporter",
+    tester: "Tester",
+    dev: "Developer",
+    admin: "Admin",
+    superadmin: "Super Admin",
+  };
+  return roleArr.map((r) => labelMap[r] || r).join(", ");
+}
 
 function General() {
-  const [formData, setFormData] = useState({
-    firstName: "Emir",
-    lastName: "Abiyyu",
-    companyName: "SpineEdge",
-    ownerUserId: "SpineEdge",
-    email: "helloemir@gmail.com",
-    phone: "(603) 555-0123",
-    group: "VIP Leads",
-    birthDate: "23/05/1992",
-    bookingDate: "18/08/2024",
-    bookingTime: "10:45 am",
-    buyRent: "To Buy",
-    properties: "Apartment",
-    country: "",
-    city: "",
-  });
+  const { user, setUser } = useAuth();
+  const [isEditing, setIsEditing] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [form, setForm] = useState({ name: "", username: "", phone: "" });
+
+  useEffect(() => {
+    if (user) {
+      setForm({
+        name: user.name || "",
+        username: user.username || "",
+        phone: user.phone || user.mobile || "",
+      });
+    }
+  }, [user]);
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const res = await updateUser(user.id || user._id, form);
+      if (res.success) {
+        setUser({ ...user, ...form });
+        toast.success("Profile updated");
+        setIsEditing(false);
+      } else toast.error(res.message);
+    } catch (err) {
+      toast.error("Error saving profile");
+    } finally {
+      setSaving(false);
+    }
+  };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200">
-      {/* Profile Section */}
-      <div className="p-6 sm:p-8 border-b border-gray-200">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <Avatar className="h-20 w-20 ring-2 ring-gray-100">
-              <AvatarImage
-                src="https://api.dicebear.com/7.x/avataaars/svg?seed=Emir"
-                alt="Emir Abiyyu"
-              />
-              <AvatarFallback className="bg-yellow-500 text-white text-2xl font-semibold">
-                EA
-              </AvatarFallback>
-            </Avatar>
-            <div>
-              <h2 className="text-lg lg:text-2xl font-bold text-gray-900">
-                Emir Abiyyu
-              </h2>
-              <p className="text-xs lg:text-sm text-gray-500 mt-0.5">
-                Admin <span>(Unique Id)</span>
-              </p>
-            </div>
-          </div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6">
-            Upload Now
-          </Button>
+    <div className="max-w-2xl mx-auto py-4">
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900">Profile Information</h2>
+          <p className="text-sm text-gray-500 mt-1">Update your account details and how others see you.</p>
         </div>
+        {!isEditing ? (
+          <Button variant="outline" onClick={() => setIsEditing(true)} className="gap-2">
+            <Pencil size={16} /> Edit
+          </Button>
+        ) : (
+          <div className="flex gap-2">
+            <Button variant="ghost" onClick={() => setIsEditing(false)} disabled={saving}>Cancel</Button>
+            <Button onClick={handleSave} disabled={saving} className="bg-cyan-600 hover:bg-cyan-700">
+              {saving ? <Loader2 size={16} className="animate-spin" /> : <Check size={16} />} Save
+            </Button>
+          </div>
+        )}
       </div>
 
-      {/* Form Section */}
-      <div className="p-6 sm:p-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 gap-6 p-6 border border-gray-100 rounded-2xl bg-gray-50/30">
           <div className="space-y-2">
-            <Label
-              htmlFor="firstName"
-              className="text-xs text-gray-500 uppercase font-medium"
-            >
-              Full Name
-            </Label>
-            <Input
-              id="firstName"
-              value={formData.firstName}
-              onChange={(e) =>
-                setFormData({ ...formData, firstName: e.target.value })
-              }
-              className="bg-gray-50 border-gray-200"
-            />
-          </div>
-          {/* Company Name */}
-          <div className="space-y-2">
-            <Label
-              htmlFor="companyName"
-              className="text-xs text-gray-500 uppercase font-medium"
-            >
-              UserName
-            </Label>
-            <Input
-              id="companyName"
-              value={formData.companyName}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  companyName: e.target.value,
-                })
-              }
-              className="bg-gray-50 border-gray-200"
-            />
+            <Label className="text-gray-500">Full Name</Label>
+            {isEditing ? (
+              <Input value={form.name} onChange={e => setForm({...form, name: e.target.value})} className="bg-white" />
+            ) : (
+              <p className="text-base font-medium text-gray-900 px-3 py-2 bg-white border border-gray-100 rounded-lg">{user?.name || "—"}</p>
+            )}
           </div>
 
-          {/* Owner User ID */}
-          <div className="space-y-2">
-            <Label
-              htmlFor="ownerUserId"
-              className="text-xs text-gray-500 uppercase font-medium"
-            >
-              Your Email
-            </Label>
-            <Input
-              id="ownerUserId"
-              value={formData.ownerUserId}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  ownerUserId: e.target.value,
-                })
-              }
-              className="bg-gray-50 border-gray-200"
-            />
-          </div>
-
-          {/* Email */}
-          <div className="space-y-2">
-            <Label
-              htmlFor="email"
-              className="text-xs text-gray-500 uppercase font-medium"
-            >
-              Email Address
-            </Label>
-            <Input
-              id="email"
-              type="email"
-              value={formData.email}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
-              className="bg-gray-50 border-gray-200"
-            />
-          </div>
-
-          {/* Phone */}
-          <div className="space-y-2">
-            <Label
-              htmlFor="phone"
-              className="text-xs text-gray-500 uppercase font-medium"
-            >
-              Phone Number
-            </Label>
-            <Input
-              id="phone"
-              value={formData.phone}
-              onChange={(e) =>
-                setFormData({ ...formData, phone: e.target.value })
-              }
-              className="bg-gray-50 border-gray-200"
-            />
-          </div>
-
-          {/* Group */}
-          <div className="space-y-2">
-            <Label
-              htmlFor="group"
-              className="text-xs text-gray-500 uppercase font-medium"
-            >
-              Lead Group
-            </Label>
-            <Select
-              value={formData.group}
-              onValueChange={(value) =>
-                setFormData({ ...formData, group: value })
-              }
-            >
-              <SelectTrigger className="bg-gray-50 border-gray-200">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="VIP Leads">VIP Leads</SelectItem>
-                <SelectItem value="Regular Leads">Regular Leads</SelectItem>
-                <SelectItem value="Premium Leads">Premium Leads</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Booking Date */}
-          <div className="space-y-2">
-            <Label
-              htmlFor="bookingDate"
-              className="text-xs text-gray-500 uppercase font-medium"
-            >
-              Your Roles
-            </Label>
-            <div className="relative">
-              <Input
-                id="bookingDate"
-                value={formData.bookingDate}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    bookingDate: e.target.value,
-                  })
-                }
-                className="bg-gray-50 border-gray-200 pr-10"
-              />
-              <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label className="text-gray-500">Username</Label>
+              {isEditing ? (
+                <Input value={form.username} onChange={e => setForm({...form, username: e.target.value})} className="bg-white" />
+              ) : (
+                <p className="text-base font-medium text-gray-900 px-3 py-2 bg-white border border-gray-100 rounded-lg">@{user?.username}</p>
+              )}
             </div>
-          </div>
-
-          {/* Booking Time */}
-          <div className="space-y-2">
-            <Label
-              htmlFor="bookingTime"
-              className="text-xs text-gray-500 uppercase font-medium"
-            >
-              Availble for online meeting/offline meeting
-            </Label>
-            <div className="relative">
-              <Input
-                id="bookingTime"
-                value={formData.bookingTime}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    bookingTime: e.target.value,
-                  })
-                }
-                className="bg-gray-50 border-gray-200 pr-10"
-              />
-              <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+            <div className="space-y-2">
+              <Label className="text-gray-500">Phone</Label>
+              {isEditing ? (
+                <Input value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} className="bg-white" />
+              ) : (
+                <p className="text-base font-medium text-gray-900 px-3 py-2 bg-white border border-gray-100 rounded-lg">{user?.phone || user?.mobile || "—"}</p>
+              )}
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label
-              htmlFor="bookingTime"
-              className="text-xs text-gray-500 uppercase font-medium"
-            >
-              Select Language
-            </Label>
-            <div className="relative">
-              <Input
-                id="bookingTime"
-                value={formData.bookingTime}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    bookingTime: e.target.value,
-                  })
-                }
-                className="bg-gray-50 border-gray-200 pr-10"
-              />
-              <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
-            </div>
+            <Label className="text-gray-500">Email Address</Label>
+            <p className="text-base font-medium text-gray-400 px-3 py-2 bg-gray-100/50 border border-dashed border-gray-200 rounded-lg cursor-not-allowed">
+              {user?.email}
+            </p>
           </div>
 
-          {/*  */}
+          <div className="pt-4 border-t border-gray-100">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-cyan-50 text-cyan-600 rounded-lg">
+                <Shield size={20} />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Account Role</p>
+                <p className="text-sm font-semibold text-gray-700">{getRoleLabel(user)}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

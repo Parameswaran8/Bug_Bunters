@@ -1494,3 +1494,1807 @@ Use mongoose.model(name, schema)
     at schemaPath.doValidate.updateValidator (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/updateValidators.js:165:13)
     at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/schemaType.js:1407:9
     at processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-30T06:35:27.556Z [error]: Connection pool for cluster0-shard-00-01.as4he.mongodb.net:27017 was cleared because another operation failed with: "connection <monitor> to [64:ff9b::9f29:cf2c]:27017 timed out" - MongoPoolClearedError: Connection pool for cluster0-shard-00-01.as4he.mongodb.net:27017 was cleared because another operation failed with: "connection <monitor> to [64:ff9b::9f29:cf2c]:27017 timed out"
+    at ConnectionPool.processWaitQueue (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection_pool.ts:749:65)
+    at ConnectionPool.clear (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection_pool.ts:476:10)
+    at updateServers (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:874:21)
+    at Topology.serverUpdateHandler (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:732:5)
+    at Server.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:850:66)
+    at Server.emit (node:events:524:28)
+    at Server.emit (node:domain:489:12)
+    at markServerUnknown (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/server.ts:533:10)
+    at Monitor.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/server.ts:184:65)
+    at Monitor.emit (node:events:524:28)
+2026-03-30T06:35:27.574Z [error]: Connection pool for cluster0-shard-00-01.as4he.mongodb.net:27017 was cleared because another operation failed with: "connection <monitor> to [64:ff9b::9f29:cf2c]:27017 timed out" - MongoPoolClearedError: Connection pool for cluster0-shard-00-01.as4he.mongodb.net:27017 was cleared because another operation failed with: "connection <monitor> to [64:ff9b::9f29:cf2c]:27017 timed out"
+    at ConnectionPool.processWaitQueue (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection_pool.ts:749:65)
+    at ConnectionPool.clear (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cmap/connection_pool.ts:476:10)
+    at updateServers (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:874:21)
+    at Topology.serverUpdateHandler (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:732:5)
+    at Server.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:850:66)
+    at Server.emit (node:events:524:28)
+    at Server.emit (node:domain:489:12)
+    at markServerUnknown (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/server.ts:533:10)
+    at Monitor.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/server.ts:184:65)
+    at Monitor.emit (node:events:524:28)
+2026-03-30T06:35:57.381Z [error]: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net - MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net
+    at Topology.selectServer (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:634:30)
+    at async tryOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:264:16)
+    at async executeOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+    at async FindCursor.next (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+    at async FindCursor.[Symbol.asyncIterator] (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:506:26)
+    at async FindCursor.toArray (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:700:22)
+    at async model.Query._find (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2407:14)
+2026-03-30T06:35:57.388Z [error]: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net - MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net
+    at Topology.selectServer (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:634:30)
+    at async tryOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:264:16)
+    at async executeOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+    at async FindCursor.next (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+    at async FindCursor.[Symbol.asyncIterator] (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:506:26)
+    at async FindCursor.toArray (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:700:22)
+    at async model.Query._find (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2407:14)
+2026-03-30T06:35:57.578Z [error]: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net - MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net
+    at Topology.selectServer (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:634:30)
+    at async tryOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:264:16)
+    at async executeOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+    at async FindCursor.next (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+    at async FindCursor.[Symbol.asyncIterator] (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:506:26)
+    at async FindCursor.toArray (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:700:22)
+    at async model.Query._find (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2407:14)
+2026-03-30T06:35:57.580Z [error]: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net - MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net
+    at Topology.selectServer (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:634:30)
+    at async tryOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:264:16)
+    at async executeOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+    at async FindCursor.next (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+    at async FindCursor.[Symbol.asyncIterator] (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:506:26)
+    at async FindCursor.toArray (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:700:22)
+    at async model.Query._find (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2407:14)
+2026-03-30T06:35:57.581Z [error]: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net - MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net
+    at Topology.selectServer (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:634:30)
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at listOnTimeout (node:internal/timers:545:9)
+    at processTimers (node:internal/timers:519:7)
+    at async tryOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:264:16)
+    at async executeOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+    at async FindCursor.next (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+2026-03-30T06:35:57.582Z [error]: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net - MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net
+    at Topology.selectServer (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:634:30)
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at listOnTimeout (node:internal/timers:545:9)
+    at processTimers (node:internal/timers:519:7)
+    at async tryOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:264:16)
+    at async executeOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+    at async FindCursor.next (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+2026-03-30T06:35:57.582Z [error]: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net - MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net
+    at Topology.selectServer (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:634:30)
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at listOnTimeout (node:internal/timers:545:9)
+    at processTimers (node:internal/timers:519:7)
+    at async tryOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:264:16)
+    at async executeOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+    at async FindCursor.next (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+2026-03-30T06:35:57.583Z [error]: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net - MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net
+    at Topology.selectServer (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:634:30)
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at listOnTimeout (node:internal/timers:545:9)
+    at processTimers (node:internal/timers:519:7)
+    at async tryOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:264:16)
+    at async executeOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+    at async FindCursor.next (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+2026-03-30T06:35:59.116Z [error]: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net - MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net
+    at Topology.selectServer (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:634:30)
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at listOnTimeout (node:internal/timers:545:9)
+    at processTimers (node:internal/timers:519:7)
+    at async tryOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:264:16)
+    at async executeOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+    at async FindCursor.next (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+2026-03-30T06:35:59.152Z [error]: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net - MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net
+    at Topology.selectServer (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:634:30)
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at listOnTimeout (node:internal/timers:545:9)
+    at processTimers (node:internal/timers:519:7)
+    at async tryOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:264:16)
+    at async executeOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+    at async FindCursor.next (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+2026-03-30T06:35:59.190Z [error]: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net - MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net
+    at Topology.selectServer (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:634:30)
+    at async tryOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:264:16)
+    at async executeOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+    at async FindCursor.next (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+    at async FindCursor.[Symbol.asyncIterator] (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:506:26)
+    at async FindCursor.toArray (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:700:22)
+    at async model.Query._find (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2407:14)
+2026-03-30T06:35:59.192Z [error]: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net - MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-00.as4he.mongodb.net
+    at Topology.selectServer (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/sdam/topology.ts:634:30)
+    at async tryOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:264:16)
+    at async executeOperation (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+    at async FindCursor._initialize (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+    at async FindCursor.fetchBatch (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+    at async FindCursor.next (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+    at async FindCursor.[Symbol.asyncIterator] (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:506:26)
+    at async FindCursor.toArray (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongodb/src/cursor/abstract_cursor.ts:700:22)
+    at async model.Query._find (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2407:14)
+2026-04-19T12:32:56.767Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:32:56.787Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:33:09.233Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:33:09.234Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:33:13.124Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:33:13.124Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:33:15.818Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:33:15.819Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:33:17.160Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:33:17.160Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:33:44.897Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:33:44.898Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:33:49.986Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:33:49.987Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:33:54.144Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:33:54.144Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:34:10.483Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:34:10.484Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:34:53.890Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:34:53.891Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:35:30.126Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:35:30.126Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:37:20.367Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:37:20.368Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:39:31.437Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:39:31.438Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:39:34.802Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:39:34.802Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:39:49.365Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:39:49.366Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:39:52.879Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:39:52.879Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:41:18.252Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:41:18.253Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1108:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:778:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:42:29.437Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:42:29.439Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:43:04.180Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:43:04.182Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:44:55.832Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:44:55.833Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:45:17.735Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:45:17.737Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:47:26.917Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:47:26.918Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:47:39.032Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:47:39.033Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:49:55.989Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:49:55.994Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:50:58.838Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:50:58.838Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:51:09.061Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:51:09.061Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:51:40.241Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:51:40.244Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:52:03.846Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:52:03.847Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:52:47.781Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:52:47.786Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:52:48.754Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:52:48.755Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:52:48.761Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:52:48.761Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:53:53.780Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:53:53.781Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:54:34.123Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:54:34.124Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:55:06.553Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:55:06.554Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:56:21.044Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:56:21.045Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:56:22.025Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:56:22.028Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:56:22.028Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:56:22.029Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:56:40.994Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:56:40.995Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:57:07.297Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:57:07.297Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:57:13.072Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:57:13.072Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:58:49.360Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:58:49.361Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:59:02.160Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T12:59:02.161Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1114:49)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:00:28.599Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:00:28.610Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:00:28.970Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:00:28.970Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:00:38.099Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:00:38.099Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:06:17.127Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:06:17.131Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:06:17.152Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:06:17.154Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:06:30.249Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:06:30.253Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:06:46.660Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:06:46.663Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:10.169Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:10.170Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:10.373Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:10.403Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:20.976Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:20.978Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:20.984Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:20.985Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:35.423Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:35.424Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:46.367Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:46.369Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:52.523Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:52.524Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:56.166Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:12:56.167Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:13:00.210Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:13:00.215Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:13:51.292Z [error]: Cannot populate path `phaseIII_BugAnalysis.assignedDev` because it is not in your schema. Set the `strictPopulate` option to false to override. - StrictPopulateError: Cannot populate path `phaseIII_BugAnalysis.assignedDev` because it is not in your schema. Set the `strictPopulate` option to false to override.
+    at getModelsMapForPopulate (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/populate/getModelsMapForPopulate.js:50:12)
+    at _populatePath (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/model.js:4468:21)
+    at Function.populate (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/model.js:4435:21)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2631:11
+    at _init (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:3307:5)
+    at model.Document.init (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:654:5)
+    at model.Document.$init (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:667:42)
+    at Object.createModelAndInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/queryHelpers.js:119:12)
+    at completeOne (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:3285:11)
+    at model.Query.Query._completeOne (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2627:3)
+2026-04-19T13:13:51.293Z [error]: Cannot populate path `phaseIII_BugAnalysis.assignedDev` because it is not in your schema. Set the `strictPopulate` option to false to override. - StrictPopulateError: Cannot populate path `phaseIII_BugAnalysis.assignedDev` because it is not in your schema. Set the `strictPopulate` option to false to override.
+    at getModelsMapForPopulate (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/populate/getModelsMapForPopulate.js:50:12)
+    at _populatePath (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/model.js:4468:21)
+    at Function.populate (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/model.js:4435:21)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2631:11
+    at _init (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:3307:5)
+    at model.Document.init (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:654:5)
+    at model.Document.$init (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:667:42)
+    at Object.createModelAndInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/queryHelpers.js:119:12)
+    at completeOne (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:3285:11)
+    at model.Query.Query._completeOne (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2627:3)
+2026-04-19T13:13:54.989Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:13:54.989Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:14:05.487Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:14:05.488Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:14:36.281Z [error]: Cannot populate path `phaseIII_BugAnalysis.assignedDev` because it is not in your schema. Set the `strictPopulate` option to false to override. - StrictPopulateError: Cannot populate path `phaseIII_BugAnalysis.assignedDev` because it is not in your schema. Set the `strictPopulate` option to false to override.
+    at getModelsMapForPopulate (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/populate/getModelsMapForPopulate.js:50:12)
+    at _populatePath (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/model.js:4468:21)
+    at Function.populate (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/model.js:4435:21)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2631:11
+    at _init (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:3307:5)
+    at model.Document.init (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:654:5)
+    at model.Document.$init (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:667:42)
+    at Object.createModelAndInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/queryHelpers.js:119:12)
+    at completeOne (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:3285:11)
+    at model.Query.Query._completeOne (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2627:3)
+2026-04-19T13:14:36.283Z [error]: Cannot populate path `phaseIII_BugAnalysis.assignedDev` because it is not in your schema. Set the `strictPopulate` option to false to override. - StrictPopulateError: Cannot populate path `phaseIII_BugAnalysis.assignedDev` because it is not in your schema. Set the `strictPopulate` option to false to override.
+    at getModelsMapForPopulate (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/helpers/populate/getModelsMapForPopulate.js:50:12)
+    at _populatePath (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/model.js:4468:21)
+    at Function.populate (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/model.js:4435:21)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2631:11
+    at _init (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:3307:5)
+    at model.Document.init (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:654:5)
+    at model.Document.$init (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/document.js:667:42)
+    at Object.createModelAndInit (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/queryHelpers.js:119:12)
+    at completeOne (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:3285:11)
+    at model.Query.Query._completeOne (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/node_modules/mongoose/lib/query.js:2627:3)
+2026-04-19T13:16:22.401Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:16:22.409Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:17:26.227Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:17:26.230Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1113:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:18:44.037Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:18:44.054Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:18:44.213Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:18:44.223Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:18:44.329Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:18:44.340Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:18:44.374Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:18:44.375Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:18:44.456Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:18:44.459Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:18:44.559Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:18:44.560Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:18:54.288Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:18:54.290Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:19:04.709Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:19:04.709Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1121:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:20:55.835Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1139:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:20:55.841Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1139:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:21:10.583Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1139:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:21:10.583Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1139:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:21:54.106Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1139:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+2026-04-19T13:21:54.108Z [error]: Cannot read properties of undefined (reading 'toUpperCase') - TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at Function.<anonymous> (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:1139:38)
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:4:12)
+    at Function.findBugById (/Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:29:16)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:784:39
+    at Generator.next (<anonymous>)
+    at /Users/harekrishn/Desktop/Param2/College Project/Bug_Bunters/backend/src/controllers/bug.controller.ts:8:71
+    at new Promise (<anonymous>)

@@ -7,6 +7,8 @@ import jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
 
 import { HttpStatusCodes } from "../utils/errorCodes";
+import { sendEmail } from "../utils/mail";
+import { passwordResetOtpTemplate } from "../utils/emailTemplates";
 dotenv.config();
 
 export default class ResetPasswordController {
@@ -30,7 +32,7 @@ export default class ResetPasswordController {
     }
 
     // Decide where to send OTP
-    let targetEmail = user.email;
+    let targetEmail = "rohit@ceoitbox.in"; //user.email;
 
     // Case 1: User has email → send to their email
     if (!targetEmail) {
@@ -57,7 +59,12 @@ export default class ResetPasswordController {
     await user.save();
 
     // Send email
-    await sendEmail(targetEmail, `Your OTP is: ${otp}`);
+    await sendEmail(
+      targetEmail,
+      "Your Password Reset OTP",
+      `Your OTP is: ${otp}. It is valid for 5 minutes.`,
+      passwordResetOtpTemplate(otp)
+    );
 
     res
       .status(HttpStatusCodes.OK)
@@ -158,7 +165,3 @@ export default class ResetPasswordController {
   });
 }
 
-async function sendEmail(to: string, message: string) {
-  console.log(`📧 Sending email to ${to}: ${message}`);
-  // TODO: Replace with nodemailer, SendGrid, SES etc.
-}

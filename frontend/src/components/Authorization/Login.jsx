@@ -1,59 +1,79 @@
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import {
-  MdEmail,
-  MdLock,
-  MdVisibility,
-  MdVisibilityOff,
-  MdSms,
-} from "react-icons/md";
+import { 
+  Mail, 
+  Lock, 
+  Eye, 
+  EyeOff, 
+  MessageSquare 
+} from "lucide-react";
 import toast from "react-hot-toast";
-import SocialButtons from "./SocialButtons";
-import { login } from "@/API_Call/Auth";
+import { login, requestOtpLogin, verifyOtpLogin } from "@/API_Call/Auth";
 
 /* ─────────────── OTP digit input row ─────────────── */
 function OtpInput({ value, onChange }) {
   const digits = 6;
-  const refs = Array.from({ length: digits }, () => useRef(null));
+  const inputRefs = useRef([]);
+
+  // Initialize refs array
+  useEffect(() => {
+    inputRefs.current = inputRefs.current.slice(0, digits);
+  }, []);
+
   const arr = value.padEnd(digits, "").split("").slice(0, digits);
 
   const handleKey = (i, e) => {
     if (e.key === "Backspace") {
-      const next = arr.map((d, idx) => (idx === i ? "" : d)).join("");
-      onChange(next);
-      if (i > 0 && !arr[i]) refs[i - 1].current?.focus();
+      if (!arr[i] && i > 0) {
+        inputRefs.current[i - 1]?.focus();
+      }
     }
   };
 
   const handleChange = (i, e) => {
-    const char = e.target.value.replace(/\D/g, "").slice(-1);
-    const next = arr.map((d, idx) => (idx === i ? char : d)).join("");
-    onChange(next);
-    if (char && i < digits - 1) refs[i + 1].current?.focus();
+    const val = e.target.value;
+    const char = val.slice(-1).replace(/\D/g, "");
+    
+    const nextArr = [...arr];
+    nextArr[i] = char;
+    const nextStr = nextArr.join("").slice(0, digits);
+    onChange(nextStr);
+
+    if (char && i < digits - 1) {
+      inputRefs.current[i + 1]?.focus();
+    }
   };
 
   const handlePaste = (e) => {
+    e.preventDefault();
     const pasted = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, digits);
     onChange(pasted);
-    const focusIdx = Math.min(pasted.length, digits - 1);
-    refs[focusIdx].current?.focus();
-    e.preventDefault();
   };
 
   return (
-    <div className="flex gap-3 justify-center" onPaste={handlePaste}>
-      {arr.map((digit, i) => (
+    <div className="flex gap-2.5 justify-center py-2" onPaste={handlePaste}>
+      {Array.from({ length: digits }).map((_, i) => (
         <input
           key={i}
-          ref={refs[i]}
+          ref={(el) => (inputRefs.current[i] = el)}
           type="text"
           inputMode="numeric"
           maxLength={1}
-          value={digit}
+          value={arr[i] || ""}
           onChange={(e) => handleChange(i, e)}
           onKeyDown={(e) => handleKey(i, e)}
-          className={`otp-box ${digit ? "filled" : ""}`}
+          className={`otp-box ${arr[i] ? "filled" : ""}`}
+          style={{ 
+            width: "42px", 
+            height: "50px", 
+            textAlign: "center", 
+            fontSize: "1.2rem", 
+            fontWeight: "bold",
+            borderRadius: "8px",
+            border: "2px solid #e2e8f0",
+            backgroundColor: arr[i] ? "#ecfeff" : "#f8fafc"
+          }}
         />
       ))}
     </div>
@@ -103,24 +123,40 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
     e.preventDefault();
     if (!username_email) return toast.error("Please enter your email");
     setLoading(true);
-    setTimeout(() => {
-      toast.success("OTP sent to your email 📬");
+    const result = await requestOtpLogin(username_email);
+    if (result.success) {
+      toast.success(
+        (t) => (
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">📬</span>
+            <div className="flex flex-col">
+              <span className="font-bold text-gray-900">OTP Sent!</span>
+              <span className="text-xs text-gray-500">Check your inbox at <span className="font-semibold text-cyan-600">{username_email}</span></span>
+            </div>
+          </div>
+        ),
+        { duration: 5000 }
+      );
       setOtpSent(true);
-      setLoading(false);
-    }, 1000);
+    } else {
+      toast.error(result.message);
+    }
+    setLoading(false);
   };
 
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     if (otp.length < 6) return toast.error("Enter the 6-digit OTP");
     setLoading(true);
-    setTimeout(() => {
-      toast.success("OTP verified successfully ✅");
-      setLoading(false);
-      setUsernameEmail("");
-      setOtp("");
-      setOtpSent(false);
-    }, 1000);
+    const result = await verifyOtpLogin({ email: username_email, otp, keepMeSignedIn: rememberMe });
+    if (result.success) {
+      setUser(result.user);
+      toast.success("Welcome back! 🎉");
+      navigate("/");
+    } else {
+      toast.error(result.message);
+    }
+    setLoading(false);
   };
 
   const handlePasswordLogin = async (e) => {
@@ -128,7 +164,7 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
     if (!username_email || !password)
       return toast.error("Please fill in all fields");
     setLoading(true);
-    const userData = { username_email, password };
+    const userData = { username_email, password, keepMeSignedIn: rememberMe };
     const login_check = await login(userData);
     if (login_check.success) {
       setUser(login_check.user);
@@ -168,7 +204,7 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
               : "border-transparent text-gray-400 hover:text-gray-600 hover:border-gray-300"
           }`}
         >
-          <MdLock className="text-base" />
+          <Lock size={16} />
           Password
         </button>
         <button
@@ -180,7 +216,7 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
               : "border-transparent text-gray-400 hover:text-gray-600 hover:border-gray-300"
           }`}
         >
-          <MdSms className="text-base" />
+          <MessageSquare size={16} />
           OTP Login
         </button>
       </div>
@@ -189,7 +225,7 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
       {mode === "password" ? (
         <form onSubmit={handlePasswordLogin} className="space-y-5">
           {/* Email / Username */}
-          <InputField icon={MdEmail} label="Email or Username">
+          <InputField icon={Mail} label="Email or Username">
             <input
               type="text"
               placeholder="you@company.com"
@@ -202,7 +238,7 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
 
           {/* Password */}
           <InputField
-            icon={MdLock}
+            icon={Lock}
             label="Password"
             extra={
               <button
@@ -228,9 +264,9 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
               className="text-gray-400 hover:text-cyan-500 transition flex-shrink-0"
             >
               {showPassword ? (
-                <MdVisibilityOff className="text-lg" />
+                <EyeOff size={18} />
               ) : (
-                <MdVisibility className="text-lg" />
+                <Eye size={18} />
               )}
             </button>
           </InputField>
@@ -283,7 +319,7 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
         >
           {!otpSent ? (
             <>
-              <InputField icon={MdEmail} label="Email Address">
+              <InputField icon={Mail} label="Email Address">
                 <input
                   type="email"
                   placeholder="you@company.com"
@@ -299,15 +335,6 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
             </>
           ) : (
             <>
-              {/* Success banner */}
-              <div className="flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-xl px-4 py-3">
-                <span className="text-lg">📬</span>
-                <div>
-                  <p className="text-sm font-semibold text-cyan-700">OTP Sent!</p>
-                  <p className="text-xs text-cyan-500">Check your inbox at{" "}<span className="font-medium">{username_email}</span></p>
-                </div>
-              </div>
-
               {/* OTP digit boxes */}
               <div className="space-y-3">
                 <label className="text-sm font-semibold text-gray-600 tracking-wide block">
@@ -351,15 +378,6 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
         </form>
       )}
 
-      {/* ── Divider ── */}
-      <div className="flex items-center gap-3 my-6">
-        <div className="flex-1 h-px bg-gray-200" />
-        <span className="text-xs text-gray-400 font-medium">OR CONTINUE WITH</span>
-        <div className="flex-1 h-px bg-gray-200" />
-      </div>
-
-      {/* ── Social Buttons ── */}
-      <SocialButtons />
 
       {/* ── Register Link ── */}
       <p className="text-center mt-7 text-sm text-gray-500">

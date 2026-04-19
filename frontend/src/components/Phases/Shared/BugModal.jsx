@@ -110,16 +110,29 @@ export default function BugModal({
              </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-             <div className="bg-white rounded-2xl p-5 border shadow-sm">
-               <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Expected Result</h3>
-               <p className="text-sm text-gray-700">{bugData.phaseI_BugReport?.toolInfo?.expectedResult || "-"}</p>
-             </div>
-             <div className="bg-white rounded-2xl p-5 border shadow-sm">
-               <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Actual Result</h3>
-               <p className="text-sm text-gray-700">{bugData.phaseI_BugReport?.toolInfo?.actualResult || "-"}</p>
-             </div>
-          </div>
+          {/* Results Section - Only show if not N/A */}
+          {(bugData.phaseI_BugReport?.toolInfo?.expectedResult !== "Not Applicable (Simple Description)" || 
+            bugData.phaseI_BugReport?.toolInfo?.actualResult !== "Not Applicable (Simple Description)") && (
+            <div className={`grid gap-4 ${
+              (bugData.phaseI_BugReport?.toolInfo?.expectedResult !== "Not Applicable (Simple Description)" && 
+               bugData.phaseI_BugReport?.toolInfo?.actualResult !== "Not Applicable (Simple Description)") 
+               ? "grid-cols-1 md:grid-cols-2" 
+               : "grid-cols-1"
+            }`}>
+               {bugData.phaseI_BugReport?.toolInfo?.expectedResult !== "Not Applicable (Simple Description)" && (
+                 <div className="bg-white rounded-2xl p-5 border shadow-sm">
+                   <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Expected Result</h3>
+                   <p className="text-sm text-gray-700">{bugData.phaseI_BugReport?.toolInfo?.expectedResult || "-"}</p>
+                 </div>
+               )}
+               {bugData.phaseI_BugReport?.toolInfo?.actualResult !== "Not Applicable (Simple Description)" && (
+                 <div className="bg-white rounded-2xl p-5 border shadow-sm">
+                   <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Actual Result</h3>
+                   <p className="text-sm text-gray-700">{bugData.phaseI_BugReport?.toolInfo?.actualResult || "-"}</p>
+                 </div>
+               )}
+            </div>
+          )}
           
           {/* Add Forms here to actually update the bug states going forward! */}
 

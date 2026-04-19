@@ -1,7 +1,10 @@
 import { Router } from "express";
 import BugController from "../controllers/bug.controller";
+import { upload } from "../middlewares/multer";
 
 const router = Router();
+
+router.post("/upload", upload.array("files", 5), BugController.UploadFiles);
 
 router.post("/bug_create", BugController.BugRaise);
 router.post("/bug_confirm", BugController.ConfirmBug);
@@ -17,6 +20,7 @@ router.post("/get_BugStatistics", BugController.GetBugStatistics);
 
 router.post("/update_Bug", BugController.UpdateBug);
 router.post("/delete_Bug", BugController.DeleteBug);
+router.post("/get_BugLogs", BugController.GetBugLogs);
 
 // router.get("/bug_update", BugController.BugUpdate);
 

@@ -1,140 +1,82 @@
-import { useState, useRef, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { EllipsisVertical, Menu, Users, X } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
-import SettingMenu from "@/components/Settings/SettingMenu";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { Shield, Search, UserPlus } from "lucide-react";
 import UserManagment from "@/components/Settings/UserManagment";
 import ToolManagment from "@/components/Settings/Tools/Tools";
 import ReportControl from "@/components/Settings/Report";
 import { useAuth } from "@/context/AuthContext";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 function Settings() {
-  const { user } = useAuth();
-  const [activeTab, setActiveTab] = useState("users");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const menuRef = useRef(null);
-
-  // Close menu when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setMobileMenuOpen(false);
-      }
-    }
-
-    if (mobileMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      return () =>
-        document.removeEventListener("mousedown", handleClickOutside);
-    }
-  }, [mobileMenuOpen]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setMobileMenuOpen(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const { user, allUsers } = useAuth();
+  const { tab } = useParams();
+  const activeTab = tab || "users";
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isUserSheetOpen, setIsUserSheetOpen] = useState(false);
 
   const hasSettingsAccess = user?.role === "superadmin" || (Array.isArray(user?.adminControl) && user.adminControl.some(r => ["create", "edit", "view", "delete"].includes(r?.toLowerCase())));
 
+  const canCreateUser = allUsers && (user?.role === "superadmin" || user?.adminControl?.includes("create"));
+
   if (!hasSettingsAccess) {
     return (
-      <div className="w-full h-[98%] bg-[#fdfdfd] relative rounded-2xl shadow-sm border border-gray-200/60 overflow-hidden flex items-center justify-center">
-        <div className="text-center p-10">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">Access Denied</h2>
-          <p className="text-gray-500">You have no access to view the content.</p>
-        </div>
+      <div className="flex flex-col items-center justify-center h-full text-center p-12">
+        <Shield size={48} className="text-gray-200 mb-4" />
+        <h2 className="text-xl font-bold text-gray-800">Access Denied</h2>
+        <p className="text-gray-500">You don't have permission to access these settings.</p>
       </div>
     );
   }
 
   return (
-    <div className="w-full h-[98%] bg-[#fdfdfd] relative rounded-2xl shadow-sm border border-gray-200/60 overflow-hidden">
-      <div className="h-full mx-auto p-3 sm:p-4 lg:p-6 bg-white/50">
-        {/* Main Layout */}
-        <div className="flex flex-col lg:flex-row gap-6 h-full">
-          {/* Left Sidebar Navigation - Hidden on mobile */}
-          <aside className="hidden lg:block w-40 xl:w-55 flex-shrink-0">
-            <SettingMenu
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-              setMobileMenuOpen={setMobileMenuOpen}
-            />
-          </aside>
-
-          <Separator
-            orientation="vertical"
-            className="hidden lg:block h-auto self-stretch bg-gray-200 w-px"
-          />
-
-          {/* Right Content Area */}
-          <main className="flex-1 min-w-0">
-            {/* Header */}
-            <div className="mb-4 px-3 lg:px-3">
-              <div className="flex items-center justify-between  mb-0 lg:mb-2">
-                <h4 className="text-lg lg:text-xl font-semibold text-gray-900">
-                  Settings
-                </h4>
-
-                {/* Mobile Menu Button */}
-                <div className="lg:hidden relative" ref={menuRef}>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    className="relative z-30 border-none shadow-none bg-none"
-                  >
-                    {mobileMenuOpen ? (
-                      <X className="h-5 w-5" />
-                    ) : (
-                      <EllipsisVertical />
-                      // <Menu className="h-5 w-5" />
-                    )}
-                  </Button>
-
-                  {/* Dropdown Menu directly inside menuRef so clicks aren't registered as outside */}
-                  {mobileMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-72 z-40 shadow-lg top-full">
-                      <nav className="bg-white rounded-xl border border-gray-200 overflow-hidden p-1">
-                        <SettingMenu
-                          activeTab={activeTab}
-                          setActiveTab={setActiveTab}
-                          setMobileMenuOpen={setMobileMenuOpen}
-                        />
-                      </nav>
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="flex items-center gap-2 text-xs lg:text-sm text-gray-500">
-                <span className="font-medium">My Account</span>
-                <span className="text-gray-400">›</span>
-                <span className="text-gray-600">
-                  {activeTab === "users"
-                    ? "Users"
-                    : activeTab == "tools"
-                    ? "Tools"
-                    : activeTab === "report"
-                    ? "Report"
-                    : null}
-                </span>
-              </div>
-            </div>
-
-            {activeTab === "users" ? (
-              <UserManagment />
-            ) : activeTab == "tools" ? (
-              <ToolManagment />
-            ) : activeTab === "report" ? (
-              <ReportControl />
-            ) : null}
-          </main>
+    <div className="flex flex-col h-full bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+      {/* ── Header ── */}
+      <div className="px-6 py-4 border-b border-gray-100 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-xl font-bold text-gray-900 capitalize leading-tight">
+            {activeTab === "reports" ? "System Reports" : `${activeTab} Management`}
+          </h1>
+          <p className="text-[10px] text-gray-400 uppercase font-bold tracking-wider mt-0.5">
+            Settings / {activeTab}
+          </p>
         </div>
+
+        {activeTab === "users" && (
+          <div className="flex items-center gap-3 w-full lg:w-auto">
+            <div className="relative w-full lg:w-64">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Input
+                placeholder="Search users..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-9 h-9 border-gray-200 focus:border-cyan-500 focus:ring-cyan-50"
+              />
+            </div>
+            {canCreateUser && (
+              <Button 
+                onClick={() => setIsUserSheetOpen(true)} 
+                className="h-9 gap-2 bg-cyan-600 hover:bg-cyan-700 whitespace-nowrap"
+              >
+                <UserPlus size={16} />
+                <span className="hidden sm:inline">Add User</span>
+              </Button>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* ── Content ── */}
+      <div className="flex-1 overflow-auto p-6">
+        {activeTab === "users" && (
+          <UserManagment 
+            searchQuery={searchQuery} 
+            isSheetOpen={isUserSheetOpen} 
+            setIsSheetOpen={setIsUserSheetOpen} 
+          />
+        )}
+        {activeTab === "tools" && <ToolManagment />}
+        {activeTab === "reports" && <ReportControl />}
       </div>
     </div>
   );

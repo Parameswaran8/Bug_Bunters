@@ -6,6 +6,7 @@ import {
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
 import { Edit2, Trash2, Archive, CheckSquare, Settings } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 export default function BugRightClickMenu({
   children,
@@ -17,19 +18,35 @@ export default function BugRightClickMenu({
   onDeleteSelected,
   onCancelAll,
 }) {
+  const { user } = useAuth();
+  const isAdmin = user?.role === "admin" || user?.role === "superadmin";
+
   return (
     <ContextMenu>
       <ContextMenuTrigger asChild>{children}</ContextMenuTrigger>
       <ContextMenuContent className="w-56">
+        <ContextMenuItem onClick={() => navigator.clipboard.writeText(item.bugId)}>
+          <CheckSquare className="w-4 h-4 mr-2 text-slate-400" />
+          Copy Bug ID
+        </ContextMenuItem>
+
         <ContextMenuItem onClick={onEdit}>
           <Edit2 className="w-4 h-4 mr-2" />
           Edit Bug
         </ContextMenuItem>
 
-        <ContextMenuItem className="text-red-600" onClick={onDelete}>
-          <Trash2 className="w-4 h-4 mr-2" />
-          Delete Bug
-        </ContextMenuItem>
+        {isAdmin && (
+          <>
+            <ContextMenuItem onClick={() => onArchive?.(item)}>
+              <Archive className="w-4 h-4 mr-2" />
+              Archive Bug
+            </ContextMenuItem>
+            <ContextMenuItem className="text-red-600" onClick={onDelete}>
+              <Trash2 className="w-4 h-4 mr-2" />
+              Delete Bug
+            </ContextMenuItem>
+          </>
+        )}
 
         <ContextMenuSeparator />
 
@@ -42,10 +59,12 @@ export default function BugRightClickMenu({
           Edit Selected
         </ContextMenuItem>
 
-        <ContextMenuItem className="text-red-600" onClick={onDeleteSelected}>
-          <Trash2 className="w-4 h-4 mr-2" />
-          Delete Selected
-        </ContextMenuItem>
+        {isAdmin && (
+          <ContextMenuItem className="text-red-600" onClick={onDeleteSelected}>
+            <Trash2 className="w-4 h-4 mr-2" />
+            Delete Selected
+          </ContextMenuItem>
+        )}
 
         <ContextMenuSeparator />
 

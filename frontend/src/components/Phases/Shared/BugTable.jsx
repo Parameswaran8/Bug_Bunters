@@ -1,5 +1,8 @@
-import React, { useState, useRef } from "react";
-import { ArrowUp, ArrowDown, Pin, ChevronLeft, ChevronRight, ChevronDown, Flag } from "lucide-react";
+import React, { useState, useRef, useEffect } from "react";
+import { ArrowUp, ArrowDown, Pin, ChevronLeft, ChevronRight, ChevronDown, Flag, Check, X, LibraryBig } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import FileUploader from "../../Shared/FileUploader";
+import AttachmentGallery from "../../Shared/AttachmentGallery";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -23,6 +26,22 @@ import BugTableRowMenu from "./BugTableRowMenu";
 import { updateBug, deleteBug } from "@/API_Call/Bug";
 import { useAuth } from "@/context/AuthContext";
 import toast from "react-hot-toast";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+
+/* ─────────────── Tooltip Helper ─────────────── */
+const CellTooltip = ({ children, content }) => {
+  if (!content) return children;
+  return (
+    <Tooltip delayDuration={300}>
+      <TooltipTrigger asChild>
+        {children}
+      </TooltipTrigger>
+      <TooltipContent className="max-w-[300px] break-words">
+        {content}
+      </TooltipContent>
+    </Tooltip>
+  );
+};
 
 // Returns column definitions based on the current phase
 const getTableColumns = (phaseId) => {
@@ -42,6 +61,7 @@ const getTableColumns = (phaseId) => {
       { key: "assignedTester", label: "Assigned Tester", type: "text", width: 150 },
       { key: "description", label: "Bug Description", type: "description", width: 250 },
       { key: "sopFollowedRaiser", label: "SOP Followed by Raiser", type: "sopFollowedRaiserCard", width: 220 },
+      { key: "attachments", label: "Bug Attachments", type: "attachment", width: 150 },
       ...commonEnd
     ];
   }
@@ -55,7 +75,7 @@ const getTableColumns = (phaseId) => {
       { key: "issueFacedBy", label: "Issue Faced By", type: "facedByCard", width: 160 },
       { key: "description", label: "Bug Description", type: "description", width: 250 },
       { key: "sopFollowedRaiser", label: "SOP Followed by Raiser", type: "sopFollowedRaiserCard", width: 220 },
-      { key: "attachments", label: "Attachment", type: "attachment", width: 100 },
+      { key: "attachments", label: "Bug Attachments", type: "attachment", width: 150 },
       { key: "bugStatus", label: "Bug Status", type: "statusSelect", width: 150 },
       { key: "sopFollowed", label: "SOP Followed", type: "sopText", width: 160 },
       { key: "remarks", label: "Testing Remark", type: "remarksText", width: 200 },
@@ -76,7 +96,7 @@ const getTableColumns = (phaseId) => {
       { key: "assignedTester", label: "Bug Tester", type: "text", width: 150 },
       { key: "description", label: "Bug Description", type: "description", width: 250 },
       { key: "sopFollowedRaiser", label: "SOP Followed by Raiser", type: "sopFollowedRaiserCard", width: 220 },
-      { key: "attachments", label: "Attachment", type: "attachment", width: 100 },
+      { key: "attachments", label: "Bug Attachments", type: "attachment", width: 150 },
       { key: "sopFollowed", label: "SOP Followed", type: "sopText", width: 160 },
       { key: "remarks", label: "Testing Remark", type: "remarksText", width: 200 },
       { key: "testingAttachment", label: "Testing Attachment", type: "testingAttachment", width: 140 },
@@ -102,7 +122,7 @@ const getTableColumns = (phaseId) => {
       { key: "assignedTester", label: "Bug Tester", type: "text", width: 150 },
       { key: "description", label: "Bug Description", type: "description", width: 250 },
       { key: "sopFollowedRaiser", label: "SOP Followed by Raiser", type: "sopFollowedRaiserCard", width: 220 },
-      { key: "attachments", label: "Attachment", type: "attachment", width: 100 },
+      { key: "attachments", label: "Bug Attachments", type: "attachment", width: 150 },
       { key: "sopFollowed", label: "SOP Followed", type: "sopText", width: 160 },
       { key: "remarks", label: "Testing Remark", type: "remarksText", width: 200 },
       { key: "testingAttachment", label: "Testing Attachment", type: "testingAttachment", width: 140 },
@@ -116,6 +136,36 @@ const getTableColumns = (phaseId) => {
       { key: "testingFlag", label: "Testing Flag", type: "testingFlagSelect", width: 160 },
       { key: "reportedDate", label: "Reported", type: "date", width: 180 },
       { key: "bugTestedDate", label: "Bug Tested", type: "date", width: 180 },
+      { key: "bugAnalysedDate", label: "Bug Analysed At", type: "date", width: 180 },
+      { key: "currentPhase", label: "Change Phase", type: "phaseSelect", width: 150 }
+    ];
+  }
+
+  if (phaseId === "rtt") {
+    return [
+      { key: "bugId", label: "Bug ID", type: "text", width: 140 },
+      { key: "toolName", label: "Tool Name", type: "text", width: 180 },
+      { key: "priority", label: "Priority", type: "prioritySelect", width: 120 },
+      { key: "bugRaiser", label: "Bug Raiser", type: "text", width: 150 },
+      { key: "issueFacedBy", label: "Issue Faced By", type: "facedByCard", width: 160 },
+      { key: "assignedTester", label: "Bug Tester", type: "text", width: 150 },
+      { key: "description", label: "Bug Description", type: "description", width: 250 },
+      { key: "sopFollowedRaiser", label: "SOP Followed by Raiser", type: "sopFollowedRaiserCard", width: 220 },
+      { key: "attachments", label: "Bug Attachments", type: "attachment", width: 150 },
+      { key: "sopFollowed", label: "SOP Followed", type: "sopText", width: 160 },
+      { key: "remarks", label: "Testing Remark", type: "remarksText", width: 200 },
+      { key: "testingAttachment", label: "Testing Attachment", type: "testingAttachment", width: 140 },
+      { key: "assignedDev", label: "Forward to Developer", type: "devSelect", width: 180 },
+      { key: "bugStatus", label: "Bug Status", type: "statusSelect", width: 150 },
+      { key: "analyzeRemark", label: "Analyse Remark", type: "analyzeRemarkText", width: 200 },
+      { key: "sopForSolution", label: "SOP for Solution", type: "sopSolutionText", width: 200 },
+      { key: "delayedReason", label: "Delayed Reason", type: "delayedReasonText", width: 200 },
+      { key: "analyzeAttachment", label: "Analyse Attachment", type: "analyzeAttachment", width: 140 },
+      { key: "finalTestingRemark", label: "Final Testing Remark", type: "finalTestingRemarkText", width: 200 },
+      { key: "testingFlag", label: "Testing Flag", type: "testingFlagSelect", width: 160 },
+      { key: "reportedDate", label: "Reported", type: "date", width: 180 },
+      { key: "bugTestedDate", label: "Bug Tested", type: "date", width: 180 },
+      { key: "bugAnalysedDate", label: "Bug Analysed At", type: "date", width: 180 },
       { key: "currentPhase", label: "Change Phase", type: "phaseSelect", width: 150 }
     ];
   }
@@ -130,7 +180,7 @@ const getTableColumns = (phaseId) => {
       { key: "assignedTester", label: "Bug Tester", type: "text", width: 150 },
       { key: "description", label: "Bug Description", type: "description", width: 250 },
       { key: "sopFollowedRaiser", label: "SOP Followed by Raiser", type: "sopFollowedRaiserCard", width: 220 },
-      { key: "attachments", label: "Attachment", type: "attachment", width: 100 },
+      { key: "attachments", label: "Bug Attachments", type: "attachment", width: 150 },
       { key: "sopFollowed", label: "SOP Followed", type: "sopText", width: 160 },
       { key: "remarks", label: "Testing Remark", type: "remarksText", width: 200 },
       { key: "testingAttachment", label: "Testing Attachment", type: "testingAttachment", width: 140 },
@@ -147,6 +197,41 @@ const getTableColumns = (phaseId) => {
       { key: "finalSop", label: "Final SOP", type: "finalSopText", width: 200 },
       { key: "reportedDate", label: "Reported", type: "date", width: 180 },
       { key: "bugTestedDate", label: "Bug Tested", type: "date", width: 180 },
+      { key: "bugAnalysedDate", label: "Bug Analysed At", type: "date", width: 180 },
+      { key: "currentPhase", label: "Change Phase", type: "phaseSelect", width: 150 }
+    ];
+  }
+
+  if (phaseId === "all_full" || phaseId === "deployed") {
+    return [
+      { key: "bugId", label: "Bug ID", type: "text", width: 140 },
+      { key: "toolName", label: "Tool Name", type: "text", width: 180 },
+      { key: "priority", label: "Priority", type: "prioritySelect", width: 120 },
+      { key: "stack", label: "Stack", type: "stackSelect", width: 120 },
+      { key: "bugRaiser", label: "Bug Raiser", type: "text", width: 150 },
+      { key: "issueFacedBy", label: "Issue Faced By", type: "facedByCard", width: 160 },
+      { key: "assignedTester", label: "Assigned Tester", type: "text", width: 150 },
+      { key: "assignedDev", label: "Assigned Dev", type: "text", width: 150 },
+      { key: "description", label: "Bug Description", type: "description", width: 250 },
+      { key: "sopFollowedRaiser", label: "SOP by Raiser", type: "sopFollowedRaiserCard", width: 220 },
+      { key: "attachments", label: "Bug Attachments", type: "attachment", width: 150 },
+      { key: "bugStatus", label: "Bug Status", type: "statusSelect", width: 150 },
+      { key: "sopFollowed", label: "Tester SOP", type: "sopText", width: 160 },
+      { key: "remarks", label: "Testing Remark", type: "remarksText", width: 200 },
+      { key: "testingAttachment", label: "Testing Attachment", type: "testingAttachment", width: 140 },
+      { key: "rootCause", label: "Root Cause", type: "text", width: 160 },
+      { key: "analyzeRemark", label: "Analyse Remark", type: "analyzeRemarkText", width: 200 },
+      { key: "sopForSolution", label: "SOP for Solution", type: "sopSolutionText", width: 200 },
+      { key: "delayedReason", label: "Delayed Reason", type: "delayedReasonText", width: 200 },
+      { key: "analyzeAttachment", label: "Analyse Attachment", type: "analyzeAttachment", width: 140 },
+      { key: "finalTestingRemark", label: "Final Testing Remark", type: "finalTestingRemarkText", width: 200 },
+      { key: "testingFlag", label: "Testing Flag", type: "testingFlagSelect", width: 160 },
+      { key: "deploymentStatus", label: "Deployment Status", type: "deploymentStatusSelect", width: 170 },
+      { key: "deployRemark", label: "Deploy Remark", type: "deployRemarkText", width: 200 },
+      { key: "finalSop", label: "Final SOP", type: "finalSopText", width: 200 },
+      { key: "reportedDate", label: "Reported", type: "date", width: 180 },
+      { key: "bugTestedDate", label: "Bug Tested", type: "date", width: 180 },
+      { key: "bugAnalysedDate", label: "Bug Analysed At", type: "date", width: 180 },
       { key: "currentPhase", label: "Change Phase", type: "phaseSelect", width: 150 }
     ];
   }
@@ -161,6 +246,7 @@ const getTableColumns = (phaseId) => {
     { key: "assignedTester", label: "Assigned Tester", type: "text", width: 150 },
     { key: "assignedDev", label: "Assigned Dev", type: "text", width: 150 },
     { key: "description", label: "Bug Description", type: "description", width: 250 },
+    { key: "attachments", label: "Bug Attachments", type: "attachment", width: 150 },
     ...commonEnd
   ];
 };
@@ -230,25 +316,78 @@ const ColumnHeader = ({ children, onPin, isPinned, columnKey }) => {
         <DropdownMenuItem onClick={() => setSortOrder(sortOrder === "desc" ? null : "desc")}>
           <ArrowDown className="w-4 h-4 mr-2" /> Sort Descending
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => onPin(columnKey)}>
-          <Pin className="w-4 h-4 mr-2" /> {isPinned ? "Unpin" : "Pin"}
-        </DropdownMenuItem>
+        {columnKey !== "bugId" && (
+          <DropdownMenuItem onClick={() => onPin(columnKey)}>
+            <Pin className="w-4 h-4 mr-2" /> {isPinned ? "Unpin" : "Pin"}
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );
 };
 
-export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
+const PHASE_EDITABLE_MAP = {
+  "Bug Reported": ["toolName", "priority", "stack", "description", "assignedTester", "currentPhase", "attachments"],
+  "Bug Testing": ["bugStatus", "sopFollowed", "remarks", "testingAttachment", "assignedDev", "currentPhase"],
+  "Bug Confirmation": ["bugStatus", "sopFollowed", "remarks", "testingAttachment", "assignedDev", "currentPhase"],
+  "Bug Analysis": ["analyzeRemark", "sopForSolution", "delayedReason", "analyzeAttachment", "currentPhase", "rootCause"],
+  "Ready to Test": ["finalTestingRemark", "testingFlag", "currentPhase"],
+  "Maintenance": ["finalTestingRemark", "testingFlag", "currentPhase"],
+  "Ready to Deploy": ["deploymentStatus", "deployRemark", "finalSop", "currentPhase"],
+  "Final Testing": ["deploymentStatus", "deployRemark", "finalSop", "currentPhase"],
+  "Deployed": ["currentPhase"],
+  "Closure": ["currentPhase"],
+};
+
+/**
+ * Returns true if this column is editable given the restriction list.
+ * @param {string} colKey        - column key from tableDetails
+ * @param {object} item          - the bug object
+ * @param {string[] | null | undefined} editableColumnKeys
+ */
+function isColEditable(colKey, item, editableColumnKeys) {
+  if (colKey === "bugId") return false;
+
+  // 1. Determine columns allowed for the bug's current phase
+  const currentPhase = item?.currentPhase;
+  const phaseAllowed = PHASE_EDITABLE_MAP[currentPhase] || [];
+  
+  if (!phaseAllowed.includes(colKey)) return false;
+
+  // 2. Check role-based restrictions
+  if (editableColumnKeys === null || editableColumnKeys === undefined) return true;
+  return editableColumnKeys.includes(colKey);
+}
+
+export default function BugTable({ phaseBugs, onClickCardToModal, phaseId, editableColumnKeys, canEditRow }) {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const tableDetails = getTableColumns(phaseId);
   const { bugsList, setBugsList, allUsers, toolList } = useAuth();
   const [editingIds, setEditingIds] = useState([]);
   const [editData, setEditData] = useState({});
   const [selectedRows, setSelectedRows] = useState([]);
 
-  const [pinnedColumns, setPinnedColumns] = useState([]);
+  const [pinnedColumns, setPinnedColumns] = useState(["bugId"]);
   const [colWidths, setColWidths] = useState(
     Object.fromEntries(tableDetails.map((col) => [col.key, col.width || 160]))
   );
+
+  // Synchronize colWidths whenever tableDetails changes (switching phases)
+  // This ensures new columns have an initial width so resizing doesn't fail with NaN
+  useEffect(() => {
+    setColWidths((prev) => {
+      const updated = { ...prev };
+      let changed = false;
+      tableDetails.forEach((col) => {
+        if (!(col.key in updated)) {
+          updated[col.key] = col.width || 160;
+          changed = true;
+        }
+      });
+      return changed ? updated : prev;
+    });
+  }, [tableDetails]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -257,6 +396,9 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
   const paginatedData = phaseBugs ? phaseBugs.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage) : [];
 
   const handlePinColumn = (columnKey) => {
+    // Bug ID is always pinned
+    if (columnKey === "bugId") return;
+
     setPinnedColumns((prev) =>
       prev.includes(columnKey) ? prev.filter((col) => col !== columnKey) : [...prev, columnKey]
     );
@@ -274,9 +416,15 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
       position: "sticky",
       left: `${left}px`,
       zIndex: 10,
-      background: "white",
       boxShadow: "2px 0 2px -2px #eee",
     };
+  };
+
+  // Returns true when the current user is allowed to edit this specific row.
+  const isRowEditable = (item) => {
+    if (canEditRow === null || canEditRow === undefined) return true; // admin or phase-scoped (all editable)
+    if (typeof canEditRow === "function") return canEditRow(item);
+    return true;
   };
 
   const handleEdit = (item) => {
@@ -299,11 +447,13 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
 
     const updatePayload = {
       "phaseI_BugReport.toolInfo.toolName": dataToSave.toolNameExtracted || dataToSave.phaseI_BugReport?.toolInfo?.toolName,
+      "phaseI_BugReport.toolInfo.toolId": dataToSave.toolIdExtracted || dataToSave.phaseI_BugReport?.toolInfo?.toolId,
       "phaseI_BugReport.toolInfo.priority": dataToSave.priorityExtracted || dataToSave.phaseI_BugReport?.toolInfo?.priority,
       "phaseI_BugReport.toolInfo.stack": dataToSave.stackExtracted || dataToSave.phaseI_BugReport?.toolInfo?.stack,
       "phaseI_BugReport.toolInfo.bugDescription": dataToSave.bugDescriptionExtracted !== undefined ? dataToSave.bugDescriptionExtracted : dataToSave.phaseI_BugReport?.toolInfo?.bugDescription,
       "phaseI_BugReport.toolInfo.expectedResult": dataToSave.expectedResultExtracted !== undefined ? dataToSave.expectedResultExtracted : dataToSave.phaseI_BugReport?.toolInfo?.expectedResult,
       "phaseI_BugReport.toolInfo.actualResult": dataToSave.actualResultExtracted !== undefined ? dataToSave.actualResultExtracted : dataToSave.phaseI_BugReport?.toolInfo?.actualResult,
+      "phaseI_BugReport.assignedTester": dataToSave.testerExtracted !== undefined ? dataToSave.testerExtracted : (dataToSave.phaseI_BugReport?.assignedTester?._id || dataToSave.phaseI_BugReport?.assignedTester?.id || dataToSave.phaseI_BugReport?.assignedTester),
       "phaseII_BugConfirmation.testingInfo.status": dataToSave.statusExtracted !== undefined ? dataToSave.statusExtracted : dataToSave.phaseII_BugConfirmation?.testingInfo?.status,
       "phaseII_BugConfirmation.testingInfo.sopFollowed": dataToSave.sopFollowedExtracted !== undefined ? dataToSave.sopFollowedExtracted : dataToSave.phaseII_BugConfirmation?.testingInfo?.sopFollowed,
       "phaseII_BugConfirmation.testingInfo.remarks": dataToSave.remarksExtracted !== undefined ? dataToSave.remarksExtracted : dataToSave.phaseII_BugConfirmation?.testingInfo?.remarks,
@@ -316,6 +466,11 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
       "phaseV_FinalTesting.testingInfo.deploymentStatus": dataToSave.deploymentStatusExtracted !== undefined ? dataToSave.deploymentStatusExtracted : dataToSave.phaseV_FinalTesting?.testingInfo?.deploymentStatus,
       "phaseV_FinalTesting.testingInfo.deployRemark": dataToSave.deployRemarkExtracted !== undefined ? dataToSave.deployRemarkExtracted : dataToSave.phaseV_FinalTesting?.testingInfo?.deployRemark,
       "phaseV_FinalTesting.testingInfo.finalSop": dataToSave.finalSopExtracted !== undefined ? dataToSave.finalSopExtracted : dataToSave.phaseV_FinalTesting?.testingInfo?.finalSop,
+      
+      // Attachments for all phases
+      "phaseI_BugReport.toolInfo.attachments": dataToSave.attachmentsExtracted !== undefined ? dataToSave.attachmentsExtracted.map(f => ({ url: f.url, fileName: f.name || f.fileName, uploadedAt: f.uploadedAt || new Date() })) : dataToSave.phaseI_BugReport?.toolInfo?.attachments,
+      "phaseII_BugConfirmation.testingInfo.attachments": dataToSave.testingAttachmentsExtracted !== undefined ? dataToSave.testingAttachmentsExtracted.map(f => ({ url: f.url, fileName: f.name || f.fileName, uploadedAt: f.uploadedAt || new Date() })) : dataToSave.phaseII_BugConfirmation?.testingInfo?.attachments,
+      "phaseIII_BugAnalysis.analysisInfo.attachments": dataToSave.analyzeAttachmentsExtracted !== undefined ? dataToSave.analyzeAttachmentsExtracted.map(f => ({ url: f.url, fileName: f.name || f.fileName, uploadedAt: f.uploadedAt || new Date() })) : dataToSave.phaseIII_BugAnalysis?.analysisInfo?.attachments,
     };
 
     if (dataToSave.currentPhaseExtracted) {
@@ -326,23 +481,115 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
       if (bugToUpdate?.currentPhase === "Bug Testing" && dataToSave.currentPhaseExtracted === "Bug Analysis") {
          updatePayload["phaseII_BugConfirmation.testedAt"] = new Date().toISOString();
       }
+
+      // Automatically set "Go back to dev" flag if moving from RTT/Maintenance to Analysis
+      if ((bugToUpdate?.currentPhase === "Ready to Test" || bugToUpdate?.currentPhase === "Maintenance") && 
+          dataToSave.currentPhaseExtracted === "Bug Analysis") {
+         updatePayload["phaseIV_Maintenance.maintenanceInfo.testingFlag"] = "Go back to dev";
+      }
+
+      // Automatically set "Done" deployment status if moving to Closure
+      if (dataToSave.currentPhaseExtracted === "Closure") {
+         updatePayload["phaseV_FinalTesting.testingInfo.deploymentStatus"] = "Done";
+      }
+
+      // Automatically capture "Bug Analysed At" if moving out of Analysis
+      if (bugToUpdate?.currentPhase === "Bug Analysis" && 
+          dataToSave.currentPhaseExtracted && 
+          dataToSave.currentPhaseExtracted !== "Bug Analysis") {
+         if (!bugToUpdate.phaseIII_BugAnalysis?.analyzedAt) {
+            updatePayload["phaseIII_BugAnalysis.analyzedAt"] = new Date().toISOString();
+         }
+      }
     }
 
     const finalTestingFlag = updatePayload["phaseIV_Maintenance.maintenanceInfo.testingFlag"] !== undefined ? updatePayload["phaseIV_Maintenance.maintenanceInfo.testingFlag"] : dataToSave.phaseIV_Maintenance?.maintenanceInfo?.testingFlag;
     
     try {
+      const bugToUpdate = phaseBugs.find(b => (b.id || b._id) === id);
+      const isTransitioningToTesting = bugToUpdate?.currentPhase === "Bug Reported" && updatePayload.currentPhase === "Bug Testing";
+      const isTransitioningToAnalysis = bugToUpdate?.currentPhase === "Bug Testing" && updatePayload.currentPhase === "Bug Analysis";
+      
       const res = await updateBug({ id, ...updatePayload });
-      // Force instant frontend sync
+
+      if (isTransitioningToTesting || isTransitioningToAnalysis) {
+        const tName = updatePayload["phaseI_BugReport.toolInfo.toolName"] || bugToUpdate.phaseI_BugReport?.toolInfo?.toolName || "-";
+        const priority = updatePayload["phaseI_BugReport.toolInfo.priority"] || bugToUpdate.phaseI_BugReport?.toolInfo?.priority || "low";
+        const rName = bugToUpdate.phaseI_BugReport?.reportedBy?.name || "Unknown";
+        const bId = bugToUpdate.bugId || "N/A";
+        
+        // Determine assigned person
+        let assignedName = "Unknown";
+        if (isTransitioningToTesting) {
+          const testerId = updatePayload["phaseI_BugReport.assignedTester"];
+          assignedName = allUsers?.find(u => (u.id || u._id) === testerId)?.name || "Unassigned";
+        } else {
+          const devId = updatePayload["phaseII_BugConfirmation.assignedDeveloper"];
+          assignedName = allUsers?.find(u => (u.id || u._id) === devId)?.name || "Unassigned";
+        }
+
+        toast.custom((t) => (
+          <div className={`${t.visible ? 'animate-in fade-in slide-in-from-top-5' : 'animate-out fade-out'} max-w-sm w-full bg-white shadow-2xl rounded-2xl pointer-events-auto flex flex-col border border-gray-100 overflow-hidden z-[9999]`}>
+            <div className="p-4 bg-slate-50 border-b border-gray-100 flex items-center justify-between">
+               <div className="flex items-center gap-2">
+                 <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+                 <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 italic">Assignment Alert</span>
+               </div>
+               <span className="text-xs font-bold text-gray-400">{bId}</span>
+            </div>
+            <div className="p-4 flex flex-col">
+               <h4 className="text-sm font-black text-gray-900 leading-tight">
+                 Bug {bId} Assigned to <span className="text-cyan-600">{assignedName}</span>
+               </h4>
+               <div className="flex items-center gap-2 mt-2">
+                 <span className="text-xs font-bold text-gray-700 truncate max-w-[120px]">{tName}</span>
+                 <span className="w-1 h-1 rounded-full bg-gray-300" />
+                 <span className={`text-[9px] px-2 py-0.5 rounded-md font-black uppercase ${
+                    priority === 'critical' ? 'bg-red-50 text-red-600' :
+                    priority === 'high' ? 'bg-orange-50 text-orange-600' :
+                    'bg-emerald-50 text-emerald-600'
+                 }`}>
+                   {priority}
+                 </span>
+               </div>
+               <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-gray-50">
+                 <div className="flex flex-col">
+                   <span className="text-[9px] text-gray-400 font-bold uppercase tracking-tighter">Reported By</span>
+                   <span className="text-[11px] text-gray-600 font-black truncate">{rName}</span>
+                 </div>
+                 <div className="flex flex-col">
+                   <span className="text-[9px] text-gray-400 font-bold uppercase tracking-tighter">Assigned To</span>
+                   <span className="text-[11px] text-cyan-600 font-black truncate">{assignedName}</span>
+                 </div>
+               </div>
+            </div>
+          </div>
+        ), { duration: 6000 });
+      } else {
+        toast.success("Bug updated successfully!");
+      }
       setBugsList((prev) =>
         prev.map((bug) => {
           if (bug._id === id) {
              const newBug = {...bug};
              newBug.phaseI_BugReport.toolInfo.toolName = updatePayload["phaseI_BugReport.toolInfo.toolName"];
+             if (updatePayload["phaseI_BugReport.toolInfo.toolId"]) {
+               newBug.phaseI_BugReport.toolInfo.toolId = updatePayload["phaseI_BugReport.toolInfo.toolId"];
+             }
              newBug.phaseI_BugReport.toolInfo.priority = updatePayload["phaseI_BugReport.toolInfo.priority"];
              newBug.phaseI_BugReport.toolInfo.stack = updatePayload["phaseI_BugReport.toolInfo.stack"];
              newBug.phaseI_BugReport.toolInfo.bugDescription = updatePayload["phaseI_BugReport.toolInfo.bugDescription"];
              newBug.phaseI_BugReport.toolInfo.expectedResult = updatePayload["phaseI_BugReport.toolInfo.expectedResult"];
              newBug.phaseI_BugReport.toolInfo.actualResult = updatePayload["phaseI_BugReport.toolInfo.actualResult"];
+             newBug.phaseI_BugReport.toolInfo.attachments = updatePayload["phaseI_BugReport.toolInfo.attachments"];
+             // Sync assignedTester
+             if (updatePayload["phaseI_BugReport.assignedTester"] !== undefined) {
+               const testerId = updatePayload["phaseI_BugReport.assignedTester"];
+               const matchedTester = allUsers?.find(u => u.id === testerId || u._id === testerId);
+               newBug.phaseI_BugReport.assignedTester = matchedTester
+                 ? { _id: matchedTester._id || matchedTester.id, name: matchedTester.name, email: matchedTester.email }
+                 : testerId;
+             }
              
              if (!newBug.phaseII_BugConfirmation) newBug.phaseII_BugConfirmation = { testingInfo: {} };
              if (!newBug.phaseII_BugConfirmation.testingInfo) newBug.phaseII_BugConfirmation.testingInfo = {};
@@ -355,6 +602,9 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
              }
              if (updatePayload["phaseII_BugConfirmation.testingInfo.remarks"] !== undefined) {
                  newBug.phaseII_BugConfirmation.testingInfo.remarks = updatePayload["phaseII_BugConfirmation.testingInfo.remarks"];
+             }
+             if (updatePayload["phaseII_BugConfirmation.testingInfo.attachments"] !== undefined) {
+                 newBug.phaseII_BugConfirmation.testingInfo.attachments = updatePayload["phaseII_BugConfirmation.testingInfo.attachments"];
              }
              if (updatePayload["phaseII_BugConfirmation.assignedDeveloper"] !== undefined) {
                  const devId = updatePayload["phaseII_BugConfirmation.assignedDeveloper"];
@@ -374,6 +624,9 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
              
              if (updatePayload["phaseIII_BugAnalysis.analysisInfo.remarks"] !== undefined) {
                  newBug.phaseIII_BugAnalysis.analysisInfo.remarks = updatePayload["phaseIII_BugAnalysis.analysisInfo.remarks"];
+             }
+             if (updatePayload["phaseIII_BugAnalysis.analysisInfo.attachments"] !== undefined) {
+                 newBug.phaseIII_BugAnalysis.analysisInfo.attachments = updatePayload["phaseIII_BugAnalysis.analysisInfo.attachments"];
              }
              if (updatePayload["phaseIII_BugAnalysis.analysisInfo.sopProvided"] !== undefined) {
                  newBug.phaseIII_BugAnalysis.analysisInfo.sopProvided = updatePayload["phaseIII_BugAnalysis.analysisInfo.sopProvided"];
@@ -415,7 +668,6 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
           return bug;
         })
       );
-      toast.success("Bug updated successfully");
     } catch (error) {
        toast.error("Failed to update bug");
     }
@@ -535,10 +787,15 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
     
     // Developer extraction uses edit data dynamically, or default from Phase 2
     let developerObj = rawItem.phaseII_BugConfirmation?.assignedDeveloper;
+    if (developerObj && (typeof developerObj !== "object" || !developerObj.name)) {
+        const idToCheck = typeof developerObj === "object" ? (developerObj._id || developerObj.id) : developerObj;
+        const found = allUsers?.find(u => (u.id || u._id) === idToCheck);
+        if (found) developerObj = found;
+    }
     if (isEditing && displayData.devExtracted) {
         developerObj = allUsers?.find(u => (u.id || u._id) === displayData.devExtracted);
     }
-    const developer = developerObj?.name || "";
+    const developer = developerObj?.name || (typeof developerObj === "string" ? developerObj : "");
     const developerEmail = developerObj?.email || "No email provided";
     
     // New testing fields
@@ -546,7 +803,9 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
     const bugStatus = displayData.statusExtracted ?? rawItem.phaseII_BugConfirmation?.testingInfo?.status ?? "-";
     
     const sopFollowedArr = displayData.sopFollowedExtracted !== undefined ? displayData.sopFollowedExtracted : rawItem.phaseII_BugConfirmation?.testingInfo?.sopFollowed;
-    const sopFollowedStr = sopFollowedArr && sopFollowedArr.length > 0 ? sopFollowedArr.join(', ') : '';
+    const sopFollowedStr = displayData.sopFollowedRaw !== undefined 
+      ? displayData.sopFollowedRaw 
+      : (sopFollowedArr && Array.isArray(sopFollowedArr) && sopFollowedArr.length > 0 ? sopFollowedArr.join(', ') : '');
     
     const remarks = displayData.remarksExtracted !== undefined ? displayData.remarksExtracted : rawItem.phaseII_BugConfirmation?.testingInfo?.remarks || "";
 
@@ -554,12 +813,20 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
     const analyzeRemark = displayData.analyzeRemarkExtracted !== undefined ? displayData.analyzeRemarkExtracted : rawItem.phaseIII_BugAnalysis?.analysisInfo?.remarks || "";
     
     const sopSolutionArr = displayData.sopSolutionExtracted !== undefined ? displayData.sopSolutionExtracted : rawItem.phaseIII_BugAnalysis?.analysisInfo?.sopProvided;
-    const sopSolutionStr = sopSolutionArr && sopSolutionArr.length > 0 ? sopSolutionArr.join(', ') : '';
+    const sopSolutionStr = displayData.sopSolutionRaw !== undefined 
+      ? displayData.sopSolutionRaw 
+      : (sopSolutionArr && Array.isArray(sopSolutionArr) && sopSolutionArr.length > 0 ? sopSolutionArr.join(', ') : '');
     
     const delayedReason = displayData.delayedReasonExtracted !== undefined ? displayData.delayedReasonExtracted : rawItem.phaseIII_BugAnalysis?.analysisInfo?.delayedReason || "";
     
     if (col.key === "bugId") {
-       return <span className="font-medium text-cyan-600 cursor-pointer" onClick={() => onClickCardToModal(rawItem)}>{rawItem.bugId || "N/A"}</span>;
+       return (
+         <CellTooltip content={`Click to view details for ${rawItem.bugId}`}>
+           <span className="font-medium text-cyan-600 cursor-pointer" onClick={() => onClickCardToModal(rawItem)}>
+             {rawItem.bugId || "N/A"}
+           </span>
+         </CellTooltip>
+       );
     }
 
     if (col.key === "reportedDate") {
@@ -574,20 +841,62 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
         </span>;
     }
 
+    if (col.key === "bugAnalysedDate") {
+        return <span className="text-gray-500 whitespace-nowrap">
+          {rawItem.phaseIII_BugAnalysis?.analyzedAt ? new Date(rawItem.phaseIII_BugAnalysis.analyzedAt).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }) : "-"}
+        </span>;
+    }
+
     if (col.key === "toolName") {
-      return isEditing ? (
-        <Input 
-          value={toolName} 
-          onChange={(e) => setRowEditData({ toolNameExtracted: e.target.value })} 
-          className="h-8 w-full" 
-        />
-      ) : (
-        <span className="font-medium text-gray-900">{toolName}</span>
+      if (isEditing) {
+        // Build dropdown from the global tool list
+        const toolsForDropdown = toolList || [];
+        const selectedToolId  = displayData.toolIdExtracted ?? rawItem.phaseI_BugReport?.toolInfo?.toolId;
+        const selectedToolLabel = toolsForDropdown.find(t => (t.id || t._id) === selectedToolId)?.name || toolName;
+
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="h-8 w-full justify-start text-left shrink-0 text-xs px-2" onClick={(e) => e.stopPropagation()}>
+                <span className="truncate">{selectedToolLabel}</span>
+                <ChevronDown className="ml-1 h-3 w-3 opacity-50 flex-shrink-0" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-52 max-h-52 overflow-auto z-50">
+              {toolsForDropdown.map((tool) => (
+                <DropdownMenuItem
+                  key={tool.id || tool._id}
+                  className="text-xs py-1.5 cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setRowEditData({
+                      toolNameExtracted: tool.name,
+                      toolIdExtracted: tool.id || tool._id,
+                      // Clear stale stack so relative options are re-evaluated
+                      stackExtracted: undefined,
+                    });
+                  }}
+                >
+                  {tool.name}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      }
+      return (
+        <CellTooltip content={toolName}>
+          <span className="font-medium text-gray-900 truncate block">{toolName}</span>
+        </CellTooltip>
       );
     }
 
     if (col.key === "bugRaiser") {
-      return <span className="text-gray-600 truncate block w-full" title={raiserEmail}>{raiser}</span>;
+      return (
+        <CellTooltip content={`${raiser} (${raiserEmail})`}>
+          <span className="text-gray-600 truncate block w-full">{raiser}</span>
+        </CellTooltip>
+      );
     }
 
     if (col.type === "facedByCard") {
@@ -595,7 +904,11 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
       if (!clientCtx) return <span className="text-gray-400">-</span>;
 
       if (clientCtx.facedByMe) {
-        return <span className="text-gray-700 font-medium">Me</span>;
+        return (
+          <CellTooltip content="Issue faced by the raiser themselves">
+            <span className="text-gray-700 font-medium">Me</span>
+          </CellTooltip>
+        );
       } else if (clientCtx.facedByClient) {
         return (
           <div className="flex flex-col text-xs text-gray-700 truncate min-w-[120px]">
@@ -620,20 +933,61 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
       if (followedItems.length === 0) return <span className="text-gray-400 px-2 block w-full">None</span>;
       
       return (
-        <ul className="list-disc pl-5 text-xs text-gray-700 m-0 max-h-20 overflow-y-auto block w-full pr-1" title={followedItems.join('\n')}>
-          {followedItems.map((item, idx) => (
-             <li key={idx} className="truncate" title={item}>{item}</li>
-          ))}
-        </ul>
+        <CellTooltip content={followedItems.join('\n')}>
+          <ul className="list-disc pl-5 text-xs text-gray-700 m-0 max-h-20 overflow-y-auto block w-full pr-1">
+            {followedItems.map((item, idx) => (
+               <li key={idx} className="truncate">{item}</li>
+            ))}
+          </ul>
+        </CellTooltip>
       );
     }
 
     if (col.key === "assignedTester") {
-      return <span className="text-gray-600 truncate block w-full" title={testerEmail}>{tester}</span>;
+      if (isEditing) {
+        const testers = allUsers?.filter(u =>
+          Array.isArray(u.roletype) ? u.roletype.includes("tester") : u.roletype === "tester"
+        ) || [];
+
+        let selectedTesterId = displayData.testerExtracted ?? testerObj?._id ?? testerObj?.id;
+        const selectedTesterLabel = testers.find(t => (t.id || t._id) === selectedTesterId)?.name
+          || tester
+          || "Select Tester";
+
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="h-8 w-full justify-start text-left shrink-0 text-xs px-2" onClick={(e) => e.stopPropagation()}>
+                <span className="truncate">{selectedTesterLabel}</span>
+                <ChevronDown className="ml-1 h-3 w-3 opacity-50 flex-shrink-0" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-48 max-h-48 overflow-auto z-50">
+              {testers.map((t) => (
+                <DropdownMenuItem
+                  key={t.id || t._id}
+                  className="text-xs py-1.5 cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setRowEditData({ testerExtracted: t.id || t._id });
+                  }}
+                >
+                  {t.name || t.username || t.email}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      }
+      return (
+        <CellTooltip content={`${tester} (${testerEmail})`}>
+          <span className="text-gray-600 truncate block w-full">{tester}</span>
+        </CellTooltip>
+      );
     }
 
-    if (col.type === "devSelect" && col.key === "assignedDev") {
-      if (isEditing) {
+    if (col.key === "assignedDev") {
+      if (isEditing && col.type === "devSelect") {
         const devs = allUsers?.filter(u => (Array.isArray(u.roletype) ? u.roletype.includes("dev") : u.roletype === "dev") || (u.roles && u.roles.includes("Developer"))) || [];
         
         let selectedDevId = displayData.devExtracted ?? developerObj?._id ?? developerObj?.id;
@@ -674,44 +1028,48 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
           </DropdownMenu>
         );
       } else {
-        return <span className="text-gray-600 truncate block w-full" title={developerEmail}>{developer}</span>;
+        return (
+          <CellTooltip content={developerEmail}>
+            <span className="text-gray-600 truncate block w-full">{developer || "-"}</span>
+          </CellTooltip>
+        );
       }
     }
 
     if (col.key === "attachments" || col.type === "attachment") {
-      const phase1Attach = rawItem.phaseI_BugReport?.toolInfo?.attachments;
-      if (phase1Attach && phase1Attach.length > 0) {
-        return (
-           <a href={phase1Attach[0].url} target="_blank" rel="noreferrer" className="text-cyan-600 hover:text-cyan-800 underline text-sm whitespace-nowrap">
-             View File
-           </a>
-        );
-      }
-      return <span className="text-gray-400">-</span>;
+      const attachments = displayData.attachmentsExtracted || rawItem.phaseI_BugReport?.toolInfo?.attachments || [];
+      return (
+        <AttachmentGallery 
+          files={attachments}
+          isEditable={isEditing}
+          onUpdate={(newFiles) => setRowEditData({ attachmentsExtracted: newFiles })}
+          label="Bug Attachments"
+        />
+      );
     }
     
     if (col.key === "testingAttachment" || col.type === "testingAttachment") {
-      const phase2Attach = rawItem.phaseII_BugConfirmation?.testingInfo?.attachments;
-      if (phase2Attach && phase2Attach.length > 0) {
-        return (
-           <a href={phase2Attach[0].url} target="_blank" rel="noreferrer" className="text-cyan-600 hover:text-cyan-800 underline text-sm whitespace-nowrap">
-             View File
-           </a>
-        );
-      }
-      return <span className="text-gray-400">-</span>;
+      const attachments = displayData.testingAttachmentsExtracted || rawItem.phaseII_BugConfirmation?.testingInfo?.attachments || [];
+      return (
+        <AttachmentGallery 
+          files={attachments}
+          isEditable={isEditing}
+          onUpdate={(newFiles) => setRowEditData({ testingAttachmentsExtracted: newFiles })}
+          label="Testing Attachments"
+        />
+      );
     }
     
     if (col.key === "analyzeAttachment" || col.type === "analyzeAttachment") {
-      const phase3Attach = rawItem.phaseIII_BugAnalysis?.analysisInfo?.attachments;
-      if (phase3Attach && phase3Attach.length > 0) {
-        return (
-           <a href={phase3Attach[0].url} target="_blank" rel="noreferrer" className="text-cyan-600 hover:text-cyan-800 underline text-sm whitespace-nowrap">
-             View File
-           </a>
-        );
-      }
-      return <span className="text-gray-400">-</span>;
+      const attachments = displayData.analyzeAttachmentsExtracted || rawItem.phaseIII_BugAnalysis?.analysisInfo?.attachments || [];
+      return (
+        <AttachmentGallery 
+          files={attachments}
+          isEditable={isEditing}
+          onUpdate={(newFiles) => setRowEditData({ analyzeAttachmentsExtracted: newFiles })}
+          label="Analysis Attachments"
+        />
+      );
     }
     
     if (col.type === "analyzeRemarkText") {
@@ -720,7 +1078,11 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
             <textarea className="w-full text-xs border rounded p-1 resize-y" rows={2} placeholder="Add Analyse Remarks..." value={analyzeRemark} onChange={(e) => setRowEditData({ analyzeRemarkExtracted: e.target.value })} />
           );
        }
-       return <span className="text-gray-600 truncate block w-full" title={analyzeRemark !== "-" ? analyzeRemark : ""}>{analyzeRemark || "-"}</span>;
+       return (
+         <CellTooltip content={analyzeRemark !== "-" ? analyzeRemark : ""}>
+           <span className="text-gray-600 truncate block w-full">{analyzeRemark || "-"}</span>
+         </CellTooltip>
+       );
     }
     
     if (col.type === "delayedReasonText") {
@@ -729,25 +1091,37 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
              <Input className="h-8 w-full text-xs" placeholder="Delayed Reason..." value={delayedReason} onChange={(e) => setRowEditData({ delayedReasonExtracted: e.target.value })} />
           );
        }
-       return <span className="text-gray-600 truncate block w-full" title={delayedReason !== "-" ? delayedReason : ""}>{delayedReason || "-"}</span>;
+       return (
+         <CellTooltip content={delayedReason !== "-" ? delayedReason : ""}>
+           <span className="text-gray-600 truncate block w-full">{delayedReason || "-"}</span>
+         </CellTooltip>
+       );
     }
     
     if (col.type === "sopSolutionText") {
       if (isEditing) {
         return (
-          <Input 
-            className="h-8 w-full text-xs" 
+          <textarea 
+            className="w-full text-xs border rounded p-1 resize-y" 
+            rows={2}
             placeholder="SOP for solution (comma separated)"
             value={sopSolutionStr}
             onChange={(e) => {
               const raw = e.target.value;
               const arr = raw ? raw.split(',').map(s => s.trim()).filter(Boolean) : [];
-              setRowEditData({ sopSolutionExtracted: arr });
+              setRowEditData({ 
+                sopSolutionExtracted: arr,
+                sopSolutionRaw: raw 
+              });
             }}
           />
         );
       } else {
-        return <span className="text-gray-600 text-xs truncate block w-full" title={sopSolutionStr !== "-" ? sopSolutionStr : ""}>{sopSolutionStr || "-"}</span>;
+        return (
+          <CellTooltip content={sopSolutionStr !== "-" ? sopSolutionStr : ""}>
+            <span className="text-gray-600 text-xs truncate block w-full">{sopSolutionStr || "-"}</span>
+          </CellTooltip>
+        );
       }
     }
     
@@ -763,7 +1137,11 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
             />
           );
        }
-       return <span className="text-gray-600 truncate block w-full" title={remarks !== "-" ? remarks : ""}>{remarks || "-"}</span>;
+       return (
+         <CellTooltip content={remarks !== "-" ? remarks : ""}>
+           <span className="text-gray-600 truncate block w-full">{remarks || "-"}</span>
+         </CellTooltip>
+       );
     }
 
     const finalTestingRemark = displayData.finalTestingRemarkExtracted !== undefined ? displayData.finalTestingRemarkExtracted : rawItem.phaseIV_Maintenance?.maintenanceInfo?.remarks || "";
@@ -774,7 +1152,11 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
             <textarea className="w-full text-xs border rounded p-1 resize-y" rows={2} placeholder="Add Final Testing Remarks..." value={finalTestingRemark} onChange={(e) => setRowEditData({ finalTestingRemarkExtracted: e.target.value })} />
           );
        }
-       return <span className="text-gray-600 truncate block w-full" title={finalTestingRemark !== "-" ? finalTestingRemark : ""}>{finalTestingRemark || "-"}</span>;
+       return (
+         <CellTooltip content={finalTestingRemark !== "-" ? finalTestingRemark : ""}>
+           <span className="text-gray-600 truncate block w-full">{finalTestingRemark || "-"}</span>
+         </CellTooltip>
+       );
     }
 
     const deployRemark = displayData.deployRemarkExtracted !== undefined ? displayData.deployRemarkExtracted : rawItem.phaseV_FinalTesting?.testingInfo?.deployRemark || "";
@@ -784,7 +1166,11 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
             <textarea className="w-full text-xs border rounded p-1 resize-y bg-emerald-50/30" rows={2} placeholder="Add Deploy Remarks..." value={deployRemark} onChange={(e) => setRowEditData({ deployRemarkExtracted: e.target.value })} />
           );
        }
-       return <span className="text-gray-600 truncate block w-full" title={deployRemark || ""}>{deployRemark || "-"}</span>;
+       return (
+         <CellTooltip content={deployRemark || ""}>
+           <span className="text-gray-600 truncate block w-full">{deployRemark || "-"}</span>
+         </CellTooltip>
+       );
     }
 
     const finalSop = displayData.finalSopExtracted !== undefined ? displayData.finalSopExtracted : rawItem.phaseV_FinalTesting?.testingInfo?.finalSop || "";
@@ -794,7 +1180,11 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
             <textarea className="w-full text-xs border rounded p-1 resize-y bg-emerald-50/30" rows={2} placeholder="Add Final SOP..." value={finalSop} onChange={(e) => setRowEditData({ finalSopExtracted: e.target.value })} />
           );
        }
-       return <span className="text-gray-600 truncate block w-full" title={finalSop || ""}>{finalSop || "-"}</span>;
+       return (
+         <CellTooltip content={finalSop || ""}>
+           <span className="text-gray-600 truncate block w-full">{finalSop || "-"}</span>
+         </CellTooltip>
+       );
     }
 
     if (col.type === "statusSelect") {
@@ -832,27 +1222,37 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
     if (col.type === "sopText") {
       if (isEditing) {
         return (
-          <Input 
-            className="h-8 w-full text-xs" 
+          <textarea 
+            className="w-full text-xs border rounded p-1 resize-y" 
+            rows={2}
             placeholder="SOP Followed (comma separated)"
             value={sopFollowedStr}
             onChange={(e) => {
               const raw = e.target.value;
               const arr = raw ? raw.split(',').map(s => s.trim()).filter(Boolean) : [];
-              // We store it as array state but edit it as string via derived state
-              // To make real-time typing smooth we just store standard array and display derives from it
-              setRowEditData({ sopFollowedExtracted: arr });
+              setRowEditData({ 
+                sopFollowedExtracted: arr,
+                sopFollowedRaw: raw
+              });
             }}
           />
         );
       } else {
-        return <span className="text-gray-600 text-xs truncate block w-full" title={sopFollowedStr !== "-" ? sopFollowedStr : ""}>{sopFollowedStr || "-"}</span>;
+        return (
+          <CellTooltip content={sopFollowedStr !== "-" ? sopFollowedStr : ""}>
+            <span className="text-gray-600 text-xs truncate block w-full">{sopFollowedStr || "-"}</span>
+          </CellTooltip>
+        );
       }
     }
 
     if (col.key === "rootCause") {
        const rootCause = rawItem.phaseIII_BugAnalysis?.analysisInfo?.rootCause || "-";
-       return <span className="text-gray-600 truncate block w-full">{rootCause}</span>;
+       return (
+         <CellTooltip content={rootCause}>
+           <span className="text-gray-600 truncate block w-full">{rootCause}</span>
+         </CellTooltip>
+       );
     }
 
     if (col.type === "description") {
@@ -891,17 +1291,21 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
         if (isExpectedMode) {
           const maxLines = "line-clamp-4"; 
           return (
-            <div className={`text-[14px] text-gray-700 whitespace-pre-wrap ${maxLines} overflow-hidden`} title={`Expected: ${expRes}\n\nActual: ${actRes}`}>
-              <span className="font-semibold text-gray-900">Expected:</span> {expRes}
-              <br/><br/>
-              <span className="font-semibold text-gray-900">Actual:</span> {actRes}
-            </div>
+            <CellTooltip content={`Expected: ${expRes}\n\nActual: ${actRes}`}>
+              <div className={`text-[14px] text-gray-700 whitespace-pre-wrap ${maxLines} overflow-hidden`}>
+                <span className="font-semibold text-gray-900">Expected:</span> {expRes}
+                <br/><br/>
+                <span className="font-semibold text-gray-900">Actual:</span> {actRes}
+              </div>
+            </CellTooltip>
           );
         } else {
           return (
-            <div className="text-[14px] text-gray-700 whitespace-pre-wrap line-clamp-4 overflow-hidden" title={bugDesc}>
-              {bugDesc}
-            </div>
+            <CellTooltip content={bugDesc}>
+              <div className="text-[14px] text-gray-700 whitespace-pre-wrap line-clamp-4 overflow-hidden">
+                {bugDesc}
+              </div>
+            </CellTooltip>
           );
         }
       }
@@ -940,6 +1344,13 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
     }
 
     if (col.type === "stackSelect") {
+      // Determine which tool is selected (from edit data or from saved bug)
+      const activeToolId = displayData.toolIdExtracted ?? rawItem.phaseI_BugReport?.toolInfo?.toolId;
+      const activeTool   = toolList?.find(t => (t.id || t._id) === activeToolId);
+      const toolStacks   = activeTool && Array.isArray(activeTool.stack) && activeTool.stack.length > 0
+        ? activeTool.stack
+        : stackOptions; // fallback to global defaults
+
       return isEditing ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -948,7 +1359,7 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-32">
-            {stackOptions.map((opt) => (
+            {toolStacks.map((opt) => (
                <DropdownMenuCheckboxItem
                  key={opt}
                  checked={stack === opt}
@@ -960,7 +1371,7 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <span className="text-gray-600">{stack}</span>
+        <span className="text-gray-600" title={stack}>{stack}</span>
       );
     }
 
@@ -1001,7 +1412,7 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <span className="text-gray-600 truncate block w-full">{currentPhaseName}</span>
+        <span className="text-gray-600 truncate block w-full" title={`Phase: ${currentPhaseName}`}>{currentPhaseName}</span>
       );
     }
 
@@ -1104,19 +1515,22 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
       <div className="[&>div]:rounded-sm [&>div]:border overflow-x-auto overflow-y-auto max-h-[calc(100vh-320px)] min-h-[160px] mt-4 shadow-sm bg-white relative">
         <Table className="min-w-full">
           <TableHeader>
-            <TableRow className="hover:bg-transparent">
-              <TableHead className="p-0 flex items-center justify-center h-16 sticky left-0 z-30 bg-white shadow-[2px_0_2px_-2px_#eee]" style={{ width: colWidths.checkbox || 48, minWidth: 48, maxWidth: 120, top: 0 }}>
-                <Checkbox 
-                  checked={paginatedData?.length > 0 && selectedRows.length === paginatedData.length}
-                  onCheckedChange={(checked) => {
-                    if (checked) {
-                      setSelectedRows(paginatedData.map(item => item._id || item.id));
-                    } else {
-                      setSelectedRows([]);
-                    }
-                  }}
-                />
+            <TableRow className="hover:bg-transparent h-14">
+              <TableHead className="p-0 sticky left-0 top-0 z-40 bg-white shadow-[2px_0_2px_-2px_#eee]" style={{ width: colWidths.checkbox || 48, minWidth: 48, maxWidth: 120 }}>
+                <div className="flex items-center justify-center h-14 w-full">
+                  <Checkbox 
+                    checked={paginatedData?.length > 0 && selectedRows.length === paginatedData.length}
+                    onCheckedChange={(checked) => {
+                      if (checked) {
+                        setSelectedRows(paginatedData.map(item => item._id || item.id));
+                      } else {
+                        setSelectedRows([]);
+                      }
+                    }}
+                  />
+                </div>
               </TableHead>
+
               {tableDetails.map((col) => {
                 const isPinned = pinnedColumns.includes(col.key);
                 const pinStyle = getPinnedStyle(col.key);
@@ -1143,7 +1557,7 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
                 }
 
                 return (
-                <TableHead key={col.key} className={`sticky ${textColor}`} style={{ ...pinStyle, width: colWidths[col.key], minWidth: 60, maxWidth: 600, top: 0, zIndex: isPinned ? 30 : 20, backgroundColor: isPinned ? 'white' : bgActiveColor }}>
+                <TableHead key={col.key} className={`sticky top-0 ${textColor} border-b border-gray-100 shadow-[2px_0_2px_-2px_#eee]`} style={{ ...pinStyle, width: colWidths[col.key], minWidth: 60, maxWidth: 600, zIndex: isPinned ? 50 : 30, backgroundColor: isPinned ? '#fff' : bgActiveColor }}>
                   <ResizableHeader columnKey={col.key} colWidths={colWidths} setColWidths={setColWidths}>
                     <ColumnHeader columnKey={col.key} onPin={handlePinColumn} isPinned={isPinned}>
                       {col.label}
@@ -1152,7 +1566,7 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
                 </TableHead>
                 );
               })}
-              <TableHead className="sticky right-0 top-0 bg-white shadow-[-2px_0_2px_-2px_#eee]" style={{ width: 120, minWidth: 60, maxWidth: 600, zIndex: 30 }}>
+              <TableHead className="sticky right-0 top-0 bg-white shadow-[-2px_0_2px_-2px_#eee]" style={{ width: 120, minWidth: 60, maxWidth: 600, zIndex: 40 }}>
                 Actions
               </TableHead>
             </TableRow>
@@ -1174,16 +1588,18 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
                   <BugRightClickMenu
                     key={item._id}
                     item={item}
-                    onEdit={() => handleEdit(item)}
+                    onEdit={() => isRowEditable(item) ? handleEdit(item) : null}
                     onDelete={() => handleDeleteSingle(item._id)}
                     onSaveAll={handleSaveAll}
                     onEditSelected={handleEditSelected}
                     onDeleteSelected={handleDeleteSelected}
                     onCancelAll={handleCancelAll}
                   >
-                    <TableRow className="cursor-pointer hover:bg-slate-50 transition-colors">
-                      <TableCell className="p-0 flex items-center justify-center h-16 sticky left-0 z-10 bg-white" style={{ width: colWidths.checkbox || 48, minWidth: 48, maxWidth: 120 }}>
-                        <Checkbox checked={selectedRows.includes(item._id)} onCheckedChange={() => handleRowSelect(item._id)} />
+                    <TableRow className="group cursor-pointer hover:bg-slate-50 transition-colors">
+                      <TableCell className="p-0 sticky left-0 z-20 !bg-white group-hover:!bg-slate-50 transition-colors border-r border-gray-100" style={{ width: colWidths.checkbox || 48, minWidth: 48, maxWidth: 120 }}>
+                        <div className="flex items-center justify-center h-full min-h-[64px] w-full">
+                          <Checkbox checked={selectedRows.includes(item._id)} onCheckedChange={() => handleRowSelect(item._id)} />
+                        </div>
                       </TableCell>
                       
                       {tableDetails.map((col) => {
@@ -1204,9 +1620,34 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
                         }
 
                         // if column is pinned, override background to white so hover doesn't break, unless it's a phase target but testing phase target won't be pinned usually.
+                        // Respect editableColumnKeys restriction AND current phase restriction.
+                        const colIsEditable = isColEditable(col.key, item, editableColumnKeys);
+                        const effectiveIsEditing = isEditing && colIsEditable;
+                        
+                        const isPinned = pinnedColumns.includes(col.key);
+                        const pinnedClasses = isPinned ? "!bg-white group-hover:!bg-slate-50 transition-colors" : "";
+
+                        // Visual cue for locked columns when row is in edit mode
+                        // We avoid 'opacity' on sticky columns to prevent transparency issues
+                        const lockedStyle = isEditing && !colIsEditable
+                          ? { backgroundColor: isPinned ? "#f1f5f9" : "#f8fafc", color: "#94a3b8" } 
+                          : {};
+
                         return (
-                        <TableCell key={col.key} style={{ ...getPinnedStyle(col.key), width: colWidths[col.key], minWidth: 60, maxWidth: 600, backgroundColor: cellBg }}>
-                          {renderCell(col, item, isEditing, displayData, (val) =>
+                        <TableCell 
+                          key={col.key} 
+                          style={{ 
+                            ...getPinnedStyle(col.key), 
+                            width: colWidths[col.key], 
+                            minWidth: 60, 
+                            maxWidth: 600, 
+                            backgroundColor: !isPinned ? cellBg : undefined, 
+                            zIndex: isPinned ? 20 : 1,
+                            ...lockedStyle 
+                          }}
+                          className={`${pinnedClasses} ${isPinned ? 'border-r border-gray-100' : ''}`}
+                        >
+                          {renderCell(col, item, effectiveIsEditing, displayData, (val) =>
                             setEditData((prev) => ({
                               ...prev,
                               [item._id]: { ...(prev[item._id] || item), ...val },
@@ -1216,15 +1657,55 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
                         );
                       })}
 
-                      <TableCell className="sticky right-0 bg-white z-10" style={{ width: 120, minWidth: 60, maxWidth: 600 }}>
-                        {isEditing ? (
-                          <div className="flex gap-2">
-                            <Button size="sm" onClick={() => handleSave(item._id)} className="h-8 px-3">Save</Button>
-                            <Button size="sm" variant="outline" onClick={() => handleCancel(item._id)} className="h-8 px-3">Cancel</Button>
-                          </div>
-                        ) : (
-                          <BugTableRowMenu item={item} onEdit={() => handleEdit(item)} onDelete={() => handleDeleteSingle(item._id)} onArchive={() => console.log('archive')}/>
-                        )}
+                      <TableCell className="sticky right-0 !bg-white z-20 group-hover:!bg-slate-50 transition-colors shadow-[-2px_0_2px_-2px_#eee] border-l border-gray-100" style={{ width: 120, minWidth: 60, maxWidth: 600 }}>
+                        <div className="flex items-center justify-center gap-1.5 py-1">
+                          {isEditing ? (
+                            <div className="flex gap-1 items-center">
+                              <CellTooltip content="Save Changes">
+                                <Button 
+                                  size="icon" 
+                                  variant="ghost" 
+                                  onClick={() => handleSave(item._id)} 
+                                  className="h-7 w-7 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50"
+                                >
+                                  <Check className="h-4 w-4" />
+                                </Button>
+                              </CellTooltip>
+                              <CellTooltip content="Cancel">
+                                <Button 
+                                  size="icon" 
+                                  variant="ghost" 
+                                  onClick={() => handleCancel(item._id)} 
+                                  className="h-7 w-7 text-slate-400 hover:text-red-500 hover:bg-slate-100"
+                                >
+                                  <X className="h-4 w-4" />
+                                </Button>
+                              </CellTooltip>
+                            </div>
+                          ) : (
+                            <>
+                              <CellTooltip content="Activity Log">
+                                <Button 
+                                  size="icon" 
+                                  variant="ghost" 
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    window.open(`/bugs/${item._id}/activity`, "_blank");
+                                  }} 
+                                  className="h-7 w-7 text-indigo-500 hover:text-indigo-600 hover:bg-indigo-50"
+                                >
+                                  <LibraryBig className="h-4 w-4" />
+                                </Button>
+                              </CellTooltip>
+                              
+                              {isRowEditable(item) ? (
+                                <BugTableRowMenu onEdit={() => handleEdit(item)} />
+                              ) : (
+                                <span className="text-xs text-gray-300 select-none px-2">—</span>
+                              )}
+                            </>
+                          )}
+                        </div>
                       </TableCell>
                     </TableRow>
                   </BugRightClickMenu>
@@ -1282,6 +1763,7 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId }) {
           </Button>
         </div>
       </div>
+
     </div>
   );
 }

@@ -194,7 +194,7 @@ const ColumnHeader = ({ children, onPin, isPinned, columnKey }) => {
   );
 };
 
-const TableCreation = ({ isOpen, setIsOpen }) => {
+const TableCreation = ({ isOpen, setIsOpen, searchQuery = "" }) => {
   const { allUsers, setAllUsers, user: currentUser } = useAuth();
   const [editingIds, setEditingIds] = useState([]); // Array of editing row ids
   const [editData, setEditData] = useState({}); // { [id]: rowData }
@@ -208,8 +208,20 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   
-  const totalPages = Math.max(1, Math.ceil((allUsers?.length || 0) / rowsPerPage));
-  const paginatedData = allUsers ? allUsers.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage) : [];
+  // Filter data based on search query
+  const filteredUsers = allUsers?.filter(user => {
+    if (!searchQuery) return true;
+    const query = searchQuery.toLowerCase();
+    return (
+      user.name?.toLowerCase().includes(query) ||
+      user.email?.toLowerCase().includes(query) ||
+      user.username?.toLowerCase().includes(query) ||
+      (Array.isArray(user.roletype) ? user.roletype.join(" ") : user.roletype)?.toLowerCase().includes(query)
+    );
+  }) || [];
+
+  const totalPages = Math.max(1, Math.ceil(filteredUsers.length / rowsPerPage));
+  const paginatedData = filteredUsers.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
   const handlePinColumn = (columnKey) => {
     setPinnedColumns((prev) =>
@@ -519,11 +531,6 @@ const TableCreation = ({ isOpen, setIsOpen }) => {
 
   return (
     <div className="w-full">
-      <div className="mb-3 justify-end flex absolute right-14 top-2 lg:!right-7 lg:!top-7">
-        {canCreate && (
-           <Button onClick={() => setIsOpen(true)}>Add User</Button>
-        )}
-      </div>
 
       <div className="[&>div]:rounded-sm [&>div]:border overflow-x-auto overflow-y-auto h-[calc(100vh-280px)]">
         <Table className="min-w-full">

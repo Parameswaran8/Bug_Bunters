@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import {
-  MdEmail,
-  MdLock,
-  MdVisibility,
-  MdVisibilityOff,
-  MdPerson,
-  MdCheckCircle,
-} from "react-icons/md";
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  User,
+  CheckCircle2,
+} from "lucide-react";
 import toast from "react-hot-toast";
 import SocialButtons from "./SocialButtons";
 
@@ -57,7 +57,7 @@ function MatchIndicator({ password, confirm }) {
   const match = password === confirm;
   return (
     <div className={`flex items-center gap-1.5 text-xs px-1 ${match ? "text-green-500" : "text-red-400"}`}>
-      <MdCheckCircle className={`text-sm ${match ? "opacity-100" : "opacity-40"}`} />
+      <CheckCircle2 size={14} className={`${match ? "opacity-100" : "opacity-40"}`} />
       {match ? "Passwords match" : "Passwords do not match"}
     </div>
   );
@@ -123,7 +123,7 @@ function Register({ onSwitchToLogin }) {
       <form onSubmit={handleRegister} className="space-y-4">
 
         {/* Username */}
-        <InputField icon={MdPerson} label="Username">
+        <InputField icon={User} label="Username">
           <input
             type="text"
             placeholder="johndoe"
@@ -135,7 +135,7 @@ function Register({ onSwitchToLogin }) {
         </InputField>
 
         {/* Email */}
-        <InputField icon={MdEmail} label="Email Address">
+        <InputField icon={Mail} label="Email Address">
           <input
             type="email"
             placeholder="you@company.com"
@@ -149,7 +149,7 @@ function Register({ onSwitchToLogin }) {
         {/* Password */}
         <div className="space-y-2">
           <InputField
-            icon={MdLock}
+            icon={Lock}
             label="Password"
             hint="Min. 8 chars, one uppercase & number recommended"
           >
@@ -166,7 +166,7 @@ function Register({ onSwitchToLogin }) {
               onClick={() => setShowPassword(!showPassword)}
               className="text-gray-400 hover:text-cyan-500 transition flex-shrink-0"
             >
-              {showPassword ? <MdVisibilityOff className="text-lg" /> : <MdVisibility className="text-lg" />}
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </InputField>
           <PasswordStrength password={password} />
@@ -174,7 +174,7 @@ function Register({ onSwitchToLogin }) {
 
         {/* Confirm Password */}
         <div className="space-y-2">
-          <InputField icon={MdLock} label="Confirm Password">
+          <InputField icon={Lock} label="Confirm Password">
             <input
               type={showConfirmPassword ? "text" : "password"}
               placeholder="••••••••••••"
@@ -188,7 +188,7 @@ function Register({ onSwitchToLogin }) {
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               className="text-gray-400 hover:text-cyan-500 transition flex-shrink-0"
             >
-              {showConfirmPassword ? <MdVisibilityOff className="text-lg" /> : <MdVisibility className="text-lg" />}
+              {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </InputField>
           <MatchIndicator password={password} confirm={confirmPassword} />

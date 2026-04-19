@@ -4,6 +4,9 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
 import { HttpStatusCodes } from "../utils/errorCodes";
+import { sendEmail } from "../utils/mail";
+import { loginOtpTemplate } from "../utils/emailTemplates";
+import { createHash } from "crypto";
 dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET || "secret";
 
@@ -47,8 +50,8 @@ export default class AuthController {
   // Method to login user
   static loginUser = asyncHandler(async (req, res): Promise<void> => {
     console.log("Login request body:", req.body);
-    const { username_email, password } = req.body || {};
-    console.log("Username/Email:", username_email, "password:", password);
+    const { username_email, password, keepMeSignedIn } = req.body || {};
+    console.log("Username/Email:", username_email, "password:", password, "keepMeSignedIn:", keepMeSignedIn);
 
     if (!username_email || !password) {
       res
@@ -73,8 +76,11 @@ export default class AuthController {
         });
         const savedUser = await newUser.save();
 
+        const expiresIn = keepMeSignedIn ? "7d" : "1d";
+        const maxAge = keepMeSignedIn ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000;
+
         const token = jwt.sign({ userId: savedUser._id }, JWT_SECRET, {
-          expiresIn: "48h",
+          expiresIn,
         });
 
         const userObj = savedUser.toObject();
@@ -84,7 +90,7 @@ export default class AuthController {
           httpOnly: true,
           secure: true, // true if https
           sameSite: "none",
-          maxAge: 48 * 60 * 60 * 1000,
+          maxAge,
           path: "/",
         });
 
@@ -114,16 +120,19 @@ export default class AuthController {
       return;
     }
 
+    const expiresIn = keepMeSignedIn ? "7d" : "1d";
+    const maxAge = keepMeSignedIn ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000;
+
     // Generate JWT
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
-      expiresIn: "48h",
+      expiresIn,
     });
 
     res.cookie("bb_token", token, {
       httpOnly: true,
       secure: true, // set true for https
       sameSite: "none", // adjust if same domain: use "lax"
-      maxAge: 48 * 60 * 60 * 1000, // 48 hours
+      maxAge, // 24 hours or 7 days
       path: "/",
     });
 
@@ -147,5 +156,100 @@ export default class AuthController {
       message: "Logged out",
     });
     return;
+  });
+
+  // Method to request OTP for login
+  static requestLoginOtp = asyncHandler(async (req, res): Promise<void> => {
+    const { email } = req.body || {};
+
+    if (!email) {
+      res.status(HttpStatusCodes.BAD_REQUEST).json({ message: "Email is required" });
+      return;
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      res.status(HttpStatusCodes.NOT_FOUND).json({ message: "User not found" });
+      return;
+    }
+
+    // Generate and hash OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    console.log("OTP: ", otp);
+    const hashedOtp = createHash("sha256").update(otp).digest("hex");
+
+    // Save OTP & expiry in DB
+    user.loginOtp = hashedOtp;
+    user.loginOtpExpires = new Date(Date.now() + 1000 * 60 * 10); // 10 min
+    await user.save();
+
+    // Send email
+    const emailSent = await sendEmail(
+      email,
+      "Your Login OTP",
+      `Your login OTP is: ${otp}. It is valid for 10 minutes.`,
+      loginOtpTemplate(otp)
+    );
+
+    if (!emailSent) {
+      res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Failed to send OTP" });
+      return;
+    }
+
+    res.status(HttpStatusCodes.OK).json({ message: "OTP sent successfully" });
+  });
+
+  // Method to verify OTP and login
+  static verifyLoginOtp = asyncHandler(async (req, res): Promise<void> => {
+    const { email, otp, keepMeSignedIn } = req.body || {};
+
+    if (!email || !otp) {
+      res.status(HttpStatusCodes.BAD_REQUEST).json({ message: "Email and OTP are required" });
+      return;
+    }
+
+    // Hash the OTP for comparison
+    const hashedOtp = createHash("sha256").update(otp).digest("hex");
+
+    // Find user by email and check OTP + expiry
+    const user = await User.findOne({
+      email,
+      loginOtp: hashedOtp,
+      loginOtpExpires: { $gt: new Date() },
+    });
+
+    if (!user) {
+      res.status(HttpStatusCodes.BAD_REQUEST).json({ message: "Invalid or expired OTP" });
+      return;
+    }
+
+    // Clear OTP
+    user.loginOtp = undefined;
+    user.loginOtpExpires = undefined;
+    await user.save();
+
+    // Generate JWT
+    const expiresIn = keepMeSignedIn ? "7d" : "1d";
+    const maxAge = keepMeSignedIn ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000;
+
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
+      expiresIn,
+    });
+
+    res.cookie("bb_token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge,
+      path: "/",
+    });
+
+    const userObj = user.toObject();
+    const { password: _, ...userWithoutPassword } = userObj;
+
+    res.status(HttpStatusCodes.OK).json({
+      message: "Login successful",
+      user: userWithoutPassword,
+    });
   });
 }
