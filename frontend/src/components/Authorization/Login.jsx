@@ -381,7 +381,7 @@ function Login({ onSwitchToRegister, onSwitchToReset }) {
 
       {/* ── Register Link ── */}
       <p className="text-center mt-7 text-sm text-gray-500">
-        New to Bug Bunters?{" "}
+        New to Bug Tracker?{" "}
         <button
           onClick={onSwitchToRegister}
           className="text-cyan-600 font-bold hover:text-cyan-800 transition underline underline-offset-2"

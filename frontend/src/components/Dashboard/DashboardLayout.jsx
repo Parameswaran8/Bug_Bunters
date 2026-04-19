@@ -39,7 +39,7 @@ function DashboardLayout() {
               <p className="text-sm font-semibold text-gray-800 leading-none">
                 Hi, {user?.name?.split(" ")[0] ?? "there"} 👋
               </p>
-              <p className="text-xs text-gray-400 mt-0.5">Bug Bunters Platform</p>
+              <p className="text-xs text-gray-400 mt-0.5">Bug Tracker Platform</p>
             </div>
           </div>
 

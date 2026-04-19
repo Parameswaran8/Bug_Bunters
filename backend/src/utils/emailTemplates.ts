@@ -13,17 +13,17 @@ export const loginOtpTemplate = (otp: string) => `
 <body>
     <div class="container">
         <div class="header">
-            <h1>Bug Bunters</h1>
+            <h1>Bug Tracker</h1>
         </div>
         <div class="content">
             <h2>Your Login OTP</h2>
             <p>Hello,</p>
-            <p>Use the following One-Time Password (OTP) to sign in to your Bug Bunters account. This code is valid for 10 minutes.</p>
+            <p>Use the following One-Time Password (OTP) to sign in to your Bug Tracker account. This code is valid for 10 minutes.</p>
             <div class="otp">${otp}</div>
             <p>If you didn't request this code, please ignore this email.</p>
         </div>
         <div class="footer">
-            <p>&copy; 2026 Bug Bunters. All rights reserved.</p>
+            <p>&copy; 2026 Bug Tracker. All rights reserved.</p>
         </div>
     </div>
 </body>
@@ -45,17 +45,17 @@ export const passwordResetOtpTemplate = (otp: string) => `
 <body>
     <div class="container">
         <div class="header">
-            <h1>Bug Bunters</h1>
+            <h1>Bug Tracker</h1>
         </div>
         <div class="content">
             <h2>Password Reset Request</h2>
             <p>Hello,</p>
-            <p>We received a request to reset your Bug Bunters password. Use the following OTP to proceed. This code is valid for 5 minutes.</p>
+            <p>We received a request to reset your Bug Tracker password. Use the following OTP to proceed. This code is valid for 5 minutes.</p>
             <div class="otp">${otp}</div>
             <p>If you didn't request a password reset, you can safely ignore this email.</p>
         </div>
         <div class="footer">
-            <p>&copy; 2026 Bug Bunters. All rights reserved.</p>
+            <p>&copy; 2026 Bug Tracker. All rights reserved.</p>
         </div>
     </div>
 </body>

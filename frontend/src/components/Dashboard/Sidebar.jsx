@@ -105,7 +105,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
         </div>
         {!collapsed && (
           <div className="overflow-hidden">
-            <p className="text-white font-bold text-sm leading-none whitespace-nowrap">Bug Bunters</p>
+            <p className="text-white font-bold text-sm leading-none whitespace-nowrap">Bug Tracker</p>
             <p className="text-cyan-400/60 text-[10px] mt-0.5 whitespace-nowrap">by CEOITBOX</p>
           </div>
         )}

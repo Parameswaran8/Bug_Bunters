@@ -115,7 +115,7 @@ function Register({ onSwitchToLogin }) {
           Create account ✨
         </h1>
         <p className="text-gray-500 mt-1.5 text-sm">
-          Join Bug Bunters and start squashing bugs today
+          Join Bug Tracker and start squashing bugs today
         </p>
       </div>
 

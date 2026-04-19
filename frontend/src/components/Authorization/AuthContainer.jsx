@@ -75,7 +75,7 @@ function AuthContainer() {
               </div>
               <div>
                 <h2 className="text-lg font-bold tracking-tight leading-none" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                  Bug Bunters
+                  Bug Tracker
                 </h2>
                 <p className="text-cyan-200 text-xs font-medium">by CEOITBOX</p>
               </div>
@@ -155,7 +155,7 @@ function AuthContainer() {
       {/* ── Footer ── */}
       <p className="absolute bottom-3 text-center text-xs z-10"
         style={{ color: "#94a3b8", fontFamily: "'Inter', sans-serif" }}>
-        © {new Date().getFullYear()} CEOITBOX · Bug Bunters Platform
+        © {new Date().getFullYear()} CEOITBOX · Bug Tracker Platform
       </p>
     </div>
   );
