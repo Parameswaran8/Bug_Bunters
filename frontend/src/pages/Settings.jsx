@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Shield, Search, UserPlus } from "lucide-react";
+import { Shield, Search, UserPlus, Wrench } from "lucide-react";
 import UserManagment from "@/components/Settings/UserManagment";
 import ToolManagment from "@/components/Settings/Tools/Tools";
 import ReportControl from "@/components/Settings/Report";
@@ -14,6 +14,7 @@ function Settings() {
   const activeTab = tab || "users";
   const [searchQuery, setSearchQuery] = useState("");
   const [isUserSheetOpen, setIsUserSheetOpen] = useState(false);
+  const [isToolSheetOpen, setIsToolSheetOpen] = useState(false);
 
   const hasSettingsAccess = user?.role === "superadmin" || (Array.isArray(user?.adminControl) && user.adminControl.some(r => ["create", "edit", "view", "delete"].includes(r?.toLowerCase())));
 
@@ -64,6 +65,16 @@ function Settings() {
             )}
           </div>
         )}
+
+        {activeTab === "tools" && canCreateUser && (
+          <Button
+            onClick={() => setIsToolSheetOpen(true)}
+            className="h-9 gap-2 bg-indigo-600 hover:bg-indigo-700 whitespace-nowrap"
+          >
+            <Wrench size={16} />
+            <span className="hidden sm:inline">Add Tool</span>
+          </Button>
+        )}
       </div>
 
       {/* ── Content ── */}
@@ -75,7 +86,7 @@ function Settings() {
             setIsSheetOpen={setIsUserSheetOpen} 
           />
         )}
-        {activeTab === "tools" && <ToolManagment />}
+        {activeTab === "tools" && <ToolManagment isOpen={isToolSheetOpen} setIsOpen={setIsToolSheetOpen} />}
         {activeTab === "reports" && <ReportControl />}
       </div>
     </div>

@@ -319,12 +319,6 @@ const TableTool = ({ isOpen, setIsOpen }) => {
 
   return (
     <div className="w-full">
-      <div className="mb-3 justify-end flex absolute right-14 top-2 lg:!right-7 lg:!top-7">
-        {canCreate && (
-           <Button onClick={() => setIsOpen(true)}>Add Tool</Button>
-        )}
-      </div>
-
       <div className="[&>div]:rounded-sm [&>div]:border rounded-xl border border-gray-200 overflow-x-auto overflow-y-auto h-[calc(100vh-280px)] bg-white shadow-sm">
         <Table className="min-w-full">
           <TableHeader>

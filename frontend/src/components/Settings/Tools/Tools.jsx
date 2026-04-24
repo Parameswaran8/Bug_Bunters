@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Sheet } from "@/components/ui/sheet";
 import TableTool from "./TableTool";
 import AddTool from "./AddTool";
 
-function ToolManagment() {
-  const [isOpen, setIsOpen] = useState(false);
-
+function ToolManagment({ isOpen, setIsOpen }) {
   return (
     <div>
       <TableTool isOpen={isOpen} setIsOpen={setIsOpen} />

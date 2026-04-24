@@ -37,7 +37,7 @@ const NAV = [
         subItems: [
           { name: "Users", href: "/settings/users", icon: Users },
           { name: "Tools", href: "/settings/tools", icon: Wrench },
-          { name: "Reports", href: "/settings/reports", icon: FileBarChart },
+          // { name: "Reports", href: "/settings/reports", icon: FileBarChart },
         ],
       },
     ],
