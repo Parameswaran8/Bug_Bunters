@@ -86,10 +86,11 @@ export default class AuthController {
         const userObj = savedUser.toObject();
         const { password: _, ...userWithoutPassword } = userObj;
 
+        const isProduction = process.env.NODE_ENV === "production";
         res.cookie("bb_token", token, {
           httpOnly: true,
-          secure: true, // true if https
-          sameSite: "none",
+          secure: isProduction, // true only if https
+          sameSite: isProduction ? "none" : "lax",
           maxAge,
           path: "/",
         });
@@ -128,10 +129,11 @@ export default class AuthController {
       expiresIn,
     });
 
+    const isProduction = process.env.NODE_ENV === "production";
     res.cookie("bb_token", token, {
       httpOnly: true,
-      secure: true, // set true for https
-      sameSite: "none", // adjust if same domain: use "lax"
+      secure: isProduction, // set true for https
+      sameSite: isProduction ? "none" : "lax", // adjust if same domain: use "lax"
       maxAge, // 24 hours or 7 days
       path: "/",
     });
@@ -146,10 +148,11 @@ export default class AuthController {
 
   // Method to register a new user with only email....
   static logout = asyncHandler(async (_req, res): Promise<void> => {
+    const isProduction = process.env.NODE_ENV === "production";
     res.clearCookie("bb_token", {
       path: "/",
-      sameSite: "none",
-      secure: true,
+      sameSite: isProduction ? "none" : "lax",
+      secure: isProduction,
     });
 
     res.status(HttpStatusCodes.OK).json({
@@ -236,10 +239,11 @@ export default class AuthController {
       expiresIn,
     });
 
+    const isProduction = process.env.NODE_ENV === "production";
     res.cookie("bb_token", token, {
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
+      secure: isProduction,
+      sameSite: isProduction ? "none" : "lax",
       maxAge,
       path: "/",
     });

@@ -1,11 +1,11 @@
-import express, { Application } from "express";
 import dotenv from "dotenv";
+dotenv.config();
+
+import express, { Application } from "express";
 import routes from "./routes";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { errorHandler } from "./utils/errorHandler";
-
-dotenv.config();
 
 const app: Application = express();
 

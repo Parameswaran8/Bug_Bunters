@@ -2,8 +2,6 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/user.model";
 
-const SECRET_KEY = process.env.JWT_SECRET || "secret";
-
 export interface AuthenticatedRequest extends Request {
   user?: any; // Extend the request to include the `user` property
 }
@@ -13,6 +11,7 @@ export const authenticateToken = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
+  const SECRET_KEY = process.env.JWT_SECRET || "secret";
   // console.log("16", req.headers);
   // const authHeader = req.headers["authorization"];
   // const token = authHeader && authHeader.split(" ")[1];

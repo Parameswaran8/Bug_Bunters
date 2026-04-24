@@ -14,7 +14,10 @@ import {
   Activity
 } from "lucide-react";
 import { Link } from "react-router-dom";
-
+import { 
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer,
+  PieChart, Pie, Cell, Legend
+} from "recharts";
 function Dashboard() {
   const { bugsList, allUsers, user } = useAuth();
   const today = new Date().toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
@@ -130,6 +133,51 @@ function Dashboard() {
     return roleArr.includes("bugreporter") || isAdmin;
   }, [user]);
 
+  const trendData = useMemo(() => {
+    if (!bugsList) return [];
+    
+    const days = [];
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      days.push({
+        date: d.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+        rawDate: new Date(d.setHours(0,0,0,0)),
+        reported: 0,
+        resolved: 0
+      });
+    }
+
+    bugsList.forEach(b => {
+      const bDate = new Date(b.createdAt);
+      bDate.setHours(0,0,0,0);
+      const day = days.find(d => d.rawDate.getTime() === bDate.getTime());
+      if (day) day.reported += 1;
+
+      if (["Ready to Deploy", "Final Testing", "Closure"].includes(b.currentPhase)) {
+        const rDate = new Date(b.updatedAt);
+        rDate.setHours(0,0,0,0);
+        const rDay = days.find(d => d.rawDate.getTime() === rDate.getTime());
+        if (rDay) rDay.resolved += 1;
+      }
+    });
+
+    return days;
+  }, [bugsList]);
+
+  const statusPieData = useMemo(() => {
+    if (!bugsList) return [];
+    const counts = {
+      "Open": bugsList.filter(b => ["Bug Reported"].includes(b.currentPhase)).length,
+      "In Progress": bugsList.filter(b => ["Bug Testing", "Bug Analysis", "Ready to Test", "Maintenance"].includes(b.currentPhase)).length,
+      "Resolved": bugsList.filter(b => ["Ready to Deploy", "Final Testing", "Closure"].includes(b.currentPhase)).length
+    };
+    return Object.entries(counts).filter(([_, v]) => v > 0).map(([name, value]) => ({ name, value }));
+  }, [bugsList]);
+
+  const PIE_COLORS = ['#ef4444', '#f59e0b', '#10b981']; // Red, Amber, Emerald
+
+
   return (
     <div className="space-y-6 pb-8 animate-in fade-in duration-500">
       {/* ── Page Header ── */}
@@ -240,6 +288,77 @@ function Dashboard() {
                     </div>
                  </div>
                ))}
+            </div>
+         </div>
+      </div>
+
+      {/* ── Charts & Trends Row ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+         {/* 7-Day Trend Chart */}
+         <div className="lg:col-span-2 bg-white rounded-[32px] border border-slate-100 shadow-sm p-7">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+                 <div className="w-1.5 h-6 bg-blue-500 rounded-full" />
+                 7-Day Reporting Trend
+              </h2>
+            </div>
+            <div className="h-72">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={trendData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="colorReported" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#6366f1" stopOpacity={0}/>
+                    </linearGradient>
+                    <linearGradient id="colorResolved" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                  <XAxis dataKey="date" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} dy={10} />
+                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} />
+                  <RechartsTooltip 
+                    contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
+                  />
+                  <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '20px' }} />
+                  <Area type="monotone" name="Bugs Reported" dataKey="reported" stroke="#6366f1" strokeWidth={3} fillOpacity={1} fill="url(#colorReported)" />
+                  <Area type="monotone" name="Bugs Resolved" dataKey="resolved" stroke="#10b981" strokeWidth={3} fillOpacity={1} fill="url(#colorResolved)" />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+         </div>
+
+         {/* Status Distribution Pie Chart */}
+         <div className="bg-white rounded-[32px] border border-slate-100 shadow-sm p-7 flex flex-col">
+            <h2 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
+               <div className="w-1.5 h-6 bg-amber-500 rounded-full" />
+               Status Overview
+            </h2>
+            <div className="flex-1 flex items-center justify-center -mt-4">
+              <ResponsiveContainer width="100%" height={240}>
+                <PieChart>
+                  <Pie
+                    data={statusPieData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={65}
+                    outerRadius={85}
+                    paddingAngle={5}
+                    dataKey="value"
+                    stroke="none"
+                  >
+                    {statusPieData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <RechartsTooltip 
+                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                    itemStyle={{ color: '#1e293b', fontWeight: 'bold' }}
+                  />
+                  <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px' }} />
+                </PieChart>
+              </ResponsiveContainer>
             </div>
          </div>
       </div>
