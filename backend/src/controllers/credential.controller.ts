@@ -7,7 +7,6 @@ import { HttpStatusCodes } from "../utils/errorCodes";
 dotenv.config();
 
 export default class CredentialController {
-  // Method to register a new user
   static ChangePassword = asyncHandler(async (req: any, res): Promise<void> => {
     const { _id } = req.user;
     console.log("userId", _id);
@@ -46,14 +45,12 @@ export default class CredentialController {
     }
 
     // 5. Extra security check: enforce password policy
-    // if (newPassword.length < 8) {
-    //   res.status(HttpStatusCodes.BAD_REQUEST).json({
-    //     message: "New password must be at least 8 characters long",
-    //   });
-    //   return;
-    // }
-
-    // if jwt change ??? ask ishan monday query
+    if (newPassword.length < 8) {
+      res.status(HttpStatusCodes.BAD_REQUEST).json({
+        message: "New password must be at least 8 characters long",
+      });
+      return;
+    }
 
     // 6. Hash new password
     const hashedPassword = await bcrypt.hash(newPassword, 10);

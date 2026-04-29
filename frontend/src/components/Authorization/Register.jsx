@@ -8,9 +8,13 @@ import {
   EyeOff,
   User,
   CheckCircle2,
+  Sparkles,
+  PartyPopper
 } from "lucide-react";
 import toast from "react-hot-toast";
-import SocialButtons from "./SocialButtons";
+
+
+import { register } from "@/API_Call/Auth";
 
 /* ─── Reusable input field wrapper ─── */
 function InputField({ icon: Icon, label, children, hint }) {
@@ -95,15 +99,27 @@ function Register({ onSwitchToLogin }) {
     }
 
     setLoading(true);
-    setTimeout(() => {
-      toast.success("Account created! Welcome aboard 🎉");
-      setLoading(false);
+
+    const res = await register({ username, email, password });
+
+    if (res.success) {
+      toast.success(
+        <div className="flex items-center gap-2">
+          Account created! Welcome aboard <PartyPopper className="w-5 h-5 text-yellow-500" />
+        </div>
+      );
       setUsername("");
       setEmail("");
       setPassword("");
       setConfirmPassword("");
       setAgreed(false);
-    }, 1200);
+      // Switch to login after successful registration
+      setTimeout(() => onSwitchToLogin(), 1500);
+    } else {
+      toast.error(res.message);
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -111,11 +127,11 @@ function Register({ onSwitchToLogin }) {
 
       {/* ── Header ── */}
       <div className="mb-7">
-        <h1 className="text-3xl font-extrabold text-gray-900 leading-tight">
-          Create account ✨
+        <h1 className="text-3xl font-extrabold text-gray-900 leading-tight flex items-center gap-3">
+          Create account <Sparkles className="text-yellow-400 w-8 h-8" />
         </h1>
         <p className="text-gray-500 mt-1.5 text-sm">
-          Join Bug Tracker and start squashing bugs today
+          Join Bug Hunter and start squashing bugs today
         </p>
       </div>
 
@@ -239,16 +255,6 @@ function Register({ onSwitchToLogin }) {
           )}
         </button>
       </form>
-
-      {/* ── Divider ── */}
-      <div className="flex items-center gap-3 my-5">
-        <div className="flex-1 h-px bg-gray-200" />
-        <span className="text-xs text-gray-400 font-medium">OR CONTINUE WITH</span>
-        <div className="flex-1 h-px bg-gray-200" />
-      </div>
-
-      {/* ── Social ── */}
-      <SocialButtons />
 
       {/* ── Login Link ── */}
       <p className="text-center mt-6 text-sm text-gray-500">

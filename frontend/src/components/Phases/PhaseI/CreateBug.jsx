@@ -11,11 +11,10 @@ function CreateBug() {
   const { bugsList, user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
-  const { isAdmin, isBugRaiser, isTester } = getUserRoleFlags(user);
+  const { isAdmin, isBugRaiser } = getUserRoleFlags(user);
   const canCreate = isAdmin || isBugRaiser;
 
-  // If user is ONLY a tester (not reporter/admin), they can only edit "currentPhase" in this phase
-  const editableColumnKeys = (isAdmin || isBugRaiser) 
+  const editableColumnKeys = (isAdmin || isBugRaiser)
     ? ["toolName", "priority", "stack", "description", "assignedTester", "attachments"]
     : ["currentPhase"];
 

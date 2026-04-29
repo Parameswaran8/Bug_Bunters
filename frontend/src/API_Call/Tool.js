@@ -27,7 +27,6 @@ export const updateTool = async (toolData) => {
     const res = await api.post("/tools/update_tool", { tools: [toolData] });
     return { success: true, data: res.data };
   } catch (error) {
-    console.error("Error updating tool:", error);
     return {
       success: false,
       message: error.response?.data?.message || "Failed to update tool",

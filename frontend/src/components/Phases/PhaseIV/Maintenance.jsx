@@ -3,28 +3,28 @@ import BugViewToggle from "../Shared/BugViewToggle";
 import { useAuth } from "@/context/AuthContext";
 import { filterBugsForDev, getUserRoleFlags } from "@/utils/bugRoleFilter";
 
-function AnalyzeBug() {
+function Maintenance() {
   const { bugsList, user } = useAuth();
 
   const rawPhaseBugs = bugsList
-    ? bugsList.filter((bug) => bug.currentPhase === "Bug Analysis")
+    ? bugsList.filter((bug) => bug.currentPhase === "Maintenance")
     : [];
 
-  // Show only bugs assigned to this developer (admins see all)
+  // Maintenance is typically handled by Developers
   const phaseBugs = filterBugsForDev(rawPhaseBugs, user);
 
   const { isAdmin, isDev } = getUserRoleFlags(user);
   const editableColumnKeys = (isAdmin || isDev)
-    ? ["analyzeRemark", "sopForSolution", "delayedReason", "analyzeAttachment", "rootCause", "currentPhase"]
+    ? ["finalTestingRemark", "testingFlag", "currentPhase"]
     : ["currentPhase"];
 
   return (
     <div className="flex flex-col gap-16 pb-10">
       <div>
         <BugViewToggle 
-          title="Analyze Bug" 
+          title="Maintenance" 
           phaseBugs={phaseBugs} 
-          phaseId="analyze" 
+          phaseId="maintenance" 
           editableColumnKeys={editableColumnKeys}
         />
       </div>
@@ -32,4 +32,4 @@ function AnalyzeBug() {
   );
 }
 
-export default AnalyzeBug;
+export default Maintenance;

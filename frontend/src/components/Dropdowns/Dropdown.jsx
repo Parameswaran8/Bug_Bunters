@@ -1,4 +1,3 @@
-// DynamicSelect.jsx
 import * as React from "react";
 import {
   Select,

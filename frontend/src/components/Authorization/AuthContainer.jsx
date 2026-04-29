@@ -1,24 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { Bug, Rocket } from "lucide-react";
 import Login from "./Login";
 import Register from "./Register";
 import PasswordReset from "./PasswordReset";
 import "./AuthContainer.css";
-
-/* ── Feature items shown on left decorative panel ── */
-const FEATURES = [
-  { icon: "🐛", title: "Bug Tracking", desc: "Report & track bugs end-to-end" },
-  { icon: "📊", title: "Live Dashboard", desc: "Real-time insights & analytics" },
-  { icon: "🔒", title: "Secure Access", desc: "Enterprise-grade data protection" },
-];
-
-/* ── Stat counters ── */
-const STATS = [
-  { value: "5k+", label: "Bugs Squashed" },
-  { value: "200+", label: "Active Users" },
-  { value: "99.9%", label: "Uptime" },
-];
 
 function AuthContainer() {
   const [authMode, setAuthMode] = useState("login");
@@ -71,13 +58,13 @@ function AuthContainer() {
           <div className="relative z-10 fade-in">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
-                <span className="text-xl">🐛</span>
+                <Bug className="w-6 h-6 text-white" />
               </div>
               <div>
                 <h2 className="text-lg font-bold tracking-tight leading-none" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                  Bug Tracker
+                  Bug Hunter
                 </h2>
-                <p className="text-cyan-200 text-xs font-medium">by CEOITBOX</p>
+                <p className="text-cyan-200 text-xs font-medium">Internal Platform</p>
               </div>
             </div>
 
@@ -85,51 +72,23 @@ function AuthContainer() {
               style={{ fontFamily: "'Poppins', sans-serif" }}>
               {isRegister ? "Join the community" : "Squash bugs faster."}
             </h3>
-            <h3 className="text-[1.6rem] font-bold leading-snug text-cyan-200 mb-3"
-              style={{ fontFamily: "'Poppins', sans-serif" }}>
-              {isRegister ? "of bug hunters 🚀" : "Ship better software."}
-            </h3>
+            <div className="flex items-center gap-2">
+              <h3 className="text-[1.6rem] font-bold leading-snug text-cyan-200"
+                style={{ fontFamily: "'Poppins', sans-serif" }}>
+                {isRegister ? "of bug hunters" : "Ship better software."}
+              </h3>
+              {isRegister && <Rocket className="w-6 h-6 text-cyan-200" />}
+            </div>
           </div>
 
           {/* ── Illustration image ── */}
-          <div className="relative z-10 flex justify-center items-center my-2">
+          <div className="relative z-10 flex justify-center items-center flex-1">
             <img
               src="/bug-hunter-illustration.png"
               alt="Bug Hunter at Work"
-              className="w-full max-w-[260px] drop-shadow-xl"
+              className="w-full max-w-[280px] drop-shadow-xl"
               style={{ filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.2))" }}
             />
-          </div>
-
-          {/* ── Feature list ── */}
-          <div className="relative z-10 space-y-3">
-            {FEATURES.map((f, i) => (
-              <div
-                key={f.title}
-                className="feature-badge flex items-center gap-3 rounded-xl px-4 py-2.5 border border-white/15"
-                style={{
-                  background: "rgba(255,255,255,0.1)",
-                  backdropFilter: "blur(10px)",
-                  animationDelay: `${i * 0.1}s`,
-                }}
-              >
-                <span className="text-xl">{f.icon}</span>
-                <div>
-                  <p className="text-sm font-semibold leading-none" style={{ fontFamily: "'Poppins', sans-serif" }}>{f.title}</p>
-                  <p className="text-xs text-cyan-200 mt-0.5" style={{ fontFamily: "'Inter', sans-serif" }}>{f.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* ── Stats row ── */}
-          <div className="relative z-10 flex gap-4 pt-4 border-t border-white/15">
-            {STATS.map((s) => (
-              <div key={s.label} className="text-center flex-1">
-                <p className="text-xl font-extrabold" style={{ fontFamily: "'Poppins', sans-serif" }}>{s.value}</p>
-                <p className="text-xs text-cyan-200 mt-0.5" style={{ fontFamily: "'Inter', sans-serif" }}>{s.label}</p>
-              </div>
-            ))}
           </div>
         </div>
 
@@ -155,7 +114,7 @@ function AuthContainer() {
       {/* ── Footer ── */}
       <p className="absolute bottom-3 text-center text-xs z-10"
         style={{ color: "#94a3b8", fontFamily: "'Inter', sans-serif" }}>
-        © {new Date().getFullYear()} CEOITBOX · Bug Tracker Platform
+        © {new Date().getFullYear()} Bug Hunter · Software Quality Assurance
       </p>
     </div>
   );

@@ -10,7 +10,7 @@ import {
   Loader2,
   UserRoundPlus,
 } from "lucide-react";
-import { register } from "@/API_Call/Auth";
+import { registerByAdmin } from "@/API_Call/Auth";
 import { useAuth } from "@/context/AuthContext";
 import {
   DropdownMenu,
@@ -111,7 +111,7 @@ function AddUser({ setIsOpen }) {
     };
 
     try {
-      const res = await register(userData);
+      const res = await registerByAdmin(userData);
       
       if (res.success && res.user) {
         // Map the backend DB structure locally

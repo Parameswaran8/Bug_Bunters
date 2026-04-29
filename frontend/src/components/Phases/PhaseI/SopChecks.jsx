@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AnimatedCheckbox from "./Checkbox";
 
 import {
@@ -69,7 +69,6 @@ export default function SOPChecklist({
             />
           </label>
 
-          {/* Toggle Text Here */}
           <AccordionTrigger className="flex gap-2">
             {isOpen ? "Collapse" : "Expand"}
           </AccordionTrigger>

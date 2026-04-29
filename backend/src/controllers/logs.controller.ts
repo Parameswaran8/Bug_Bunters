@@ -15,7 +15,7 @@ class LogController {
         success: false,
         message: "Either bugId or toolId is required",
       });
-      return; // ✅ just return (don’t return res)
+      return;
     }
 
     // Build query filter

@@ -7,10 +7,8 @@ import api from "./API";
 export const createBug = async (bugData) => {
   try {
     const res = await api.post("/bug/bug_create", bugData);
-    console.log(10,res)
     return { success: true, data: res.data };
   } catch (error) {
-    console.log(13,error)
     return { success: false, message: error.response?.data?.message || "Failed to create bug" };
   }
 };

@@ -16,8 +16,6 @@ export interface UserInterface {
   resetOtpExpires?: Date;
   adminControl?: ("create" | "edit" | "view" | "delete")[];
   adminOption?: ("share" | "generate_report" | "insight_view")[];
-  loginOtp?: string;
-  loginOtpExpires?: Date;
 }
 
 const userSchema: Schema = new Schema(
@@ -48,8 +46,6 @@ const userSchema: Schema = new Schema(
     roletype: { type: [String], enum: ["bugreporter", "tester", "dev", "admin"], required: false },
     resetOtp: { type: String, required: false },
     resetOtpExpires: { type: Date, required: false },
-    loginOtp: { type: String, required: false },
-    loginOtpExpires: { type: Date, required: false },
 
     // ✅ Multi-select arrays with enum validation
     adminControl: {

@@ -1,18 +1,3 @@
-// Example send helper - adjust fields to match your form state
-// async function sendBugReport(payload) {
-//   try {
-//     const res = await fetch("/api/bug-report", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(payload),
-//       keepalive: true, // helps POST during unload in modern browsers
-//     });
-//     return res.ok;
-//   } catch (err) {
-//     console.error("Failed to send bug report:", err);
-//     return false;
-//   }
-// }
 
 import api from "./API";
 
@@ -20,20 +5,36 @@ import api from "./API";
 // REGISTER — user creation
 // --------------------------
 
+// REGISTER — public user self-creation
 export const register = async (userData) => {
   try {
-    const res = await api.post("/authextend/register", userData);
-    console.log(26, res)
+    const res = await api.post("/auth/register", userData);
     return {
       success: true,
       message: res.data.message,
       user: res.data.user,
     };
   } catch (error) {
-    console.log(32, error)
     return {
       success: false,
       message: error.response?.data?.message || "Something went wrong during registration",
+    };
+  }
+};
+
+// REGISTER BY ADMIN — protected admin-side user creation
+export const registerByAdmin = async (userData) => {
+  try {
+    const res = await api.post("/authextend/register", userData);
+    return {
+      success: true,
+      message: res.data.message,
+      user: res.data.user,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: error.response?.data?.message || "Something went wrong during user creation",
     };
   }
 };
@@ -152,7 +153,7 @@ export const resetPassword = async (data) => {
 };
 
 // --------------------------
-// LOGOUT — backend clears cookie
+// LOGOUT
 // --------------------------
 
 export const logout = async () => {
@@ -161,7 +162,6 @@ export const logout = async () => {
       credentials: true,
     });
 
-    console.log(78, res);
     return {
       success: true,
       message: res.data.message,

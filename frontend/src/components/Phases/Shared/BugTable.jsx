@@ -102,7 +102,7 @@ const getTableColumns = (phaseId) => {
       { key: "testingAttachment", label: "Testing Attachment", type: "testingAttachment", width: 140 },
       { key: "assignedDev", label: "Forward to Developer", type: "devSelect", width: 180 },
       { key: "bugStatus", label: "Bug Status", type: "statusSelect", width: 150 },
-      { key: "analyzeRemark", label: "Analyse Remark", type: "analyzeRemarkText", width: 200 },
+      { key: "analyzeRemark", label: "Root Cause", type: "analyzeRemarkText", width: 200 },
       { key: "sopForSolution", label: "SOP for Solution", type: "sopSolutionText", width: 200 },
       { key: "delayedReason", label: "Delayed Reason", type: "delayedReasonText", width: 200 },
       { key: "analyzeAttachment", label: "Analyse Attachment", type: "analyzeAttachment", width: 140 },
@@ -128,7 +128,7 @@ const getTableColumns = (phaseId) => {
       { key: "testingAttachment", label: "Testing Attachment", type: "testingAttachment", width: 140 },
       { key: "assignedDev", label: "Forward to Developer", type: "devSelect", width: 180 },
       { key: "bugStatus", label: "Bug Status", type: "statusSelect", width: 150 },
-      { key: "analyzeRemark", label: "Analyse Remark", type: "analyzeRemarkText", width: 200 },
+      { key: "analyzeRemark", label: "Root Cause", type: "analyzeRemarkText", width: 200 },
       { key: "sopForSolution", label: "SOP for Solution", type: "sopSolutionText", width: 200 },
       { key: "delayedReason", label: "Delayed Reason", type: "delayedReasonText", width: 200 },
       { key: "analyzeAttachment", label: "Analyse Attachment", type: "analyzeAttachment", width: 140 },
@@ -136,7 +136,35 @@ const getTableColumns = (phaseId) => {
       { key: "testingFlag", label: "Testing Flag", type: "testingFlagSelect", width: 160 },
       { key: "reportedDate", label: "Reported", type: "date", width: 180 },
       { key: "bugTestedDate", label: "Bug Tested", type: "date", width: 180 },
-      { key: "bugAnalysedDate", label: "Bug Analysed At", type: "date", width: 180 },
+      { key: "bugAnalysedDate", label: "Bug Analysed", type: "date", width: 180 },
+      { key: "currentPhase", label: "Change Phase", type: "phaseSelect", width: 150 }
+    ];
+  }
+
+  if (phaseId === "maintenance") {
+    return [
+      { key: "bugId", label: "Bug ID", type: "text", width: 140 },
+      { key: "toolName", label: "Tool Name", type: "text", width: 180 },
+      { key: "priority", label: "Priority", type: "prioritySelect", width: 120 },
+      { key: "bugRaiser", label: "Bug Raiser", type: "text", width: 150 },
+      { key: "issueFacedBy", label: "Issue Faced By", type: "facedByCard", width: 160 },
+      { key: "assignedTester", label: "Bug Tester", type: "text", width: 150 },
+      { key: "description", label: "Bug Description", type: "description", width: 250 },
+      { key: "sopFollowed", label: "SOP Followed", type: "sopText", width: 160 },
+      { key: "remarks", label: "Testing Remark", type: "remarksText", width: 200 },
+      { key: "testingAttachment", label: "Testing Attachment", type: "testingAttachment", width: 140 },
+      { key: "assignedDev", label: "Forward to Developer", type: "devSelect", width: 180 },
+      { key: "bugStatus", label: "Bug Status", type: "statusSelect", width: 150 },
+      { key: "analyzeRemark", label: "Root Cause", type: "analyzeRemarkText", width: 200 },
+      { key: "sopForSolution", label: "SOP for Solution", type: "sopSolutionText", width: 200 },
+      { key: "analyzeAttachment", label: "Analyse Attachment", type: "analyzeAttachment", width: 140 },
+      { key: "maintenanceRemark", label: "Maintenance Remark", type: "maintenanceRemarkText", width: 200 },
+      { key: "maintenanceSOP", label: "Maintenance SOP", type: "maintenanceSopText", width: 200 },
+      { key: "finalTestingRemark", label: "Final Testing Remark", type: "finalTestingRemarkText", width: 200 },
+      { key: "testingFlag", label: "Testing Flag", type: "testingFlagSelect", width: 160 },
+      { key: "reportedDate", label: "Reported", type: "date", width: 180 },
+      { key: "bugTestedDate", label: "Bug Tested", type: "date", width: 180 },
+      { key: "bugAnalysedDate", label: "Bug Analysed", type: "date", width: 180 },
       { key: "currentPhase", label: "Change Phase", type: "phaseSelect", width: 150 }
     ];
   }
@@ -157,7 +185,7 @@ const getTableColumns = (phaseId) => {
       { key: "testingAttachment", label: "Testing Attachment", type: "testingAttachment", width: 140 },
       { key: "assignedDev", label: "Forward to Developer", type: "devSelect", width: 180 },
       { key: "bugStatus", label: "Bug Status", type: "statusSelect", width: 150 },
-      { key: "analyzeRemark", label: "Analyse Remark", type: "analyzeRemarkText", width: 200 },
+      { key: "analyzeRemark", label: "Root Cause", type: "analyzeRemarkText", width: 200 },
       { key: "sopForSolution", label: "SOP for Solution", type: "sopSolutionText", width: 200 },
       { key: "delayedReason", label: "Delayed Reason", type: "delayedReasonText", width: 200 },
       { key: "analyzeAttachment", label: "Analyse Attachment", type: "analyzeAttachment", width: 140 },
@@ -165,7 +193,7 @@ const getTableColumns = (phaseId) => {
       { key: "testingFlag", label: "Testing Flag", type: "testingFlagSelect", width: 160 },
       { key: "reportedDate", label: "Reported", type: "date", width: 180 },
       { key: "bugTestedDate", label: "Bug Tested", type: "date", width: 180 },
-      { key: "bugAnalysedDate", label: "Bug Analysed At", type: "date", width: 180 },
+      { key: "bugAnalysedDate", label: "Bug Analysed", type: "date", width: 180 },
       { key: "currentPhase", label: "Change Phase", type: "phaseSelect", width: 150 }
     ];
   }
@@ -186,7 +214,7 @@ const getTableColumns = (phaseId) => {
       { key: "testingAttachment", label: "Testing Attachment", type: "testingAttachment", width: 140 },
       { key: "assignedDev", label: "Forward to Developer", type: "devSelect", width: 180 },
       { key: "bugStatus", label: "Bug Status", type: "statusSelect", width: 150 },
-      { key: "analyzeRemark", label: "Analyse Remark", type: "analyzeRemarkText", width: 200 },
+      { key: "analyzeRemark", label: "Root Cause", type: "analyzeRemarkText", width: 200 },
       { key: "sopForSolution", label: "SOP for Solution", type: "sopSolutionText", width: 200 },
       { key: "delayedReason", label: "Delayed Reason", type: "delayedReasonText", width: 200 },
       { key: "analyzeAttachment", label: "Analyse Attachment", type: "analyzeAttachment", width: 140 },
@@ -197,7 +225,7 @@ const getTableColumns = (phaseId) => {
       { key: "finalSop", label: "Final SOP", type: "finalSopText", width: 200 },
       { key: "reportedDate", label: "Reported", type: "date", width: 180 },
       { key: "bugTestedDate", label: "Bug Tested", type: "date", width: 180 },
-      { key: "bugAnalysedDate", label: "Bug Analysed At", type: "date", width: 180 },
+      { key: "bugAnalysedDate", label: "Bug Analysed", type: "date", width: 180 },
       { key: "currentPhase", label: "Change Phase", type: "phaseSelect", width: 150 }
     ];
   }
@@ -219,19 +247,19 @@ const getTableColumns = (phaseId) => {
       { key: "sopFollowed", label: "Tester SOP", type: "sopText", width: 160 },
       { key: "remarks", label: "Testing Remark", type: "remarksText", width: 200 },
       { key: "testingAttachment", label: "Testing Attachment", type: "testingAttachment", width: 140 },
-      { key: "rootCause", label: "Root Cause", type: "text", width: 160 },
-      { key: "analyzeRemark", label: "Analyse Remark", type: "analyzeRemarkText", width: 200 },
+      { key: "analyzeRemark", label: "Root Cause", type: "analyzeRemarkText", width: 200 },
       { key: "sopForSolution", label: "SOP for Solution", type: "sopSolutionText", width: 200 },
       { key: "delayedReason", label: "Delayed Reason", type: "delayedReasonText", width: 200 },
       { key: "analyzeAttachment", label: "Analyse Attachment", type: "analyzeAttachment", width: 140 },
-      { key: "finalTestingRemark", label: "Final Testing Remark", type: "finalTestingRemarkText", width: 200 },
+      { key: "maintenanceRemark", label: "Maintenance Remark", type: "maintenanceRemarkText", width: 200 },
+      { key: "maintenanceSOP", label: "Maintenance SOP", type: "maintenanceSopText", width: 200 },
       { key: "testingFlag", label: "Testing Flag", type: "testingFlagSelect", width: 160 },
       { key: "deploymentStatus", label: "Deployment Status", type: "deploymentStatusSelect", width: 170 },
       { key: "deployRemark", label: "Deploy Remark", type: "deployRemarkText", width: 200 },
       { key: "finalSop", label: "Final SOP", type: "finalSopText", width: 200 },
       { key: "reportedDate", label: "Reported", type: "date", width: 180 },
       { key: "bugTestedDate", label: "Bug Tested", type: "date", width: 180 },
-      { key: "bugAnalysedDate", label: "Bug Analysed At", type: "date", width: 180 },
+      { key: "bugAnalysedDate", label: "Bug Analysed", type: "date", width: 180 },
       { key: "currentPhase", label: "Change Phase", type: "phaseSelect", width: 150 }
     ];
   }
@@ -332,7 +360,7 @@ const PHASE_EDITABLE_MAP = {
   "Bug Confirmation": ["bugStatus", "sopFollowed", "remarks", "testingAttachment", "assignedDev", "currentPhase"],
   "Bug Analysis": ["analyzeRemark", "sopForSolution", "delayedReason", "analyzeAttachment", "currentPhase", "rootCause"],
   "Ready to Test": ["finalTestingRemark", "testingFlag", "currentPhase"],
-  "Maintenance": ["finalTestingRemark", "testingFlag", "currentPhase"],
+  "Maintenance": ["maintenanceRemark", "maintenanceSOP", "finalTestingRemark", "testingFlag", "currentPhase"],
   "Ready to Deploy": ["deploymentStatus", "deployRemark", "finalSop", "currentPhase"],
   "Final Testing": ["deploymentStatus", "deployRemark", "finalSop", "currentPhase"],
   "Deployed": ["currentPhase"],
@@ -462,7 +490,9 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId, edita
       "phaseIII_BugAnalysis.analysisInfo.sopProvided": dataToSave.sopSolutionExtracted !== undefined ? dataToSave.sopSolutionExtracted : dataToSave.phaseIII_BugAnalysis?.analysisInfo?.sopProvided,
       "phaseIII_BugAnalysis.analysisInfo.delayedReason": dataToSave.delayedReasonExtracted !== undefined ? dataToSave.delayedReasonExtracted : dataToSave.phaseIII_BugAnalysis?.analysisInfo?.delayedReason,
       "phaseIV_Maintenance.maintenanceInfo.testingFlag": dataToSave.testingFlagExtracted !== undefined ? dataToSave.testingFlagExtracted : dataToSave.phaseIV_Maintenance?.maintenanceInfo?.testingFlag,
-      "phaseIV_Maintenance.maintenanceInfo.remarks": dataToSave.finalTestingRemarkExtracted !== undefined ? dataToSave.finalTestingRemarkExtracted : dataToSave.phaseIV_Maintenance?.maintenanceInfo?.remarks,
+      "phaseIV_Maintenance.maintenanceInfo.remarks": dataToSave.maintenanceRemarkExtracted !== undefined ? dataToSave.maintenanceRemarkExtracted : dataToSave.phaseIV_Maintenance?.maintenanceInfo?.remarks,
+      "phaseIV_Maintenance.maintenanceInfo.sopProvided": dataToSave.maintenanceSopExtracted !== undefined ? dataToSave.maintenanceSopExtracted : dataToSave.phaseIV_Maintenance?.maintenanceInfo?.sopProvided,
+      "phaseV_FinalTesting.testingInfo.remarks": dataToSave.finalTestingRemarkExtracted !== undefined ? dataToSave.finalTestingRemarkExtracted : dataToSave.phaseV_FinalTesting?.testingInfo?.remarks,
       "phaseV_FinalTesting.testingInfo.deploymentStatus": dataToSave.deploymentStatusExtracted !== undefined ? dataToSave.deploymentStatusExtracted : dataToSave.phaseV_FinalTesting?.testingInfo?.deploymentStatus,
       "phaseV_FinalTesting.testingInfo.deployRemark": dataToSave.deployRemarkExtracted !== undefined ? dataToSave.deployRemarkExtracted : dataToSave.phaseV_FinalTesting?.testingInfo?.deployRemark,
       "phaseV_FinalTesting.testingInfo.finalSop": dataToSave.finalSopExtracted !== undefined ? dataToSave.finalSopExtracted : dataToSave.phaseV_FinalTesting?.testingInfo?.finalSop,
@@ -493,7 +523,7 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId, edita
          updatePayload["phaseV_FinalTesting.testingInfo.deploymentStatus"] = "Done";
       }
 
-      // Automatically capture "Bug Analysed At" if moving out of Analysis
+      // Automatically capture "Bug Analysed" if moving out of Analysis
       if (bugToUpdate?.currentPhase === "Bug Analysis" && 
           dataToSave.currentPhaseExtracted && 
           dataToSave.currentPhaseExtracted !== "Bug Analysis") {
@@ -501,6 +531,18 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId, edita
             updatePayload["phaseIII_BugAnalysis.analyzedAt"] = new Date().toISOString();
          }
       }
+    }
+
+    // Auto-transition phase based on Testing Flag if in "Ready to Test" phase
+    const currentBug = phaseBugs.find(b => (b.id || b._id) === id);
+    if (currentBug?.currentPhase === "Ready to Test" && dataToSave.testingFlagExtracted) {
+        if (dataToSave.testingFlagExtracted === "Go back to dev") {
+            updatePayload.currentPhase = "Maintenance";
+            updatePayload.bugPhaseNo = 4;
+        } else if (dataToSave.testingFlagExtracted === "Ready for rollout") {
+            updatePayload.currentPhase = "Ready to Deploy";
+            updatePayload.bugPhaseNo = 6;
+        }
     }
 
     const finalTestingFlag = updatePayload["phaseIV_Maintenance.maintenanceInfo.testingFlag"] !== undefined ? updatePayload["phaseIV_Maintenance.maintenanceInfo.testingFlag"] : dataToSave.phaseIV_Maintenance?.maintenanceInfo?.testingFlag;
@@ -641,9 +683,12 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId, edita
              if (updatePayload["phaseIV_Maintenance.maintenanceInfo.testingFlag"] !== undefined) {
                  newBug.phaseIV_Maintenance.maintenanceInfo.testingFlag = updatePayload["phaseIV_Maintenance.maintenanceInfo.testingFlag"];
              }
-              if (updatePayload["phaseIV_Maintenance.maintenanceInfo.remarks"] !== undefined) {
+             if (updatePayload["phaseIV_Maintenance.maintenanceInfo.remarks"] !== undefined) {
                  newBug.phaseIV_Maintenance.maintenanceInfo.remarks = updatePayload["phaseIV_Maintenance.maintenanceInfo.remarks"];
-              }
+             }
+             if (updatePayload["phaseIV_Maintenance.maintenanceInfo.sopProvided"] !== undefined) {
+                 newBug.phaseIV_Maintenance.maintenanceInfo.sopProvided = updatePayload["phaseIV_Maintenance.maintenanceInfo.sopProvided"];
+             }
               
               if (!newBug.phaseV_FinalTesting) newBug.phaseV_FinalTesting = { testingInfo: {} };
               if (!newBug.phaseV_FinalTesting.testingInfo) newBug.phaseV_FinalTesting.testingInfo = {};
@@ -818,6 +863,13 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId, edita
       : (sopSolutionArr && Array.isArray(sopSolutionArr) && sopSolutionArr.length > 0 ? sopSolutionArr.join(', ') : '');
     
     const delayedReason = displayData.delayedReasonExtracted !== undefined ? displayData.delayedReasonExtracted : rawItem.phaseIII_BugAnalysis?.analysisInfo?.delayedReason || "";
+    
+    const maintenanceRemark = displayData.maintenanceRemarkExtracted !== undefined ? displayData.maintenanceRemarkExtracted : rawItem.phaseIV_Maintenance?.maintenanceInfo?.remarks || "";
+
+    const maintenanceSopArr = displayData.maintenanceSopExtracted !== undefined ? displayData.maintenanceSopExtracted : rawItem.phaseIV_Maintenance?.maintenanceInfo?.sopProvided;
+    const maintenanceSopStr = displayData.maintenanceSopRaw !== undefined 
+      ? displayData.maintenanceSopRaw 
+      : (maintenanceSopArr && Array.isArray(maintenanceSopArr) && maintenanceSopArr.length > 0 ? maintenanceSopArr.join(', ') : '');
     
     if (col.key === "bugId") {
        return (
@@ -1075,7 +1127,7 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId, edita
     if (col.type === "analyzeRemarkText") {
        if (isEditing) {
           return (
-            <textarea className="w-full text-xs border rounded p-1 resize-y" rows={2} placeholder="Add Analyse Remarks..." value={analyzeRemark} onChange={(e) => setRowEditData({ analyzeRemarkExtracted: e.target.value })} />
+            <textarea className="w-full text-xs border rounded p-1 resize-y" rows={2} placeholder="Add Root Cause..." value={analyzeRemark} onChange={(e) => setRowEditData({ analyzeRemarkExtracted: e.target.value })} />
           );
        }
        return (
@@ -1144,7 +1196,47 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId, edita
        );
     }
 
-    const finalTestingRemark = displayData.finalTestingRemarkExtracted !== undefined ? displayData.finalTestingRemarkExtracted : rawItem.phaseIV_Maintenance?.maintenanceInfo?.remarks || "";
+    if (col.type === "maintenanceRemarkText") {
+       if (isEditing) {
+          return (
+            <textarea className="w-full text-xs border rounded p-1 resize-y bg-pink-50/30" rows={2} placeholder="Add Maintenance Remarks..." value={maintenanceRemark} onChange={(e) => setRowEditData({ maintenanceRemarkExtracted: e.target.value })} />
+          );
+       }
+       return (
+         <CellTooltip content={maintenanceRemark !== "-" ? maintenanceRemark : ""}>
+           <span className="text-gray-600 truncate block w-full">{maintenanceRemark || "-"}</span>
+         </CellTooltip>
+       );
+    }
+
+    if (col.type === "maintenanceSopText") {
+      if (isEditing) {
+        return (
+          <textarea 
+            className="w-full text-xs border rounded p-1 resize-y bg-pink-50/30" 
+            rows={2}
+            placeholder="Maintenance SOP (comma separated)"
+            value={maintenanceSopStr}
+            onChange={(e) => {
+              const raw = e.target.value;
+              const arr = raw ? raw.split(',').map(s => s.trim()).filter(Boolean) : [];
+              setRowEditData({ 
+                maintenanceSopExtracted: arr,
+                maintenanceSopRaw: raw 
+              });
+            }}
+          />
+        );
+      } else {
+        return (
+          <CellTooltip content={maintenanceSopStr !== "-" ? maintenanceSopStr : ""}>
+            <span className="text-gray-600 text-xs truncate block w-full">{maintenanceSopStr || "-"}</span>
+          </CellTooltip>
+        );
+      }
+    }
+
+    const finalTestingRemark = displayData.finalTestingRemarkExtracted !== undefined ? displayData.finalTestingRemarkExtracted : rawItem.phaseV_FinalTesting?.testingInfo?.remarks || "";
 
     if (col.type === "finalTestingRemarkText") {
        if (isEditing) {
@@ -1377,13 +1469,35 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId, edita
 
     if (col.type === "phaseSelect") {
       const currentPhaseName = displayData.currentPhaseExtracted || rawItem.currentPhase || "-";
-      const availablePhases = [
+      const allAvailablePhases = [
         { label: "Bug Testing", value: "testing", phaseNo: 2 },
         { label: "Bug Analysis", value: "analyze", phaseNo: 3 },
-        { label: "Ready to Test", value: "rtt", phaseNo: 4 },
-        { label: "Ready to Deploy", value: "rtd", phaseNo: 5 },
-        { label: "Closure", value: "deployed", phaseNo: 6 }
+        { label: "Maintenance", value: "maintenance", phaseNo: 4 },
+        { label: "Ready to Test", value: "rtt", phaseNo: 5 },
+        { label: "Ready to Deploy", value: "rtd", phaseNo: 6 },
+        { label: "Closure", value: "deployed", phaseNo: 7 }
       ];
+
+      // Logic: If in "Ready to Test", only allow going back to Maintenance or forward to Ready to Deploy
+      let filteredPhases = allAvailablePhases;
+      if (rawItem.currentPhase === "Ready to Test") {
+        filteredPhases = allAvailablePhases.filter(p => 
+          p.label === "Maintenance" || p.label === "Ready to Test" || p.label === "Ready to Deploy"
+        );
+      } else if (rawItem.currentPhase === "Maintenance") {
+        // Logic: If in "Maintenance", only allow going back to Bug Analysis or forward to Ready to Test
+        filteredPhases = allAvailablePhases.filter(p => 
+          p.label === "Bug Analysis" || p.label === "Ready to Test"
+        );
+      } else if (rawItem.currentPhase === "Ready to Deploy") {
+        // Logic: If in "Ready to Deploy", allow going back to Ready to Test or forward to Closure
+        filteredPhases = allAvailablePhases.filter(p => 
+          p.label === "Ready to Test" || p.label === "Closure"
+        );
+      } else {
+        // General rule: don't show the current phase in the dropdown (optional, but cleaner)
+        filteredPhases = allAvailablePhases.filter(p => p.label !== rawItem.currentPhase);
+      }
 
       return isEditing ? (
         <DropdownMenu>
@@ -1394,7 +1508,7 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId, edita
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-40 z-50">
-            {availablePhases.map((opt) => (
+            {filteredPhases.map((opt) => (
                <DropdownMenuItem
                  key={opt.value}
                  className="text-xs py-1.5 cursor-pointer"
@@ -1445,7 +1559,17 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId, edita
             </DropdownMenuTrigger>
             <DropdownMenuContent className="z-50 min-w-44">
                {tsFlagOptions.map(opt => (
-                  <DropdownMenuItem key={opt} onClick={() => setRowEditData({ testingFlagExtracted: opt })} className="cursor-pointer">
+                  <DropdownMenuItem key={opt} onClick={() => {
+                      const updateObj = { testingFlagExtracted: opt };
+                      if (opt === "Go back to dev") {
+                        updateObj.currentPhaseExtracted = "Maintenance";
+                        updateObj.bugPhaseNoExtracted = 4;
+                      } else if (opt === "Ready for rollout") {
+                        updateObj.currentPhaseExtracted = "Ready to Deploy";
+                        updateObj.bugPhaseNoExtracted = 6;
+                      }
+                      setRowEditData(updateObj);
+                   }} className="cursor-pointer">
                      {opt !== "-" ? (
                         <div className="flex items-center text-xs">
                            <Flag className={`w-3.5 h-3.5 mr-2 ${getFlagColor(opt)}`} fill="currentColor" />
@@ -1534,9 +1658,10 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId, edita
               {tableDetails.map((col) => {
                 const isPinned = pinnedColumns.includes(col.key);
                 const pinStyle = getPinnedStyle(col.key);
-                const isPhase2Target = ['testing', 'analyze', 'rtt', 'reanalyze', 'rtd'].includes(phaseId) && ['bugStatus', 'sopFollowed', 'remarks', 'testingAttachment', 'assignedDev'].includes(col.key);
-                const isPhase3Target = ['analyze', 'rtt', 'reanalyze', 'rtd'].includes(phaseId) && ['analyzeRemark', 'sopForSolution', 'delayedReason', 'analyzeAttachment'].includes(col.key);
-                const isPhase4Target = ['analyze', 'rtt', 'reanalyze', 'rtd'].includes(phaseId) && ['testingFlag', 'finalTestingRemark'].includes(col.key);
+                const isPhase2Target = ['testing', 'analyze', 'maintenance', 'rtt', 'reanalyze', 'rtd'].includes(phaseId) && ['bugStatus', 'sopFollowed', 'remarks', 'testingAttachment', 'assignedDev'].includes(col.key);
+                const isPhase3Target = ['analyze', 'maintenance', 'rtt', 'reanalyze', 'rtd'].includes(phaseId) && ['analyzeRemark', 'sopForSolution', 'delayedReason', 'analyzeAttachment'].includes(col.key);
+                const isPhaseMaintenanceTarget = ['analyze', 'maintenance', 'rtt', 'reanalyze', 'rtd'].includes(phaseId) && ['maintenanceRemark', 'maintenanceSOP'].includes(col.key);
+                const isPhase4Target = ['analyze', 'maintenance', 'rtt', 'reanalyze', 'rtd'].includes(phaseId) && ['testingFlag', 'finalTestingRemark'].includes(col.key);
                 const isPhase5Target = ['rtd'].includes(phaseId) && ['deploymentStatus', 'deployRemark', 'finalSop'].includes(col.key);
                 
                 let textColor = "";
@@ -1545,6 +1670,9 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId, edita
                 if (isPhase5Target) {
                     textColor = "text-[#059669]"; // emerald-600
                     bgActiveColor = "#ecfdf5";    // emerald-50
+                } else if (isPhaseMaintenanceTarget) {
+                    textColor = "text-[#db2777]"; // pink-600
+                    bgActiveColor = "#fdf2f8";    // pink-50
                 } else if (isPhase4Target) {
                     textColor = "text-[#ea580c]"; // amber-600
                     bgActiveColor = "#fffbeb";    // amber-50
@@ -1603,14 +1731,17 @@ export default function BugTable({ phaseBugs, onClickCardToModal, phaseId, edita
                       </TableCell>
                       
                       {tableDetails.map((col) => {
-                        const isPhase2Target = ['testing', 'analyze', 'rtt', 'reanalyze', 'rtd'].includes(phaseId) && ['bugStatus', 'sopFollowed', 'remarks', 'testingAttachment', 'assignedDev'].includes(col.key);
-                        const isPhase3Target = ['analyze', 'rtt', 'reanalyze', 'rtd'].includes(phaseId) && ['analyzeRemark', 'sopForSolution', 'delayedReason', 'analyzeAttachment'].includes(col.key);
-                        const isPhase4Target = ['analyze', 'rtt', 'reanalyze', 'rtd'].includes(phaseId) && ['testingFlag', 'finalTestingRemark'].includes(col.key);
+                        const isPhase2Target = ['testing', 'analyze', 'maintenance', 'rtt', 'reanalyze', 'rtd'].includes(phaseId) && ['bugStatus', 'sopFollowed', 'remarks', 'testingAttachment', 'assignedDev'].includes(col.key);
+                        const isPhase3Target = ['analyze', 'maintenance', 'rtt', 'reanalyze', 'rtd'].includes(phaseId) && ['analyzeRemark', 'sopForSolution', 'delayedReason', 'analyzeAttachment'].includes(col.key);
+                        const isPhaseMaintenanceTarget = ['analyze', 'maintenance', 'rtt', 'reanalyze', 'rtd'].includes(phaseId) && ['maintenanceRemark', 'maintenanceSOP'].includes(col.key);
+                        const isPhase4Target = ['analyze', 'maintenance', 'rtt', 'reanalyze', 'rtd'].includes(phaseId) && ['testingFlag', 'finalTestingRemark'].includes(col.key);
                         const isPhase5Target = ['rtd'].includes(phaseId) && ['deploymentStatus', 'deployRemark', 'finalSop'].includes(col.key);
 
                         let cellBg = undefined;
                         if (isPhase5Target) {
                             cellBg = "bg-emerald-50/30";
+                        } else if (isPhaseMaintenanceTarget) {
+                            cellBg = "#fdf2f8";
                         } else if (isPhase4Target) {
                             cellBg = "#fffbeb";
                         } else if (isPhase3Target) {

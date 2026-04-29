@@ -124,7 +124,6 @@ function BugForm({ setIsOpen }) {
         setTesters([]);
       }
     } catch (error) {
-      console.error("Error loading testers:", error);
       setTesters([]);
     } finally {
       setIsLoadingTesters(false);

@@ -1,18 +1,7 @@
 import React, { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
 import { Calendar } from "lucide-react";
-import { Button } from "../ui/button";
 
 function ReportControl() {
   const [formData, setFormData] = useState({

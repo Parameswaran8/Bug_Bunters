@@ -13,10 +13,7 @@ import { isUserInvolvedInBug, getUserRoleFlags } from "@/utils/bugRoleFilter";
 import BugForm from "../PhaseI/BugForm";
 import { Sheet } from "@/components/ui/sheet";
 
-/**
- * Returns the set of column keys a user may EDIT in "All Bugs" table view.
- * null = no restriction (admin).
- */
+
 function getEditableColumnKeys(user) {
   if (!user) return [];
   if (user.role === "admin" || user.role === "superadmin") return null; // null = all editable

@@ -13,8 +13,6 @@ export default class NotificationController {
       return;
     }
 
-    console.log("Fetching notifications for user ID:", userId);
-
     const notifications = await Notification.find({ recipient: userId })
       .sort({ createdAt: -1 })
       .populate("sender", "name email photo");

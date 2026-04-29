@@ -7,6 +7,7 @@ import {
   Key,
   AlertTriangle,
   BadgeCheck,
+  Clock,
 } from "lucide-react";
 
 function roleColor(role) {
@@ -120,6 +121,20 @@ function AdminControl() {
             {isAdmin ? "✓ Granted" : "✗ Not an Admin"}
           </span>
         </div>
+        
+        {isAdmin && (
+          <div className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 py-3 border-t border-gray-100">
+            <div className="flex items-center gap-1.5 sm:w-44 flex-shrink-0">
+              <Clock className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
+              <span className="text-xs text-gray-400 uppercase font-semibold tracking-wide">
+                Daily Report Time
+              </span>
+            </div>
+            <div className="text-sm font-medium text-gray-800">
+              8:00 PM
+            </div>
+          </div>
+        )}
       </div>
 
       {/* ── System Stats (admin-only) ── */}

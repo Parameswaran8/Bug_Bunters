@@ -2,7 +2,6 @@ import { useState } from "react";
 import General from "@/components/My_Account/General";
 import AdminControl from "@/components/My_Account/Admin_Control";
 import PasswordControl from "@/components/My_Account/Password";
-import NotificationControl from "@/components/My_Account/Notification";
 import { Bolt, User, Lock, Bell } from "lucide-react";
 import {
   Tooltip,
@@ -18,7 +17,6 @@ function Account() {
     { id: "general", label: "General", icon: Bolt },
     { id: "admin", label: "Admin", icon: User },
     { id: "password", label: "Password", icon: Lock },
-    { id: "notification", label: "Notification", icon: Bell },
   ];
 
   return (
@@ -68,7 +66,6 @@ function Account() {
           {activeTab === "general" && <General />}
           {activeTab === "admin" && <AdminControl />}
           {activeTab === "password" && <PasswordControl />}
-          {activeTab === "notification" && <NotificationControl />}
         </div>
       </main>
     </div>

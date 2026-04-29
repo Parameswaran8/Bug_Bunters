@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 
-import { NotificationPopover } from "./NotificationPopover";
+
 
 function DashboardLayout() {
   const { user } = useAuth();
@@ -43,9 +43,8 @@ function DashboardLayout() {
             </div>
           </div>
 
-          {/* Right: bell + avatar */}
+          {/* Right: avatar */}
           <div className="flex items-center gap-2">
-            <NotificationPopover />
             <button
               onClick={() => navigate("/account")}
               className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold transition-transform hover:scale-105"

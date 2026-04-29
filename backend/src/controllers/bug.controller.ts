@@ -4,7 +4,6 @@ import { AuthenticatedRequest } from "../middlewares/authMiddleware";
 import { asyncHandler } from "../utils/asyncHandler";
 import { HttpStatusCodes } from "../utils/errorCodes";
 import BugModel from "../models/bug.models";
-import User from "../models/user.model";
 import { createNotification } from "../utils/notification";
 import { uploadOnCloudinary } from "../utils/cloudinary";
 import LogModel from "../models/logs.models";

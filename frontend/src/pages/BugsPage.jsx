@@ -8,15 +8,17 @@ import {
 import CreateBug from "../components/Phases/PhaseI/CreateBug";
 import BugTesting from "../components/Phases/PhaseII/BugTesting";
 import AnalyzeBug from "../components/Phases/PhaseIII/BugAnalyze";
-import ReadyToTest from "../components/Phases/PhaseIV/ReadyToTesting";
-import ReadyToDeploy from "../components/Phases/PhaseV/ReadyToDeploy";
-import Deployed from "../components/Phases/PhaseVI/Deployed";
+import Maintenance from "../components/Phases/PhaseIV/Maintenance";
+import ReadyToTest from "../components/Phases/PhaseV/ReadyToTesting";
+import ReadyToDeploy from "../components/Phases/PhaseVI/ReadyToDeploy";
+import Deployed from "../components/Phases/PhaseVII/Deployed";
 import AllBugsStage from "../components/Phases/Shared/AllBugsStage";
 import {
   LayoutGrid,
   Bug as BugIconLucide,
   TestTube2,
   Microscope,
+  Wrench,
   CheckCircle2,
   Rocket,
   BadgeCheck as DeployedIcon,
@@ -58,6 +60,15 @@ const RAW_PHASES = [
     color: "#8b5cf6",
     component: AnalyzeBug,
     phaseStr: "Bug Analysis",
+  },
+  {
+    id: "maintenance",
+    label: "Maintenance",
+    shortLabel: "Maintain",
+    icon: Wrench,
+    color: "#ec4899",
+    component: Maintenance,
+    phaseStr: "Maintenance",
   },
   {
     id: "rtt",
@@ -124,7 +135,7 @@ function getVisiblePhases(user) {
     );
   }
   if (isDev) {
-    ["analyze", "rtd", "deployed"].forEach((id) => allowedIds.add(id));
+    ["analyze", "maintenance", "rtd", "deployed"].forEach((id) => allowedIds.add(id));
   }
 
   return RAW_PHASES.filter((p) => allowedIds.has(p.id));
@@ -177,8 +188,7 @@ export default function BugsPage() {
     if (phaseStr === "Ready to Test") {
       phaseBugs = bugsList.filter(
         (b) =>
-          b.currentPhase === "Ready to Test" ||
-          b.currentPhase === "Maintenance",
+          b.currentPhase === "Ready to Test"
       );
       return filterBugsForTester(phaseBugs, user).length;
     }

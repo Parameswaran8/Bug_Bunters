@@ -6,15 +6,10 @@ import { useAuth } from "@/context/AuthContext";
 import { updateUser } from "@/API_Call/User";
 import toast from "react-hot-toast";
 import {
-  User,
-  Mail,
-  Phone,
-  Shield,
-  Briefcase,
   Pencil,
-  X,
   Check,
   Loader2,
+  Shield,
 } from "lucide-react";
 
 function getRoleLabel(user) {

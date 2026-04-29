@@ -9,8 +9,7 @@ function ReadyToTesting() {
   const rawPhaseBugs = bugsList
     ? bugsList.filter(
         (bug) =>
-          bug.currentPhase === "Ready to Test" ||
-          bug.currentPhase === "Maintenance"
+          bug.currentPhase === "Ready to Test"
       )
     : [];
 

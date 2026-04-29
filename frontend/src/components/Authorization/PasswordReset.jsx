@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Mail, Lock, Eye, EyeOff, ChevronLeft } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, ChevronLeft, MailQuestion, PartyPopper } from "lucide-react";
 import toast from "react-hot-toast";
 import { requestOtpReset, verifyOtpReset, resetPassword } from "@/API_Call/Auth";
 
@@ -105,7 +105,9 @@ function PasswordReset({ onSwitchToLogin }) {
       toast.success(
         (t) => (
           <div className="flex items-center gap-3">
-            <span className="text-2xl">📬</span>
+            <div className="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center">
+              <MailQuestion className="text-cyan-600 w-6 h-6" />
+            </div>
             <div className="flex flex-col text-left">
               <span className="font-bold text-gray-900">OTP Sent!</span>
               <span className="text-xs text-gray-500">Check your inbox at <span className="font-semibold text-cyan-600">{email}</span></span>
@@ -145,7 +147,11 @@ function PasswordReset({ onSwitchToLogin }) {
     setLoading(true);
     const result = await resetPassword({ resetToken, newPassword });
     if (result.success) {
-      toast.success("Password updated successfully! 🎉");
+      toast.success(
+        <div className="flex items-center gap-2">
+          Password updated successfully! <PartyPopper className="w-5 h-5 text-yellow-500" />
+        </div>
+      );
       onSwitchToLogin();
     } else {
       toast.error(result.message);
