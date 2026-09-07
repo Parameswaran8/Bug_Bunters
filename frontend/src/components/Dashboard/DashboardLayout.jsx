@@ -1,11 +1,10 @@
 import { Outlet } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
-import { Bell, PanelLeft } from "lucide-react";
+import { PanelLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
-
-
+import NotificationBell from "@/components/Shared/NotificationBell";
 
 function DashboardLayout() {
   const { user } = useAuth();
@@ -43,8 +42,9 @@ function DashboardLayout() {
             </div>
           </div>
 
-          {/* Right: avatar */}
+          {/* Right: notifications + avatar */}
           <div className="flex items-center gap-2">
+            <NotificationBell />
             <button
               onClick={() => navigate("/account")}
               className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold transition-transform hover:scale-105"

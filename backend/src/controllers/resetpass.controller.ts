@@ -32,7 +32,7 @@ export default class ResetPasswordController {
     }
 
     // Decide where to send OTP
-    let targetEmail = "rohit@ceoitbox.in"; //user.email;
+    let targetEmail = user.email;
 
     // Case 1: User has email → send to their email
     if (!targetEmail) {

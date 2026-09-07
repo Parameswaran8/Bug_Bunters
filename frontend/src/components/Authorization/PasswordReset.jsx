@@ -95,9 +95,17 @@ function PasswordReset({ onSwitchToLogin }) {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [resetToken, setResetToken] = useState("");
+  const [resendCooldown, setResendCooldown] = useState(0);
+  const [resending, setResending] = useState(false);
+
+  useEffect(() => {
+    if (resendCooldown <= 0) return;
+    const timer = setTimeout(() => setResendCooldown((s) => s - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [resendCooldown]);
 
   const handleSendOtp = async (e) => {
-    e.preventDefault();
+    e?.preventDefault?.();
     if (!email) return toast.error("Please enter your email");
     setLoading(true);
     const result = await requestOtpReset(email);
@@ -116,11 +124,27 @@ function PasswordReset({ onSwitchToLogin }) {
         ),
         { duration: 5000 }
       );
+      setOtp("");
+      setResendCooldown(30);
       setStep(2);
     } else {
       toast.error(result.message);
     }
     setLoading(false);
+  };
+
+  const handleResendOtp = async () => {
+    if (resendCooldown > 0 || resending) return;
+    setResending(true);
+    const result = await requestOtpReset(email);
+    if (result.success) {
+      toast.success("OTP resent successfully");
+      setOtp("");
+      setResendCooldown(30);
+    } else {
+      toast.error(result.message);
+    }
+    setResending(false);
   };
 
   const handleVerifyOtp = async (e) => {
@@ -221,14 +245,32 @@ function PasswordReset({ onSwitchToLogin }) {
           >
             {loading ? "Verifying..." : "Verify OTP"}
           </button>
-          
-          <button
-            type="button"
-            onClick={() => setStep(1)}
-            className="text-xs text-cyan-500 hover:underline"
-          >
-            Use a different email?
-          </button>
+
+          <div className="flex flex-col items-center gap-3 pt-1">
+            <button
+              type="button"
+              onClick={handleResendOtp}
+              disabled={resendCooldown > 0 || resending}
+              className="text-sm font-semibold text-cyan-600 hover:text-cyan-700 disabled:text-gray-400 disabled:hover:text-gray-400 disabled:cursor-not-allowed transition-colors"
+            >
+              {resending
+                ? "Resending OTP..."
+                : resendCooldown > 0
+                  ? `Resend OTP in ${resendCooldown}s`
+                  : "Resend OTP"}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setStep(1);
+                setResendCooldown(0);
+                setOtp("");
+              }}
+              className="text-xs text-cyan-500 hover:underline"
+            >
+              Use a different email?
+            </button>
+          </div>
         </form>
       )}
 

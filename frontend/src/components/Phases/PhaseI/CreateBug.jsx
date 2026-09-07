@@ -7,9 +7,9 @@ import { useAuth } from "@/context/AuthContext";
 import { filterBugsForRaiser, getUserRoleFlags } from "@/utils/bugRoleFilter";
 import { Sheet } from "@/components/ui/sheet";
 
-function CreateBug() {
+function CreateBug({ autoOpen = false }) {
   const { bugsList, user } = useAuth();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(autoOpen);
 
   const { isAdmin, isBugRaiser } = getUserRoleFlags(user);
   const canCreate = isAdmin || isBugRaiser;

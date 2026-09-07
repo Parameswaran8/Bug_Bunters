@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Bell, BellDot, CheckCircle, Clock, Info, X, Trash2 } from "lucide-react";
+import { Bell, CheckCircle, Clock, Info, Trash2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { getNotifications, markAsRead, markAllAsRead, deleteNotification } from "@/API_Call/Notification";
 import { formatDistanceToNow } from "date-fns";
 import toast from "react-hot-toast";
@@ -81,16 +79,20 @@ export default function NotificationBell() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative h-10 w-10 rounded-xl hover:bg-slate-100 transition-colors group">
-          {unreadCount > 0 ? (
-            <BellDot className="h-5 w-5 text-cyan-600 group-hover:scale-110 transition-transform" />
-          ) : (
-            <Bell className="h-5 w-5 text-gray-500 group-hover:scale-110 transition-transform" />
-          )}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="relative h-9 w-9 rounded-full hover:bg-slate-100 transition-colors"
+        >
+          <Bell
+            className={`h-[18px] w-[18px] ${
+              unreadCount > 0 ? "text-cyan-600" : "text-gray-500"
+            }`}
+          />
           {unreadCount > 0 && (
-            <Badge className="absolute -top-0.5 -right-0.5 h-4 min-w-[16px] px-1 bg-red-500 text-white text-[10px] font-black flex items-center justify-center border-2 border-white shadow-sm">
+            <span className="absolute top-1 right-1 flex h-3.5 min-w-3.5 items-center justify-center rounded-full bg-red-500 px-[3px] text-[9px] font-bold leading-none text-white ring-2 ring-white">
               {unreadCount > 9 ? "9+" : unreadCount}
-            </Badge>
+            </span>
           )}
         </Button>
       </DropdownMenuTrigger>

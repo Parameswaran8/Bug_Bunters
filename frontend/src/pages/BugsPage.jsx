@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import {
   filterBugsForRaiser,
@@ -155,13 +156,38 @@ function getDefaultActiveTab(user, visiblePhases) {
 
 export default function BugsPage() {
   const { bugsList, user } = useAuth();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const openCreateFromQuery = searchParams.get("create") === "1";
 
   const PHASES = getVisiblePhases(user);
   const defaultTab = getDefaultActiveTab(user, PHASES);
+  const canUseCreateTab = PHASES.some((p) => p.id === "create");
 
-  const [active, setActive] = useState(defaultTab);
+  const [active, setActive] = useState(() =>
+    openCreateFromQuery && canUseCreateTab ? "create" : defaultTab
+  );
+  const [autoOpenCreate, setAutoOpenCreate] = useState(
+    () => openCreateFromQuery && canUseCreateTab
+  );
   const current = PHASES.find((p) => p.id === active) || PHASES[0];
   const ActiveComponent = current?.component;
+
+  useEffect(() => {
+    if (!openCreateFromQuery) return;
+    if (canUseCreateTab) {
+      setActive("create");
+      setAutoOpenCreate(true);
+    }
+    const next = new URLSearchParams(searchParams);
+    next.delete("create");
+    setSearchParams(next, { replace: true });
+  }, [openCreateFromQuery, canUseCreateTab, searchParams, setSearchParams]);
+
+  useEffect(() => {
+    if (!autoOpenCreate) return;
+    const t = setTimeout(() => setAutoOpenCreate(false), 300);
+    return () => clearTimeout(t);
+  }, [autoOpenCreate]);
 
   const getPhaseCount = (phaseStr) => {
     if (!bugsList) return 0;
@@ -270,7 +296,13 @@ export default function BugsPage() {
       {/* ═══ Content card ═══ */}
       <div className="flex-1 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
         <div className="p-5 overflow-auto flex-1">
-          {ActiveComponent && <ActiveComponent />}
+          {ActiveComponent && (
+            active === "create" ? (
+              <CreateBug autoOpen={autoOpenCreate} />
+            ) : (
+              <ActiveComponent />
+            )
+          )}
         </div>
         
         {active === "deployed" && (

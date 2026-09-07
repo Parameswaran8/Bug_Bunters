@@ -4,7 +4,7 @@ import { authRateLimiter } from "../middlewares/rateLimiter";
 
 const router = Router();
 
-router.use(authRateLimiter);
+// router.use(authRateLimiter); // temporarily disabled — re-enable later
 
 router.post("/request", ResetPasswordController.RequestReset);
 router.post("/verify", ResetPasswordController.VerifyOtp);

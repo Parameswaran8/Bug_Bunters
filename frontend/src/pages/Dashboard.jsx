@@ -13,13 +13,15 @@ import {
   TrendingUp,
   Activity
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { 
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer,
   PieChart, Pie, Cell, Legend
 } from "recharts";
+
 function Dashboard() {
   const { bugsList, allUsers, user } = useAuth();
+  const navigate = useNavigate();
   const today = new Date().toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 
   const stats = useMemo(() => {
@@ -205,14 +207,15 @@ function Dashboard() {
             View All Bugs
           </Link>
           {canReport && (
-            <Link
-              to="/bugs"
+            <button
+              type="button"
+              onClick={() => navigate("/bugs?create=1")}
               className="flex items-center gap-2 px-5 py-2.5 rounded-2xl text-sm font-bold text-white transition-all shadow-lg shadow-indigo-200 hover:shadow-indigo-300 hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
               style={{ background: "linear-gradient(135deg, #6366f1, #4f46e5)" }}
             >
               <span className="text-lg">＋</span>
               New Bug
-            </Link>
+            </button>
           )}
         </div>
       </div>
